@@ -17,7 +17,7 @@ import vista.Login;
  * @author GarciHard
  * @boschUsr GJA5TL
  */
-public class PrincipalControl implements ActionListener, CaretListener,KeyListener {
+public class PrincipalControl implements ActionListener, CaretListener, KeyListener {
     
     protected static int auxiliar;
     private final Date fechaActual = new Date(System.currentTimeMillis());
@@ -37,12 +37,12 @@ public class PrincipalControl implements ActionListener, CaretListener,KeyListen
         winPrincipal.getCmbTema().addActionListener(this);
         winPrincipal.getCmbLinea().addActionListener(this);
         winPrincipal.getCmbHora().addActionListener(this);
-        winPrincipal.getTxtTiempoInicio().addKeyListener(this);
         winPrincipal.getTxtTiempoInicio().addCaretListener(this);
-        winPrincipal.getTxtTiempoFin().addKeyListener(this);
+        winPrincipal.getTxtTiempoInicio().addKeyListener(this);
         winPrincipal.getTxtTiempoFin().addCaretListener(this);
-        winPrincipal.getTxtDuracion().addKeyListener(this);
+        winPrincipal.getTxtTiempoFin().addKeyListener(this);
         winPrincipal.getTxtDuracion().addCaretListener(this);
+        winPrincipal.getTxtDuracion().addKeyListener(this);
                 
         winPrincipal.getCmbTema().setModel(TemasDAOImpl.listaTema());
         winPrincipal.getCmbLinea().setModel(principalMetodos.listaLineas());
@@ -52,8 +52,48 @@ public class PrincipalControl implements ActionListener, CaretListener,KeyListen
         //Panel Piezas Producias
         winPrincipal.getCmbClientePzasProd().addActionListener(this);
         winPrincipal.getCmbNoPartePzasProd().addActionListener(this);
-        winPrincipal.getTxtCantidadProducidaPzasProd().addKeyListener(this);
         winPrincipal.getTxtCantidadProducidaPzasProd().addCaretListener(this);
+        winPrincipal.getTxtCantidadProducidaPzasProd().addKeyListener(this);
+        
+        //Panel Calidad
+        winPrincipal.getCmbOperacionCalidad().addActionListener(this);
+        winPrincipal.getCmbAreaCalidad().addActionListener(this);
+        winPrincipal.getCmbProblemaCalidad().addActionListener(this);
+        winPrincipal.getCmbClienteCalidad().addActionListener(this);
+        winPrincipal.getCmbNoParteCalidad().addActionListener(this);
+        winPrincipal.getTxtCantidadProducidaCalidad().addCaretListener(this);
+        winPrincipal.getTxtCantidadProducidaCalidad().addKeyListener(this);
+        winPrincipal.getTxtScrapCalidad().addCaretListener(this);
+        winPrincipal.getTxtScrapCalidad().addKeyListener(this);
+        
+        //Panel Tecnicas
+        winPrincipal.getCmbOperacionTecnicas().addActionListener(this);
+        winPrincipal.getCmbAreaTecnicas().addActionListener(this);
+        winPrincipal.getCmbProblemaTecnicas().addActionListener(this);
+        winPrincipal.getCmbClienteTecnicas().addActionListener(this);
+        winPrincipal.getCmbNoParteTecnicas().addActionListener(this);
+        winPrincipal.getTxtScrapTecnicas().addCaretListener(this);
+        winPrincipal.getTxtScrapTecnicas().addKeyListener(this);
+        
+        //Panel Organizacionales
+        winPrincipal.getCmbAreaOrganizacional().addActionListener(this);
+        winPrincipal.getCmbProblemaOrganizacional().addActionListener(this);
+        winPrincipal.getCmbClienteOrganizacional().addActionListener(this);
+        winPrincipal.getCmbNoParteOrganizacional().addActionListener(this);
+        
+        //Panel Cambios
+        winPrincipal.getCmbAreaCambios().addActionListener(this);
+        winPrincipal.getCmbProblemaCambios().addActionListener(this);
+        winPrincipal.getCmbClienteCambios().addActionListener(this);
+        winPrincipal.getCmbNoParteCambios().addActionListener(this);
+        winPrincipal.getCmbNoParteCambioCambios().addActionListener(this);
+        winPrincipal.getTxtScrapCambios().addCaretListener(this);
+        winPrincipal.getTxtScrapCambios().addKeyListener(this);
+        
+        //Panel Planeados
+        winPrincipal.getCmbAreaPlaneados().addActionListener(this);
+        winPrincipal.getCmbClientePlaneados().addActionListener(this);
+        winPrincipal.getCmbNoPartePlaneados().addActionListener(this);
         
         //Menu Editar
         winPrincipal.getMniEditarPorDia().addActionListener(this);
@@ -82,27 +122,22 @@ public class PrincipalControl implements ActionListener, CaretListener,KeyListen
             case "_cmbTema":
                 switch (winPrincipal.getCmbTema().getSelectedIndex()) {
                     case 1:
-                        principalMetodos.panelPiezasProducidasCliente(winPrincipal);
+                        principalMetodos.panelPiezasProducidasClientes(winPrincipal);
                         break;
                     case 2:
-                        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlCalidad());
-                        winPrincipal.getPnlProduccionCollapsible().repaint();
+                        principalMetodos.panelCalidadOperaciones(winPrincipal);
                         break;
                     case 3:
-                        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTecnicas());
-                        winPrincipal.getPnlProduccionCollapsible().repaint();
+                        principalMetodos.panelTecnicasOperaciones(winPrincipal);
                         break;
                     case 4:
-                        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlOrganizacionales());
-                        winPrincipal.getPnlProduccionCollapsible().repaint();
+                        principalMetodos.panelOrganizacionalesAreas(winPrincipal);
                         break;
                     case 5:
-                        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlCambios());
-                        winPrincipal.getPnlProduccionCollapsible().repaint();
+                        principalMetodos.panelCambiosAreas(winPrincipal);
                         break;
                     case 6:
-                        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlPlaneados());
-                        winPrincipal.getPnlProduccionCollapsible().repaint();
+                        principalMetodos.panelPlaneadosAreas(winPrincipal);
                         break;
                     default:
                         winPrincipal.getPnlProduccionCollapsible().setContent(new javax.swing.JLabel());
@@ -110,19 +145,94 @@ public class PrincipalControl implements ActionListener, CaretListener,KeyListen
                         break;
                 }
                 break;
+            /***** Panel Piezas Producidas *****/
             case "_cmbClientePzasProd":
-                principalMetodos.panelPiezasProducidasNoParte(winPrincipal);
+                principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
                 break;
             case "_cmbNoPartePzasProd":
                 winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
                 break;
+            /***** Panel Calidad *****/
+            case "_cmbOperacionCalidad":
+                principalMetodos.panelCalidadAreas(winPrincipal);
+                break;
+            case "_cmbAreaCalidad":
+                principalMetodos.panelCalidadProblemas(winPrincipal);
+                break;
+            case "_cmbProblemaCalidad":
+                principalMetodos.panelCalidadClientes(winPrincipal);
+                break;
+            case "_cmbClienteCalidad":
+                principalMetodos.panelCalidadNoPartes(winPrincipal);
+                break;
+            case "_cmbNoParteCalidad":
+                winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(true);
+                break;
+            /***** Panel Tecnicas *****/
+            case "_cmbOperacionTecnicas":
+                principalMetodos.panelTecnicasAreas(winPrincipal);
+                break;
+            case "_cmbAreaTecnicas":
+                principalMetodos.panelTecnicasProblemas(winPrincipal);
+                break;
+            case "_cmbProblemaTecnicas":
+                principalMetodos.panelTecnicasClientes(winPrincipal);
+                break;
+            case "_cmbClienteTecnicas":
+                principalMetodos.panelTecnicasNoPartes(winPrincipal);
+                break;
+            case "_cmbNoParteTecnicas":
+                winPrincipal.getTxtScrapTecnicas().setEnabled(true);
+                break;
+            /***** Panel Organizacionales *****/
+            case "_cmbAreaOrganizacional":
+                principalMetodos.panelOrganizacionalesProblemas(winPrincipal);
+                break;
+            case "_cmbProblemaOrganizacional":
+                principalMetodos.panelOrganizacionalesClientes(winPrincipal);
+                break;
+            case "_cmbClienteOrganizacional":
+                principalMetodos.panelOrganizacionalesNoPartes(winPrincipal);
+                break;
+            case "_cmbNoParteOrganizacional":
+                winPrincipal.getCmbHora().setEnabled(true);
+                break;
+            /***** Panel Cambios *****/    
+            case "_cmbAreaCambios":
+                principalMetodos.panelCambiosProblemas(winPrincipal);
+                break;
+            case "_cmbProblemaCambios":
+                principalMetodos.panelCambiosClientes(winPrincipal);
+                break;
+            case "_cmbClienteCambios":
+                principalMetodos.panelCambiosNoPartes(winPrincipal);
+                break;
+            case "_cmbNoParteCambios":
+                principalMetodos.panelCambiosNoPartesCambios(winPrincipal);
+                break;
+            case "_cmbNoParteCambioCambios":
+                winPrincipal.getTxtScrapCambios().setEnabled(true);
+                break;
+            /***** Panel Cambios *****/  
+            case "_cmbAreaPlaneados":
+                principalMetodos.panelPlaneadosClientes(winPrincipal);
+                break;
+            case "_cmbClientePlaneados":
+                principalMetodos.panelPlaneadosNoPartes(winPrincipal);
+                break;
+            case "_cmbNoPartePlaneados":
+                winPrincipal.getCmbHora().setEnabled(true);
+                break;
+            /***** Panel Tiempo Incidencia *****/    
             case "_cmbHora":
                 winPrincipal.getTxtTiempoInicio().setEnabled(true);
-                    break;
+                break;
+            /***** Panel Menu *****/
             case "_mniEditarPorDia":
                 winPrincipal.getDteFecha().setEnabled(true);
                 break;
         }
+        /***** Fecha *****/
         if (evt.getSource().equals(winPrincipal.getDteFecha())) {
             System.out.println("<><><><><><><>");
             System.out.println(winPrincipal.getDteFecha().getDate());
@@ -140,6 +250,57 @@ public class PrincipalControl implements ActionListener, CaretListener,KeyListen
                 ke.consume();
             }
             if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setEnabled(false);
+            }
+        }
+        //JTextField Cantidad Producida -> Panel Calidad
+        if (winPrincipal.getTxtCantidadProducidaCalidad().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtCantidadProducidaCalidad().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtCantidadProducidaCalidad().getText().isEmpty()) {
+                winPrincipal.getTxtScrapCalidad().setText("");
+                winPrincipal.getTxtScrapCalidad().setEnabled(false);
+            }
+        }
+        //JTextField Scrap -> Panel Calidad
+        if (winPrincipal.getTxtScrapCalidad().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapCalidad().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapCalidad().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
+                winPrincipal.getCmbHora().setEnabled(false);
+            }
+        }
+        //JTextField Scrap -> Panel Tecnicas
+        if (winPrincipal.getTxtScrapTecnicas().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapTecnicas().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapTecnicas().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
+                winPrincipal.getCmbHora().setEnabled(false);
+            }
+        }
+        //JTextField Scrap -> Panel Cambios
+        if (winPrincipal.getTxtScrapCambios().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapCambios().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapCambios().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setEnabled(false);
             }
         }
@@ -219,11 +380,37 @@ public class PrincipalControl implements ActionListener, CaretListener,KeyListen
 
     @Override
     public void caretUpdate(CaretEvent e) {
+        //JTextField Cantidad Producida -> Panel Piezas Producidas
         if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(e.getSource())) {
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getCmbHora().setEnabled(true);
             }
         }
+        //JTextField Cantidad Producida -> Panel Calidad
+        if (winPrincipal.getTxtCantidadProducidaCalidad().equals(e.getSource())) {
+            if (e.getDot() == 1 && e.getMark() == 1) {
+                winPrincipal.getTxtScrapCalidad().setEnabled(true);
+            }
+        }
+        //JTextField Scrap -> Panel Calidad
+        if (winPrincipal.getTxtScrapCalidad().equals(e.getSource())) {
+            if (e.getDot() == 1 && e.getMark() == 1) {
+                winPrincipal.getCmbHora().setEnabled(true);
+            }
+        }
+        //JTextField Scrap -> Panel Tecnicas
+        if (winPrincipal.getTxtScrapTecnicas().equals(e.getSource())) {
+            if (e.getDot() == 1 && e.getMark() == 1) {
+                winPrincipal.getCmbHora().setEnabled(true);
+            }
+        }
+        //JTextField Scrap -> Panel Cambios
+        if (winPrincipal.getTxtScrapCambios().equals(e.getSource())) {
+            if (e.getDot() == 1 && e.getMark() == 1) {
+                winPrincipal.getCmbHora().setEnabled(true);
+            }
+        }
+        //JTextField TiempoInicio
         if (winPrincipal.getTxtTiempoInicio().equals(e.getSource())) {
             if (e.getDot() == 0 && e.getMark() == 0) {
                 winPrincipal.getTxtTiempoFin().setEnabled(false);

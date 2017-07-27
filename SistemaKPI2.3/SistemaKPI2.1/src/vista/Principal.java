@@ -72,7 +72,7 @@ public class Principal extends javax.swing.JFrame {
         lblClienteCambios = new javax.swing.JLabel();
         cmbClienteCambios = new javax.swing.JComboBox();
         lblParteCambioCambios = new javax.swing.JLabel();
-        cmbParteCambioCambios = new javax.swing.JComboBox();
+        cmbNoParteCambioCambios = new javax.swing.JComboBox();
         lblScrapCambios = new javax.swing.JLabel();
         txtScrapCambios = new javax.swing.JTextField();
         pnlPlaneados = new javax.swing.JPanel();
@@ -306,7 +306,6 @@ public class Principal extends javax.swing.JFrame {
         cmbClientePzasProd.setActionCommand("_cmbClientePzasProd");
         cmbClientePzasProd.setEnabled(false);
         cmbClientePzasProd.setFocusable(false);
-        cmbClientePzasProd.setOpaque(false);
 
         lblNoPartePzasProd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoPartePzasProd.setText("No. PARTE");
@@ -358,18 +357,26 @@ public class Principal extends javax.swing.JFrame {
 
         lblAreaOrganizacional.setText("ÁREA");
 
+        cmbAreaOrganizacional.setActionCommand("_cmbAreaOrganizacional");
+        cmbAreaOrganizacional.setEnabled(false);
         cmbAreaOrganizacional.setFocusable(false);
 
         lblProblemaOrganizacional.setText("PROBLEMA");
 
+        cmbProblemaOrganizacional.setActionCommand("_cmbProblemaOrganizacional");
+        cmbProblemaOrganizacional.setEnabled(false);
         cmbProblemaOrganizacional.setFocusable(false);
 
         lblClienteOrganizacional.setText("CLIENTE");
 
+        cmbClienteOrganizacional.setActionCommand("_cmbClienteOrganizacional");
+        cmbClienteOrganizacional.setEnabled(false);
         cmbClienteOrganizacional.setFocusable(false);
 
         lblNoParteOrganizacional.setText("No. PARTE");
 
+        cmbNoParteOrganizacional.setActionCommand("_cmbNoParteOrganizacional");
+        cmbNoParteOrganizacional.setEnabled(false);
         cmbNoParteOrganizacional.setFocusable(false);
 
         javax.swing.GroupLayout pnlOrganizacionalesLayout = new javax.swing.GroupLayout(pnlOrganizacionales);
@@ -422,29 +429,39 @@ public class Principal extends javax.swing.JFrame {
         lblAreaCambios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAreaCambios.setText("ÁREA");
 
+        cmbAreaCambios.setActionCommand("_cmbAreaCambios");
+        cmbAreaCambios.setEnabled(false);
         cmbAreaCambios.setFocusable(false);
 
         lblProblemaCambios.setText("PROBLEMA");
 
+        cmbProblemaCambios.setActionCommand("_cmbProblemaCambios");
+        cmbProblemaCambios.setEnabled(false);
         cmbProblemaCambios.setFocusable(false);
 
         lblNoParteCambios.setText("No. PARTE");
 
+        cmbNoParteCambios.setActionCommand("_cmbNoParteCambios");
+        cmbNoParteCambios.setEnabled(false);
         cmbNoParteCambios.setFocusable(false);
 
         lblClienteCambios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClienteCambios.setText("CLIENTE");
 
+        cmbClienteCambios.setActionCommand("_cmbClienteCambios");
+        cmbClienteCambios.setEnabled(false);
         cmbClienteCambios.setFocusable(false);
 
         lblParteCambioCambios.setText("No. PARTE CAMBIO");
 
-        cmbParteCambioCambios.setFocusable(false);
+        cmbNoParteCambioCambios.setActionCommand("_cmbNoParteCambioCambios");
+        cmbNoParteCambioCambios.setEnabled(false);
+        cmbNoParteCambioCambios.setFocusable(false);
 
         lblScrapCambios.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblScrapCambios.setText("SCRAP");
 
-        txtScrapCambios.setFocusable(false);
+        txtScrapCambios.setEnabled(false);
 
         javax.swing.GroupLayout pnlCambiosLayout = new javax.swing.GroupLayout(pnlCambios);
         pnlCambios.setLayout(pnlCambiosLayout);
@@ -460,20 +477,22 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(cmbProblemaCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbAreaCambios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblNoParteCambios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblClienteCambios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbClienteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbNoParteCambios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCambiosLayout.createSequentialGroup()
+                        .addComponent(lblClienteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbClienteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCambiosLayout.createSequentialGroup()
+                        .addComponent(lblNoParteCambios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbNoParteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblScrapCambios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblParteCambioCambios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbParteCambioCambios, 0, 200, Short.MAX_VALUE)
+                    .addComponent(cmbNoParteCambioCambios, 0, 200, Short.MAX_VALUE)
                     .addComponent(txtScrapCambios))
                 .addContainerGap())
         );
@@ -485,28 +504,25 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(pnlCambiosLayout.createSequentialGroup()
                         .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblParteCambioCambios)
-                            .addComponent(cmbParteCambioCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblScrapCambios)
-                            .addComponent(txtScrapCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnlCambiosLayout.createSequentialGroup()
-                            .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblNoParteCambios)
-                                .addComponent(cmbNoParteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
+                            .addComponent(cmbNoParteCambioCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblClienteCambios)
                                 .addComponent(cmbClienteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(pnlCambiosLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblScrapCambios)
+                            .addComponent(txtScrapCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblAreaCambios)
-                                .addComponent(cmbAreaCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblProblemaCambios)
-                                .addComponent(cmbProblemaCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblNoParteCambios)
+                                .addComponent(cmbNoParteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlCambiosLayout.createSequentialGroup()
+                        .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAreaCambios)
+                            .addComponent(cmbAreaCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblProblemaCambios)
+                            .addComponent(cmbProblemaCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -515,19 +531,19 @@ public class Principal extends javax.swing.JFrame {
         lblAreaPlaneados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAreaPlaneados.setText("ÁREA");
 
-        cmbAreaPlaneados.setActionCommand("_cmbArea");
+        cmbAreaPlaneados.setActionCommand("_cmbAreaPlaneados");
         cmbAreaPlaneados.setFocusable(false);
 
         lblClientePlaneados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClientePlaneados.setText("CLIENTE");
 
-        cmbClientePlaneados.setActionCommand("_cmbCliente");
+        cmbClientePlaneados.setActionCommand("_cmbClientePlaneados");
         cmbClientePlaneados.setFocusable(false);
 
         lblNoPartePlaneados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoPartePlaneados.setText("No. PARTE");
 
-        cmbNoPartePlaneados.setActionCommand("_cmbNoParte");
+        cmbNoPartePlaneados.setActionCommand("_cmbNoPartePlaneados");
         cmbNoPartePlaneados.setFocusable(false);
 
         javax.swing.GroupLayout pnlPlaneadosLayout = new javax.swing.GroupLayout(pnlPlaneados);
@@ -575,37 +591,42 @@ public class Principal extends javax.swing.JFrame {
         lblOperacionTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblOperacionTecnicas.setText("OPERACIÓN");
 
-        cmbOperacionTecnicas.setActionCommand("_cmbOperacion");
+        cmbOperacionTecnicas.setActionCommand("_cmbOperacionTecnicas");
+        cmbOperacionTecnicas.setEnabled(false);
         cmbOperacionTecnicas.setFocusable(false);
 
         lblAreaTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAreaTecnicas.setText("ÁREA");
 
-        cmbAreaTecnicas.setActionCommand("_cmbArea");
+        cmbAreaTecnicas.setActionCommand("_cmbAreaTecnicas");
+        cmbAreaTecnicas.setEnabled(false);
         cmbAreaTecnicas.setFocusable(false);
 
         lblProblemaTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblProblemaTecnicas.setText("PROBLEMA");
 
-        cmbProblemaTecnicas.setActionCommand("_cmbProblema");
+        cmbProblemaTecnicas.setActionCommand("_cmbProblemaTecnicas");
+        cmbProblemaTecnicas.setEnabled(false);
         cmbProblemaTecnicas.setFocusable(false);
 
         lblClienteTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClienteTecnicas.setText("CLIENTE");
 
-        cmbClienteTecnicas.setActionCommand("_cmbCliente");
+        cmbClienteTecnicas.setActionCommand("_cmbClienteTecnicas");
+        cmbClienteTecnicas.setEnabled(false);
         cmbClienteTecnicas.setFocusable(false);
 
         lblNoParteTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoParteTecnicas.setText("No. PARTE");
 
-        cmbNoParteTecnicas.setActionCommand("_cmbNoParte");
+        cmbNoParteTecnicas.setActionCommand("_cmbNoParteTecnicas");
+        cmbNoParteTecnicas.setEnabled(false);
         cmbNoParteTecnicas.setFocusable(false);
 
         lblScrapTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblScrapTecnicas.setText("SCRAP");
 
-        txtScrapTecnicas.setFocusable(false);
+        txtScrapTecnicas.setEnabled(false);
 
         javax.swing.GroupLayout pnlTecnicasLayout = new javax.swing.GroupLayout(pnlTecnicas);
         pnlTecnicas.setLayout(pnlTecnicasLayout);
@@ -676,42 +697,47 @@ public class Principal extends javax.swing.JFrame {
         lblOperacionCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblOperacionCalidad.setText("OPERACIÓN");
 
-        cmbOperacionCalidad.setActionCommand("_cmbOperacion");
+        cmbOperacionCalidad.setActionCommand("_cmbOperacionCalidad");
+        cmbOperacionCalidad.setEnabled(false);
         cmbOperacionCalidad.setFocusable(false);
 
         lblAreaCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAreaCalidad.setText("ÁREA");
 
-        cmbAreaCalidad.setActionCommand("_cmbArea");
+        cmbAreaCalidad.setActionCommand("_cmbAreaCalidad");
+        cmbAreaCalidad.setEnabled(false);
         cmbAreaCalidad.setFocusable(false);
 
         lblProblemaCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblProblemaCalidad.setText("PROBLEMA");
 
-        cmbProblemaCalidad.setActionCommand("_cmbProblema");
+        cmbProblemaCalidad.setActionCommand("_cmbProblemaCalidad");
+        cmbProblemaCalidad.setEnabled(false);
         cmbProblemaCalidad.setFocusable(false);
 
         lblClienteCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClienteCalidad.setText("CLIENTE");
 
-        cmbClienteCalidad.setActionCommand("_cmbCliente");
+        cmbClienteCalidad.setActionCommand("_cmbClienteCalidad");
+        cmbClienteCalidad.setEnabled(false);
         cmbClienteCalidad.setFocusable(false);
 
         lblCantidadProducidaCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCantidadProducidaCalidad.setText("CANTIDAD PRODUCIDA");
 
-        txtCantidadProducidaCalidad.setFocusable(false);
+        txtCantidadProducidaCalidad.setEnabled(false);
 
         lblNoParteCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoParteCalidad.setText("No. PARTE");
 
-        cmbNoParteCalidad.setActionCommand("_cmbNoParte");
+        cmbNoParteCalidad.setActionCommand("_cmbNoParteCalidad");
+        cmbNoParteCalidad.setEnabled(false);
         cmbNoParteCalidad.setFocusable(false);
 
         lblScrapCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblScrapCalidad.setText("SCRAP");
 
-        txtScrapCalidad.setFocusable(false);
+        txtScrapCalidad.setEnabled(false);
 
         javax.swing.GroupLayout pnlCalidadLayout = new javax.swing.GroupLayout(pnlCalidad);
         pnlCalidad.setLayout(pnlCalidadLayout);
@@ -1164,7 +1190,7 @@ public class Principal extends javax.swing.JFrame {
     public JButton getBtnGuardarBitacora() {
         return btnGuardarBitacora;
     }
-    /****** PANEL PIEZAS PRODUCIDAS ******/
+    //PANEL PIEZAS PRODUCIDAS
     public JComboBox getCmbClientePzasProd() {
         return cmbClientePzasProd;
     }
@@ -1176,7 +1202,111 @@ public class Principal extends javax.swing.JFrame {
     public JTextField getTxtCantidadProducidaPzasProd() {
         return txtCantidadProducidaPzasProd;
     }
-    /***** FIN PANEL PIEZAS PRODUCIDAS *****/
+    //PANEL CALIDAD
+    public JComboBox getCmbAreaCalidad() {
+        return cmbAreaCalidad;
+    }
+
+    public JComboBox getCmbClienteCalidad() {
+        return cmbClienteCalidad;
+    }
+
+    public JComboBox getCmbNoParteCalidad() {
+        return cmbNoParteCalidad;
+    }
+
+    public JComboBox getCmbOperacionCalidad() {
+        return cmbOperacionCalidad;
+    }
+
+    public JComboBox getCmbProblemaCalidad() {
+        return cmbProblemaCalidad;
+    }
+
+    public JTextField getTxtCantidadProducidaCalidad() {
+        return txtCantidadProducidaCalidad;
+    }
+
+    public JTextField getTxtScrapCalidad() {
+        return txtScrapCalidad;
+    }
+    //PANEL TECNICAS
+    public JComboBox getCmbAreaTecnicas() {
+        return cmbAreaTecnicas;
+    }
+
+    public JComboBox getCmbClienteTecnicas() {
+        return cmbClienteTecnicas;
+    }
+
+    public JComboBox getCmbNoParteTecnicas() {
+        return cmbNoParteTecnicas;
+    }
+
+    public JComboBox getCmbOperacionTecnicas() {
+        return cmbOperacionTecnicas;
+    }
+
+    public JComboBox getCmbProblemaTecnicas() {
+        return cmbProblemaTecnicas;
+    }
+
+    public JTextField getTxtScrapTecnicas() {
+        return txtScrapTecnicas;
+    }
+    //PANEL ORGANIZACIONALES
+    public JComboBox getCmbAreaOrganizacional() {
+        return cmbAreaOrganizacional;
+    }
+
+    public JComboBox getCmbClienteOrganizacional() {
+        return cmbClienteOrganizacional;
+    }
+
+    public JComboBox getCmbNoParteOrganizacional() {
+        return cmbNoParteOrganizacional;
+    }
+
+    public JComboBox getCmbProblemaOrganizacional() {
+        return cmbProblemaOrganizacional;
+    }
+    //PANEL CAMBIOS
+    public JComboBox getCmbAreaCambios() {
+        return cmbAreaCambios;
+    }
+
+    public JComboBox getCmbClienteCambios() {
+        return cmbClienteCambios;
+    }
+
+    public JComboBox getCmbNoParteCambioCambios() {
+        return cmbNoParteCambioCambios;
+    }
+
+    public JComboBox getCmbNoParteCambios() {
+        return cmbNoParteCambios;
+    }
+
+    public JComboBox getCmbProblemaCambios() {
+        return cmbProblemaCambios;
+    }
+
+    public JTextField getTxtScrapCambios() {
+        return txtScrapCambios;
+    }
+    //PANEL PLANEADOS
+    
+    public JComboBox getCmbAreaPlaneados() {
+        return cmbAreaPlaneados;
+    }
+
+    public JComboBox getCmbClientePlaneados() {
+        return cmbClientePlaneados;
+    }
+
+    public JComboBox getCmbNoPartePlaneados() {
+        return cmbNoPartePlaneados;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarBitacora;
@@ -1200,6 +1330,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbLinea;
     private javax.swing.JComboBox cmbNoParte;
     private javax.swing.JComboBox cmbNoParteCalidad;
+    private javax.swing.JComboBox cmbNoParteCambioCambios;
     private javax.swing.JComboBox cmbNoParteCambios;
     private javax.swing.JComboBox cmbNoParteOrganizacional;
     private javax.swing.JComboBox cmbNoPartePlaneados;
@@ -1209,7 +1340,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbOperacionCalidad;
     private javax.swing.JComboBox cmbOperacionTecnicas;
     private javax.swing.JComboBox cmbParteCambio;
-    private javax.swing.JComboBox cmbParteCambioCambios;
     private javax.swing.JComboBox cmbProblema;
     private javax.swing.JComboBox cmbProblemaCalidad;
     private javax.swing.JComboBox cmbProblemaCambios;
