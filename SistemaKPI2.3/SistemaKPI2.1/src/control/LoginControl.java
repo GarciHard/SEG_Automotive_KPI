@@ -1,11 +1,14 @@
 package control;
 
+import static control.PrincipalControl.winPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JOptionPane;
 import utils.LoginMetodos;
 import vista.Login;
+import vista.Principal;
 
 /**
  * Hecho con <3 por:
@@ -34,12 +37,28 @@ public class LoginControl implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent evt) {
         switch (evt.getActionCommand()) {
-            case "_btnAceptar":
+            case "_btnAceptar": // validaciones para aceptar de Login
                 switch (PrincipalControl.auxiliar) {
                     case 1:
                         if (loginMetodos.cambiarLinea(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
                             PrincipalControl.winPrincipal.getBtnCambiarLinea().setText("Aceptar");
                             PrincipalControl.winPrincipal.getCmbLinea().setEnabled(true);
+                            winLogin.dispose();
+                        }
+                        break;
+                    case 2:
+                        if (loginMetodos.validaSupervisor(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
+                            PrincipalControl.winPrincipal.getBtnCambiarLinea().setText("Aceptar");
+                            PrincipalControl.winPrincipal.getDteFecha().setEnabled(true);
+                            winLogin.dispose();
+                        }
+                        break;
+                    case 3:
+                        System.err.printf("Miercolesssssss");
+                        if (loginMetodos.validaAjustador(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
+                            System.err.printf("Juevesssssssssss");
+                            PrincipalControl.winPrincipal.getBtnCambiarLinea().setText("Aceptar");
+                            JOptionPane.showMessageDialog(winPrincipal, "Inseertarsssss");
                             winLogin.dispose();
                         }
                         break;
@@ -49,8 +68,8 @@ public class LoginControl implements ActionListener, KeyListener {
                 winLogin.dispose();
                 break;
         }
-    }
-
+    }    
+    
     @Override
     public void keyTyped(KeyEvent e) {}
 

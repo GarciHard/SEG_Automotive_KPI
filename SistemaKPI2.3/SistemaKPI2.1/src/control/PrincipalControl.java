@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import utils.PrincipalMetodos;
@@ -110,6 +111,7 @@ public class PrincipalControl implements ActionListener, CaretListener,KeyListen
                         break;
                 }
                 break;
+                
             case "_cmbClientePzasProd":
                 principalMetodos.panelPiezasProducidasNoParte(winPrincipal);
                 break;
@@ -120,7 +122,14 @@ public class PrincipalControl implements ActionListener, CaretListener,KeyListen
                 winPrincipal.getTxtTiempoInicio().setEnabled(true);
                     break;
             case "_mniEditarPorDia":
-                winPrincipal.getDteFecha().setEnabled(true);
+                auxiliar = 2;
+                new LoginControl(new Login(winPrincipal, true));
+                break;
+                
+            case "btnGuardar":
+                System.err.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAA ENTROOOOOOOOOOOOOOOOOOOOOOOO");
+                auxiliar = 3;
+                new LoginControl(new Login(winPrincipal, true));
                 break;
         }
         if (evt.getSource().equals(winPrincipal.getDteFecha())) {

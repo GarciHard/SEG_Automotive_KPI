@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import modelo.ConexionBD;
 import modelo.UsuariosDAO;
 
@@ -26,6 +27,7 @@ public class UsuariosDAOImpl extends ConexionBD implements UsuariosDAO {
             ps.setString(1, usuario);
             ps.setString(2, contrasena);
             rs = ps.executeQuery();
+            System.out.println(rs);
             
             if (rs.next()) {
                 privilegio = rs.getInt(1);
@@ -39,5 +41,4 @@ public class UsuariosDAOImpl extends ConexionBD implements UsuariosDAO {
         }
         return privilegio;
     }
-
 }

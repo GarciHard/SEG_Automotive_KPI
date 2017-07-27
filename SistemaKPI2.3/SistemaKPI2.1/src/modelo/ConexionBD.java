@@ -23,7 +23,7 @@ public class ConexionBD {
     //private final String urlDB = "jdbc:ucanaccess://" + "I:/Dept/MOE1/Shared/Informacion_general/proyectos  SG/Proyecto OEE/BD/SystemKPI.accdb";
     
     //URL PRUEBA GITHUB
-    private final String urlDB = "jdbc:ucanaccess://" + "src/db/SystemKPI.accdb";
+    //private final String urlDB = "jdbc:ucanaccess://" + "src/db/SystemKPI.accdb";
     
     //URL PRUEBA MAC
     //private final String urlDB = "jdbc:ucanaccess://" + "/Users/garcihard/Documents/GitHub/BOSCH-SG/SistemaKPI2.0/SystemKPI.accdb";
@@ -32,7 +32,7 @@ public class ConexionBD {
     //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL/Desktop/SystemKPI.accdb";
     
     //URL PRUEBA PRR1TL
-    //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/PRR1TL/Desktop/SystemKPI.accdb";
+    private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/PRR1TL/Desktop/SystemKPI.accdb";
     
     public void conectar() throws Exception {
         try {
