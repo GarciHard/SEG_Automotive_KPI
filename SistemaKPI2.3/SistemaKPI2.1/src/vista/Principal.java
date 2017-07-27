@@ -122,7 +122,7 @@ public class Principal extends javax.swing.JFrame {
         cmbLinea = new javax.swing.JComboBox();
         lblFecha = new javax.swing.JLabel();
         dteFecha = new com.alee.extended.date.WebDateField();
-        btnCambiarLinea1 = new javax.swing.JButton();
+        btnCambiarLinea = new javax.swing.JButton();
         pnlBorder = new javax.swing.JPanel();
         pnlProduccionCollapsible = new com.alee.extended.panel.WebCollapsiblePane();
         pnlBorderTiempoBitacora = new javax.swing.JPanel();
@@ -507,19 +507,21 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlCambiosLayout.createSequentialGroup()
-                        .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblParteCambioCambios)
-                            .addComponent(cmbNoParteCambioCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblClienteCambios)
-                                .addComponent(cmbClienteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cmbClienteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblParteCambioCambios)
+                                .addComponent(cmbNoParteCambioCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblScrapCambios)
-                            .addComponent(txtScrapCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblNoParteCambios)
-                                .addComponent(cmbNoParteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cmbNoParteCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblScrapCambios)
+                                .addComponent(txtScrapCambios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlCambiosLayout.createSequentialGroup()
                         .addGroup(pnlCambiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblAreaCambios)
@@ -840,10 +842,10 @@ public class Principal extends javax.swing.JFrame {
 
         dteFecha.setEnabled(false);
 
-        btnCambiarLinea1.setText("Cambiar Linea");
-        btnCambiarLinea1.setActionCommand("_btnCambiarLinea");
-        btnCambiarLinea1.setFocusable(false);
-        btnCambiarLinea1.setNextFocusableComponent(cmbLinea);
+        btnCambiarLinea.setText("Cambiar Linea");
+        btnCambiarLinea.setActionCommand("_btnCambiarLinea");
+        btnCambiarLinea.setFocusable(false);
+        btnCambiarLinea.setNextFocusableComponent(cmbLinea);
 
         javax.swing.GroupLayout pnlBorderNorthLayout = new javax.swing.GroupLayout(pnlBorderNorth);
         pnlBorderNorth.setLayout(pnlBorderNorthLayout);
@@ -866,7 +868,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(pnlBorderNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBorderNorthLayout.createSequentialGroup()
                     .addContainerGap(700, Short.MAX_VALUE)
-                    .addComponent(btnCambiarLinea1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCambiarLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(300, 300, 300)))
         );
         pnlBorderNorthLayout.setVerticalGroup(
@@ -886,7 +888,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(pnlBorderNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBorderNorthLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(btnCambiarLinea1)
+                    .addComponent(btnCambiarLinea)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -1182,7 +1184,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public JButton getBtnCambiarLinea() {
-        return btnGuardar;
+        return btnCambiarLinea;
     }
     
     public WebDateField getDteFecha(){
@@ -1336,7 +1338,7 @@ public class Principal extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarBitacora;
-    private javax.swing.JButton btnCambiarLinea1;
+    private javax.swing.JButton btnCambiarLinea;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarBitacora;
     private javax.swing.JButton btnRevisarHoras;

@@ -27,7 +27,7 @@ public class UsuariosDAOImpl extends ConexionBD implements UsuariosDAO {
             ps.setString(1, usuario);
             ps.setString(2, contrasena);
             rs = ps.executeQuery();
-            System.out.println(rs);
+            System.out.println("UsuariosDAOImpl.nivelUsuario()" + rs);
             
             if (rs.next()) {
                 privilegio = rs.getInt(1);

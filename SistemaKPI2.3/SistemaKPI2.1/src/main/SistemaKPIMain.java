@@ -4,7 +4,6 @@ import com.alee.laf.WebLookAndFeel;
 import vista.SplashScreen;
 import control.SplashScreenControl;
 import javax.swing.SwingUtilities;
-import vista.Principal;
 
 /**
  * Hecho con <3 por:

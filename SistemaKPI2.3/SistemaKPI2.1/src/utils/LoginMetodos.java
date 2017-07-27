@@ -69,7 +69,7 @@ public class LoginMetodos {
         try {
             privilegio = new UsuariosDAOImpl().nivelUsuario(usuario.getText(), contrasena.getText());
             if (privilegio == 2) {
-                System.out.println(privilegio);
+                System.out.println("LoginMetodos.validaAjustador()" + privilegio);
                 respuesta = true;
             } else {
                 JOptionPane.showMessageDialog(form, "Usuario inválido:\nProbablemente no tienes Permisos para esta acción", "Error", JOptionPane.ERROR_MESSAGE);
