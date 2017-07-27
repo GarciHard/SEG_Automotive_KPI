@@ -4,10 +4,11 @@ import dao.TemasDAOImpl;
 import vista.Principal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import utils.PrincipalMetodos;
@@ -18,7 +19,7 @@ import vista.Login;
  * @author GarciHard
  * @boschUsr GJA5TL
  */
-public class PrincipalControl implements ActionListener, CaretListener, KeyListener {
+public class PrincipalControl implements ActionListener, CaretListener, ItemListener, KeyListener {
     
     protected static int auxiliar;
     private final Date fechaActual = new Date(System.currentTimeMillis());
@@ -38,6 +39,7 @@ public class PrincipalControl implements ActionListener, CaretListener, KeyListe
         winPrincipal.getCmbTema().addActionListener(this);
         winPrincipal.getCmbLinea().addActionListener(this);
         winPrincipal.getCmbHora().addActionListener(this);
+        winPrincipal.getCmbHora().addItemListener(this);
         winPrincipal.getTxtTiempoInicio().addCaretListener(this);
         winPrincipal.getTxtTiempoInicio().addKeyListener(this);
         winPrincipal.getTxtTiempoFin().addCaretListener(this);
@@ -53,6 +55,7 @@ public class PrincipalControl implements ActionListener, CaretListener, KeyListe
         //Panel Piezas Producias
         winPrincipal.getCmbClientePzasProd().addActionListener(this);
         winPrincipal.getCmbNoPartePzasProd().addActionListener(this);
+        winPrincipal.getCmbNoPartePzasProd().addItemListener(this);
         winPrincipal.getTxtCantidadProducidaPzasProd().addCaretListener(this);
         winPrincipal.getTxtCantidadProducidaPzasProd().addKeyListener(this);
         
@@ -151,6 +154,7 @@ public class PrincipalControl implements ActionListener, CaretListener, KeyListe
                 principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
                 break;
             case "_cmbNoPartePzasProd":
+                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
                 winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
                 break;
             /***** Panel Calidad *****/
@@ -226,7 +230,9 @@ public class PrincipalControl implements ActionListener, CaretListener, KeyListe
                 break;
             /***** Panel Tiempo Incidencia *****/    
             case "_cmbHora":
-                winPrincipal.getTxtTiempoInicio().setEnabled(true);
+                if (winPrincipal.getCmbHora().getSelectedIndex() != 0) {
+                    winPrincipal.getTxtTiempoInicio().setEnabled(true);
+                }
                 break;
             /***** Panel Menu *****/
             case "_mniEditarPorDia":
@@ -258,6 +264,7 @@ public class PrincipalControl implements ActionListener, CaretListener, KeyListe
                 ke.consume();
             }
             if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
             }
         }
@@ -390,8 +397,14 @@ public class PrincipalControl implements ActionListener, CaretListener, KeyListe
     public void caretUpdate(CaretEvent e) {
         //JTextField Cantidad Producida -> Panel Piezas Producidas
         if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(e.getSource())) {
+            if ((e.getDot() + e.getMark()) == 0) {
+                winPrincipal.getCmbHora().setEnabled(false);
+            }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getCmbHora().setEnabled(true);
+            }
+            if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
             }
         }
         //JTextField Cantidad Producida -> Panel Calidad
@@ -421,8 +434,33 @@ public class PrincipalControl implements ActionListener, CaretListener, KeyListe
         //JTextField TiempoInicio
         if (winPrincipal.getTxtTiempoInicio().equals(e.getSource())) {
             if (e.getDot() == 0 && e.getMark() == 0) {
+                winPrincipal.getTxtTiempoFin().setText("");
                 winPrincipal.getTxtTiempoFin().setEnabled(false);
+                
             }
+        }
+        //JTextField TiempoFin
+        if (winPrincipal.getTxtTiempoFin().equals(e.getSource())) {
+            if (e.getDot() == 0 && e.getMark() == 0) {
+                winPrincipal.getTxtDuracion().setText("");
+                winPrincipal.getBtnAgregarBitacora().setEnabled(false);
+            }
+        }
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (winPrincipal.getCmbHora().equals(e.getSource())) {
+            if (winPrincipal.getCmbHora().getSelectedIndex() == 0) {
+                winPrincipal.getTxtTiempoInicio().setText("");
+                winPrincipal.getTxtTiempoInicio().setEnabled(false);
+            }
+        }
+        if (winPrincipal.getCmbNoPartePzasProd().equals(e.getSource())) {
+            //if (winPrincipal.getCmbNoPartePzasProd().getSelectedIndex() == 0) {
+                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
+                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(false);
+            //}
         }
     }
 }
