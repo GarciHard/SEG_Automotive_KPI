@@ -294,7 +294,6 @@
             <Property name="actionCommand" type="java.lang.String" value="_cmbClientePzasProd"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Principal_cmbCliente"/>
@@ -322,7 +321,7 @@
         <Component class="javax.swing.JTextField" name="txtCantidadProducidaPzasProd">
           <Properties>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -398,6 +397,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbAreaOrganizacional"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -414,6 +415,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaOrganizacional"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -430,6 +433,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbClienteOrganizacional"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -446,6 +451,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteOrganizacional"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -474,14 +481,17 @@
                       <Component id="cmbAreaCambios" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblNoParteCambios" max="32767" attributes="0"/>
-                      <Component id="lblClienteCambios" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cmbClienteCambios" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="cmbNoParteCambios" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="lblClienteCambios" min="-2" pref="65" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="cmbClienteCambios" min="-2" pref="200" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="lblNoParteCambios" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="cmbNoParteCambios" min="-2" pref="200" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -490,7 +500,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbParteCambioCambios" pref="200" max="32767" attributes="0"/>
+                      <Component id="cmbNoParteCambioCambios" pref="200" max="32767" attributes="0"/>
                       <Component id="txtScrapCambios" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -505,36 +515,31 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbNoParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                  <Component id="lblClienteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbClienteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblScrapCambios" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtScrapCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
                                   <Component id="lblNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cmbNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblClienteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbClienteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblAreaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbAreaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblProblemaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbProblemaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblAreaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbAreaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblProblemaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbProblemaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -555,6 +560,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbAreaCambios"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -571,6 +578,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaCambios"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -587,6 +596,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteCambios"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -604,6 +615,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbClienteCambios"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -615,11 +628,13 @@
             <Property name="text" type="java.lang.String" value="No. PARTE CAMBIO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbParteCambioCambios">
+        <Component class="javax.swing.JComboBox" name="cmbNoParteCambioCambios">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteCambioCambios"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -634,7 +649,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtScrapCambios">
           <Properties>
-            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -700,7 +715,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbAreaPlaneados">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbArea"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbAreaPlaneados"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -712,7 +727,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbClientePlaneados">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbCliente"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbClientePlaneados"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -727,7 +742,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbNoPartePlaneados">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParte"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbNoPartePlaneados"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -832,7 +847,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbOperacionTecnicas">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbOperacion"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbOperacionTecnicas"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -844,7 +860,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbAreaTecnicas">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbArea"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbAreaTecnicas"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -856,7 +873,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbProblemaTecnicas">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbProblema"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaTecnicas"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -868,7 +886,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbClienteTecnicas">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbCliente"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbClienteTecnicas"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -883,7 +902,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbNoParteTecnicas">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParte"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteTecnicas"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -895,7 +915,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtScrapTecnicas">
           <Properties>
-            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -1010,7 +1030,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbOperacionCalidad">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbOperacion"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbOperacionCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -1022,7 +1043,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbAreaCalidad">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbArea"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbAreaCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -1034,7 +1056,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbProblemaCalidad">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbProblema"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -1046,7 +1069,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbClienteCalidad">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbCliente"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbClienteCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
@@ -1061,7 +1085,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtCantidadProducidaCalidad">
           <Properties>
-            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNoParteCalidad">
@@ -1072,7 +1096,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbNoParteCalidad">
           <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParte"/>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -1084,7 +1109,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtScrapCalidad">
           <Properties>
-            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
