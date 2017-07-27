@@ -10,4 +10,5 @@ public interface CalidadDAO {
     
     public DefaultComboBoxModel listaOperacionCalidad(String linea) throws Exception;
     public DefaultComboBoxModel listaAreaCalidad(String linea, String tema, String operacion) throws Exception;
+    public DefaultComboBoxModel listaProblemaCalidad(String linea, String tema, String operacion, String area) throws Exception;
 }

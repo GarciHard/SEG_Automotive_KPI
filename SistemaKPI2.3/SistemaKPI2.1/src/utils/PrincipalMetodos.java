@@ -23,6 +23,7 @@ public class PrincipalMetodos {
     private DefaultComboBoxModel listaNoParte;
     private DefaultComboBoxModel listaOperacion;
     private DefaultComboBoxModel listaProblema;
+    private DefaultComboBoxModel listaProblemaC;
     private JFrame form;
 
     public DefaultComboBoxModel listaLineas() {
@@ -79,9 +80,19 @@ public class PrincipalMetodos {
         return listaAreaC;
     }
     
-    private DefaultComboBoxModel listaAreasOrganizacional(String tema) {
+    private DefaultComboBoxModel listaProblemasCalidad(String linea, String tema, String operacion, String area) {
         try {
-            listaArea = new OrganizacionalesDAOImpl().listaAreasOrganizacional(tema);
+            listaProblemaC = new CalidadDAOImpl().listaProblemaCalidad(linea, tema, operacion, area);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(form, "PrincipalMetodos.listaProblemasCalidad()\n"
+                    + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return listaProblemaC;
+    }
+    
+    private DefaultComboBoxModel listaAreasOrganizacional(String linea, String tema) {
+        try {
+            listaArea = new OrganizacionalesDAOImpl().listaAreasOrganizacional(linea, tema);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(form, "PrincipalMetodos.listaAreaOrganizacional()\n"
                     + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -114,7 +125,8 @@ public class PrincipalMetodos {
     
     public void panelOrganizacionalesAreas(Principal winPrincipal) {
         winPrincipal.getCmbAreaOrganizacional().setEnabled(true);
-        winPrincipal.getCmbAreaOrganizacional().setModel(listaAreasOrganizacional(winPrincipal.getCmbTema().getSelectedItem().toString()));
+        winPrincipal.getCmbAreaOrganizacional().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbTema().getSelectedItem().toString()));
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlOrganizacionales());
         winPrincipal.getPnlProduccionCollapsible().repaint();
     }
@@ -140,7 +152,8 @@ public class PrincipalMetodos {
     
     public void panelCambiosAreas(Principal winPrincipal) {
         winPrincipal.getCmbAreaCambios().setEnabled(true);
-        winPrincipal.getCmbAreaCambios().setModel(listaAreasOrganizacional(winPrincipal.getCmbTema().getSelectedItem().toString()));
+        winPrincipal.getCmbAreaCambios().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbTema().getSelectedItem().toString()));
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlCambios());
         winPrincipal.getPnlProduccionCollapsible().repaint();
     }
@@ -172,7 +185,8 @@ public class PrincipalMetodos {
     
     public void panelPlaneadosAreas(Principal winPrincipal) {
         winPrincipal.getCmbAreaPlaneados().setEnabled(true);
-        winPrincipal.getCmbAreaPlaneados().setModel(listaAreasOrganizacional(winPrincipal.getCmbTema().getSelectedItem().toString()));
+        winPrincipal.getCmbAreaPlaneados().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbTema().getSelectedItem().toString()));
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlPlaneados());
         winPrincipal.getPnlProduccionCollapsible().repaint();
     }
@@ -205,9 +219,10 @@ public class PrincipalMetodos {
     
     public void panelCalidadProblemas(Principal winPrincipal) {
         winPrincipal.getCmbProblemaCalidad().setEnabled(true);
-        winPrincipal.getCmbProblemaCalidad().setModel(listaProblemasOrganizacional(
+        winPrincipal.getCmbProblemaCalidad().setModel(listaProblemasCalidad(
                 winPrincipal.getCmbLinea().getSelectedItem().toString(),
                 winPrincipal.getCmbTema().getSelectedItem().toString(),
+                winPrincipal.getCmbOperacionCalidad().getSelectedItem().toString(),
                 winPrincipal.getCmbAreaCalidad().getSelectedItem().toString()));
     }
     
@@ -239,9 +254,10 @@ public class PrincipalMetodos {
     
     public void panelTecnicasProblemas(Principal winPrincipal) {
         winPrincipal.getCmbProblemaTecnicas().setEnabled(true);
-        winPrincipal.getCmbProblemaTecnicas().setModel(listaProblemasOrganizacional(
+        winPrincipal.getCmbProblemaTecnicas().setModel(listaProblemasCalidad(
                 winPrincipal.getCmbLinea().getSelectedItem().toString(),
                 winPrincipal.getCmbTema().getSelectedItem().toString(),
+                winPrincipal.getCmbOperacionTecnicas().getSelectedItem().toString(),
                 winPrincipal.getCmbAreaTecnicas().getSelectedItem().toString()));
     }
     

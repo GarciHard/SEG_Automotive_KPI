@@ -18,16 +18,17 @@ public class OrganizacionalesDAOImpl extends ConexionBD implements Organizaciona
     private PreparedStatement ps;
     private ResultSet rs;
     
-    private final String LISTA_AREAS = "SELECT area FROM areas WHERE tema LIKE ? ORDER BY area ASC";
+    private final String LISTA_AREAS = "SELECT area FROM Perdidas WHERE linea LIKE ? AND tema LIKE ? ORDER BY area ASC";
     private final String LISTA_PROBLEMAS = "SELECT problema FROM Perdidas WHERE linea LIKE ? AND tema LIKE ? AND area LIKE ? ORDER BY problema ASC";
         
     @Override
-    public DefaultComboBoxModel listaAreasOrganizacional(String tema) throws Exception {
+    public DefaultComboBoxModel listaAreasOrganizacional(String linea, String tema) throws Exception {
         areaArr = new ArrayList<>();
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(LISTA_AREAS);
-            ps.setString(1, tema);
+            ps.setString(1, linea);
+            ps.setString(2, tema);
             rs = ps.executeQuery();
             
             while (rs.next()) {

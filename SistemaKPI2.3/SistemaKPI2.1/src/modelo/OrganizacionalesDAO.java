@@ -8,6 +8,6 @@ import javax.swing.DefaultComboBoxModel;
  */
 public interface OrganizacionalesDAO {
     
-    public DefaultComboBoxModel listaAreasOrganizacional(String tema) throws Exception;
+    public DefaultComboBoxModel listaAreasOrganizacional(String linea, String tema) throws Exception;
     public DefaultComboBoxModel listaProblemasOrganizacional(String linea, String tema, String area) throws Exception;
 }

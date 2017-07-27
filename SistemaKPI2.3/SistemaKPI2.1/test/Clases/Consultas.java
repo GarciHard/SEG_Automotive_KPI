@@ -367,6 +367,7 @@ public class Consultas {
         return listaNoParte;
     }
 
+    //ESTE YA ESTA
     public DefaultComboBoxModel ListaOperaciones(String tema, String linea) {
         DefaultComboBoxModel listaOP = new DefaultComboBoxModel();
         String consulta, valor = null;

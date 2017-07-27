@@ -944,9 +944,9 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbProblemaCalidad" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cmbOperacionCalidad" alignment="0" max="32767" attributes="0"/>
                       <Component id="cmbAreaCalidad" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cmbOperacionCalidad" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cmbProblemaCalidad" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -957,7 +957,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cmbNoParteCalidad" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cmbNoParteCalidad" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="txtCantidadProducidaCalidad" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1227,23 +1227,17 @@
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
   </AuxValues>
 
-  <Layout>
-    <DimensionLayout dim="0">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlBackground" alignment="0" max="32767" attributes="0"/>
-      </Group>
-    </DimensionLayout>
-    <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pnlBackground" alignment="0" max="32767" attributes="0"/>
-      </Group>
-    </DimensionLayout>
-  </Layout>
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="pnlBackground">
       <Properties>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Center"/>
+        </Constraint>
+      </Constraints>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout">
         <Property name="verticalGap" type="int" value="5"/>
@@ -1267,11 +1261,11 @@
                       <Component id="lblTema" min="-2" pref="47" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cmbTema" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" pref="83" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" pref="134" max="32767" attributes="0"/>
                       <Component id="lblLinea" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cmbLinea" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace pref="319" max="32767" attributes="0"/>
+                      <EmptySpace pref="368" max="32767" attributes="0"/>
                       <Component id="lblFecha" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dteFecha" min="-2" pref="150" max="-2" attributes="0"/>
@@ -1279,7 +1273,7 @@
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="700" max="32767" attributes="0"/>
+                          <EmptySpace pref="800" max="32767" attributes="0"/>
                           <Component id="btnCambiarLinea" min="-2" pref="150" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
                       </Group>
@@ -1613,7 +1607,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrBitacora" pref="1108" max="32767" attributes="0"/>
+                              <Component id="scrBitacora" pref="1208" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -1626,7 +1620,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="scrBitacora" pref="322" max="32767" attributes="0"/>
+                              <Component id="scrBitacora" pref="392" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                           </Group>
