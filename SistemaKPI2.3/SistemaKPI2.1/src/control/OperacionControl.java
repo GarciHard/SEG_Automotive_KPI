@@ -1,26 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
-import static control.PrincipalControl.auxiliar;
-import static control.PrincipalControl.winPrincipal;
 import dao.CalidadDAOImpl;
 import dao.TemasDAOImpl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
-import modelo.CalidadDAO;
+import utils.OperacionesMetodos;
 import utils.PrincipalMetodos;
-import vista.Login;
 import vista.Operaciones;
 import vista.Principal;
+
+/*
+import dao.TemasDAOImpl;
+import vista.Principal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Date;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+import utils.PrincipalMetodos;
+import vista.Login;
+*/
 
 /**
  *
@@ -28,26 +37,29 @@ import vista.Principal;
  */
 public class OperacionControl implements ActionListener, CaretListener, KeyListener {
     
-    protected static Operaciones winOperaciones;
-    private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
+    private final Operaciones winOperaciones;
+    protected static Principal  winPrincipal;
+    private final OperacionesMetodos operacionesMetodos = new OperacionesMetodos();
+    
     
     public OperacionControl(Operaciones operaciones) {
         this.winOperaciones = operaciones;
-        initFrame();
-        
+        initFrame();        
     }
     
     private void initFrame() {
-        winOperaciones.getCmbTema().addActionListener(this);
-        winOperaciones.getCmbOperacion().addActionListener(this);
-        winOperaciones.getCmbArea().addActionListener(this);
-        winOperaciones.getTxtDescOpe().addActionListener(this);
-        winOperaciones.getTxtDescProblema().addActionListener(this);
-        winOperaciones.getCmbBuscar().addActionListener(this);
-        winOperaciones.getBtnGuardar().addActionListener(this);
-        //CONSULTAS
-        winOperaciones.getCmbTema().setModel(TemasDAOImpl.listaTema());
-        winOperaciones.setVisible(true);
+            winOperaciones.getCmbTema().addActionListener(this);
+            winOperaciones.getCmbOperacion().addActionListener(this);
+            winOperaciones.getCmbArea().addActionListener(this);
+            winOperaciones.getTxtDescOpe().addActionListener(this);
+            winOperaciones.getTxtDescProblema().addActionListener(this);
+            winOperaciones.getCmbBuscar().addActionListener(this);
+            winOperaciones.getBtnGuardar().addActionListener(this);
+            //CONSULTAS
+            winOperaciones.getCmbTema().setModel(TemasDAOImpl.listaTema());
+            
+            //winOperaciones.getCmbOperacion().setModel(new CalidadDAOImpl().listaOperacionCalidad(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+            winOperaciones.setVisible(true);
     }
     
     public void actionPerformed(ActionEvent evt) {
@@ -55,7 +67,15 @@ public class OperacionControl implements ActionListener, CaretListener, KeyListe
             case "Tema":
                 switch (winOperaciones.getCmbTema().getSelectedIndex()) {
                     case 1:
-                        
+                        System.err.println("Entraaaaaaaaaaaaaaaaaaaaaaaa");
+                        try {
+                            System.out.println("Entraaaaaaaaaaaaaaaaaaaaaaaa 222222222222222222222");
+                            winOperaciones.getCmbOperacion().setModel(new CalidadDAOImpl().listaOperacionCalidad(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+                        } catch (Exception ex) {
+                            Logger.getLogger(OperacionControl.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                       // winOperaciones.getCmbTema().setModel(operacionesMetodos.listaOperacionesCalidad(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+                        //winOperaciones.getCmbOperacion().setModel(new OperacionesMetodos().listaOperacionCalidad(winPrincipal.getCmbLinea().getSelectedItem().toString()));
                         break;
                     case 2:
                         
