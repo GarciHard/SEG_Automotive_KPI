@@ -105,6 +105,12 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         //Menu Editar
         winPrincipal.getMniEditarPorDia().addActionListener(this);
         
+        //MenuEliminarBitacora
+        winPrincipal.getMniEliminar().addActionListener(this);
+        
+        //Tabla Bitacora
+        winPrincipal.getTblBitacora().setRowHeight(35);
+        
         winPrincipal.setVisible(true);
     }   
     
@@ -249,13 +255,19 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 new LoginControl(new Login(winPrincipal, true));
                 break;
                 
+            case "_mniEliminar":
+                principalMetodos.eliminarRegistroBitacora(winPrincipal);
+                break;
+                
             case "_btnAgregarBitacora":
+                principalMetodos.agregarRegistroBitacora(winPrincipal);
                 break;
                 
             case "btnGuardar":
-                System.err.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAA ENTROOOOOOOOOOOOOOOOOOOOOOOO");
-                auxiliar = 3;
-                new LoginControl(new Login(winPrincipal, true));
+//                System.err.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAA ENTROOOOOOOOOOOOOOOOOOOOOOOO");
+//                auxiliar = 3;
+//                new LoginControl(new Login(winPrincipal, true));
+                //principalMetodos.guardarBitacoraAccess(winPrincipal);
                 break;
         }
         /***** Fecha *****/

@@ -11,6 +11,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="mniEliminar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
+            <Property name="actionCommand" type="java.lang.String" value="_mniEliminar"/>
           </Properties>
         </MenuItem>
       </SubComponents>
@@ -1602,13 +1603,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrBitacora" pref="1258" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="scrBitacora" pref="1265" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="btnGuardar" min="-2" pref="150" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnGuardar" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1636,9 +1638,24 @@
                         <Component class="javax.swing.JTable" name="tblBitacora">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="0" rowCount="0"/>
+                              <Table columnCount="15" rowCount="0">
+                                <Column editable="false" title="LINEA" type="java.lang.Object"/>
+                                <Column editable="false" title="FECHA" type="java.lang.Object"/>
+                                <Column editable="false" title="HORA" type="java.lang.Object"/>
+                                <Column editable="false" title="INICIO INCIDENCIA" type="java.lang.Object"/>
+                                <Column editable="false" title="FIN INCIDENCIA" type="java.lang.Object"/>
+                                <Column editable="false" title="DURACION" type="java.lang.Object"/>
+                                <Column editable="false" title="TEMA" type="java.lang.Object"/>
+                                <Column editable="false" title="OPERACION" type="java.lang.Object"/>
+                                <Column editable="false" title="AREA" type="java.lang.Object"/>
+                                <Column editable="false" title="PROBLEMA" type="java.lang.Object"/>
+                                <Column editable="false" title="CLIENTE" type="java.lang.Object"/>
+                                <Column editable="false" title="No. PARTE" type="java.lang.Object"/>
+                                <Column editable="false" title="CANTIDAD" type="java.lang.Object"/>
+                                <Column editable="false" title="No. PARTE CAMBIO" type="java.lang.Object"/>
+                                <Column editable="false" title="SCRAP" type="java.lang.Object"/>
+                              </Table>
                             </Property>
-                            <Property name="autoResizeMode" type="int" value="0"/>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0"/>
                             </Property>
@@ -1646,6 +1663,9 @@
                               <ComponentRef name="pmnClickMenu"/>
                             </Property>
                             <Property name="focusable" type="boolean" value="false"/>
+                            <Property name="intercellSpacing" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                              <Dimension value="[10, 10]"/>
+                            </Property>
                             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                             </Property>
@@ -1659,7 +1679,7 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="btnGuardar">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Guardar"/>
+                        <Property name="text" type="java.lang.String" value="Guardar Bitacora"/>
                         <Property name="actionCommand" type="java.lang.String" value="btnGuardar"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">

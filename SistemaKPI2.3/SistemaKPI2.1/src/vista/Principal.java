@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -167,6 +169,7 @@ public class Principal extends javax.swing.JFrame {
         mniListarBitacoras = new javax.swing.JMenuItem();
 
         mniEliminar.setText("Eliminar");
+        mniEliminar.setActionCommand("_mniEliminar");
         pmnClickMenu.add(mniEliminar);
 
         btnGuardarBitacora.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -1003,17 +1006,25 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "LINEA", "FECHA", "HORA", "INICIO INCIDENCIA", "FIN INCIDENCIA", "DURACION", "TEMA", "OPERACION", "AREA", "PROBLEMA", "CLIENTE", "No. PARTE", "CANTIDAD", "No. PARTE CAMBIO", "SCRAP"
             }
-        ));
-        tblBitacora.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblBitacora.setComponentPopupMenu(pmnClickMenu);
         tblBitacora.setFocusable(false);
+        tblBitacora.setIntercellSpacing(new java.awt.Dimension(10, 10));
         tblBitacora.getTableHeader().setReorderingAllowed(false);
         tblBitacora.setUpdateSelectionOnSort(false);
         scrBitacora.setViewportView(tblBitacora);
 
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Guardar Bitacora");
         btnGuardar.setActionCommand("btnGuardar");
         btnGuardar.setFocusable(false);
         btnGuardar.setNextFocusableComponent(cmbLinea);
@@ -1024,12 +1035,12 @@ public class Principal extends javax.swing.JFrame {
             pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBitacoraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
+                .addGroup(pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBitacoraLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBitacoraLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
         );
         pnlBitacoraLayout.setVerticalGroup(
             pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1325,6 +1336,17 @@ public class Principal extends javax.swing.JFrame {
 
     public JComboBox getCmbNoPartePlaneados() {
         return cmbNoPartePlaneados;
+    }
+    //PANEL BITACORA
+    public JScrollPane getScrBitacora() {
+        return scrBitacora;
+    }
+    public JTable getTblBitacora() {
+        return tblBitacora;
+    }
+
+    public JMenuItem getMniEliminar() {
+        return mniEliminar;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

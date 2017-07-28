@@ -4,9 +4,11 @@ import dao.CalidadDAOImpl;
 import dao.LineasDAOImpl;
 import dao.OrganizacionalesDAOImpl;
 import dao.PiezasProducidasDAOImpl;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import vista.Principal;
 
 /**
@@ -330,4 +332,162 @@ public class PrincipalMetodos {
         winPrincipal.getCmbNoParteTecnicas().setSelectedIndex(0);
         winPrincipal.getTxtScrapTecnicas().setEnabled(false);
     }
+    
+    public void agregarRegistroBitacora(Principal winPrincipal) {
+        Object[] reg = new Object[17];
+        Object[] tiempos = new Object[4];
+        ArrayList tiempoHora = new ArrayList();
+        DefaultTableModel tableModel = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+        reg = insertaRegBitacora(winPrincipal, reg);
+
+        if (winPrincipal.getTblBitacora().getRowCount() == 0) {
+            tiempos[0] = reg[4];
+            tiempos[1] = reg[5];
+            tiempos[2] = reg[6];
+            tiempos[3] = reg[7];
+            tiempoHora.add(tiempos);
+            tableModel.addRow(reg);
+            winPrincipal.getCmbTema().setSelectedIndex(0);
+        } else {
+            for (int c = 0; c < tableModel.getRowCount(); c++) {
+                if (tableModel.getValueAt(c, 2).toString().equals(reg[2].toString())) {
+                    tiempos[0] = tableModel.getValueAt(c, 2);
+                    tiempos[1] = tableModel.getValueAt(c, 3);
+                    tiempos[2] = tableModel.getValueAt(c, 4);
+                    tiempos[3] = tableModel.getValueAt(c, 5);
+                    tiempoHora.add(tiempos);
+                }
+            }
+            if (tiempoHora.size() > 0) {
+                Object[] tmp = (Object[]) tiempoHora.get(tiempoHora.size() - 1);
+                if (Integer.parseInt(reg[3].toString()) > Integer.parseInt(tmp[2].toString())) {
+                    tableModel.addRow(insertaRegBitacora(winPrincipal, reg));
+                    winPrincipal.getCmbTema().setSelectedIndex(0);
+                } else {
+                    JOptionPane.showMessageDialog(winPrincipal, "lapso de periodo invalido");
+                }
+            } else {
+                tableModel.addRow(reg);
+                winPrincipal.getCmbTema().setSelectedIndex(0);
+            }
+        }
+    }
+    
+    private Object[] insertaRegBitacora(Principal winPrincipal, Object[] reg) {
+        switch (winPrincipal.getCmbTema().getSelectedItem().toString()) {
+            case "Piezas Producidas":
+                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
+                reg[1] = winPrincipal.getDteFecha().getText();
+                reg[2] = winPrincipal.getCmbHora().getSelectedItem();
+                reg[3] = winPrincipal.getTxtTiempoInicio().getText();
+                reg[4] = winPrincipal.getTxtTiempoFin().getText();
+                reg[5] = winPrincipal.getTxtDuracion().getText();
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();
+                reg[7] = "";//cmbOperacion.getSelectedItem();
+                reg[8] = "";
+                reg[9] = "";
+                reg[10] = winPrincipal.getCmbClientePzasProd().getSelectedItem();
+                reg[11] = winPrincipal.getCmbNoPartePzasProd().getSelectedItem();
+                reg[12] = winPrincipal.getTxtCantidadProducidaPzasProd().getText();
+                reg[13] = "";
+                reg[14] = "";
+                break;
+            case "Calidad":
+                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
+                reg[1] = winPrincipal.getDteFecha().getText();
+                reg[2] = winPrincipal.getCmbHora().getSelectedItem();
+                reg[3] = winPrincipal.getTxtTiempoInicio().getText();
+                reg[4] = winPrincipal.getTxtTiempoFin().getText();
+                reg[5] = winPrincipal.getTxtDuracion().getText();
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();
+                reg[7] = winPrincipal.getCmbOperacionCalidad().getSelectedItem();
+                reg[8] = winPrincipal.getCmbAreaCalidad().getSelectedItem();
+                reg[9] = winPrincipal.getCmbProblemaCalidad().getSelectedItem();
+                reg[10] = winPrincipal.getCmbClienteCalidad().getSelectedItem();
+                reg[11] = winPrincipal.getCmbNoParteCalidad().getSelectedItem();
+                reg[12] = winPrincipal.getTxtCantidadProducidaCalidad().getText();
+                reg[13] = "";
+                reg[14] = winPrincipal.getTxtScrapCalidad().getText();
+                break;
+            case "Tecnicas":
+                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
+                reg[1] = winPrincipal.getDteFecha().getText();
+                reg[2] = winPrincipal.getCmbHora().getSelectedItem();
+                reg[3] = winPrincipal.getTxtTiempoInicio().getText();
+                reg[4] = winPrincipal.getTxtTiempoFin().getText();
+                reg[5] = winPrincipal.getTxtDuracion().getText();
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
+                reg[7] = winPrincipal.getCmbOperacionTecnicas().getSelectedItem();
+                reg[8] = winPrincipal.getCmbAreaTecnicas().getSelectedItem();
+                reg[9] = winPrincipal.getCmbProblemaTecnicas().getSelectedItem();
+                reg[10] = winPrincipal.getCmbClienteTecnicas().getSelectedItem();
+                reg[11] = winPrincipal.getCmbNoParteTecnicas().getSelectedItem();
+                reg[12] = 0;
+                reg[13] = "";
+                reg[14] = winPrincipal.getTxtScrapTecnicas().getText();
+                break;
+            case "Organizacionales":
+                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
+                reg[1] = winPrincipal.getDteFecha().getText();
+                reg[2] = winPrincipal.getCmbHora().getSelectedItem();
+                reg[3] = winPrincipal.getTxtTiempoInicio().getText();
+                reg[4] = winPrincipal.getTxtTiempoFin().getText();
+                reg[5] = winPrincipal.getTxtDuracion().getText();
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
+                reg[7] = "";
+                reg[8] = winPrincipal.getCmbAreaOrganizacional().getSelectedItem();
+                reg[9] = winPrincipal.getCmbProblemaOrganizacional().getSelectedItem();
+                reg[10] = winPrincipal.getCmbClienteOrganizacional().getSelectedItem();
+                reg[11] = winPrincipal.getCmbNoParteOrganizacional().getSelectedItem();
+                reg[12] = 0;
+                reg[13] = "";
+                reg[14] = "";
+                break;
+            case "Cambio":
+                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
+                reg[1] = winPrincipal.getDteFecha().getText();
+                reg[2] = winPrincipal.getCmbHora().getSelectedItem();
+                reg[3] = winPrincipal.getTxtTiempoInicio().getText();
+                reg[4] = winPrincipal.getTxtTiempoFin().getText();
+                reg[5] = winPrincipal.getTxtDuracion().getText();
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
+                reg[7] = "";
+                reg[8] = winPrincipal.getCmbAreaCambios().getSelectedItem();
+                reg[9] = winPrincipal.getCmbProblemaCambios().getSelectedItem();
+                reg[10] = winPrincipal.getCmbClienteCambios().getSelectedItem();
+                reg[11] = winPrincipal.getCmbNoParteCambios().getSelectedItem();
+                reg[12] = 0;
+                reg[13] = winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();
+                reg[14] = winPrincipal.getTxtScrapCambios().getText();
+                break;
+            case "Planeados":
+                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
+                reg[1] = winPrincipal.getDteFecha().getText();
+                reg[2] = winPrincipal.getCmbHora().getSelectedItem();
+                reg[3] = winPrincipal.getTxtTiempoInicio().getText();
+                reg[4] = winPrincipal.getTxtTiempoFin().getText();
+                reg[5] = winPrincipal.getTxtDuracion().getText();
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
+                reg[7] = "";
+                reg[8] = winPrincipal.getCmbAreaPlaneados().getSelectedItem();
+                reg[9] = "";
+                reg[10] = winPrincipal.getCmbClientePlaneados().getSelectedItem();
+                reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();
+                reg[12] = 0;
+                reg[13] = "";
+                reg[14] = "";
+                break;
+        }
+        return reg;
+    }
+    
+    public void eliminarRegistroBitacora(Principal winPrincipal) {
+        DefaultTableModel reg = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+        if (winPrincipal.getTblBitacora().getSelectedRow() >= 0) {
+            reg.removeRow(winPrincipal.getTblBitacora().getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(winPrincipal, "Selecciona registro", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
 }
