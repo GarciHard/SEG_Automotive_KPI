@@ -249,6 +249,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 new LoginControl(new Login(winPrincipal, true));
                 break;
                 
+            case "_btnAgregarBitacora":
+                break;
+                
             case "btnGuardar":
                 System.err.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAA ENTROOOOOOOOOOOOOOOOOOOOOOOO");
                 auxiliar = 3;
