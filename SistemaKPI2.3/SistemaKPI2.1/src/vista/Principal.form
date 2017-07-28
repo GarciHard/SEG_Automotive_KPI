@@ -1034,7 +1034,6 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbOperacionCalidad"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblAreaCalidad">
@@ -1047,7 +1046,6 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbAreaCalidad"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblProblemaCalidad">
@@ -1060,7 +1058,6 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaCalidad"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblClienteCalidad">
@@ -1073,7 +1070,6 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbClienteCalidad"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Principal_cmbCliente"/>
@@ -1100,7 +1096,6 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteCalidad"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblScrapCalidad">
@@ -1565,6 +1560,7 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtDuracion">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                         </Component>

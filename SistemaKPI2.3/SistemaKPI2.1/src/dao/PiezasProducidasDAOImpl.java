@@ -26,6 +26,7 @@ public class PiezasProducidasDAOImpl extends ConexionBD implements PiezasProduci
     @Override
     public DefaultComboBoxModel listaClientes(String linea) throws Exception {
         clienteArr = new ArrayList<>();
+        clienteArr.add("Seleccione un cliente");
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(LISTA_CLIENTES);
@@ -48,6 +49,7 @@ public class PiezasProducidasDAOImpl extends ConexionBD implements PiezasProduci
     @Override
     public DefaultComboBoxModel listaNoParte(String linea, String cliente) throws Exception {
         noParteArr = new ArrayList<>();
+        noParteArr.add("Seleccione un No. de parte");
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(LISTA_NO_PARTES);

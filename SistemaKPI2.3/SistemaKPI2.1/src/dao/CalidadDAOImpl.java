@@ -21,11 +21,12 @@ public class CalidadDAOImpl extends ConexionBD implements CalidadDAO{
     
     private final String LISTA_OPERACIONES = "SELECT operacion FROM operaciones WHERE linea LIKE ? ORDER BY operacion ASC" ;
     private final String LISTA_AREAS = "SELECT area FROM Perdidas WHERE linea LIKE ? AND tema LIKE ? AND operacion LIKE ? GROUP BY area";
-    private final String LISTA_PROBLEMAS = "SELECT problema FROM Perdidas WHERE linea LIKE ? AND tema LIKE ? AND operacion LIKE ? AND area LIKE ? ORDER BY problema ASC";
+    private final String LISTA_PROBLEMAS = "SELECT problema FROM Perdidas WHERE linea LIKE ? AND tema LIKE ? AND operacion LIKE ? AND area LIKE ? GROUP BY problema ORDER BY problema ASC";
     
     @Override
     public DefaultComboBoxModel listaAreaCalidad(String linea, String tema, String operacion) throws Exception {
         areaArr = new ArrayList<>();
+        areaArr.add("Seleccione un área");
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(LISTA_AREAS);
@@ -50,6 +51,7 @@ public class CalidadDAOImpl extends ConexionBD implements CalidadDAO{
     @Override
     public DefaultComboBoxModel listaOperacionCalidad(String linea) throws Exception {
         operacionArr = new ArrayList<>();
+        operacionArr.add("Seleccione una operación");
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(LISTA_OPERACIONES);
@@ -72,6 +74,7 @@ public class CalidadDAOImpl extends ConexionBD implements CalidadDAO{
     @Override
     public DefaultComboBoxModel listaProblemaCalidad(String linea, String tema, String operacion, String area) throws Exception {
         problemaArr = new ArrayList<>();
+        problemaArr.add("Seleccione un problema");
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(LISTA_PROBLEMAS);

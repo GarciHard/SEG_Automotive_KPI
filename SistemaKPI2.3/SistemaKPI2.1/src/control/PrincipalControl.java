@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import utils.PrincipalMetodos;
+import utils.PrincipalValidaciones;
 import vista.Login;
 
 /**
@@ -32,12 +33,13 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     }
 
     private void initFrame() {
-        winPrincipal.getBtnCambiarLinea().addActionListener(this);
-        winPrincipal.getBtnAgregarBitacora().addActionListener(this);
-        winPrincipal.getBtnRevisarHoras().addActionListener(this);
-        
-        winPrincipal.getCmbTema().addActionListener(this);
+        winPrincipal.getDteFecha().setDate(fechaActual);
+        winPrincipal.getDteFecha().addActionListener(this);
+        winPrincipal.getCmbLinea().setModel(principalMetodos.listaLineas());
         winPrincipal.getCmbLinea().addActionListener(this);
+        winPrincipal.getCmbTema().setModel(TemasDAOImpl.listaTema());
+        winPrincipal.getCmbTema().addActionListener(this);
+        
         winPrincipal.getCmbHora().addActionListener(this);
         winPrincipal.getCmbHora().addItemListener(this);
         winPrincipal.getTxtTiempoInicio().addCaretListener(this);
@@ -45,12 +47,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getTxtTiempoFin().addCaretListener(this);
         winPrincipal.getTxtTiempoFin().addKeyListener(this);
         winPrincipal.getTxtDuracion().addCaretListener(this);
-        winPrincipal.getTxtDuracion().addKeyListener(this);
-                
-        winPrincipal.getCmbTema().setModel(TemasDAOImpl.listaTema());
-        winPrincipal.getCmbLinea().setModel(principalMetodos.listaLineas());
-        winPrincipal.getDteFecha().setDate(fechaActual);
-        winPrincipal.getDteFecha().addActionListener(this);
+              
+        winPrincipal.getBtnCambiarLinea().addActionListener(this);
+        winPrincipal.getBtnAgregarBitacora().addActionListener(this);
+        winPrincipal.getBtnRevisarHoras().addActionListener(this);
         
         //Panel Piezas Producias
         winPrincipal.getCmbClientePzasProd().addActionListener(this);
@@ -65,6 +65,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbProblemaCalidad().addActionListener(this);
         winPrincipal.getCmbClienteCalidad().addActionListener(this);
         winPrincipal.getCmbNoParteCalidad().addActionListener(this);
+        winPrincipal.getCmbNoParteCalidad().addItemListener(this);
         winPrincipal.getTxtCantidadProducidaCalidad().addCaretListener(this);
         winPrincipal.getTxtCantidadProducidaCalidad().addKeyListener(this);
         winPrincipal.getTxtScrapCalidad().addCaretListener(this);
@@ -76,6 +77,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbProblemaTecnicas().addActionListener(this);
         winPrincipal.getCmbClienteTecnicas().addActionListener(this);
         winPrincipal.getCmbNoParteTecnicas().addActionListener(this);
+        winPrincipal.getCmbNoParteTecnicas().addItemListener(this);
         winPrincipal.getTxtScrapTecnicas().addCaretListener(this);
         winPrincipal.getTxtScrapTecnicas().addKeyListener(this);
         
@@ -91,6 +93,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbClienteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambioCambios().addActionListener(this);
+        winPrincipal.getCmbNoParteCambioCambios().addItemListener(this);
         winPrincipal.getTxtScrapCambios().addCaretListener(this);
         winPrincipal.getTxtScrapCambios().addKeyListener(this);
         
@@ -144,6 +147,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         principalMetodos.panelPlaneadosAreas(winPrincipal);
                         break;
                     default:
+                        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
                         winPrincipal.getPnlProduccionCollapsible().setContent(new javax.swing.JLabel());
                         winPrincipal.getPnlProduccionCollapsible().repaint();
                         break;
@@ -171,6 +175,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelCalidadNoPartes(winPrincipal);
                 break;
             case "_cmbNoParteCalidad":
+                winPrincipal.getTxtCantidadProducidaCalidad().setText("");
                 winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(true);
                 break;
             /***** Panel Tecnicas *****/
@@ -187,6 +192,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelTecnicasNoPartes(winPrincipal);
                 break;
             case "_cmbNoParteTecnicas":
+                winPrincipal.getTxtScrapTecnicas().setText("");
                 winPrincipal.getTxtScrapTecnicas().setEnabled(true);
                 break;
             /***** Panel Organizacionales *****/
@@ -200,6 +206,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelOrganizacionalesNoPartes(winPrincipal);
                 break;
             case "_cmbNoParteOrganizacional":
+                winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(true);
                 break;
             /***** Panel Cambios *****/    
@@ -216,6 +223,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelCambiosNoPartesCambios(winPrincipal);
                 break;
             case "_cmbNoParteCambioCambios":
+                winPrincipal.getTxtScrapCambios().setText("");
                 winPrincipal.getTxtScrapCambios().setEnabled(true);
                 break;
             /***** Panel Cambios *****/  
@@ -226,6 +234,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelPlaneadosNoPartes(winPrincipal);
                 break;
             case "_cmbNoPartePlaneados":
+                winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(true);
                 break;
             /***** Panel Tiempo Incidencia *****/    
@@ -255,88 +264,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        //JTextField Cantidad Producida -> Panel Piezas Producidas
-        if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-        }
-        //JTextField Cantidad Producida -> Panel Calidad
-        if (winPrincipal.getTxtCantidadProducidaCalidad().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtCantidadProducidaCalidad().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtCantidadProducidaCalidad().getText().isEmpty()) {
-                winPrincipal.getTxtScrapCalidad().setText("");
-                winPrincipal.getTxtScrapCalidad().setEnabled(false);
-            }
-        }
-        //JTextField Scrap -> Panel Calidad
-        if (winPrincipal.getTxtScrapCalidad().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapCalidad().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapCalidad().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-        }
-        //JTextField Scrap -> Panel Tecnicas
-        if (winPrincipal.getTxtScrapTecnicas().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapTecnicas().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapTecnicas().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-        }
-        //JTextField Scrap -> Panel Cambios
-        if (winPrincipal.getTxtScrapCambios().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapCambios().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapCambios().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-        }
-        //JTextField Tiempo Inicio
-        if (winPrincipal.getTxtTiempoInicio().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtTiempoInicio().getText().length() >= 2 ) {
-                ke.consume();
-            }
-        }
-        //JTextField Tiempo Fin
-        if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtTiempoFin().getText().length() >= 2) {
-                ke.consume();
-            }
-        }
+        PrincipalValidaciones.validaKeyTyped(winPrincipal, ke);
     }
 
     @Override
@@ -344,123 +272,16 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        if (winPrincipal.getTxtTiempoInicio().equals(ke.getSource())) {
-            if (!winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
-                winPrincipal.getTxtTiempoFin().setEnabled(true);
-                winPrincipal.getTxtTiempoFin().setText("");
-                winPrincipal.getTxtDuracion().setText("");
-                winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-                if (Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > 59
-                        || Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) < 0) {
-                    winPrincipal.getTxtTiempoInicio().setText("");
-                    winPrincipal.getTxtDuracion().setText("");
-                    winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-                }else{
-                    //tiempoInicio=Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText());
-                }
-            } else{
-                winPrincipal.getTxtTiempoFin().setText("");
-                winPrincipal.getTxtDuracion().setText("");
-                winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-            }            
-        }
-        //Validacion de Tiempo Fin
-        if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) {
-            if (!winPrincipal.getTxtTiempoFin().getText().isEmpty()) {
-                winPrincipal.getTxtDuracion().setText("");
-                winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-                if (Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) > 59 || Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) < 0) {
-                    winPrincipal.getTxtTiempoFin().setText("");
-                    winPrincipal.getTxtDuracion().setText("");
-                    winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-                }else{
-                    if (winPrincipal.getTxtTiempoFin().getText().length() == winPrincipal.getTxtTiempoInicio().getText().length() 
-                        && Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) ){
-                        winPrincipal.getTxtTiempoFin().setText("");
-                        winPrincipal.getTxtDuracion().setText("");
-                        winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-                    }else if(winPrincipal.getTxtTiempoFin().getText().length() < winPrincipal.getTxtTiempoInicio().getText().length()){
-                        winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-                    }else{
-                        winPrincipal.getTxtDuracion().setText(Integer.toString(Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText())+1));
-                        winPrincipal.getBtnAgregarBitacora().setEnabled(true);
-                    }
-                }
-            } else{
-                winPrincipal.getTxtDuracion().setText("");
-                winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-            }           
-        }
+        PrincipalValidaciones.validaKeyReleased(winPrincipal, ke);
     }
 
     @Override
     public void caretUpdate(CaretEvent e) {
-        //JTextField Cantidad Producida -> Panel Piezas Producidas
-        if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(e.getSource())) {
-            if ((e.getDot() + e.getMark()) == 0) {
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-            if (e.getDot() == 1 && e.getMark() == 1) {
-                winPrincipal.getCmbHora().setEnabled(true);
-            }
-            if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-            }
-        }
-        //JTextField Cantidad Producida -> Panel Calidad
-        if (winPrincipal.getTxtCantidadProducidaCalidad().equals(e.getSource())) {
-            if (e.getDot() == 1 && e.getMark() == 1) {
-                winPrincipal.getTxtScrapCalidad().setEnabled(true);
-            }
-        }
-        //JTextField Scrap -> Panel Calidad
-        if (winPrincipal.getTxtScrapCalidad().equals(e.getSource())) {
-            if (e.getDot() == 1 && e.getMark() == 1) {
-                winPrincipal.getCmbHora().setEnabled(true);
-            }
-        }
-        //JTextField Scrap -> Panel Tecnicas
-        if (winPrincipal.getTxtScrapTecnicas().equals(e.getSource())) {
-            if (e.getDot() == 1 && e.getMark() == 1) {
-                winPrincipal.getCmbHora().setEnabled(true);
-            }
-        }
-        //JTextField Scrap -> Panel Cambios
-        if (winPrincipal.getTxtScrapCambios().equals(e.getSource())) {
-            if (e.getDot() == 1 && e.getMark() == 1) {
-                winPrincipal.getCmbHora().setEnabled(true);
-            }
-        }
-        //JTextField TiempoInicio
-        if (winPrincipal.getTxtTiempoInicio().equals(e.getSource())) {
-            if (e.getDot() == 0 && e.getMark() == 0) {
-                winPrincipal.getTxtTiempoFin().setText("");
-                winPrincipal.getTxtTiempoFin().setEnabled(false);
-                
-            }
-        }
-        //JTextField TiempoFin
-        if (winPrincipal.getTxtTiempoFin().equals(e.getSource())) {
-            if (e.getDot() == 0 && e.getMark() == 0) {
-                winPrincipal.getTxtDuracion().setText("");
-                winPrincipal.getBtnAgregarBitacora().setEnabled(false);
-            }
-        }
+        PrincipalValidaciones.validarCaretUpdate(winPrincipal, e);
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (winPrincipal.getCmbHora().equals(e.getSource())) {
-            if (winPrincipal.getCmbHora().getSelectedIndex() == 0) {
-                winPrincipal.getTxtTiempoInicio().setText("");
-                winPrincipal.getTxtTiempoInicio().setEnabled(false);
-            }
-        }
-        if (winPrincipal.getCmbNoPartePzasProd().equals(e.getSource())) {
-            //if (winPrincipal.getCmbNoPartePzasProd().getSelectedIndex() == 0) {
-                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
-                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(false);
-            //}
-        }
+        PrincipalValidaciones.validarItemStateChanged(winPrincipal, e);
     }
 }

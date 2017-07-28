@@ -65,6 +65,9 @@ public class LoginControl implements ActionListener, KeyListener {
                 }
                 break;
             case "_btnCancelar":
+                if (winPrincipal.getCmbLinea().getSelectedIndex() != 0) {
+                    winPrincipal.getCmbTema().setEnabled(true);
+                }
                 winLogin.dispose();
                 break;
         }

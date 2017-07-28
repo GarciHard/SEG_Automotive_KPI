@@ -704,28 +704,24 @@ public class Principal extends javax.swing.JFrame {
 
         cmbOperacionCalidad.setActionCommand("_cmbOperacionCalidad");
         cmbOperacionCalidad.setEnabled(false);
-        cmbOperacionCalidad.setFocusable(false);
 
         lblAreaCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAreaCalidad.setText("ÁREA");
 
         cmbAreaCalidad.setActionCommand("_cmbAreaCalidad");
         cmbAreaCalidad.setEnabled(false);
-        cmbAreaCalidad.setFocusable(false);
 
         lblProblemaCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblProblemaCalidad.setText("PROBLEMA");
 
         cmbProblemaCalidad.setActionCommand("_cmbProblemaCalidad");
         cmbProblemaCalidad.setEnabled(false);
-        cmbProblemaCalidad.setFocusable(false);
 
         lblClienteCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClienteCalidad.setText("CLIENTE");
 
         cmbClienteCalidad.setActionCommand("_cmbClienteCalidad");
         cmbClienteCalidad.setEnabled(false);
-        cmbClienteCalidad.setFocusable(false);
 
         lblCantidadProducidaCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCantidadProducidaCalidad.setText("CANTIDAD PRODUCIDA");
@@ -737,7 +733,6 @@ public class Principal extends javax.swing.JFrame {
 
         cmbNoParteCalidad.setActionCommand("_cmbNoParteCalidad");
         cmbNoParteCalidad.setEnabled(false);
-        cmbNoParteCalidad.setFocusable(false);
 
         lblScrapCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblScrapCalidad.setText("SCRAP");
@@ -920,6 +915,7 @@ public class Principal extends javax.swing.JFrame {
         lblDuracion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDuracion.setText("DURACIÓN");
 
+        txtDuracion.setEditable(false);
         txtDuracion.setEnabled(false);
 
         javax.swing.GroupLayout pnlTiempoIncidenciaHoraLayout = new javax.swing.GroupLayout(pnlTiempoIncidenciaHora);

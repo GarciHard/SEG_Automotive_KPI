@@ -23,6 +23,7 @@ public class LineasDAOImpl extends ConexionBD implements LineasDAO {
     @Override
     public DefaultComboBoxModel listaLineas() throws Exception {
         lineaArr = new ArrayList<>();
+        lineaArr.add("Seleccione una linea");
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(LISTA_LINEAS);
