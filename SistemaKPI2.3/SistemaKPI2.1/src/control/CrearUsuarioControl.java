@@ -34,6 +34,7 @@ public class CrearUsuarioControl implements ActionListener {
                 registroUsuariosMetodos.guardarUsuario(winRegistroUsuarios.getTxtUsuario().getText(),
                         winRegistroUsuarios.getPwdContraseña().getText(),
                         winRegistroUsuarios.getCmbTipoUsuario().getSelectedItem().toString());
+                winRegistroUsuarios.dispose();
                 break;
         }
     

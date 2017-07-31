@@ -4,6 +4,7 @@ import dao.RegistroUsuariosDAOImpl;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.UsuarioDTO;
+import vista.RegistroUsuarios;
 
 /**
  * Hecho con <3 por:
@@ -19,14 +20,14 @@ public class RegistroUsuariosMetodos {
             new RegistroUsuariosDAOImpl().registrarUsuarios(new UsuarioDTO(
                     usr, pwd, puesto, asignarPrivilegio(puesto)
             ));
-
+            JOptionPane.showMessageDialog(form, "Usuario creado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(form, "RegistroUsuarioMetodos.guardarUsuario()\n"
                     + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
-    private static int asignarPrivilegio(String puesto) {
+    private int asignarPrivilegio(String puesto) {
         int privilegio = 0;
         switch (puesto) {
             case "Supervisor":
@@ -40,6 +41,5 @@ public class RegistroUsuariosMetodos {
                 break;
         }
         return privilegio;
-    }
-    
+    }    
 }
