@@ -2,8 +2,8 @@ package utils;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.event.CaretEvent;
+import javax.swing.event.TableModelEvent;
 import vista.Principal;
 
 /**
@@ -12,141 +12,6 @@ import vista.Principal;
  * @boschUsr GJA5TL
  */
 public class PrincipalValidaciones {
-
-    public static void validaKeyTyped(Principal winPrincipal, KeyEvent ke) {
-        /********** Panel Piezas Producidas **********/
-        //JTextField Cantidad Producida
-        if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-        }
-        /********** Panel Calidad **********/
-        //JTextField Cantidad Producida
-        if (winPrincipal.getTxtCantidadProducidaCalidad().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtCantidadProducidaCalidad().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtCantidadProducidaCalidad().getText().isEmpty()) {
-                winPrincipal.getTxtScrapCalidad().setText("");
-                winPrincipal.getTxtScrapCalidad().setEnabled(false);
-            }
-        }
-        //JTextField Scrap
-        if (winPrincipal.getTxtScrapCalidad().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapCalidad().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapCalidad().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-        }
-        /********** Panel Tecnicas **********/
-        //JTextField Scrap
-        if (winPrincipal.getTxtScrapTecnicas().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapTecnicas().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapTecnicas().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-        }
-        /********** Panel Organizacionales **********/
-        //NA
-        /********** Panel Cambios **********/
-        //JTextField Scrap
-        if (winPrincipal.getTxtScrapCambios().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapCambios().getText().length() >= 3) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtScrapCambios().getText().isEmpty()) {
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-                winPrincipal.getCmbHora().setEnabled(false);
-            }
-        }
-        /********** Panel Planeados **********/
-        //NA
-        /********** EXTRAS **********/
-        //JTextField Tiempo Inicio
-        if (winPrincipal.getTxtTiempoInicio().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtTiempoInicio().getText().length() >= 2) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
-                winPrincipal.getTxtTiempoFin().setText("");
-                winPrincipal.getTxtTiempoFin().setEnabled(false);
-            }
-        }
-        //JTextField Tiempo Fin
-        if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) {
-            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtTiempoFin().getText().length() >= 2) {
-                ke.consume();
-            }
-            if (winPrincipal.getTxtDuracion().getText().isEmpty()) {
-                winPrincipal.getTxtDuracion().setText("");
-                winPrincipal.getTxtDuracion().setEnabled(false);
-            }
-        }
-    }
-    
-    public static void validaKeyReleased(Principal winPrincipal, KeyEvent ke) {
-        //JTextField Tiempo Inicio
-        if (winPrincipal.getTxtTiempoInicio().equals(ke.getSource())) {
-            if (!winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
-                if (Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > 59
-                        || Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) < 0) {
-                    winPrincipal.getTxtTiempoInicio().setText("");
-                }
-            }
-        }
-        //JTextField Tiempo Fin
-        if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) {
-            if (!winPrincipal.getTxtTiempoFin().getText().isEmpty()) {
-                if (Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) > 59
-                        || Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) < 0) {
-                    winPrincipal.getTxtTiempoFin().setText("");
-                } else {
-                    if (winPrincipal.getTxtTiempoFin().getText().length() == winPrincipal.getTxtTiempoInicio().getText().length()
-                            && Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())) {
-                        winPrincipal.getTxtTiempoFin().setText("");
-                    } else {
-                        int duracion = Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())
-                                - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText())+1;
-                        if (!(duracion < 0)) {
-                            winPrincipal.getTxtDuracion().setText(String.valueOf(duracion));
-                        }                        
-                    }
-                }
-            }
-        }
-    }
     
     public static void validarCaretUpdate(Principal winPrincipal, CaretEvent e) {
         //JTextField Cantidad Producida -> Panel Piezas Producidas
@@ -254,7 +119,7 @@ public class PrincipalValidaciones {
             }
         }
     }
-    
+
     public static void validarItemStateChanged(Principal winPrincipal, ItemEvent e) {
         //Panel Piezas Producidas
         if (winPrincipal.getCmbNoPartePzasProd().equals(e.getSource())) {
@@ -284,14 +149,172 @@ public class PrincipalValidaciones {
                 winPrincipal.getTxtTiempoInicio().setText("");
                 winPrincipal.getTxtTiempoInicio().setEnabled(false);
             }
-            if (!winPrincipal.getTxtTiempoInicio().getText().isEmpty())  {
+            if (!winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
                 winPrincipal.getTxtTiempoInicio().setText("");
             }
         }
     }
-    
+
+    public static void validarKeyReleased(Principal winPrincipal, KeyEvent ke) {
+        //JTextField Tiempo Inicio
+        if (winPrincipal.getTxtTiempoInicio().equals(ke.getSource())) {
+            if (!winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
+                if (Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > 59
+                        || Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) < 0) {
+                    winPrincipal.getTxtTiempoInicio().setText("");
+                }
+            }
+        }
+        //JTextField Tiempo Fin
+        if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) {
+            if (!winPrincipal.getTxtTiempoFin().getText().isEmpty()) {
+                if (Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) > 59
+                        || Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) < 0) {
+                    winPrincipal.getTxtTiempoFin().setText("");
+                } else {
+                    if (winPrincipal.getTxtTiempoFin().getText().length() == winPrincipal.getTxtTiempoInicio().getText().length()
+                            && Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())) {
+                        winPrincipal.getTxtTiempoFin().setText("");
+                    } else {
+                        int duracion = Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())
+                                - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) + 1;
+                        if (!(duracion < 0)) {
+                            winPrincipal.getTxtDuracion().setText(String.valueOf(duracion));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static void validarKeyTyped(Principal winPrincipal, KeyEvent ke) {
+        /**
+         * ******** Panel Piezas Producidas *********
+         */
+        //JTextField Cantidad Producida
+        if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
+                winPrincipal.getCmbHora().setEnabled(false);
+            }
+        }
+        /**
+         * ******** Panel Calidad *********
+         */
+        //JTextField Cantidad Producida
+        if (winPrincipal.getTxtCantidadProducidaCalidad().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtCantidadProducidaCalidad().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtCantidadProducidaCalidad().getText().isEmpty()) {
+                winPrincipal.getTxtScrapCalidad().setText("");
+                winPrincipal.getTxtScrapCalidad().setEnabled(false);
+            }
+        }
+        //JTextField Scrap
+        if (winPrincipal.getTxtScrapCalidad().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapCalidad().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapCalidad().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
+                winPrincipal.getCmbHora().setEnabled(false);
+            }
+        }
+        /**
+         * ******** Panel Tecnicas *********
+         */
+        //JTextField Scrap
+        if (winPrincipal.getTxtScrapTecnicas().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapTecnicas().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapTecnicas().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
+                winPrincipal.getCmbHora().setEnabled(false);
+            }
+        }
+        /**
+         * ******** Panel Organizacionales *********
+         */
+        //NA
+        /**
+         * ******** Panel Cambios *********
+         */
+        //JTextField Scrap
+        if (winPrincipal.getTxtScrapCambios().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapCambios().getText().length() >= 3) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtScrapCambios().getText().isEmpty()) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
+                winPrincipal.getCmbHora().setEnabled(false);
+            }
+        }
+        /**
+         * ******** Panel Planeados *********
+         */
+        //NA
+        /**
+         * ******** EXTRAS *********
+         */
+        //JTextField Tiempo Inicio
+        if (winPrincipal.getTxtTiempoInicio().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtTiempoInicio().getText().length() >= 2) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
+                winPrincipal.getTxtTiempoFin().setText("");
+                winPrincipal.getTxtTiempoFin().setEnabled(false);
+            }
+        }
+        //JTextField Tiempo Fin
+        if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtTiempoFin().getText().length() >= 2) {
+                ke.consume();
+            }
+            if (winPrincipal.getTxtDuracion().getText().isEmpty()) {
+                winPrincipal.getTxtDuracion().setText("");
+                winPrincipal.getTxtDuracion().setEnabled(false);
+            }
+        }
+    }
+
     public static void limpiarTiemposIncidencia(Principal winPrincipal) {
         winPrincipal.getCmbHora().setSelectedIndex(0);
         winPrincipal.getCmbHora().setEnabled(false);
+    }
+    
+    public static void validarTableModelListener(Principal winPrincipal, TableModelEvent e) {
+        if (e.getType() == TableModelEvent.DELETE
+                && winPrincipal.getTblBitacora().getRowCount() == 0) {
+            winPrincipal.getBtnRevisarHoras().setEnabled(false);
+        } else {
+            winPrincipal.getBtnRevisarHoras().setEnabled(true);
+        }
     }
 }

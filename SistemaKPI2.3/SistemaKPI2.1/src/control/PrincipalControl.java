@@ -11,6 +11,8 @@ import java.awt.event.KeyListener;
 import java.util.Date;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import utils.PrincipalMetodos;
 import utils.PrincipalValidaciones;
 import vista.Login;
@@ -20,7 +22,7 @@ import vista.Login;
  * @author GarciHard
  * @boschUsr GJA5TL
  */
-public class PrincipalControl implements ActionListener, CaretListener, ItemListener, KeyListener {
+public class PrincipalControl implements ActionListener, CaretListener, ItemListener, KeyListener, TableModelListener {
     
     protected static int auxiliar;
     private final Date fechaActual = new Date(System.currentTimeMillis());
@@ -109,6 +111,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getMniEliminar().addActionListener(this);
         
         //Tabla Bitacora
+        winPrincipal.getTblBitacora().getModel().addTableModelListener(this);
         winPrincipal.getTblBitacora().setRowHeight(35);
         
         winPrincipal.setVisible(true);
@@ -117,12 +120,21 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     @Override
     public void actionPerformed(ActionEvent evt) {
         switch (evt.getActionCommand()) {
+            //***** Barra de Menu *****
+            case "_mniEditarPorDia":
+                auxiliar = 2;
+                new LoginControl(new Login(winPrincipal, true));
+                break;
+            case "_mniEliminar":
+                principalMetodos.eliminarRegistroBitacora(winPrincipal);
+                break;
+            //***** Panel Superior *****
             case "_btnCambiarLinea":
-                //Aqui va metodo para limpiar todos los campos
                 winPrincipal.getCmbTema().setEnabled(false);
                 switch (winPrincipal.getBtnCambiarLinea().getText()) {
                     case "Cambiar Linea":
                         auxiliar = 1;
+                        winPrincipal.getCmbTema().setSelectedIndex(0);
                         new LoginControl(new Login(winPrincipal, true));
                         break;
                     case "Aceptar":
@@ -158,8 +170,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         winPrincipal.getPnlProduccionCollapsible().repaint();
                         break;
                 }
-                break;
-            /***** Panel Piezas Producidas *****/
+                break;        
+            //***** Panel Piezas Producidas *****
             case "_cmbClientePzasProd":
                 principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
                 break;
@@ -167,7 +179,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
                 winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
                 break;
-            /***** Panel Calidad *****/
+            //***** Panel Calidad *****
             case "_cmbOperacionCalidad":
                 principalMetodos.panelCalidadAreas(winPrincipal);
                 break;
@@ -184,7 +196,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 winPrincipal.getTxtCantidadProducidaCalidad().setText("");
                 winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(true);
                 break;
-            /***** Panel Tecnicas *****/
+            //***** Panel Tecnicas *****
             case "_cmbOperacionTecnicas":
                 principalMetodos.panelTecnicasAreas(winPrincipal);
                 break;
@@ -201,7 +213,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 winPrincipal.getTxtScrapTecnicas().setText("");
                 winPrincipal.getTxtScrapTecnicas().setEnabled(true);
                 break;
-            /***** Panel Organizacionales *****/
+            //***** Panel Organizacionales *****
             case "_cmbAreaOrganizacional":
                 principalMetodos.panelOrganizacionalesProblemas(winPrincipal);
                 break;
@@ -215,7 +227,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(true);
                 break;
-            /***** Panel Cambios *****/    
+            //***** Panel Cambios*****
             case "_cmbAreaCambios":
                 principalMetodos.panelCambiosProblemas(winPrincipal);
                 break;
@@ -232,7 +244,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 winPrincipal.getTxtScrapCambios().setText("");
                 winPrincipal.getTxtScrapCambios().setEnabled(true);
                 break;
-            /***** Panel Cambios *****/  
+            //***** Panel Planeados *****
             case "_cmbAreaPlaneados":
                 principalMetodos.panelPlaneadosClientes(winPrincipal);
                 break;
@@ -243,26 +255,18 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(true);
                 break;
-            /***** Panel Tiempo Incidencia *****/    
+            //***** Panel Tiempo de Incidencia *****
             case "_cmbHora":
                 if (winPrincipal.getCmbHora().getSelectedIndex() != 0) {
                     winPrincipal.getTxtTiempoInicio().setEnabled(true);
                 }
                 break;
-            /***** Panel Menu *****/
-            case "_mniEditarPorDia":
-                auxiliar = 2;
-                new LoginControl(new Login(winPrincipal, true));
-                break;
-                
-            case "_mniEliminar":
-                principalMetodos.eliminarRegistroBitacora(winPrincipal);
-                break;
-                
             case "_btnAgregarBitacora":
                 principalMetodos.agregarRegistroBitacora(winPrincipal);
                 break;
-                
+            case "_btnRevisarHoras":
+                principalMetodos.revisarTiemposFaltentes(winPrincipal);
+                break;
             case "btnGuardar":
 //                System.err.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAA ENTROOOOOOOOOOOOOOOOOOOOOOOO");
 //                auxiliar = 3;
@@ -270,16 +274,11 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 //principalMetodos.guardarBitacoraAccess(winPrincipal);
                 break;
         }
-        /***** Fecha *****/
-        if (evt.getSource().equals(winPrincipal.getDteFecha())) {
-            System.out.println("<><><><><><><>");
-            System.out.println(winPrincipal.getDteFecha().getDate());
-        }
     }
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        PrincipalValidaciones.validaKeyTyped(winPrincipal, ke);
+        PrincipalValidaciones.validarKeyTyped(winPrincipal, ke);
     }
 
     @Override
@@ -287,7 +286,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        PrincipalValidaciones.validaKeyReleased(winPrincipal, ke);
+        PrincipalValidaciones.validarKeyReleased(winPrincipal, ke);
     }
 
     @Override
@@ -298,5 +297,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     @Override
     public void itemStateChanged(ItemEvent e) {
         PrincipalValidaciones.validarItemStateChanged(winPrincipal, e);
+    }
+
+    @Override
+    public void tableChanged(TableModelEvent e) {
+        PrincipalValidaciones.validarTableModelListener(winPrincipal, e);
     }
 }

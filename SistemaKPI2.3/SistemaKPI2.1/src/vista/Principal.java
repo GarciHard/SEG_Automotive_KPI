@@ -966,6 +966,7 @@ public class Principal extends javax.swing.JFrame {
         btnRevisarHoras.setText("Revisar Horas");
         btnRevisarHoras.setActionCommand("_btnRevisarHoras");
         btnRevisarHoras.setEnabled(false);
+        btnRevisarHoras.setFocusable(false);
 
         javax.swing.GroupLayout pnlTiempoIncidenciaLayout = new javax.swing.GroupLayout(pnlTiempoIncidencia);
         pnlTiempoIncidencia.setLayout(pnlTiempoIncidenciaLayout);

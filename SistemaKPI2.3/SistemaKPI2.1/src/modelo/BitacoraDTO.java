@@ -23,22 +23,27 @@ public class BitacoraDTO {
     private int tiempoFin;
     private int duracion;
     private String noParteCambio;
+    private String scrap;
 
     //Constructor por defecto
     public BitacoraDTO() {}
 
-    //Constructor para Piezas Producidas
-    public BitacoraDTO(Date fecha, int hora, String linea, String tema, String cliente, String noParte, int cantPzas, int tiempoIni, int tiempoFin, int duracion) {
+    public BitacoraDTO(Date fecha, int hora, String linea, String tema, String operacion, String area, String problema, String cliente, String noParte, int cantPzas, int tiempoIni, int tiempoFin, int duracion, String noParteCambio, String scrap) {
         this.fecha = fecha;
         this.hora = hora;
         this.linea = linea;
         this.tema = tema;
+        this.operacion = operacion;
+        this.area = area;
+        this.problema = problema;
         this.cliente = cliente;
         this.noParte = noParte;
         this.cantPzas = cantPzas;
         this.tiempoIni = tiempoIni;
         this.tiempoFin = tiempoFin;
         this.duracion = duracion;
+        this.noParteCambio = noParteCambio;
+        this.scrap = scrap;
     }
 
     public Date getFecha() {
@@ -152,5 +157,12 @@ public class BitacoraDTO {
     public void setNoParteCambio(String noParteCambio) {
         this.noParteCambio = noParteCambio;
     }
-    
+
+    public String getScrap() {
+        return scrap;
+    }
+
+    public void setScrap(String scrap) {
+        this.scrap = scrap;
+    }
 }

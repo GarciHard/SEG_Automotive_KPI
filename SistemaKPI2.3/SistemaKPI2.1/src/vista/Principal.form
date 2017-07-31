@@ -1579,6 +1579,7 @@
                         <Property name="text" type="java.lang.String" value="Revisar Horas"/>
                         <Property name="actionCommand" type="java.lang.String" value="_btnRevisarHoras"/>
                         <Property name="enabled" type="boolean" value="false"/>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>
