@@ -17,6 +17,7 @@ import javax.swing.event.TableModelListener;
 import utils.PrincipalMetodos;
 import utils.PrincipalValidaciones;
 import vista.Login;
+import vista.RegistroUsuarios;
 
 /**
  * Hecho con <3 por:
@@ -115,6 +116,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         //MenuEliminarBitacora
         winPrincipal.getMniEliminar().addActionListener(this);
         
+        //MenuCrearUsuario
+        winPrincipal.getMniCrearUsuario().addActionListener(this);
+        
         //Tabla Bitacora
         winPrincipal.getTblBitacora().getModel().addTableModelListener(this);
         winPrincipal.getTblBitacora().setRowHeight(35);
@@ -132,6 +136,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             case "_mniEliminar":
                 principalMetodos.eliminarRegistroBitacora(winPrincipal);
+                break;
+            case "_mniCrearUsuario":
+                new CrearUsuarioControl(new RegistroUsuarios(winPrincipal, true));
                 break;
             //***** Panel Superior *****
             case "_btnCambiarLinea":

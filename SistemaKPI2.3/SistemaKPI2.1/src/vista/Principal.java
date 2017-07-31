@@ -162,7 +162,7 @@ public class Principal extends javax.swing.JFrame {
         mnuOtros = new javax.swing.JMenu();
         mniClientes = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        mniUsuarios = new javax.swing.JMenuItem();
+        mniCrearUsuario = new javax.swing.JMenuItem();
         mnuEditar = new javax.swing.JMenu();
         mniEditarPorDia = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -1086,9 +1086,10 @@ public class Principal extends javax.swing.JFrame {
         mnuOtros.add(mniClientes);
         mnuOtros.add(jSeparator4);
 
-        mniUsuarios.setText("Usuarios");
-        mniUsuarios.setFocusable(true);
-        mnuOtros.add(mniUsuarios);
+        mniCrearUsuario.setText("Crear Usuario");
+        mniCrearUsuario.setActionCommand("_mniCrearUsuario");
+        mniCrearUsuario.setFocusable(true);
+        mnuOtros.add(mniCrearUsuario);
 
         mnuAdministrar.add(mnuOtros);
 
@@ -1350,6 +1351,10 @@ public class Principal extends javax.swing.JFrame {
         return mniEliminar;
     }
     
+    public JMenuItem getMniCrearUsuario() {
+        return mniCrearUsuario;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarBitacora;
     private javax.swing.JButton btnCambiarLinea;
@@ -1442,13 +1447,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTema;
     private javax.swing.JMenuItem mniBitacora;
     private javax.swing.JMenuItem mniClientes;
+    private javax.swing.JMenuItem mniCrearUsuario;
     private javax.swing.JMenuItem mniEditarPorDia;
     private javax.swing.JMenuItem mniEliminar;
     private javax.swing.JMenuItem mniLineas;
     private javax.swing.JMenuItem mniListarBitacoras;
     private javax.swing.JMenuItem mniOperaciones;
     private javax.swing.JMenuItem mniTiemposCiclo;
-    private javax.swing.JMenuItem mniUsuarios;
     private javax.swing.JMenu mnuAdministrar;
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenu mnuEditar;

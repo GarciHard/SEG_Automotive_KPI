@@ -1164,9 +1164,10 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mniUsuarios">
+                <MenuItem class="javax.swing.JMenuItem" name="mniCrearUsuario">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Usuarios"/>
+                    <Property name="text" type="java.lang.String" value="Crear Usuario"/>
+                    <Property name="actionCommand" type="java.lang.String" value="_mniCrearUsuario"/>
                     <Property name="focusable" type="boolean" value="true"/>
                   </Properties>
                 </MenuItem>
