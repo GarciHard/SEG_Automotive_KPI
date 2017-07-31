@@ -1026,7 +1026,7 @@ public class Principal extends javax.swing.JFrame {
         scrBitacora.setViewportView(tblBitacora);
 
         btnGuardar.setText("Guardar Bitacora");
-        btnGuardar.setActionCommand("btnGuardar");
+        btnGuardar.setActionCommand("_btnGuardar");
         btnGuardar.setFocusable(false);
         btnGuardar.setNextFocusableComponent(cmbLinea);
 

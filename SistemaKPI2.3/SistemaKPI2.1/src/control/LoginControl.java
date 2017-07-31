@@ -8,7 +8,6 @@ import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import utils.LoginMetodos;
 import vista.Login;
-import vista.Principal;
 
 /**
  * Hecho con <3 por:
@@ -17,6 +16,7 @@ import vista.Principal;
  */
 public class LoginControl implements ActionListener, KeyListener {
 
+    public static int auxiliarLogin = 0;
     private final Login winLogin;
     private LoginMetodos loginMetodos = new LoginMetodos();
         
@@ -38,7 +38,7 @@ public class LoginControl implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent evt) {
         switch (evt.getActionCommand()) {
             case "_btnAceptar": // validaciones para aceptar de Login
-                switch (PrincipalControl.auxiliar) {
+                switch (PrincipalControl.auxiliarPrincipal) {
                     case 1:
                         if (loginMetodos.cambiarLinea(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
                             PrincipalControl.winPrincipal.getBtnCambiarLinea().setText("Aceptar");
@@ -48,8 +48,7 @@ public class LoginControl implements ActionListener, KeyListener {
                         break;
                     case 2:
                         if (loginMetodos.validaSupervisor(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
-                            PrincipalControl.winPrincipal.getBtnCambiarLinea().setText("Aceptar");
-                            PrincipalControl.winPrincipal.getDteFecha().setEnabled(true);
+                            auxiliarLogin = 1;
                             winLogin.dispose();
                         }
                         break;

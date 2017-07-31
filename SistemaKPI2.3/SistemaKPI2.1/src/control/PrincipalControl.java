@@ -8,6 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -24,10 +25,12 @@ import vista.Login;
  */
 public class PrincipalControl implements ActionListener, CaretListener, ItemListener, KeyListener, TableModelListener {
     
-    protected static int auxiliar;
-    private final Date fechaActual = new Date(System.currentTimeMillis());
+    public static int auxiliarPrincipal;
+    //private final Date fechaActual = new Date(System.currentTimeMillis());
+    private final SimpleDateFormat fechaFormato = new SimpleDateFormat("dd/MM/yyyy");
     protected static Principal winPrincipal;
     private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
+    
     
     public PrincipalControl(Principal principal) {
         PrincipalControl.winPrincipal = principal;
@@ -35,7 +38,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     }
 
     private void initFrame() {
-        winPrincipal.getDteFecha().setDate(fechaActual);
+        winPrincipal.getDteFecha().setText(fechaFormato.format(new Date(System.currentTimeMillis())));
         winPrincipal.getDteFecha().addActionListener(this);
         winPrincipal.getCmbLinea().setModel(principalMetodos.listaLineas());
         winPrincipal.getCmbLinea().addActionListener(this);
@@ -53,6 +56,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getBtnCambiarLinea().addActionListener(this);
         winPrincipal.getBtnAgregarBitacora().addActionListener(this);
         winPrincipal.getBtnRevisarHoras().addActionListener(this);
+        winPrincipal.getBtnGuardar().addActionListener(this);
+        winPrincipal.getBtnGuardar().setVisible(false);
         
         //Panel Piezas Producias
         winPrincipal.getCmbClientePzasProd().addActionListener(this);
@@ -122,7 +127,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         switch (evt.getActionCommand()) {
             //***** Barra de Menu *****
             case "_mniEditarPorDia":
-                auxiliar = 2;
+                auxiliarPrincipal = 2;
                 new LoginControl(new Login(winPrincipal, true));
                 break;
             case "_mniEliminar":
@@ -133,7 +138,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 winPrincipal.getCmbTema().setEnabled(false);
                 switch (winPrincipal.getBtnCambiarLinea().getText()) {
                     case "Cambiar Linea":
-                        auxiliar = 1;
+                        auxiliarPrincipal = 1;
                         winPrincipal.getCmbTema().setSelectedIndex(0);
                         new LoginControl(new Login(winPrincipal, true));
                         break;
@@ -267,11 +272,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             case "_btnRevisarHoras":
                 principalMetodos.revisarTiemposFaltentes(winPrincipal);
                 break;
-            case "btnGuardar":
-//                System.err.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAA ENTROOOOOOOOOOOOOOOOOOOOOOOO");
-//                auxiliar = 3;
-//                new LoginControl(new Login(winPrincipal, true));
-                //principalMetodos.guardarBitacoraAccess(winPrincipal);
+            case "_btnGuardar":
+                principalMetodos.guardarRegistroAccess(winPrincipal);
                 break;
         }
     }

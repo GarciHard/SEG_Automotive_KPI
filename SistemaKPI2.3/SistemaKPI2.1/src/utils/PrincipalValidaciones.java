@@ -313,8 +313,10 @@ public class PrincipalValidaciones {
         if (e.getType() == TableModelEvent.DELETE
                 && winPrincipal.getTblBitacora().getRowCount() == 0) {
             winPrincipal.getBtnRevisarHoras().setEnabled(false);
+            winPrincipal.getBtnGuardar().setVisible(false);
         } else {
             winPrincipal.getBtnRevisarHoras().setEnabled(true);
+            winPrincipal.getBtnGuardar().setVisible(true);
         }
     }
 }

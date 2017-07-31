@@ -1,5 +1,7 @@
 package utils;
 
+import control.LoginControl;
+import control.PrincipalControl;
 import dao.CalidadDAOImpl;
 import dao.LineasDAOImpl;
 import dao.OrganizacionalesDAOImpl;
@@ -11,6 +13,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import vista.Login;
 import vista.Principal;
 import vista.TiemposFaltantes;
 
@@ -585,5 +588,44 @@ public class PrincipalMetodos {
         TiemposFaltantes tiemposFaltantes = new TiemposFaltantes(winPrincipal, true);
         tiemposFaltantes.getTblTiemposFaltantes().setModel(tablaHoras);
         tiemposFaltantes.setVisible(true);
+    }
+    
+    public void guardarRegistroAccess(Principal winPrincipal) {
+        PrincipalControl.auxiliarPrincipal = 2;
+        new LoginControl(new Login(winPrincipal, true));
+        switch (LoginControl.auxiliarLogin) {
+            case 1:
+                Object[] datos;
+                dao.BitacoraDAOImpl bitacoraObj = new dao.BitacoraDAOImpl();
+                try {
+                    if (!bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(),
+                            (DefaultTableModel) winPrincipal.getTblBitacora().getModel()).isEmpty()) {
+                        ArrayList h = bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().toString(), (DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+                        for (int i = 0; i < h.size(); i++) {
+                            datos = (Object[]) h.get(i);
+                            JOptionPane.showMessageDialog(winPrincipal, "Hora " + datos[0] + " y minuto: " + datos[2] + " Registrados en bitacora: ",
+                                    "Advertencia", JOptionPane.WARNING_MESSAGE
+                            );
+                        }
+                    } else {
+                        int columnas = winPrincipal.getTblBitacora().getColumnCount();
+                        ArrayList reg;
+                        for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
+                            reg = new ArrayList();
+                            for (int j = 0; j < columnas; j++) {
+                                reg.add(winPrincipal.getTblBitacora().getModel().getValueAt(i, j));
+                            }
+                            bitacoraObj.insertarRegistroAccess(reg);
+                            winPrincipal.getTblBitacora().removeRowSelectionInterval(0, columnas);
+                        }
+                        JOptionPane.showMessageDialog(winPrincipal, "Bitacora Guardada Correctamente",
+                                "Guardar", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.guardarRegistroAccess()\n"
+                            + "Ocurrio un error : " + e, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+        }
     }
 }
