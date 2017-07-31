@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     
     private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap) "
             + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ?";
+    private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
     
     @Override
     public void insertarRegistroAccess(ArrayList registro) throws Exception {
@@ -68,16 +67,25 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 ps = this.conexion.prepareStatement(CONSULTA_FECHA);
                 ps.setString(1, fecha);
                 ps.setInt(2, Integer.parseInt(bitacora.getValueAt(i, 2).toString()));
+                ps.setInt(3, Integer.parseInt(bitacora.getValueAt(i, 3).toString()));
+                ps.setInt(4, Integer.parseInt(bitacora.getValueAt(i, 4).toString()));
                 rs = ps.executeQuery();
                 
-                while (rs.next()) {
-                    if (rs.getInt(3) > Integer.parseInt(bitacora.getValueAt(i, 3).toString())) {
-                        dat[0] = bitacora.getValueAt(i, 2);
-                        dat[1] = bitacora.getValueAt(i, 3);
-                        dat[2] = bitacora.getValueAt(i, 4);
-                        horas.add(dat);
-                    }
+                if (rs.next()) {
+                    dat[0] = bitacora.getValueAt(i, 2);
+                    dat[1] = bitacora.getValueAt(i, 3);
+                    dat[2] = bitacora.getValueAt(i, 4);
+                    horas.add(dat);
                 }
+                
+//                while (rs.next()) {
+//                    if (rs.getInt(3) > Integer.parseInt(bitacora.getValueAt(i, 3).toString())) {
+//                        dat[0] = bitacora.getValueAt(i, 2);
+//                        dat[1] = bitacora.getValueAt(i, 3);
+//                        dat[2] = bitacora.getValueAt(i, 4);
+//                        horas.add(dat);
+//                    }
+//                }
             }
         } catch (Exception e) {
             System.err.println("Error en BUSCAR_FECHA " + e);
@@ -89,5 +97,4 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
         }
         return horas;
     }
-
 }

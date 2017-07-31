@@ -53,11 +53,8 @@ public class LoginControl implements ActionListener, KeyListener {
                         }
                         break;
                     case 3:
-                        System.err.printf("Miercolesssssss");
                         if (loginMetodos.validaAjustador(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
-                            System.err.printf("Juevesssssssssss");
-                            PrincipalControl.winPrincipal.getBtnCambiarLinea().setText("Aceptar");
-                            JOptionPane.showMessageDialog(winPrincipal, "Inseertarsssss");
+                            auxiliarLogin = 1;
                             winLogin.dispose();
                         }
                         break;

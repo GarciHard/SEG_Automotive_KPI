@@ -125,6 +125,13 @@ public class PrincipalMetodos {
         return listaProblema;
     }
     
+    private void limpiarTabla(DefaultTableModel tablaBitacora) {
+        for (int i = 0; i < tablaBitacora.getRowCount(); i++) {
+            tablaBitacora.removeRow(i);
+            i -= 1;
+        }
+    }
+    
     public void panelPiezasProducidasClientes(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
         winPrincipal.getCmbClientePzasProd().setEnabled(true);
@@ -613,11 +620,11 @@ public class PrincipalMetodos {
                         for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
                             reg = new ArrayList();
                             for (int j = 0; j < columnas; j++) {
-                                reg.add(winPrincipal.getTblBitacora().getModel().getValueAt(i, j));
+                                reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
                             }
                             bitacoraObj.insertarRegistroAccess(reg);
-                            winPrincipal.getTblBitacora().removeRowSelectionInterval(0, columnas);
                         }
+                        limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
                         JOptionPane.showMessageDialog(winPrincipal, "Bitacora Guardada Correctamente",
                                 "Guardar", JOptionPane.INFORMATION_MESSAGE);
                     }
