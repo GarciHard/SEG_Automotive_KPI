@@ -600,7 +600,7 @@ public class PrincipalMetodos {
                 try {
                     if (!bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(),
                             (DefaultTableModel) winPrincipal.getTblBitacora().getModel()).isEmpty()) {
-                        ArrayList h = bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().toString(), (DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+                        ArrayList h = bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(), (DefaultTableModel) winPrincipal.getTblBitacora().getModel());
                         for (int i = 0; i < h.size(); i++) {
                             datos = (Object[]) h.get(i);
                             JOptionPane.showMessageDialog(winPrincipal, "Hora " + datos[0] + " y minuto: " + datos[2] + " Registrados en bitacora: ",
