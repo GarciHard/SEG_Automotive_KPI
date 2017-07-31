@@ -1,4 +1,4 @@
-package control;
+package Clases;
 
 import dao.CalidadDAOImpl;
 import dao.TemasDAOImpl;
