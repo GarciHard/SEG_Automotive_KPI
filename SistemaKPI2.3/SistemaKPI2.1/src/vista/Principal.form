@@ -1112,6 +1112,14 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JMenuItem" name="mniListarBitacoras">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Listar B&#xed;tacoras"/>
+        <Property name="focusable" type="boolean" value="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator6">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="mnuBarra">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuAdministrar">
@@ -1188,14 +1196,6 @@
                 <Property name="focusable" type="boolean" value="true"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator6">
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mniListarBitacoras">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listar B&#xed;tacoras"/>
-                <Property name="focusable" type="boolean" value="true"/>
-              </Properties>
-            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
@@ -1233,7 +1233,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="719" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="721" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Component id="pnlBackground" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -1609,6 +1609,8 @@
                                   <Component id="scrBitacora" pref="1265" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="btnCancelar" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnGuardar" min="-2" pref="150" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1619,9 +1621,12 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="scrBitacora" pref="442" max="32767" attributes="0"/>
+                              <Component id="scrBitacora" pref="444" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1683,6 +1688,16 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Guardar Bitacora"/>
                         <Property name="actionCommand" type="java.lang.String" value="_btnGuardar"/>
+                        <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="cmbLinea"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnCancelar">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Cancelar"/>
+                        <Property name="actionCommand" type="java.lang.String" value="_btnCancelar"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                           <ComponentRef name="cmbLinea"/>

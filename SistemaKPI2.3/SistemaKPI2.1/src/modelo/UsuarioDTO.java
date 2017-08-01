@@ -33,24 +33,5 @@ public class UsuarioDTO {
 
     public int getPrivilegio() {
         return privilegio;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
-    }
-
-    public void setPrivilegio(int privilegio) {
-        this.privilegio = privilegio;
-    }
-    
-    
-
+    }   
 }

@@ -2,6 +2,7 @@ package utils;
 
 import control.LoginControl;
 import control.PrincipalControl;
+import dao.BitacoraDAOImpl;
 import dao.CalidadDAOImpl;
 import dao.LineasDAOImpl;
 import dao.OrganizacionalesDAOImpl;
@@ -355,7 +356,7 @@ public class PrincipalMetodos {
     
     public void agregarRegistroBitacora(Principal winPrincipal) {
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
-        registroBitacora = insertaRegBitacora(winPrincipal, registroBitacora);
+        registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
 
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
             tiempos[0] = registroBitacora[2];
@@ -380,7 +381,7 @@ public class PrincipalMetodos {
 
                 if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())
                         || Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[2].toString())) {
-                    modeloTabla.addRow(insertaRegBitacora(winPrincipal, registroBitacora));
+                    modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
 
                     for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
                         registroBitacoraAux = new Object[15];
@@ -415,7 +416,7 @@ public class PrincipalMetodos {
                             + "Lapso de tiempo inválido", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
-                modeloTabla.addRow(insertaRegBitacora(winPrincipal, registroBitacora));
+                modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
 
                 for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
                     registroBitacoraAux = new Object[15];
@@ -449,7 +450,7 @@ public class PrincipalMetodos {
         }
     }
 
-    private Object[] insertaRegBitacora(Principal winPrincipal, Object[] reg) {
+    private Object[] modeloRegistroBitacora(Principal winPrincipal, Object[] reg) {
         switch (winPrincipal.getCmbTema().getSelectedItem().toString()) {
             case "Piezas Producidas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -633,6 +634,87 @@ public class PrincipalMetodos {
                             + "Ocurrio un error : " + e, "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 break;
+        }
+    }
+    
+    public void editarBitacoraPorDia(Principal winPrincipal) {
+        if (winPrincipal.getCmbLinea().getSelectedIndex() != 0) {
+            if (winPrincipal.getTblBitacora().getRowCount() != 0 || winPrincipal.getTblBitacora().getRowCount() == 0) {
+                switch (JOptionPane.showConfirmDialog(winPrincipal, "En caso de tener registros sin guardar, estos se perderán.\n¿Seguro que desea continuar?", "Mensaje",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
+                    case 0:
+                        limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+                        winPrincipal.getDteFecha().setEnabled(true);
+                        winPrincipal.getBtnCancelar().setVisible(true);
+                        break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.editarBitacoraPorDia()\n Debe seleccionar una linea",
+                    "Mensaje", JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    }
+    
+    public void consultarBitacoraPorDia(Principal winPrincipal) {
+        winPrincipal.getDteFecha().setEnabled(false);
+        winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
+        Object[] bitacoraObj;
+        try {
+            ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
+                    winPrincipal.getCmbLinea().getSelectedItem().toString());
+            if (!bitacoraArr.isEmpty()) {
+                modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+                for (int i = 0; i < bitacoraArr.size(); i++) {
+                    bitacoraObj = (Object[]) bitacoraArr.get(i);
+                    modeloTabla.addRow(bitacoraObj);
+                }
+            } else {
+                winPrincipal.getDteFecha().setDate(new java.util.Date(System.currentTimeMillis()));
+                JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.consultarBitacoraPorDia()\nNo existen registros para la fecha & linea seleccionada",
+                        "Mensaje", JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.consultarBitacoraPorDia()\n" + e,
+                    "Error", JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+    
+    public void cancelarEdicion(Principal winPrincipal) {
+        winPrincipal.getDteFecha().setEnabled(false);
+        winPrincipal.getDteFecha().setDate(new java.util.Date(System.currentTimeMillis()));
+        limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+        winPrincipal.getBtnGuardar().setText("Guardar Bitacora");
+        winPrincipal.getBtnGuardar().setVisible(false);
+        winPrincipal.getBtnCancelar().setVisible(false);
+    }
+    
+    public void actualizarRegistroFechaAccess(Principal winPrincipal) {
+        dao.BitacoraDAOImpl bitacoraObj = new dao.BitacoraDAOImpl();
+        try {
+            bitacoraObj.borrarRegistroFechaAccess(winPrincipal.getDteFecha().getText());
+            if (winPrincipal.getTblBitacora().getModel().getRowCount() != 0) {
+                int columnas = winPrincipal.getTblBitacora().getColumnCount();
+                ArrayList reg;
+                for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
+                    reg = new ArrayList();
+                    for (int j = 0; j < columnas; j++) {
+                        reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
+                    }
+                    bitacoraObj.insertarRegistroAccess(reg);
+                }
+                cancelarEdicion(winPrincipal);
+                JOptionPane.showMessageDialog(winPrincipal, "Bitacora Actualizada Correctamente",
+                        "Actualizar", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.actualizarRegistroFechaAccess()\nLa bitacora no puede estar vacia",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.actualizarRegistroFechaAccess()\n" + e,
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

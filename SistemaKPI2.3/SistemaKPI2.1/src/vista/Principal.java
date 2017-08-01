@@ -23,11 +23,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
     }
-
-    public Principal(Principal principal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -116,6 +112,8 @@ public class Principal extends javax.swing.JFrame {
         cmbNoParteCalidad = new javax.swing.JComboBox();
         lblScrapCalidad = new javax.swing.JLabel();
         txtScrapCalidad = new javax.swing.JTextField();
+        mniListarBitacoras = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
         pnlBackground = new javax.swing.JPanel();
         pnlBorderNorth = new javax.swing.JPanel();
         lblTema = new javax.swing.JLabel();
@@ -149,6 +147,7 @@ public class Principal extends javax.swing.JFrame {
         };
         tblBitacora = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         mnuBarra = new javax.swing.JMenuBar();
         mnuAdministrar = new javax.swing.JMenu();
         mniBitacora = new javax.swing.JMenuItem();
@@ -165,8 +164,6 @@ public class Principal extends javax.swing.JFrame {
         mniCrearUsuario = new javax.swing.JMenuItem();
         mnuEditar = new javax.swing.JMenu();
         mniEditarPorDia = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
-        mniListarBitacoras = new javax.swing.JMenuItem();
 
         mniEliminar.setText("Eliminar");
         mniEliminar.setActionCommand("_mniEliminar");
@@ -813,6 +810,9 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        mniListarBitacoras.setText("Listar Bítacoras");
+        mniListarBitacoras.setFocusable(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Programa para Bítacora y reportes de producción");
 
@@ -1030,6 +1030,11 @@ public class Principal extends javax.swing.JFrame {
         btnGuardar.setFocusable(false);
         btnGuardar.setNextFocusableComponent(cmbLinea);
 
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setActionCommand("_btnCancelar");
+        btnCancelar.setFocusable(false);
+        btnCancelar.setNextFocusableComponent(cmbLinea);
+
         javax.swing.GroupLayout pnlBitacoraLayout = new javax.swing.GroupLayout(pnlBitacora);
         pnlBitacora.setLayout(pnlBitacoraLayout);
         pnlBitacoraLayout.setHorizontalGroup(
@@ -1040,15 +1045,19 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBitacoraLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlBitacoraLayout.setVerticalGroup(
             pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBitacoraLayout.createSequentialGroup()
-                .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGuardar))
+                .addGroup(pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelar)))
         );
 
         pnlBorderTiempoBitacora.add(pnlBitacora, java.awt.BorderLayout.CENTER);
@@ -1102,11 +1111,6 @@ public class Principal extends javax.swing.JFrame {
         mniEditarPorDia.setActionCommand("_mniEditarPorDia");
         mniEditarPorDia.setFocusable(true);
         mnuEditar.add(mniEditarPorDia);
-        mnuEditar.add(jSeparator6);
-
-        mniListarBitacoras.setText("Listar Bítacoras");
-        mniListarBitacoras.setFocusable(true);
-        mnuEditar.add(mniListarBitacoras);
 
         mnuBarra.add(mnuEditar);
 
@@ -1122,7 +1126,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 719, Short.MAX_VALUE)
+            .addGap(0, 721, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1133,6 +1137,10 @@ public class Principal extends javax.swing.JFrame {
 
     public JButton getBtnGuardar(){
         return btnGuardar;
+    }
+    
+    public JButton getBtnCancelar() {
+        return btnCancelar;
     }
     
     public JMenuItem getMniEditarPorDia() {
@@ -1358,6 +1366,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarBitacora;
     private javax.swing.JButton btnCambiarLinea;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarBitacora;
     private javax.swing.JButton btnRevisarHoras;
