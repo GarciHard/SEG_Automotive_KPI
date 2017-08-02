@@ -157,8 +157,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         new LoginControl(new Login(winPrincipal, true));
                         break;
                     case "Aceptar":
+                        
                         winPrincipal.getCmbLinea().setEnabled(false);
                         winPrincipal.getCmbTema().setEnabled(true);
+                        winPrincipal.getMniOperaciones().setEnabled(true);
                         winPrincipal.getBtnCambiarLinea().setText("Cambiar Linea");
                         break;
                 }

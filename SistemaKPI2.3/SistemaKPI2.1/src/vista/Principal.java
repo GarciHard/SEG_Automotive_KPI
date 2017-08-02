@@ -114,6 +114,14 @@ public class Principal extends javax.swing.JFrame {
         txtScrapCalidad = new javax.swing.JTextField();
         mniListarBitacoras = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mniBitacora = new javax.swing.JMenuItem();
+        mniLineas = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        mniTiemposCiclo = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        mniClientes = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         pnlBackground = new javax.swing.JPanel();
         pnlBorderNorth = new javax.swing.JPanel();
         lblTema = new javax.swing.JLabel();
@@ -150,17 +158,9 @@ public class Principal extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         mnuBarra = new javax.swing.JMenuBar();
         mnuAdministrar = new javax.swing.JMenu();
-        mniBitacora = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mniOperaciones = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        mniLineas = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        mniTiemposCiclo = new javax.swing.JMenuItem();
-        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         mnuOtros = new javax.swing.JMenu();
-        mniClientes = new javax.swing.JMenuItem();
-        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         mniCrearUsuario = new javax.swing.JMenuItem();
         mnuEditar = new javax.swing.JMenu();
         mniEditarPorDia = new javax.swing.JMenuItem();
@@ -813,6 +813,18 @@ public class Principal extends javax.swing.JFrame {
         mniListarBitacoras.setText("Listar Bítacoras");
         mniListarBitacoras.setFocusable(true);
 
+        mniBitacora.setText("Bítacora");
+        mniBitacora.setFocusable(true);
+
+        mniLineas.setText("Lineas");
+        mniLineas.setFocusable(true);
+
+        mniTiemposCiclo.setText("Tiempos Ciclo");
+        mniTiemposCiclo.setFocusable(true);
+
+        mniClientes.setText("Clientes");
+        mniClientes.setFocusable(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Programa para Bítacora y reportes de producción");
 
@@ -1068,32 +1080,13 @@ public class Principal extends javax.swing.JFrame {
 
         mnuAdministrar.setText("Administar");
 
-        mniBitacora.setText("Bítacora");
-        mniBitacora.setFocusable(true);
-        mnuAdministrar.add(mniBitacora);
-        mnuAdministrar.add(jSeparator1);
-
         mniOperaciones.setText("Operaciones");
+        mniOperaciones.setEnabled(false);
         mniOperaciones.setFocusable(true);
         mnuAdministrar.add(mniOperaciones);
         mnuAdministrar.add(jSeparator2);
 
-        mniLineas.setText("Lineas");
-        mniLineas.setFocusable(true);
-        mnuAdministrar.add(mniLineas);
-        mnuAdministrar.add(jSeparator3);
-
-        mniTiemposCiclo.setText("Tiempos Ciclo");
-        mniTiemposCiclo.setFocusable(true);
-        mnuAdministrar.add(mniTiemposCiclo);
-        mnuAdministrar.add(jSeparator5);
-
         mnuOtros.setText("Otros");
-
-        mniClientes.setText("Clientes");
-        mniClientes.setFocusable(true);
-        mnuOtros.add(mniClientes);
-        mnuOtros.add(jSeparator4);
 
         mniCrearUsuario.setText("Crear Usuario");
         mniCrearUsuario.setActionCommand("_mniCrearUsuario");

@@ -1120,6 +1120,38 @@
     </Component>
     <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator6">
     </Component>
+    <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JMenuItem" name="mniBitacora">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="B&#xed;tacora"/>
+        <Property name="focusable" type="boolean" value="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JMenuItem" name="mniLineas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lineas"/>
+        <Property name="focusable" type="boolean" value="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
+    </Component>
+    <Component class="javax.swing.JMenuItem" name="mniTiemposCiclo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tiempos Ciclo"/>
+        <Property name="focusable" type="boolean" value="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator5">
+    </Component>
+    <Component class="javax.swing.JMenuItem" name="mniClientes">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Clientes"/>
+        <Property name="focusable" type="boolean" value="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="mnuBarra">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuAdministrar">
@@ -1127,51 +1159,20 @@
             <Property name="text" type="java.lang.String" value="Administar"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mniBitacora">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="B&#xed;tacora"/>
-                <Property name="focusable" type="boolean" value="true"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniOperaciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Operaciones"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="true"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mniLineas">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Lineas"/>
-                <Property name="focusable" type="boolean" value="true"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mniTiemposCiclo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Tiempos Ciclo"/>
-                <Property name="focusable" type="boolean" value="true"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator5">
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="mnuOtros">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Otros"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="mniClientes">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Clientes"/>
-                    <Property name="focusable" type="boolean" value="true"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mniCrearUsuario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear Usuario"/>
