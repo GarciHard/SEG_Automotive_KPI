@@ -168,7 +168,7 @@ public class PrincipalValidaciones {
         //JTextField Tiempo Fin
         if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) {
             if (!winPrincipal.getTxtTiempoFin().getText().isEmpty()) {
-                if (Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) > 59
+                if (Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) > 60
                         || Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) < 0) {
                     winPrincipal.getTxtTiempoFin().setText("");
                 } else {
@@ -177,7 +177,7 @@ public class PrincipalValidaciones {
                         winPrincipal.getTxtTiempoFin().setText("");
                     } else {
                         int duracion = Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())
-                                - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) + 1;
+                                - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText());
                         if (!(duracion < 0)) {
                             winPrincipal.getTxtDuracion().setText(String.valueOf(duracion));
                         }

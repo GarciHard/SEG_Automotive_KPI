@@ -68,7 +68,7 @@ public abstract class ModeloValidacionesOperaciones  {
         listaOP.addElement("Elije OPERACION");
         try {
             con.conectar();
-            consulta = "select operacion from Operaciones WHERE linea='" + linea + "'";
+            consulta = "select operacion from Operaciones WHERE linea='" + linea + "' ORDER BY operacion DESC";
             pstm = con.conexion.prepareStatement(consulta);
             rs = pstm.executeQuery();
             while (rs.next()) {

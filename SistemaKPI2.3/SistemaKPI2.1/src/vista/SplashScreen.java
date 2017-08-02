@@ -28,7 +28,7 @@ public class SplashScreen extends javax.swing.JFrame {
         setTitle("Programa para Bítacora y reportes de producción");
         setResizable(false);
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SG_SQUARE.gif"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LEGEND_20170802_131520.gif"))); // NOI18N
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);

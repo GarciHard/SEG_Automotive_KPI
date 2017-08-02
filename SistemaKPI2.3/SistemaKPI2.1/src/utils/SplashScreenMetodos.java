@@ -16,7 +16,7 @@ public class SplashScreenMetodos {
 
     private boolean threadFlag;
     private String error;
-    private SplashScreenDAO splashScreenDAO;
+    private SplashScreenDAOImpl splashScreenDAO;
     
     public void threadProgress(SplashScreen winSplashScreen) {
         new Thread() {

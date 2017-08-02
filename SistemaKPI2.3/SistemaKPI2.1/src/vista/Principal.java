@@ -366,6 +366,7 @@ public class Principal extends javax.swing.JFrame {
 
         lblProblemaOrganizacional.setText("PROBLEMA");
 
+        cmbProblemaOrganizacional.setToolTipText(getCmbProblemaOrganizacional().getSelectedItem().toString());
         cmbProblemaOrganizacional.setActionCommand("_cmbProblemaOrganizacional");
         cmbProblemaOrganizacional.setEnabled(false);
         cmbProblemaOrganizacional.setFocusable(false);
@@ -913,7 +914,7 @@ public class Principal extends javax.swing.JFrame {
         lblHora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblHora.setText("HORA");
 
-        cmbHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona Hora", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cmbHora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona Hora", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbHora.setActionCommand("_cmbHora");
         cmbHora.setEnabled(false);
 

@@ -402,15 +402,19 @@ public class Operaciones extends javax.swing.JDialog {
                 }
             } else {
                 try {
-                    regPerdida[0] = linea;
-                    regPerdida[1] = cmbTema.getSelectedItem().toString();
-                    regPerdida[2] = cmbOperacion.getSelectedItem().toString();
-                    regPerdida[3] = cmbArea.getSelectedItem().toString();
-                    regPerdida[4] = txtDescProblema.getText();
-                    //Principal.in.updatePerdida(this, regPerdida, per);
-                    ModeloValidacionesOperaciones.updatePerdida(this, regPerdida, per);
-                    btnGuardar.setText("Guardar");
-                    limpiar();
+                    if (!txtDescProblema.getText().equals("")){
+                        regPerdida[0] = linea;
+                        regPerdida[1] = cmbTema.getSelectedItem().toString();
+                        regPerdida[2] = cmbOperacion.getSelectedItem().toString();
+                        regPerdida[3] = cmbArea.getSelectedItem().toString();
+                        regPerdida[4] = txtDescProblema.getText();
+                        //Principal.in.updatePerdida(this, regPerdida, per);
+                        ModeloValidacionesOperaciones.updatePerdida(this, regPerdida, per);
+                        btnGuardar.setText("Guardar");
+                        limpiar();
+                    }else {
+                        JOptionPane.showMessageDialog(this, "No se puede crear la actualizacion por falta de problema");
+                    }
                 } catch (Exception ex) {
                     Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -426,6 +430,7 @@ public class Operaciones extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed
+        txtDescProblema.setEditable(true);
         if (tablaPerdidas.getSelectedRow() >= 0) {
             Object[] reg = new Object[tablaPerdidas.getColumnCount()];
             int row = tablaPerdidas.getSelectedRow();
