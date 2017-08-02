@@ -17,6 +17,7 @@ import javax.swing.event.TableModelListener;
 import utils.PrincipalMetodos;
 import utils.PrincipalValidaciones;
 import vista.Login;
+import vista.Operaciones;
 import vista.RegistroUsuarios;
 
 /**
@@ -30,6 +31,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     private final SimpleDateFormat fechaFormato = new SimpleDateFormat("dd/MM/yyyy");
     protected static Principal winPrincipal;
     private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
+    public static String linea;
+    protected static Operaciones winOperaciones;
     
     
     public PrincipalControl(Principal principal) {
@@ -120,6 +123,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         
         //MenuCrearUsuario
         winPrincipal.getMniCrearUsuario().addActionListener(this);
+        
+        //Menu Operaciones
+        winPrincipal.getMniOperaciones().addActionListener(this);
         
         //Tabla Bitacora
         winPrincipal.getTblBitacora().getModel().addTableModelListener(this);
@@ -290,8 +296,16 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         break;
                 }
                 break;
+                
             case "_btnCancelar":
                 principalMetodos.cancelarEdicion(winPrincipal);
+                break;
+                
+            case "Operaciones":
+                linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
+                System.err.println("linea Prin: "+linea);
+                Operaciones op = new Operaciones(winOperaciones, true);
+                op.setVisible(true);
                 break;
         }
         if (evt.getSource().equals(winPrincipal.getDteFecha()))

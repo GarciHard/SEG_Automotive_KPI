@@ -58,6 +58,13 @@ public class LoginControl implements ActionListener, KeyListener {
                             winLogin.dispose();
                         }
                         break;
+                    case 4:
+                        if (loginMetodos.validaSupervisor(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
+                            System.err.println("entro");
+                            auxiliarLogin = 1;
+                            winLogin.dispose();
+                        }
+                        break;
                 }
                 break;
             case "_btnCancelar":

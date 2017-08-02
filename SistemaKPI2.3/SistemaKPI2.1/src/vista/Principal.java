@@ -1363,6 +1363,13 @@ public class Principal extends javax.swing.JFrame {
         return mniCrearUsuario;
     }
     
+    //OPERACIONES
+    
+    public JMenuItem getMniOperaciones() {
+        return mniOperaciones;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarBitacora;
     private javax.swing.JButton btnCambiarLinea;
