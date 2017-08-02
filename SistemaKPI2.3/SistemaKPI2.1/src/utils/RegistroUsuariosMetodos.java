@@ -4,7 +4,6 @@ import dao.RegistroUsuariosDAOImpl;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.UsuarioDTO;
-import vista.RegistroUsuarios;
 
 /**
  * Hecho con <3 por:

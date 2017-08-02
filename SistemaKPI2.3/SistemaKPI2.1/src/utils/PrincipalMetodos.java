@@ -671,6 +671,7 @@ public class PrincipalMetodos {
                 }
             } else {
                 winPrincipal.getDteFecha().setDate(new java.util.Date(System.currentTimeMillis()));
+                winPrincipal.getBtnCancelar().setVisible(false);
                 JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.consultarBitacoraPorDia()\nNo existen registros para la fecha & linea seleccionada",
                         "Mensaje", JOptionPane.INFORMATION_MESSAGE
                 );

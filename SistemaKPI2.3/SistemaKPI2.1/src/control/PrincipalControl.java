@@ -139,7 +139,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.eliminarRegistroBitacora(winPrincipal);
                 break;
             case "_mniCrearUsuario":
-                new CrearUsuarioControl(new RegistroUsuarios(winPrincipal, true));
+                new RegistroUsuariosControl(new RegistroUsuarios(winPrincipal, true));
                 break;
             //***** Panel Superior *****
             case "_btnCambiarLinea":
