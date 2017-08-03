@@ -83,7 +83,7 @@
                   <Component id="cmbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="322" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="327" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -131,7 +131,7 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtDescOpe" pref="417" max="32767" attributes="0"/>
+                                          <Component id="txtDescOpe" pref="562" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="cmbArea" min="-2" pref="216" max="-2" attributes="0"/>
