@@ -79,8 +79,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbClienteCalidad().addActionListener(this);
         winPrincipal.getCmbNoParteCalidad().addActionListener(this);
         winPrincipal.getCmbNoParteCalidad().addItemListener(this);
-        winPrincipal.getTxtCantidadProducidaCalidad().addCaretListener(this);
-        winPrincipal.getTxtCantidadProducidaCalidad().addKeyListener(this);
+        //winPrincipal.getTxtCantidadProducidaCalidad().addCaretListener(this);
+        //winPrincipal.getTxtCantidadProducidaCalidad().addKeyListener(this);
         winPrincipal.getTxtScrapCalidad().addCaretListener(this);
         winPrincipal.getTxtScrapCalidad().addKeyListener(this);
         
@@ -106,6 +106,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbClienteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambioCambios().addActionListener(this);
+        winPrincipal.getCmbClienteNuevoCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambioCambios().addItemListener(this);
         winPrincipal.getTxtScrapCambios().addCaretListener(this);
         winPrincipal.getTxtScrapCambios().addKeyListener(this);
@@ -214,8 +215,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelCalidadNoPartes(winPrincipal);
                 break;
             case "_cmbNoParteCalidad":
-                winPrincipal.getTxtCantidadProducidaCalidad().setText("");
-                winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(true);
+                //winPrincipal.getTxtScrapCalidad().setText("");
+                //winPrincipal.getTxtScrapCalidad().setEnabled(true);
+                //winPrincipal.getTxtCantidadProducidaCalidad().setText("");
+                //winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(true);
                 break;
             //***** Panel Tecnicas *****
             case "_cmbOperacionTecnicas":
@@ -250,7 +253,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             //***** Panel Cambios*****
             case "_cmbAreaCambios":
-                principalMetodos.panelCambiosProblemas(winPrincipal);
+                //principalMetodos.panelCambiosProblemas(winPrincipal);
+                principalMetodos.panelCambiosClientes(winPrincipal);
                 break;
             case "_cmbProblemaCambios":
                 principalMetodos.panelCambiosClientes(winPrincipal);
@@ -259,8 +263,12 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelCambiosNoPartes(winPrincipal);
                 break;
             case "_cmbNoParteCambios":
-                principalMetodos.panelCambiosNoPartesCambios(winPrincipal);
+                //principalMetodos.panelCambiosNoPartesCambios(winPrincipal);
+                principalMetodos.panelCambiosClienteNuevo(winPrincipal);
                 break;
+            case "_cmbClienteNuevoCambios":
+                principalMetodos.panelCambiosNoPartesCambios(winPrincipal);
+                break;    
             case "_cmbNoParteCambioCambios":
                 winPrincipal.getTxtScrapCambios().setText("");
                 winPrincipal.getTxtScrapCambios().setEnabled(true);

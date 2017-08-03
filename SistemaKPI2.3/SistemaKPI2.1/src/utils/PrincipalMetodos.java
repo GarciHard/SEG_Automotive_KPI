@@ -223,6 +223,14 @@ public class PrincipalMetodos {
         winPrincipal.getCmbNoParteCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
                 winPrincipal.getCmbClienteCambios().getSelectedItem().toString()));
         winPrincipal.getCmbNoParteCambios().setSelectedIndex(0);
+        //winPrincipal.getCmbNoParteCambioCambios().setEnabled(false);
+        winPrincipal.getCmbClienteNuevoCambios().setEnabled(false);
+    }
+    
+    public void panelCambiosClienteNuevo(Principal winPrincipal) {
+        winPrincipal.getCmbClienteNuevoCambios().setEnabled(true);
+        winPrincipal.getCmbClienteNuevoCambios().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        winPrincipal.getCmbClienteNuevoCambios().setSelectedIndex(0);
         winPrincipal.getCmbNoParteCambioCambios().setEnabled(false);
     }
     
@@ -299,13 +307,23 @@ public class PrincipalMetodos {
     }
     
     public void panelCalidadNoPartes(Principal winPrincipal) {
-        if (!winPrincipal.getTxtCantidadProducidaCalidad().getText().isEmpty()) {
+        if (!winPrincipal.getTxtScrapCalidad().getText().isEmpty()) {
+            winPrincipal.getTxtScrapCalidad().setText("");
+            winPrincipal.getTxtScrapCalidad().setEnabled(false);
+        }
+        winPrincipal.getCmbNoParteCalidad().setEnabled(true);
+        winPrincipal.getCmbNoParteCalidad().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbClienteCalidad().getSelectedItem().toString()));
+
+        /*if (!winPrincipal.getTxtCantidadProducidaCalidad().getText().isEmpty()) {
             winPrincipal.getTxtCantidadProducidaCalidad().setText("");
             winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(false);
         }
         winPrincipal.getCmbNoParteCalidad().setEnabled(true);
         winPrincipal.getCmbNoParteCalidad().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteCalidad().getSelectedItem().toString()));
+                winPrincipal.getCmbClienteCalidad().getSelectedItem().toString()));*/
+        
+        //if (winPrincipal)
     }
     
     public void panelTecnicasOperaciones(Principal winPrincipal) {
@@ -482,7 +500,7 @@ public class PrincipalMetodos {
                 reg[9] = winPrincipal.getCmbProblemaCalidad().getSelectedItem();
                 reg[10] = winPrincipal.getCmbClienteCalidad().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCalidad().getSelectedItem();
-                reg[12] = winPrincipal.getTxtCantidadProducidaCalidad().getText();
+                reg[12] = "";//winPrincipal.getTxtCantidadProducidaCalidad().getText();
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapCalidad().getText();
                 break;
