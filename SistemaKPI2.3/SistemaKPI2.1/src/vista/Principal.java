@@ -1129,7 +1129,6 @@ public class Principal extends javax.swing.JFrame {
     public JTextField getTxtScrapCalidad() {
         return txtScrapCalidad;
     }
-
     //PANEL TECNICAS
     public JComboBox getCmbAreaTecnicas() {
         return cmbAreaTecnicas;
