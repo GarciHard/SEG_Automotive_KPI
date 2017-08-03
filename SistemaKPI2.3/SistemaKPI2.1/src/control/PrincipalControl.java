@@ -102,7 +102,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         
         //Panel Cambios
         winPrincipal.getCmbAreaCambios().addActionListener(this);
-        winPrincipal.getCmbProblemaCambios().addActionListener(this);
+//        winPrincipal.getCmbProblemaCambios().addActionListener(this);
         winPrincipal.getCmbClienteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambioCambios().addActionListener(this);

@@ -197,10 +197,11 @@ public class PrincipalMetodos {
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlCambios());
         winPrincipal.getPnlProduccionCollapsible().repaint();
         winPrincipal.getCmbAreaCambios().setSelectedIndex(0);
-        winPrincipal.getCmbProblemaCambios().setEnabled(false);
+        winPrincipal.getCmbClienteCambios().setEditable(false);
+        //winPrincipal.getCmbProblemaCambios().setEnabled(false);
     }
     
-    public void panelCambiosProblemas(Principal winPrincipal) {
+    /*public void panelCambiosProblemas(Principal winPrincipal) {
         winPrincipal.getCmbProblemaCambios().setEnabled(true);
         winPrincipal.getCmbProblemaCambios().setModel(listaProblemasOrganizacional(
                 winPrincipal.getCmbLinea().getSelectedItem().toString(),
@@ -209,7 +210,7 @@ public class PrincipalMetodos {
         winPrincipal.getCmbProblemaCambios().setSelectedIndex(0);
         winPrincipal.getCmbClienteCambios().setEnabled(false);
         
-    }
+    }*/
         
     public void panelCambiosClientes(Principal winPrincipal) {
         winPrincipal.getCmbClienteCambios().setEnabled(true);
@@ -548,7 +549,7 @@ public class PrincipalMetodos {
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaCambios().getSelectedItem();
-                reg[9] = winPrincipal.getCmbProblemaCambios().getSelectedItem();
+                reg[9] = "";//winPrincipal.getCmbProblemaCambios().getSelectedItem();
                 reg[10] = winPrincipal.getCmbClienteCambios().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCambios().getSelectedItem();
                 reg[12] = 0;
