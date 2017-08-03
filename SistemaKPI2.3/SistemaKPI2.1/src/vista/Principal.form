@@ -123,11 +123,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblAreaOrganizacional" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cmbAreaOrganizacional" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="cmbAreaOrganizacional" pref="300" max="32767" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="lblProblemaOrganizacional" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cmbProblemaOrganizacional" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="cmbProblemaOrganizacional" pref="300" max="32767" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="lblClienteOrganizacional" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -260,10 +260,10 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cmbProblemaCambios" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="cmbAreaCambios" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cmbProblemaCambios" alignment="0" pref="300" max="32767" attributes="0"/>
+                      <Component id="cmbAreaCambios" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblNoParteCambios" min="-2" max="-2" attributes="0"/>
@@ -276,7 +276,7 @@
                           <Component id="cmbClienteCambios" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblParteCambioCambios" min="-2" max="-2" attributes="0"/>
@@ -289,11 +289,11 @@
                           <Component id="cmbClienteNuevoCambios" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="105" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblScrapCambios" min="-2" pref="71" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtScrapCambios" pref="130" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  <Component id="txtScrapCambios" min="-2" pref="110" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -314,14 +314,16 @@
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbNoParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="lblScrapCambios" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtScrapCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbNoParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -479,7 +481,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblAreaPlaneados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cmbAreaPlaneados" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="cmbAreaPlaneados" pref="300" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Component id="lblClientePlaneados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -561,178 +563,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="pnlTecnicas">
-      <Properties>
-        <Property name="focusable" type="boolean" value="false"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1041, 147]"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblOperacionTecnicas" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lblAreaTecnicas" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbOperacionTecnicas" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cmbAreaTecnicas" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblProblemaTecnicas" pref="86" max="32767" attributes="0"/>
-                      <Component id="lblClienteTecnicas" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbProblemaTecnicas" pref="200" max="32767" attributes="0"/>
-                      <Component id="cmbClienteTecnicas" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblNoParteTecnicas" max="32767" attributes="0"/>
-                      <Component id="lblScrapTecnicas" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cmbNoParteTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="txtScrapTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblScrapTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtScrapTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="lblNoParteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbNoParteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblOperacionTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbOperacionTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblAreaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbAreaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblProblemaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbProblemaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cmbClienteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblClienteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblOperacionTecnicas">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="OPERACI&#xd3;N"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cmbOperacionTecnicas">
-          <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbOperacionTecnicas"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblAreaTecnicas">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="&#xc1;REA"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cmbAreaTecnicas">
-          <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbAreaTecnicas"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblProblemaTecnicas">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="PROBLEMA"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cmbProblemaTecnicas">
-          <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaTecnicas"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblClienteTecnicas">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="CLIENTE"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cmbClienteTecnicas">
-          <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbClienteTecnicas"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Principal_cmbCliente"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblNoParteTecnicas">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="No. PARTE"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cmbNoParteTecnicas">
-          <Properties>
-            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteTecnicas"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblScrapTecnicas">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="SCRAP"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtScrapTecnicas">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Container class="javax.swing.JPanel" name="pnlCalidad">
       <Properties>
         <Property name="focusable" type="boolean" value="false"/>
@@ -749,33 +579,33 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lblOperacionCalidad" alignment="0" max="32767" attributes="0"/>
                       <Component id="lblAreaCalidad" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lblProblemaCalidad" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbAreaCalidad" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="cmbOperacionCalidad" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="cmbProblemaCalidad" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cmbAreaCalidad" pref="250" max="32767" attributes="0"/>
+                      <Component id="cmbOperacionCalidad" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" pref="69" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblProblemaCalidad" pref="86" max="32767" attributes="0"/>
+                      <Component id="lblClienteCalidad" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblNoParteCalidad" min="-2" pref="177" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbNoParteCalidad" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblClienteCalidad" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbClienteCalidad" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblScrapCalidad" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtScrapCalidad" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="cmbClienteCalidad" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cmbProblemaCalidad" pref="250" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblNoParteCalidad" max="32767" attributes="0"/>
+                      <Component id="lblScrapCalidad" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtScrapCalidad" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="cmbNoParteCalidad" min="-2" pref="200" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -784,41 +614,34 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="lblOperacionCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbOperacionCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="cmbClienteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblClienteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblAreaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbAreaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblProblemaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbProblemaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblNoParteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbNoParteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblScrapCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtScrapCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="lblNoParteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbNoParteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblOperacionCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbOperacionCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblProblemaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbProblemaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblAreaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbAreaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblClienteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbClienteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -958,6 +781,184 @@
     </Component>
     <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
     </Component>
+    <Container class="javax.swing.JPanel" name="pnlTecnicas">
+      <Properties>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[1041, 147]"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblOperacionTecnicas" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lblAreaTecnicas" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="cmbAreaTecnicas" alignment="0" pref="250" max="32767" attributes="0"/>
+                      <Component id="cmbOperacionTecnicas" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblProblemaTecnicas" alignment="0" pref="86" max="32767" attributes="0"/>
+                      <Component id="lblClienteTecnicas" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="cmbClienteTecnicas" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cmbProblemaTecnicas" alignment="0" pref="250" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblNoParteTecnicas" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lblScrapTecnicas" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtScrapTecnicas" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="cmbNoParteTecnicas" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblScrapTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtScrapTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="lblNoParteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbNoParteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblOperacionTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbOperacionTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblProblemaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbProblemaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblAreaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbAreaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblClienteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbClienteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblOperacionTecnicas">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="OPERACI&#xd3;N"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbOperacionTecnicas">
+          <Properties>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbOperacionCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbAreaCalidad"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbOperacionTecnicasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAreaTecnicas">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="&#xc1;REA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbAreaTecnicas">
+          <Properties>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbAreaCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbProblemaCalidad"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblProblemaTecnicas">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="PROBLEMA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbProblemaTecnicas">
+          <Properties>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbClienteCalidad"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblClienteTecnicas">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="CLIENTE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbClienteTecnicas">
+          <Properties>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbClienteCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbNoParteCalidad"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Principal_cmbCliente"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNoParteTecnicas">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="No. PARTE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbNoParteTecnicas">
+          <Properties>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtScrapCalidad"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblScrapTecnicas">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="SCRAP"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtScrapTecnicas">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="mnuBarra">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuAdministrar">
