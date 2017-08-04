@@ -20,10 +20,10 @@ public class ConexionBD {
     private final String driverJDBC = "net.ucanaccess.jdbc.UcanaccessDriver";
     
     //URL PRODUCCION
-    //private final String urlDB = "jdbc:ucanaccess://" + "I:/Dept/MOE1/Shared/Informacion_general/proyectos  SG/Proyecto OEE/BD/SystemKPI.accdb";
+    private final String urlDB = "jdbc:ucanaccess://" + "I:/Dept/MOE1/Shared/Informacion_general/proyectos  SG/Proyecto OEE/BD/SystemKPI.accdb";
     
     //URL PRUEBA GITHUB
-    private final String urlDB = "jdbc:ucanaccess://" + "src/db/SystemKPI.accdb";
+    //private final String urlDB = "jdbc:ucanaccess://" + "src/db/SystemKPI.accdb";
     
     //URL PRUEBA MAC
     //private final String urlDB = "jdbc:ucanaccess://" + "/Users/garcihard/Documents/GitHub/BOSCH-SG/SistemaKPI2.0/SystemKPI.accdb";
