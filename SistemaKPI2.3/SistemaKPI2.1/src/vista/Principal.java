@@ -95,9 +95,7 @@ public class Principal extends javax.swing.JFrame {
         txtScrapCalidad = new javax.swing.JTextField();
         mniListarBitacoras = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mniBitacora = new javax.swing.JMenuItem();
-        mniLineas = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         mniTiemposCiclo = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
@@ -139,6 +137,8 @@ public class Principal extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         mnuBarra = new javax.swing.JMenuBar();
         mnuAdministrar = new javax.swing.JMenu();
+        mniLineas = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mniOperaciones = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mnuOtros = new javax.swing.JMenu();
@@ -664,9 +664,6 @@ public class Principal extends javax.swing.JFrame {
         mniBitacora.setText("Bítacora");
         mniBitacora.setFocusable(true);
 
-        mniLineas.setText("Lineas");
-        mniLineas.setFocusable(true);
-
         mniTiemposCiclo.setText("Tiempos Ciclo");
         mniTiemposCiclo.setFocusable(true);
 
@@ -927,6 +924,12 @@ public class Principal extends javax.swing.JFrame {
         pnlBackground.add(pnlBorder, java.awt.BorderLayout.CENTER);
 
         mnuAdministrar.setText("Administar");
+
+        mniLineas.setText("Lineas");
+        mniLineas.setActionCommand("_mniLineas");
+        mniLineas.setFocusable(true);
+        mnuAdministrar.add(mniLineas);
+        mnuAdministrar.add(jSeparator1);
 
         mniOperaciones.setText("Operaciones");
         mniOperaciones.setEnabled(false);
@@ -1212,6 +1215,10 @@ public class Principal extends javax.swing.JFrame {
     
     public JMenuItem getMniOperaciones() {
         return mniOperaciones;
+    }
+
+    public JMenuItem getMniLineas() {
+        return mniLineas;
     }
     
     

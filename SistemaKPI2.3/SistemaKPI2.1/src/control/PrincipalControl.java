@@ -16,6 +16,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import utils.PrincipalMetodos;
 import utils.PrincipalValidaciones;
+import vista.Lineas;
 import vista.Login;
 import vista.Operaciones;
 import vista.RegistroUsuarios;
@@ -116,6 +117,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbClientePlaneados().addActionListener(this);
         winPrincipal.getCmbNoPartePlaneados().addActionListener(this);
         
+        //Menu Lineas
+        winPrincipal.getMniLineas().addActionListener(this);
         //Menu EditarBitacora
         winPrincipal.getMniEditarPorDia().addActionListener(this);
         
@@ -139,6 +142,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     public void actionPerformed(ActionEvent evt) {
         switch (evt.getActionCommand()) {
             //***** Barra de Menu *****
+            case "_mniLineas":
+                new Lineas(winPrincipal, true).setVisible(true);
+                break;
             case "_mniEditarPorDia":
                 principalMetodos.editarBitacoraPorDia(winPrincipal);
                 break;
@@ -311,7 +317,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.cancelarEdicion(winPrincipal);
                 break;
                 
-            case "Operaciones":
+            case "Operaciones"://ARELI
                 linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
                 System.err.println("linea Prin: "+linea);
                 Operaciones op = new Operaciones(winOperaciones, true);

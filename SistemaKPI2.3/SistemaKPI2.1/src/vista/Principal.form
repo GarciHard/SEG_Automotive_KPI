@@ -897,17 +897,9 @@
     </Component>
     <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator6">
     </Component>
-    <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
-    </Component>
     <Component class="javax.swing.JMenuItem" name="mniBitacora">
       <Properties>
         <Property name="text" type="java.lang.String" value="B&#xed;tacora"/>
-        <Property name="focusable" type="boolean" value="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JMenuItem" name="mniLineas">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Lineas"/>
         <Property name="focusable" type="boolean" value="true"/>
       </Properties>
     </Component>
@@ -936,6 +928,15 @@
             <Property name="text" type="java.lang.String" value="Administar"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mniLineas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lineas"/>
+                <Property name="actionCommand" type="java.lang.String" value="_mniLineas"/>
+                <Property name="focusable" type="boolean" value="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniOperaciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Operaciones"/>
