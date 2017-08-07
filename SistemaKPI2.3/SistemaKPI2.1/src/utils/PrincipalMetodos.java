@@ -25,7 +25,7 @@ import vista.TiemposFaltantes;
  */
 public class PrincipalMetodos {
         
-    private ArrayList tiempoHora = new ArrayList();
+    private ArrayList tiempoHora;
     private DefaultComboBoxModel listaArea;
     private DefaultComboBoxModel listaAreaC;
     private DefaultComboBoxModel listaCliente;
@@ -40,7 +40,7 @@ public class PrincipalMetodos {
     private Object[] registroBitacora = new Object[15];
     private Object[] registroBitacoraAux;
     private Object[] registroBitacoraTmp;
-    private Object[] tiempos = new Object[4];
+    private Object[] tiempos;
 
     public DefaultComboBoxModel listaLineas() {
         try {
@@ -367,16 +367,13 @@ public class PrincipalMetodos {
         registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
 
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
-            tiempos[0] = registroBitacora[2];
-            tiempos[1] = registroBitacora[3];
-            tiempos[2] = registroBitacora[4];
-            tiempos[3] = registroBitacora[5];
-            tiempoHora.add(tiempos);
             modeloTabla.addRow(registroBitacora);
             winPrincipal.getCmbTema().setSelectedIndex(0);
         } else {
+            tiempoHora = new ArrayList();            
             for (int c = 0; c < modeloTabla.getRowCount(); c++) {
                 if (modeloTabla.getValueAt(c, 2).toString().equals(registroBitacora[2].toString())) {
+                    tiempos = new Object[4];
                     tiempos[0] = modeloTabla.getValueAt(c, 2);
                     tiempos[1] = modeloTabla.getValueAt(c, 3);
                     tiempos[2] = modeloTabla.getValueAt(c, 4);
@@ -384,69 +381,43 @@ public class PrincipalMetodos {
                     tiempoHora.add(tiempos);
                 }
             }
-            if (tiempoHora.size() > 0) {
-                registroBitacoraTmp = (Object[]) tiempoHora.get(tiempoHora.size() - 1);
-
-                if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())
-                        || Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[2].toString())) {
-                    modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
-
-                    for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
-                        registroBitacoraAux = new Object[15];
-                        registroBitacoraAux[0] = modeloTabla.getValueAt(i, 0);
-                        registroBitacoraAux[1] = modeloTabla.getValueAt(i, 1);
-                        registroBitacoraAux[2] = modeloTabla.getValueAt(i, 2);
-                        registroBitacoraAux[3] = modeloTabla.getValueAt(i, 3);
-                        registroBitacoraAux[4] = modeloTabla.getValueAt(i, 4);
-                        registroBitacoraAux[5] = modeloTabla.getValueAt(i, 5);
-                        registroBitacoraAux[6] = modeloTabla.getValueAt(i, 6);
-                        registroBitacoraAux[7] = modeloTabla.getValueAt(i, 7);
-                        registroBitacoraAux[8] = modeloTabla.getValueAt(i, 8);
-                        registroBitacoraAux[9] = modeloTabla.getValueAt(i, 9);
-                        registroBitacoraAux[10] = modeloTabla.getValueAt(i, 10);
-                        registroBitacoraAux[11] = modeloTabla.getValueAt(i, 11);
-                        registroBitacoraAux[12] = modeloTabla.getValueAt(i, 12);
-                        registroBitacoraAux[13] = modeloTabla.getValueAt(i, 13);
-                        registroBitacoraAux[14] = modeloTabla.getValueAt(i, 14);
-                        tablaObj.add(registroBitacoraAux);
-                        modeloTabla.removeRow(i);
-                    }
-
-                    Collections.sort(tablaObj, new OrdenaTablaTiempo());
-
-                    for (int i = 0; i < tablaObj.size(); i++) {
-                        modeloTabla.addRow((Object[]) tablaObj.get(i));
-                    }
-                    tablaObj.clear();
-                    winPrincipal.getCmbTema().setSelectedIndex(0);
-                } else {
-                    JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.agregarRegistroBitacora()\n"
-                            + "Lapso de tiempo inválido", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            if (!tiempoHora.isEmpty()) {
+                for (int i = 0; i < tiempoHora.size(); i++) {
+                    registroBitacoraTmp = (Object[]) tiempoHora.get(i);
+                    if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())
+                            || Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[2].toString())) {
+                        modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                        
+                        for (int j = modeloTabla.getRowCount() - 1; j >= 0; j--) {
+                            registroBitacoraAux = new Object[15];
+                            for (int k = 0; k < registroBitacoraAux.length; k++) {
+                                registroBitacoraAux[k] = modeloTabla.getValueAt(j, k);
+                            }
+                            tablaObj.add(registroBitacoraAux);
+                            modeloTabla.removeRow(j);
+                        }
+                        Collections.sort(tablaObj, new OrdenaTablaTiempo());
+                        
+                        for (int k = 0; k < tablaObj.size(); k++) {
+                            modeloTabla.addRow((Object[]) tablaObj.get(k));
+                        }
+                        tablaObj.clear();
+                        tiempoHora.clear();
+                        winPrincipal.getCmbTema().setSelectedIndex(0);
+                        break;
+                    }                    
                 }
             } else {
                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
 
                 for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
                     registroBitacoraAux = new Object[15];
-                    registroBitacoraAux[0] = modeloTabla.getValueAt(i, 0);
-                    registroBitacoraAux[1] = modeloTabla.getValueAt(i, 1);
-                    registroBitacoraAux[2] = modeloTabla.getValueAt(i, 2);
-                    registroBitacoraAux[3] = modeloTabla.getValueAt(i, 3);
-                    registroBitacoraAux[4] = modeloTabla.getValueAt(i, 4);
-                    registroBitacoraAux[5] = modeloTabla.getValueAt(i, 5);
-                    registroBitacoraAux[6] = modeloTabla.getValueAt(i, 6);
-                    registroBitacoraAux[7] = modeloTabla.getValueAt(i, 7);
-                    registroBitacoraAux[8] = modeloTabla.getValueAt(i, 8);
-                    registroBitacoraAux[9] = modeloTabla.getValueAt(i, 9);
-                    registroBitacoraAux[10] = modeloTabla.getValueAt(i, 10);
-                    registroBitacoraAux[11] = modeloTabla.getValueAt(i, 11);
-                    registroBitacoraAux[12] = modeloTabla.getValueAt(i, 12);
-                    registroBitacoraAux[13] = modeloTabla.getValueAt(i, 13);
-                    registroBitacoraAux[14] = modeloTabla.getValueAt(i, 14);
+                    for (int j = 0; j < registroBitacoraAux.length; j++) {
+                        registroBitacoraAux[j] = modeloTabla.getValueAt(i, j);
+                    }
                     tablaObj.add(registroBitacoraAux);
                     modeloTabla.removeRow(i);
                 }
-
                 Collections.sort(tablaObj, new OrdenaTablaTiempo());
 
                 for (int i = 0; i < tablaObj.size(); i++) {
