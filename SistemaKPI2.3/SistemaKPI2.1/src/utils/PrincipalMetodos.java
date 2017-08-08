@@ -40,6 +40,7 @@ public class PrincipalMetodos {
     private Object[] registroBitacora = new Object[15];
     private Object[] registroBitacoraAux;
     private Object[] registroBitacoraTmp;
+    private Object[] registroBitacoraTmpAux;
     private Object[] tiempos;
 
     public DefaultComboBoxModel listaLineas() {
@@ -361,16 +362,18 @@ public class PrincipalMetodos {
         winPrincipal.getCmbNoParteTecnicas().setSelectedIndex(0);
         winPrincipal.getTxtScrapTecnicas().setEnabled(false);
     }
-    
+                        
     public void agregarRegistroBitacora(Principal winPrincipal) {
+        int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
         registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
 
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
             modeloTabla.addRow(registroBitacora);
             winPrincipal.getCmbTema().setSelectedIndex(0);
+            winPrincipal.getCmbTema().setSelectedIndex(valorTema);
         } else {
-            tiempoHora = new ArrayList();            
+            tiempoHora = new ArrayList();
             for (int c = 0; c < modeloTabla.getRowCount(); c++) {
                 if (modeloTabla.getValueAt(c, 2).toString().equals(registroBitacora[2].toString())) {
                     tiempos = new Object[4];
@@ -384,51 +387,64 @@ public class PrincipalMetodos {
             if (!tiempoHora.isEmpty()) {
                 for (int i = 0; i < tiempoHora.size(); i++) {
                     registroBitacoraTmp = (Object[]) tiempoHora.get(i);
-                    if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())
-                            || Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[2].toString())) {
-                        modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
-                        
-                        for (int j = modeloTabla.getRowCount() - 1; j >= 0; j--) {
-                            registroBitacoraAux = new Object[15];
-                            for (int k = 0; k < registroBitacoraAux.length; k++) {
-                                registroBitacoraAux[k] = modeloTabla.getValueAt(j, k);
+                    registroBitacoraTmpAux = null;
+                    if (tiempoHora.size() > 1 && i < tiempoHora.size() - 1) {
+                        registroBitacoraTmpAux = (Object[]) tiempoHora.get(i + 1);
+                    }
+                    if (Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[1].toString())) {
+                        if (Integer.parseInt(registroBitacora[3].toString()) < Integer.parseInt(registroBitacoraTmp[2].toString())) {
+                            break;
+                        } else if (Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[2].toString())) {
+                            if (registroBitacoraTmpAux != null) {
+                                if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmpAux[1].toString())) {
+                                    modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                                    ordenarTabla(modeloTabla);
+                                    winPrincipal.getCmbTema().setSelectedIndex(0);
+                                    winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                                    break;
+                                }
+                            } else {
+                                modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                                ordenarTabla(modeloTabla);
+                                winPrincipal.getCmbTema().setSelectedIndex(0);
+                                winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                                break;
                             }
-                            tablaObj.add(registroBitacoraAux);
-                            modeloTabla.removeRow(j);
                         }
-                        Collections.sort(tablaObj, new OrdenaTablaTiempo());
-                        
-                        for (int k = 0; k < tablaObj.size(); k++) {
-                            modeloTabla.addRow((Object[]) tablaObj.get(k));
-                        }
-                        tablaObj.clear();
-                        tiempoHora.clear();
+                    } else if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())) {
+                        modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                        ordenarTabla(modeloTabla);
                         winPrincipal.getCmbTema().setSelectedIndex(0);
+                        winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                         break;
-                    }                    
+                    }
                 }
             } else {
                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
-
-                for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
-                    registroBitacoraAux = new Object[15];
-                    for (int j = 0; j < registroBitacoraAux.length; j++) {
-                        registroBitacoraAux[j] = modeloTabla.getValueAt(i, j);
-                    }
-                    tablaObj.add(registroBitacoraAux);
-                    modeloTabla.removeRow(i);
-                }
-                Collections.sort(tablaObj, new OrdenaTablaTiempo());
-
-                for (int i = 0; i < tablaObj.size(); i++) {
-                    modeloTabla.addRow((Object[]) tablaObj.get(i));
-                }
-                tablaObj.clear();
+                ordenarTabla(modeloTabla);
                 winPrincipal.getCmbTema().setSelectedIndex(0);
+                winPrincipal.getCmbTema().setSelectedIndex(valorTema);
             }
         }
     }
 
+    private void ordenarTabla(DefaultTableModel modeloTabla) {
+        for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
+            registroBitacoraAux = new Object[15];
+            for (int j = 0; j < registroBitacoraAux.length; j++) {
+                registroBitacoraAux[j] = modeloTabla.getValueAt(i, j);
+            }
+            tablaObj.add(registroBitacoraAux);
+            modeloTabla.removeRow(i);
+        }
+        Collections.sort(tablaObj, new OrdenaTablaTiempo());
+
+        for (int i = 0; i < tablaObj.size(); i++) {
+            modeloTabla.addRow((Object[]) tablaObj.get(i));
+        }
+        tablaObj.clear();
+    }
+    
     private Object[] modeloRegistroBitacora(Principal winPrincipal, Object[] reg) {
         switch (winPrincipal.getCmbTema().getSelectedItem().toString()) {
             case "Piezas Producidas":
