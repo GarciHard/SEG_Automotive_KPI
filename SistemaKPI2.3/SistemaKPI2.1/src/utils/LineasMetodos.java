@@ -4,6 +4,7 @@ import dao.LineasDAOImpl;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.CargaOperaciones;
 import vista.Lineas;
 
 /**
@@ -13,6 +14,7 @@ import vista.Lineas;
  */
 public class LineasMetodos {
     
+    private final CargaOperaciones cargaOp = new CargaOperaciones();
     private DefaultTableModel tablaModelo;
     private String[] lineaObj;
     
@@ -64,11 +66,21 @@ public class LineasMetodos {
                             JOptionPane.showMessageDialog(winLineas, "LineasMetodos.actionPerformed().Agregar\n"
                                     + ex, "Error", JOptionPane.ERROR_MESSAGE);
                         } finally {
-                            JOptionPane.showMessageDialog(winLineas, "Linea agregada correctamente",
-                                    "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                            winLineas.getCmbTipoEnsamble().setSelectedIndex(0);
-                            limpiarTabla((DefaultTableModel) winLineas.getTblLineas().getModel());
-                            getTablaLineas(winLineas);
+                            int op = JOptionPane.showConfirmDialog(null, "¿Desea hacer la carga de Perdidas de la linea?",  "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            if (op == 0) {
+                                //cargaOp.inicio();
+                                System.err.println("esta entrando Si ");
+                            } else {
+                                System.out.println("else");
+                            }
+//                            JOptionPane.showMessageDialog(winLineas, "Linea agregada correctamente",
+//                                    "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+//                            
+//                            winLineas.getCmbTipoEnsamble().setSelectedIndex(0);
+//                            limpiarTabla((DefaultTableModel) winLineas.getTblLineas().getModel());
+//                            getTablaLineas(winLineas);
+//                            System.out.println("utils.LineasMetodos.actionPerformed()");
+                            
                         }
                     }
                     break;

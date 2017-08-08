@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import modelo.CargaOperaciones;
 import utils.LineasMetodos;
 import utils.LineasValidaciones;
 
@@ -221,6 +222,7 @@ public class Lineas extends javax.swing.JDialog {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         lineasMetodos.actionPerformed(this, evt);
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

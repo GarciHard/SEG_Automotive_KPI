@@ -143,6 +143,11 @@ public class Principal extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mnuOtros = new javax.swing.JMenu();
         mniCrearUsuario = new javax.swing.JMenuItem();
+        mnuCargasMasivas = new javax.swing.JMenu();
+        mniCargaClientes = new javax.swing.JMenuItem();
+        mniCargaOperaciones = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        mniCargaNoPartes = new javax.swing.JMenuItem();
         mnuEditar = new javax.swing.JMenu();
         mniEditarPorDia = new javax.swing.JMenuItem();
 
@@ -946,6 +951,27 @@ public class Principal extends javax.swing.JFrame {
 
         mnuAdministrar.add(mnuOtros);
 
+        mnuCargasMasivas.setText("Cargas Masivas");
+        mnuCargasMasivas.setActionCommand("cargasMasivas");
+
+        mniCargaClientes.setText("Carga Clientes");
+        mniCargaClientes.setActionCommand("cargaClientes");
+        mnuCargasMasivas.add(mniCargaClientes);
+
+        mniCargaOperaciones.setText("Carga Operaciones");
+        mniCargaOperaciones.setActionCommand("cargaOperaciones");
+        mnuCargasMasivas.add(mniCargaOperaciones);
+
+        jMenuItem1.setText("Carga Perdidas");
+        jMenuItem1.setActionCommand("cargaPerdidas");
+        mnuCargasMasivas.add(jMenuItem1);
+
+        mniCargaNoPartes.setText("Carga No. Partes");
+        mniCargaNoPartes.setActionCommand("cargaNoPartes");
+        mnuCargasMasivas.add(mniCargaNoPartes);
+
+        mnuAdministrar.add(mnuCargasMasivas);
+
         mnuBarra.add(mnuAdministrar);
 
         mnuEditar.setText("Editar");
@@ -1257,6 +1283,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbProblemaTecnicas;
     private javax.swing.JComboBox cmbTema;
     private com.alee.extended.date.WebDateField dteFecha;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
@@ -1299,6 +1326,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblScrapTecnicas;
     private javax.swing.JLabel lblTema;
     private javax.swing.JMenuItem mniBitacora;
+    private javax.swing.JMenuItem mniCargaClientes;
+    private javax.swing.JMenuItem mniCargaNoPartes;
+    private javax.swing.JMenuItem mniCargaOperaciones;
     private javax.swing.JMenuItem mniClientes;
     private javax.swing.JMenuItem mniCrearUsuario;
     private javax.swing.JMenuItem mniEditarPorDia;
@@ -1309,6 +1339,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniTiemposCiclo;
     private javax.swing.JMenu mnuAdministrar;
     private javax.swing.JMenuBar mnuBarra;
+    private javax.swing.JMenu mnuCargasMasivas;
     private javax.swing.JMenu mnuEditar;
     private javax.swing.JMenu mnuOtros;
     private javax.swing.JPopupMenu pmnClickMenu;

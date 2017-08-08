@@ -960,6 +960,38 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <Menu class="javax.swing.JMenu" name="mnuCargasMasivas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cargas Masivas"/>
+                <Property name="actionCommand" type="java.lang.String" value="cargasMasivas"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="mniCargaClientes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Carga Clientes"/>
+                    <Property name="actionCommand" type="java.lang.String" value="cargaClientes"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mniCargaOperaciones">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Carga Operaciones"/>
+                    <Property name="actionCommand" type="java.lang.String" value="cargaOperaciones"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Carga Perdidas"/>
+                    <Property name="actionCommand" type="java.lang.String" value="cargaPerdidas"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mniCargaNoPartes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Carga No. Partes"/>
+                    <Property name="actionCommand" type="java.lang.String" value="cargaNoPartes"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuEditar">
