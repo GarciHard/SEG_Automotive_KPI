@@ -20,6 +20,7 @@ import vista.Lineas;
 import vista.Login;
 import vista.Operaciones;
 import vista.RegistroUsuarios;
+import vista.TiempoTurno;
 
 /**
  * Hecho con <3 por:
@@ -47,6 +48,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getDteFecha().addActionListener(this);
         winPrincipal.getCmbLinea().setModel(principalMetodos.listaLineas());
         winPrincipal.getCmbLinea().addActionListener(this);
+        winPrincipal.getCmbLinea().addItemListener(this);
         winPrincipal.getCmbTema().setModel(TemasDAOImpl.listaTema());
         winPrincipal.getCmbTema().addActionListener(this);
         
@@ -164,11 +166,11 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         new LoginControl(new Login(winPrincipal, true));
                         break;
                     case "Aceptar":
-                        
                         winPrincipal.getCmbLinea().setEnabled(false);
                         winPrincipal.getCmbTema().setEnabled(true);
                         winPrincipal.getMniOperaciones().setEnabled(true);
                         winPrincipal.getBtnCambiarLinea().setText("Cambiar Linea");
+                        new TiempoTurno(winPrincipal, true).setVisible(true);
                         break;
                 }
                 break;
