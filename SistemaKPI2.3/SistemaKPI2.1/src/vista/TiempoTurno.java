@@ -1,7 +1,9 @@
 package vista;
 
+import dao.TiempoTurnoDAOImpl;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  * Hecho con <3 por:
@@ -10,6 +12,8 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class TiempoTurno extends javax.swing.JDialog {
 
+    private boolean existeHorario;
+    private boolean cerrarVentana;
     private Principal winPrincipal;
     private ArrayList cmbTiempoModel = new ArrayList();
     
@@ -190,13 +194,31 @@ public class TiempoTurno extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //AQUI IRA MI VALIDACION TODA SUPER PODEROSA
-//        int duracionTurno = Integer.parseInt(jTextField2.getText()) - Integer.parseInt(jTextField1.getText());
-//        cmbTiempoModel.add("Selecciona Hora");
-//        for (int i = 0, j = Integer.parseInt(jTextField1.getText()); i < duracionTurno; i++, j++) {
-//            cmbTiempoModel.add(j);
-//        }
-//        winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
+        try {
+            existeHorario = new TiempoTurnoDAOImpl().horarioExisteBitacora(
+                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                    winPrincipal.getDteFecha().getText(),
+                    Integer.parseInt(jTextField1.getText()),
+                    Integer.parseInt(jTextField2.getText())
+            );
+            if (!existeHorario) {
+                int duracionTurno = Integer.parseInt(jTextField2.getText()) - Integer.parseInt(jTextField1.getText());
+                cmbTiempoModel.add("Selecciona Hora");
+                for (int i = 0, j = Integer.parseInt(jTextField1.getText()); i < duracionTurno; i++, j++) {
+                    cmbTiempoModel.add(j);
+                }
+                winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
+                cerrarVentana = true;
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
+                        + "Horario ya registrado en la bitacora", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                jComboBox1.setSelectedIndex(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
+                    + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -208,7 +230,7 @@ public class TiempoTurno extends javax.swing.JDialog {
             jButton1.setEnabled(false);
         } else if (evt.getDot() >= 1 && evt.getMark() >= 1) {
             jButton1.setEnabled(true);
-        } else if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
+        } else if (jTextField3.getText().isEmpty()) {
             jButton1.setEnabled(false);
         }
     }//GEN-LAST:event_jTextField3CaretUpdate
@@ -229,7 +251,7 @@ public class TiempoTurno extends javax.swing.JDialog {
             jTextField2.setText("");
         } else if (evt.getDot() >= 1 && evt.getMark() >= 1) {
             jTextField2.setEnabled(true);
-        } else if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
+        } else if (jTextField1.getText().isEmpty()) {
             jTextField2.setEnabled(false);
             jTextField2.setText("");
         }
@@ -241,7 +263,7 @@ public class TiempoTurno extends javax.swing.JDialog {
             jTextField3.setText("");
         } else if (evt.getDot() >= 1 && evt.getMark() >= 1) {
             jTextField3.setEnabled(true);
-        } else if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
+        } else if (jTextField2.getText().isEmpty()) {
             jTextField3.setEnabled(false);
             jTextField3.setText("");
         }
@@ -271,10 +293,6 @@ public class TiempoTurno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTextField3KeyTyped
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        winPrincipal.getCmbLinea().setSelectedIndex(0);
-    }//GEN-LAST:event_formWindowClosed
-
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         if (!jTextField1.getText().isEmpty()) {
             if (Integer.parseInt(jTextField1.getText()) > 23
@@ -293,6 +311,11 @@ public class TiempoTurno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTextField2KeyReleased
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        if (cerrarVentana == false) {
+            winPrincipal.getCmbLinea().setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_formWindowClosed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
