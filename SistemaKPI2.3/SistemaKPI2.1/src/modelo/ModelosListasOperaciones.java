@@ -30,7 +30,7 @@ public class ModelosListasOperaciones {
     }
     
     private static final String[] areaTecnicas = {
-        "Selecciona Area","Maquina Proceso","Mecanicos","Electronicos",
+        "Selecciona Area","Maquina Proceso","Mecanicos","Electricos",
         "Hidraulicos Pneumaticos","Software Computadora","Reajuste Maquina"
     };
     
@@ -47,7 +47,7 @@ public class ModelosListasOperaciones {
     }
     
     private static final String[] areaCambio = {
-        "Selecciona Area","Cambio Planeado","Cambio NO Planeado","Perdidas despues del cambio"  
+        "Selecciona Area","Cambio de modelo planeado","Cambio de modelo NO Planeado","Perdidas despues del cambio"  
     };
     
     public static DefaultComboBoxModel listaAreaCambio(){
@@ -57,7 +57,7 @@ public class ModelosListasOperaciones {
     private static final String[] areaPlaneados = {
         "Selecciona Area","Planeados","Mantenimiento Planeado/TPM","Otros Paros Planeados",
         "Worshop Planeado","Entrenamiento Planeado","Produccion de Prototipos/Muestras",
-        "Juntas de trabajo Planeado","Comedor","Activacion Fisica","Descanso","P_5S's"
+        "Juntas de trabajo Planeado","Comedor","Activacion Fisica","Descanso","5S's"
     };
     
     public static DefaultComboBoxModel listaAreaPlaneados(){

@@ -8,14 +8,18 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import utils.PrincipalMetodos;
 import utils.PrincipalValidaciones;
+import vista.Cargas;
 import vista.Lineas;
 import vista.Login;
 import vista.Operaciones;
@@ -35,6 +39,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
     public static String linea;
     protected static Operaciones winOperaciones;
+    public static int bndLinea = 0;
     
     
     public PrincipalControl(Principal principal) {
@@ -133,6 +138,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         //Menu Operaciones
         winPrincipal.getMniOperaciones().addActionListener(this);
         
+        //Carga Masiva
+        winPrincipal.getMniCargaMasiva().addActionListener(this);
+        
         //Tabla Bitacora
         winPrincipal.getTblBitacora().getModel().addTableModelListener(this);
         winPrincipal.getTblBitacora().setRowHeight(35);
@@ -144,6 +152,15 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     public void actionPerformed(ActionEvent evt) {
         switch (evt.getActionCommand()) {
             //***** Barra de Menu *****
+            case "_mniCargaMasiva":
+                linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
+                bndLinea = 1;
+                try {
+                    new Cargas(winPrincipal, true).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(PrincipalControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
             case "_mniLineas":
                 new Lineas(winPrincipal, true).setVisible(true);
                 break;
@@ -169,6 +186,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         winPrincipal.getCmbLinea().setEnabled(false);
                         winPrincipal.getCmbTema().setEnabled(true);
                         winPrincipal.getMniOperaciones().setEnabled(true);
+                        winPrincipal.getMniCargaMasiva().setEnabled(true);
                         winPrincipal.getBtnCambiarLinea().setText("Cambiar Linea");
                         new TiempoTurno(winPrincipal, true).setVisible(true);
                         break;
@@ -319,7 +337,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.cancelarEdicion(winPrincipal);
                 break;
                 
-            case "Operaciones"://ARELI
+            case "_mniOperaciones"://ARELI
                 linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
                 System.err.println("linea Prin: "+linea);
                 Operaciones op = new Operaciones(winOperaciones, true);

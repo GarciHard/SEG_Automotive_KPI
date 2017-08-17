@@ -940,6 +940,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mniOperaciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Operaciones"/>
+                <Property name="actionCommand" type="java.lang.String" value="_mniOperaciones"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="true"/>
               </Properties>
@@ -958,36 +959,12 @@
                     <Property name="focusable" type="boolean" value="true"/>
                   </Properties>
                 </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="mnuCargasMasivas">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cargas Masivas"/>
-                <Property name="actionCommand" type="java.lang.String" value="cargasMasivas"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="mniCargaClientes">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Carga Clientes"/>
-                    <Property name="actionCommand" type="java.lang.String" value="cargaClientes"/>
-                  </Properties>
+                <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator7">
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mniCargaOperaciones">
+                <MenuItem class="javax.swing.JMenuItem" name="mniCargaMasiva">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Carga Operaciones"/>
-                    <Property name="actionCommand" type="java.lang.String" value="cargaOperaciones"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Carga Perdidas"/>
-                    <Property name="actionCommand" type="java.lang.String" value="cargaPerdidas"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="mniCargaNoPartes">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Carga No. Partes"/>
-                    <Property name="actionCommand" type="java.lang.String" value="cargaNoPartes"/>
+                    <Property name="text" type="java.lang.String" value="Carga Masiva"/>
+                    <Property name="actionCommand" type="java.lang.String" value="_mniCargaMasiva"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
@@ -1140,6 +1117,9 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbLineaActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Principal_cmbLinea"/>
               </AuxValues>
@@ -1163,6 +1143,9 @@
                   <ComponentRef name="cmbLinea"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCambiarLineaActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

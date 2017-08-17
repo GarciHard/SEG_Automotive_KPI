@@ -1,11 +1,16 @@
 package utils;
 
+import control.PrincipalControl;
 import dao.LineasDAOImpl;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.CargaOperaciones;
+import vista.Cargas;
 import vista.Lineas;
+import vista.Principal;
 
 /**
  * Hecho con <3 por:
@@ -14,9 +19,13 @@ import vista.Lineas;
  */
 public class LineasMetodos {
     
-    private final CargaOperaciones cargaOp = new CargaOperaciones();
     private DefaultTableModel tablaModelo;
     private String[] lineaObj;
+    public static String lineaLinea = "";
+    protected static Principal winPrincipal;
+    protected static Cargas winCargas;
+    public static int bndLinea = 0;
+    
     
     private boolean existeLinea(Lineas winLineas, String linea) {
         boolean existeLinea = false;
@@ -62,24 +71,34 @@ public class LineasMetodos {
                                     "0" + winLineas.getCmbTipoEnsamble().getSelectedIndex(),
                                     winLineas.getTxtNombre().getText()
                             );
+                            lineaLinea = winLineas.getTxtLinea().getText();
                         } catch (Exception ex) {
                             JOptionPane.showMessageDialog(winLineas, "LineasMetodos.actionPerformed().Agregar\n"
                                     + ex, "Error", JOptionPane.ERROR_MESSAGE);
                         } finally {
-                            int op = JOptionPane.showConfirmDialog(null, "¿Desea hacer la carga de Perdidas de la linea?",  "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                            if (op == 0) {
-                                //cargaOp.inicio();
-                                System.err.println("esta entrando Si ");
+                            JOptionPane.showMessageDialog(winLineas, "Linea agregada correctamente",
+                                    "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                            winLineas.getCmbTipoEnsamble().setSelectedIndex(0);
+                            limpiarTabla((DefaultTableModel) winLineas.getTblLineas().getModel());
+                            getTablaLineas(winLineas);
+                            
+                            int cargaM = JOptionPane.showConfirmDialog(null, "¿Desea Cargar Datos Masivamente a la linea?",  "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            if (cargaM == 0) {
+                                int act = JOptionPane.showConfirmDialog(null, "Debe actualizar el archivo PlantillaCargaDeDatos.xls, esta en: \n I:Dep>MOE1>Shared>Informacion_general>proyectos  SG>Proyecto OEE \n\n Presione YES, cuando este actualizado", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                                if (act == 0) {
+                                    try {
+                                        bndLinea = 1;
+                                        new Cargas(winPrincipal, true).setVisible(true);
+                                        
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(PrincipalControl.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
                             } else {
                                 System.out.println("else");
                             }
-//                            JOptionPane.showMessageDialog(winLineas, "Linea agregada correctamente",
-//                                    "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-//                            
-//                            winLineas.getCmbTipoEnsamble().setSelectedIndex(0);
-//                            limpiarTabla((DefaultTableModel) winLineas.getTblLineas().getModel());
-//                            getTablaLineas(winLineas);
-//                            System.out.println("utils.LineasMetodos.actionPerformed()");
+                            
+                            System.out.println("utils.LineasMetodos.actionPerformed()");
                             
                         }
                     }
