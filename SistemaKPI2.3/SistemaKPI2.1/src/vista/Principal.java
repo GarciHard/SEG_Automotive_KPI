@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import utils.PrincipalMetodos;
 
 /**
  * Hecho con <3 por:
@@ -17,11 +18,13 @@ import javax.swing.JTextField;
  */
 public class Principal extends javax.swing.JFrame {
    
+    private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        cmbLinea.setModel(principalMetodos.listaLineas());
     }
     
     @SuppressWarnings("unchecked")
@@ -143,6 +146,8 @@ public class Principal extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mnuOtros = new javax.swing.JMenu();
         mniCrearUsuario = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        mniCargaMasiva = new javax.swing.JMenuItem();
         mnuEditar = new javax.swing.JMenu();
         mniEditarPorDia = new javax.swing.JMenuItem();
 
@@ -690,6 +695,11 @@ public class Principal extends javax.swing.JFrame {
         cmbLinea.setActionCommand("_cmbLinea");
         cmbLinea.setEnabled(false);
         cmbLinea.setFocusable(false);
+        cmbLinea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLineaActionPerformed(evt);
+            }
+        });
 
         lblFecha.setText("FECHA");
 
@@ -699,6 +709,11 @@ public class Principal extends javax.swing.JFrame {
         btnCambiarLinea.setActionCommand("_btnCambiarLinea");
         btnCambiarLinea.setFocusable(false);
         btnCambiarLinea.setNextFocusableComponent(cmbLinea);
+        btnCambiarLinea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarLineaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlBorderNorthLayout = new javax.swing.GroupLayout(pnlBorderNorth);
         pnlBorderNorth.setLayout(pnlBorderNorthLayout);
@@ -932,6 +947,7 @@ public class Principal extends javax.swing.JFrame {
         mnuAdministrar.add(jSeparator1);
 
         mniOperaciones.setText("Operaciones");
+        mniOperaciones.setActionCommand("_mniOperaciones");
         mniOperaciones.setEnabled(false);
         mniOperaciones.setFocusable(true);
         mnuAdministrar.add(mniOperaciones);
@@ -943,6 +959,11 @@ public class Principal extends javax.swing.JFrame {
         mniCrearUsuario.setActionCommand("_mniCrearUsuario");
         mniCrearUsuario.setFocusable(true);
         mnuOtros.add(mniCrearUsuario);
+        mnuOtros.add(jSeparator7);
+
+        mniCargaMasiva.setText("Carga Masiva");
+        mniCargaMasiva.setActionCommand("_mniCargaMasiva");
+        mnuOtros.add(mniCargaMasiva);
 
         mnuAdministrar.add(mnuOtros);
 
@@ -982,6 +1003,15 @@ public class Principal extends javax.swing.JFrame {
     private void cmbOperacionCalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOperacionCalidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbOperacionCalidadActionPerformed
+
+    private void cmbLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLineaActionPerformed
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_cmbLineaActionPerformed
+
+    private void btnCambiarLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarLineaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnCambiarLineaActionPerformed
 
     public JButton getBtnGuardar(){
         return btnGuardar;
@@ -1210,6 +1240,10 @@ public class Principal extends javax.swing.JFrame {
     public JMenuItem getMniCrearUsuario() {
         return mniCrearUsuario;
     }
+
+    public JMenuItem getMniCargaMasiva() {
+        return mniCargaMasiva;
+    }
     
     //OPERACIONES
     
@@ -1263,6 +1297,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JLabel lblAreaCalidad;
     private javax.swing.JLabel lblAreaCambios;
     private javax.swing.JLabel lblAreaOrganizacional;
@@ -1299,6 +1334,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblScrapTecnicas;
     private javax.swing.JLabel lblTema;
     private javax.swing.JMenuItem mniBitacora;
+    private javax.swing.JMenuItem mniCargaMasiva;
     private javax.swing.JMenuItem mniClientes;
     private javax.swing.JMenuItem mniCrearUsuario;
     private javax.swing.JMenuItem mniEditarPorDia;

@@ -3,6 +3,7 @@ package vista;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import utils.LineasMetodos;
@@ -220,7 +221,7 @@ public class Lineas extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        lineasMetodos.actionPerformed(this, evt);
+        lineasMetodos.actionPerformed(this, evt);    
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -241,6 +242,13 @@ public class Lineas extends javax.swing.JDialog {
 
     private void txtLineaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLineaKeyTyped
         LineasValidaciones.validarKeyTyped(this, evt);
+        
+        if((evt.getKeyChar() < '0' || evt.getKeyChar() > '9' )){
+            evt.consume();
+        }
+        if (txtLinea.getText().length()>2){
+          evt.consume();
+        }
     }//GEN-LAST:event_txtLineaKeyTyped
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped

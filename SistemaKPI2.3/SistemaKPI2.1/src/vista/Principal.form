@@ -940,6 +940,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mniOperaciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Operaciones"/>
+                <Property name="actionCommand" type="java.lang.String" value="_mniOperaciones"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="true"/>
               </Properties>
@@ -956,6 +957,14 @@
                     <Property name="text" type="java.lang.String" value="Crear Usuario"/>
                     <Property name="actionCommand" type="java.lang.String" value="_mniCrearUsuario"/>
                     <Property name="focusable" type="boolean" value="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator7">
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mniCargaMasiva">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Carga Masiva"/>
+                    <Property name="actionCommand" type="java.lang.String" value="_mniCargaMasiva"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
@@ -1108,6 +1117,9 @@
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbLineaActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Principal_cmbLinea"/>
               </AuxValues>
@@ -1131,6 +1143,9 @@
                   <ComponentRef name="cmbLinea"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCambiarLineaActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
