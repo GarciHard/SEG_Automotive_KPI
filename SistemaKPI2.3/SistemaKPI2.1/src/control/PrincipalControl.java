@@ -213,6 +213,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                     case 6:
                         principalMetodos.panelPlaneadosAreas(winPrincipal);
                         break;
+                    case 7:
+                        principalMetodos.panelTiempoFaltante(winPrincipal);
+                        break;
                     default:
                         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
                         winPrincipal.getPnlProduccionCollapsible().setContent(new javax.swing.JLabel());

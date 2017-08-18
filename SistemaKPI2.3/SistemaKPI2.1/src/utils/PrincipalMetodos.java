@@ -233,6 +233,12 @@ public class PrincipalMetodos {
         winPrincipal.getTxtScrapCambios().setEnabled(false);
     }
     
+    public void panelTiempoFaltante(Principal winPrincipal) {
+        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTiempoFaltante());
+        winPrincipal.getPnlProduccionCollapsible().repaint();
+    }
+    
     public void panelPlaneadosAreas(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
         winPrincipal.getCmbAreaPlaneados().setEnabled(true);
@@ -680,11 +686,7 @@ public class PrincipalMetodos {
                     cancelarEdicion(winPrincipal);
                     break;
             }
-        }
-        
-        
-        
-        
+        } 
     }
     
     public void cancelarEdicion(Principal winPrincipal) {

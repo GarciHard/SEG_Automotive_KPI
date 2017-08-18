@@ -98,6 +98,9 @@ public class Principal extends javax.swing.JFrame {
         cmbNoParteCalidad = new javax.swing.JComboBox();
         lblScrapCalidad = new javax.swing.JLabel();
         txtScrapCalidad = new javax.swing.JTextField();
+        pnlTiempoFaltante = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         mniListarBitacoras = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         mniBitacora = new javax.swing.JMenuItem();
@@ -684,6 +687,29 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(pnlCalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblScrapCalidad)
                             .addComponent(txtScrapCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+
+        jLabel2.setText("Tiempo Faltante :");
+
+        javax.swing.GroupLayout pnlTiempoFaltanteLayout = new javax.swing.GroupLayout(pnlTiempoFaltante);
+        pnlTiempoFaltante.setLayout(pnlTiempoFaltanteLayout);
+        pnlTiempoFaltanteLayout.setHorizontalGroup(
+            pnlTiempoFaltanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTiempoFaltanteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlTiempoFaltanteLayout.setVerticalGroup(
+            pnlTiempoFaltanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTiempoFaltanteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlTiempoFaltanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1287,7 +1313,9 @@ public class Principal extends javax.swing.JFrame {
         return mniLineas;
     }
     
-    
+    public JPanel getPnlTiempoFaltante() {
+        return pnlTiempoFaltante;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarBitacora;
     private javax.swing.JButton btnCambiarLinea;
@@ -1324,6 +1352,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbTema;
     private com.alee.extended.date.WebDateField dteFecha;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
@@ -1331,6 +1360,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAreaCalidad;
     private javax.swing.JLabel lblAreaCambios;
     private javax.swing.JLabel lblAreaOrganizacional;
@@ -1393,6 +1423,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPlaneados;
     private com.alee.extended.panel.WebCollapsiblePane pnlProduccionCollapsible;
     private javax.swing.JPanel pnlTecnicas;
+    private javax.swing.JPanel pnlTiempoFaltante;
     private javax.swing.JPanel pnlTiempoIncidencia;
     private javax.swing.JPanel pnlTiempoIncidenciaHora;
     private javax.swing.JScrollPane scrBitacora;
