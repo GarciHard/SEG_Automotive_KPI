@@ -11,10 +11,13 @@ import utils.PrincipalMetodos;
  */
 public class SeleccionLinea extends javax.swing.JDialog {
 
+    private final Principal winPrincipal;
+    
     /** Creates new form SeleccionLinea */
     public SeleccionLinea(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        winPrincipal = (Principal) parent;
         cmbLinea.setModel(new PrincipalMetodos().listaLineas());
     }
 
@@ -41,8 +44,14 @@ public class SeleccionLinea extends javax.swing.JDialog {
         jLabel1.setText("Linea:");
 
         cmbLinea.setEnabled(false);
+        cmbLinea.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbLineaItemStateChanged(evt);
+            }
+        });
 
         btnCambiarLinea.setText("Seleccionar Linea");
+        btnCambiarLinea.setToolTipText("");
         btnCambiarLinea.setFocusable(false);
         btnCambiarLinea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,8 +117,30 @@ public class SeleccionLinea extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnCambiarLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarLineaActionPerformed
-        this.dispose();
+        switch (btnCambiarLinea.getText()) {
+            case "Seleccionar Linea":
+                cmbLinea.setEnabled(true);
+                btnCambiarLinea.setEnabled(false);
+                break;
+            case "Aceptar":
+                winPrincipal.getCmbLinea().setSelectedItem(cmbLinea.getSelectedItem());
+                this.dispose();
+                break;
+        }
     }//GEN-LAST:event_btnCambiarLineaActionPerformed
+
+    private void cmbLineaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbLineaItemStateChanged
+        switch (cmbLinea.getSelectedIndex()) {
+            case 0:
+                btnCambiarLinea.setText("Seleccionar Linea");
+                btnCambiarLinea.setEnabled(false);
+                break;
+            default:
+                btnCambiarLinea.setText("Aceptar");
+                btnCambiarLinea.setEnabled(true);
+                break;
+        }
+    }//GEN-LAST:event_cmbLineaItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCambiarLinea;

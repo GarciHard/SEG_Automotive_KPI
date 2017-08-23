@@ -1122,7 +1122,9 @@
                       <EmptySpace pref="225" max="32767" attributes="0"/>
                       <Component id="lblLinea" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cmbLinea" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="cmbLinea" min="-2" pref="75" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblTurno" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCambiarLinea" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace pref="225" max="32767" attributes="0"/>
@@ -1144,6 +1146,7 @@
                               <Component id="lblFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="dteFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCambiarLinea" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTurno" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                               <Component id="lblTema" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1176,6 +1179,10 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbLinea">
               <Properties>
+                <Property name="editable" type="boolean" value="true"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
                 <Property name="actionCommand" type="java.lang.String" value="_cmbLinea"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -1196,13 +1203,15 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnCambiarLinea">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cambiar Linea"/>
+                <Property name="text" type="java.lang.String" value="Elegir turno"/>
                 <Property name="actionCommand" type="java.lang.String" value="_btnCambiarLinea"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                   <ComponentRef name="cmbLinea"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTurno">
             </Component>
           </SubComponents>
         </Container>

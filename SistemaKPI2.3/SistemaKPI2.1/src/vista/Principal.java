@@ -4,6 +4,7 @@ import com.alee.extended.date.WebDateField;
 import com.alee.extended.panel.WebCollapsiblePane;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -115,6 +116,7 @@ public class Principal extends javax.swing.JFrame {
         lblFecha = new javax.swing.JLabel();
         dteFecha = new com.alee.extended.date.WebDateField();
         btnCambiarLinea = new javax.swing.JButton();
+        lblTurno = new javax.swing.JLabel();
         pnlBorder = new javax.swing.JPanel();
         pnlProduccionCollapsible = new com.alee.extended.panel.WebCollapsiblePane();
         pnlBorderTiempoBitacora = new javax.swing.JPanel();
@@ -733,6 +735,7 @@ public class Principal extends javax.swing.JFrame {
 
         lblLinea.setText("LINEA");
 
+        cmbLinea.setEditable(true);
         cmbLinea.setActionCommand("_cmbLinea");
         cmbLinea.setEnabled(false);
         cmbLinea.setFocusable(false);
@@ -741,7 +744,7 @@ public class Principal extends javax.swing.JFrame {
 
         dteFecha.setEnabled(false);
 
-        btnCambiarLinea.setText("Cambiar Linea");
+        btnCambiarLinea.setText("Elegir turno");
         btnCambiarLinea.setActionCommand("_btnCambiarLinea");
         btnCambiarLinea.setFocusable(false);
         btnCambiarLinea.setNextFocusableComponent(cmbLinea);
@@ -758,7 +761,9 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addComponent(lblLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTurno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCambiarLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
@@ -777,7 +782,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(cmbLinea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblFecha)
                         .addComponent(dteFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCambiarLinea))
+                        .addComponent(btnCambiarLinea)
+                        .addComponent(lblTurno))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBorderNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblTema, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmbTema)))
@@ -1035,6 +1041,10 @@ public class Principal extends javax.swing.JFrame {
         new SeleccionLinea(this, true).setVisible(true);
     }//GEN-LAST:event_formWindowOpened
 
+    public JLabel getLblTurno() {
+        return lblTurno;
+    }
+    
     public JTextField getTxtMatFaltante() {
         return txtMatFaltante;
     }
@@ -1364,6 +1374,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblScrapCambios;
     private javax.swing.JLabel lblScrapTecnicas;
     private javax.swing.JLabel lblTema;
+    private javax.swing.JLabel lblTurno;
     private javax.swing.JMenuItem mniBitacora;
     private javax.swing.JMenuItem mniCargaMasiva;
     private javax.swing.JMenuItem mniClientes;

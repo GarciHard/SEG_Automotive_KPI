@@ -25,6 +25,7 @@ import vista.Login;
 import vista.Operaciones;
 import vista.RegistroUsuarios;
 import vista.TiempoTurno;
+import vista.TiemposFaltantes;
 
 /**
  * Hecho con <3 por:
@@ -51,7 +52,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getDteFecha().setDateFormat(fechaFormato);
         winPrincipal.getDteFecha().setDate(new Date(System.currentTimeMillis()));
         winPrincipal.getDteFecha().addActionListener(this);
-        winPrincipal.getCmbLinea().setModel(principalMetodos.listaLineas());
+        //winPrincipal.getCmbLinea().setModel(principalMetodos.listaLineas());
         winPrincipal.getCmbLinea().addActionListener(this);
         winPrincipal.getCmbLinea().addItemListener(this);
         winPrincipal.getCmbTema().setModel(TemasDAOImpl.listaTema());
@@ -175,6 +176,23 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 new RegistroUsuariosControl(new RegistroUsuarios(winPrincipal, true));
                 break;
             //***** Panel Superior *****
+            case "_btnCambiarLinea":
+                new TiempoTurno(winPrincipal, true).setVisible(true);
+//                switch (winPrincipal.getBtnCambiarLinea().getText()) {
+//                    case "Elegir turno":
+//                        auxiliarPrincipal = 1;
+//                        winPrincipal.getCmbTema().setSelectedIndex(0);
+//                        new LoginControl(new Login(winPrincipal, true));
+//                        new TiempoTurno(winPrincipal, true).setVisible(true);
+//                        break;
+//                    case "Aceptar":
+//                        winPrincipal.getCmbTema().setEnabled(true);
+//                        winPrincipal.getMniOperaciones().setEnabled(true);
+//                        winPrincipal.getMniCargaMasiva().setEnabled(true);
+//                        winPrincipal.getBtnCambiarLinea().setText("Elegir turno");
+//                        break;
+//                }         
+                break;
 //            case "_btnCambiarLinea":
 //                winPrincipal.getCmbTema().setEnabled(false);
 //                switch (winPrincipal.getBtnCambiarLinea().getText()) {

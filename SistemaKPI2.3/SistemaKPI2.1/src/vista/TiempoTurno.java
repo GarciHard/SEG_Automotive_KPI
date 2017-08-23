@@ -1,5 +1,6 @@
 package vista;
 
+import control.LoginControl;
 import dao.TiempoTurnoDAOImpl;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -12,12 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class TiempoTurno extends javax.swing.JDialog {
 
+    public static int auxiliarTiempoTurno;
     private boolean existeHorario;
     private boolean cerrarVentana;
     private Principal winPrincipal;
     private ArrayList cmbTiempoModel = new ArrayList();
     
-    /** Creates new form TiempoTurno */
+    /** Creates new form TiempoTurno */    
     public TiempoTurno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -40,7 +42,7 @@ public class TiempoTurno extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -106,7 +108,7 @@ public class TiempoTurno extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("Iniciar");
+        jButton1.setText("Validar");
         jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,31 +196,76 @@ public class TiempoTurno extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            existeHorario = new TiempoTurnoDAOImpl().horarioExisteBitacora(
-                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                    winPrincipal.getDteFecha().getText(),
-                    Integer.parseInt(jTextField1.getText()),
-                    Integer.parseInt(jTextField2.getText())
-            );
-            if (!existeHorario) {
-                int duracionTurno = Integer.parseInt(jTextField2.getText()) - Integer.parseInt(jTextField1.getText());
-                cmbTiempoModel.add("Selecciona Hora");
-                for (int i = 0, j = Integer.parseInt(jTextField1.getText()); i < duracionTurno; i++, j++) {
-                    cmbTiempoModel.add(j);
+        auxiliarTiempoTurno = 1;
+        new LoginControl(new Login(winPrincipal, true));
+        if (auxiliarTiempoTurno == 2) {
+            try {
+                existeHorario = new TiempoTurnoDAOImpl().horarioExisteBitacora(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                        winPrincipal.getDteFecha().getText(),
+                        Integer.parseInt(jTextField1.getText()),
+                        Integer.parseInt(jTextField2.getText())
+                );
+                if (!existeHorario) {
+                    int duracionTurno = Integer.parseInt(jTextField2.getText()) - Integer.parseInt(jTextField1.getText());
+                    cmbTiempoModel.add("Selecciona Hora");
+                    for (int i = 0, j = Integer.parseInt(jTextField1.getText()); i < duracionTurno; i++, j++) {
+                        cmbTiempoModel.add(j);
+                    }
+
+                    winPrincipal.getLblTurno().setText(jComboBox1.getSelectedItem().toString()
+                            + " <> " + jTextField1.getText() + " - " + jTextField2.getText());
+                    
+                    winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
+                    winPrincipal.getCmbTema().setEnabled(true);
+                    winPrincipal.getMniOperaciones().setEnabled(true);
+                    winPrincipal.getMniCargaMasiva().setEnabled(true);
+                    cerrarVentana = true;
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
+                            + "Horario ya registrado en la bitacora", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    jComboBox1.setSelectedIndex(0);
                 }
-                winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
-                cerrarVentana = true;
-                this.dispose();
-            } else {
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
-                        + "Horario ya registrado en la bitacora", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                jComboBox1.setSelectedIndex(0);
+                        + e, "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
-                    + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
+//        switch (jButton1.getText()) {
+//            case "Validar":
+//
+//                break;
+//            case "Iniciar":
+//                jButton1.setText("Validar");
+//                break;
+//        }
+        
+//        try {
+//            existeHorario = new TiempoTurnoDAOImpl().horarioExisteBitacora(
+//                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
+//                    winPrincipal.getDteFecha().getText(),
+//                    Integer.parseInt(jTextField1.getText()),
+//                    Integer.parseInt(jTextField2.getText())
+//            );
+//            if (!existeHorario) {
+//                int duracionTurno = Integer.parseInt(jTextField2.getText()) - Integer.parseInt(jTextField1.getText());
+//                cmbTiempoModel.add("Selecciona Hora");
+//                for (int i = 0, j = Integer.parseInt(jTextField1.getText()); i < duracionTurno; i++, j++) {
+//                    cmbTiempoModel.add(j);
+//                }
+//                winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
+//                cerrarVentana = true;
+//                this.dispose();
+//            } else {
+//                JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
+//                        + "Horario ya registrado en la bitacora", "Advertencia", JOptionPane.WARNING_MESSAGE);
+//                jComboBox1.setSelectedIndex(0);
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
+//                    + e, "Error", JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -316,8 +363,6 @@ public class TiempoTurno extends javax.swing.JDialog {
             winPrincipal.getCmbLinea().setSelectedIndex(0);
         }
     }//GEN-LAST:event_formWindowClosed
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
