@@ -189,7 +189,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         winPrincipal.getMniOperaciones().setEnabled(true);
                         winPrincipal.getMniCargaMasiva().setEnabled(true);
                         winPrincipal.getBtnCambiarLinea().setText("Cambiar Linea");
-                        new TiempoTurno(winPrincipal, true).setVisible(true);
                         break;
                 }
                 break;
