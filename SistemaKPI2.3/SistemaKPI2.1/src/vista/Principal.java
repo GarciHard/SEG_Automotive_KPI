@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import utils.PrincipalMetodos;
 
 /**
  * Hecho con <3 por:
@@ -18,13 +17,11 @@ import utils.PrincipalMetodos;
  */
 public class Principal extends javax.swing.JFrame {
    
-    private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-        cmbLinea.setModel(principalMetodos.listaLineas());
     }
     
     @SuppressWarnings("unchecked")
@@ -242,12 +239,6 @@ public class Principal extends javax.swing.JFrame {
         cmbNoParteOrganizacional.setActionCommand("_cmbNoParteOrganizacional");
         cmbNoParteOrganizacional.setEnabled(false);
         cmbNoParteOrganizacional.setFocusable(false);
-
-        txtMatFaltante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatFaltanteActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("MATERIAL FALTANTE");
 
@@ -588,11 +579,6 @@ public class Principal extends javax.swing.JFrame {
         cmbOperacionCalidad.setActionCommand("_cmbOperacionCalidad");
         cmbOperacionCalidad.setEnabled(false);
         cmbOperacionCalidad.setNextFocusableComponent(cmbAreaCalidad);
-        cmbOperacionCalidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOperacionCalidadActionPerformed(evt);
-            }
-        });
 
         lblAreaCalidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAreaCalidad.setText("ÁREA");
@@ -727,6 +713,11 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Programa para Bítacora y reportes de producción");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         pnlBackground.setFocusable(false);
         pnlBackground.setLayout(new java.awt.BorderLayout(0, 5));
@@ -745,11 +736,6 @@ public class Principal extends javax.swing.JFrame {
         cmbLinea.setActionCommand("_cmbLinea");
         cmbLinea.setEnabled(false);
         cmbLinea.setFocusable(false);
-        cmbLinea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbLineaActionPerformed(evt);
-            }
-        });
 
         lblFecha.setText("FECHA");
 
@@ -759,11 +745,6 @@ public class Principal extends javax.swing.JFrame {
         btnCambiarLinea.setActionCommand("_btnCambiarLinea");
         btnCambiarLinea.setFocusable(false);
         btnCambiarLinea.setNextFocusableComponent(cmbLinea);
-        btnCambiarLinea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCambiarLineaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlBorderNorthLayout = new javax.swing.GroupLayout(pnlBorderNorth);
         pnlBorderNorth.setLayout(pnlBorderNorthLayout);
@@ -1050,22 +1031,9 @@ public class Principal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbOperacionCalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOperacionCalidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbOperacionCalidadActionPerformed
-
-    private void cmbLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLineaActionPerformed
-        // TODO add your handling code here:        
-    }//GEN-LAST:event_cmbLineaActionPerformed
-
-    private void btnCambiarLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarLineaActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnCambiarLineaActionPerformed
-
-    private void txtMatFaltanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatFaltanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatFaltanteActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        new SeleccionLinea(this, true).setVisible(true);
+    }//GEN-LAST:event_formWindowOpened
 
     public JTextField getTxtMatFaltante() {
         return txtMatFaltante;

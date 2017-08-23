@@ -175,23 +175,23 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 new RegistroUsuariosControl(new RegistroUsuarios(winPrincipal, true));
                 break;
             //***** Panel Superior *****
-            case "_btnCambiarLinea":
-                winPrincipal.getCmbTema().setEnabled(false);
-                switch (winPrincipal.getBtnCambiarLinea().getText()) {
-                    case "Cambiar Linea":
-                        auxiliarPrincipal = 1;
-                        winPrincipal.getCmbTema().setSelectedIndex(0);
-                        new LoginControl(new Login(winPrincipal, true));
-                        break;
-                    case "Aceptar":
-                        winPrincipal.getCmbLinea().setEnabled(false);
-                        winPrincipal.getCmbTema().setEnabled(true);
-                        winPrincipal.getMniOperaciones().setEnabled(true);
-                        winPrincipal.getMniCargaMasiva().setEnabled(true);
-                        winPrincipal.getBtnCambiarLinea().setText("Cambiar Linea");
-                        break;
-                }
-                break;
+//            case "_btnCambiarLinea":
+//                winPrincipal.getCmbTema().setEnabled(false);
+//                switch (winPrincipal.getBtnCambiarLinea().getText()) {
+//                    case "Cambiar Linea":
+//                        auxiliarPrincipal = 1;
+//                        winPrincipal.getCmbTema().setSelectedIndex(0);
+//                        new LoginControl(new Login(winPrincipal, true));
+//                        break;
+//                    case "Aceptar":
+//                        winPrincipal.getCmbLinea().setEnabled(false);
+//                        winPrincipal.getCmbTema().setEnabled(true);
+//                        winPrincipal.getMniOperaciones().setEnabled(true);
+//                        winPrincipal.getMniCargaMasiva().setEnabled(true);
+//                        winPrincipal.getBtnCambiarLinea().setText("Cambiar Linea");
+//                        break;
+//                }
+//                break;
             case "_cmbTema":
                 switch (winPrincipal.getCmbTema().getSelectedIndex()) {
                     case 1:
