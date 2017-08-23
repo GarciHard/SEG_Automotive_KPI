@@ -1122,13 +1122,13 @@
                       <Component id="lblTema" min="-2" pref="47" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cmbTema" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace pref="200" max="32767" attributes="0"/>
+                      <EmptySpace pref="225" max="32767" attributes="0"/>
                       <Component id="lblLinea" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cmbLinea" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cmbLinea" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCambiarLinea" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace pref="200" max="32767" attributes="0"/>
+                      <EmptySpace pref="225" max="32767" attributes="0"/>
                       <Component id="lblFecha" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dteFecha" min="-2" pref="150" max="-2" attributes="0"/>
