@@ -37,7 +37,7 @@ public class PrincipalMetodos {
     private DefaultTableModel modeloTabla;
     private JFrame form;
     private List tablaObj = new ArrayList();
-    private Object[] registroBitacora = new Object[15];
+    private Object[] registroBitacora = new Object[16];
     private Object[] registroBitacoraAux;
     private Object[] registroBitacoraTmp;
     private Object[] registroBitacoraTmpAux;
@@ -151,7 +151,7 @@ public class PrincipalMetodos {
         }
         winPrincipal.getCmbNoPartePzasProd().setEnabled(true);
         winPrincipal.getCmbNoPartePzasProd().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClientePzasProd().getSelectedItem().toString()));
+        winPrincipal.getCmbClientePzasProd().getSelectedItem().toString()));
     }
     
     public void panelOrganizacionalesAreas(Principal winPrincipal) {
@@ -176,18 +176,47 @@ public class PrincipalMetodos {
     }
     
     public void panelOrganizacionalesClientes(Principal winPrincipal) {
-        winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
-        winPrincipal.getCmbClienteOrganizacional().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
-        winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
-        winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+        if (winPrincipal.getCmbAreaOrganizacional().getSelectedIndex() == 1 ){
+            if (winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() >= 2 && winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() <=5) {
+                //System.out.println("entra "+winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex());
+                winPrincipal.getLblMatFaltante().setVisible(true);
+                winPrincipal.getTxtMatFaltante().setVisible(true);
+                winPrincipal.getTxtMatFaltante().setText("");
+                winPrincipal.getTxtMatFaltante().setEnabled(true);
+                winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
+                winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
+                //winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+            }else {
+                //System.out.println("e");
+                winPrincipal.getLblMatFaltante().setVisible(false);
+                winPrincipal.getTxtMatFaltante().setText("");
+                winPrincipal.getTxtMatFaltante().setVisible(false);
+                winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
+            }
+        } else {
+            //System.out.println("etn");
+            winPrincipal.getLblMatFaltante().setVisible(false);
+            winPrincipal.getTxtMatFaltante().setText("");
+            winPrincipal.getTxtMatFaltante().setVisible(false);
+            winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
+        }
+        
+            winPrincipal.getCmbClienteOrganizacional().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+            winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
+            winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
     }
     
     public void panelOrganizacionalesNoPartes(Principal winPrincipal) {
-        winPrincipal.getCmbNoParteOrganizacional().setEnabled(true);
         winPrincipal.getCmbNoParteOrganizacional().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteOrganizacional().getSelectedItem().toString()));
+            winPrincipal.getCmbClienteOrganizacional().getSelectedItem().toString()));
         winPrincipal.getCmbNoParteOrganizacional().setSelectedIndex(0);
-        winPrincipal.getCmbHora().setEnabled(false);
+        
+        if(winPrincipal.getCmbClienteOrganizacional().getSelectedIndex() != 0 ){
+            winPrincipal.getCmbNoParteOrganizacional().setEnabled(true);
+            winPrincipal.getCmbHora().setEnabled(false);
+        }   else {
+            winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+        }
     }
     
     public void panelCambiosAreas(Principal winPrincipal) {
@@ -199,7 +228,6 @@ public class PrincipalMetodos {
         winPrincipal.getPnlProduccionCollapsible().repaint();
         winPrincipal.getCmbAreaCambios().setSelectedIndex(0);
         winPrincipal.getCmbClienteCambios().setEnabled(false);
-        //winPrincipal.getCmbProblemaCambios().setEnabled(false);
     }
         
     public void panelCambiosClientes(Principal winPrincipal) {
@@ -214,7 +242,6 @@ public class PrincipalMetodos {
         winPrincipal.getCmbNoParteCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
                 winPrincipal.getCmbClienteCambios().getSelectedItem().toString()));
         winPrincipal.getCmbNoParteCambios().setSelectedIndex(0);
-        //winPrincipal.getCmbNoParteCambioCambios().setEnabled(false);
         winPrincipal.getCmbClienteNuevoCambios().setEnabled(false);
     }
     
@@ -311,16 +338,6 @@ public class PrincipalMetodos {
         winPrincipal.getCmbNoParteCalidad().setEnabled(true);
         winPrincipal.getCmbNoParteCalidad().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
                 winPrincipal.getCmbClienteCalidad().getSelectedItem().toString()));
-
-        /*if (!winPrincipal.getTxtCantidadProducidaCalidad().getText().isEmpty()) {
-            winPrincipal.getTxtCantidadProducidaCalidad().setText("");
-            winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(false);
-        }
-        winPrincipal.getCmbNoParteCalidad().setEnabled(true);
-        winPrincipal.getCmbNoParteCalidad().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteCalidad().getSelectedItem().toString()));*/
-        
-        //if (winPrincipal)
     }
     
     public void panelTecnicasOperaciones(Principal winPrincipal) {
@@ -469,6 +486,7 @@ public class PrincipalMetodos {
                 reg[12] = winPrincipal.getTxtCantidadProducidaPzasProd().getText();
                 reg[13] = "";
                 reg[14] = "";
+                reg[15] = "";
                 break;
             case "Calidad":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -486,6 +504,7 @@ public class PrincipalMetodos {
                 reg[12] = "";//winPrincipal.getTxtCantidadProducidaCalidad().getText();
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapCalidad().getText();
+                reg[15] = "";
                 break;
             case "Tecnicas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -503,6 +522,7 @@ public class PrincipalMetodos {
                 reg[12] = 0;
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapTecnicas().getText();
+                reg[15] = "";
                 break;
             case "Organizacionales":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -520,6 +540,7 @@ public class PrincipalMetodos {
                 reg[12] = 0;
                 reg[13] = "";
                 reg[14] = "";
+                reg[15] = winPrincipal.getTxtMatFaltante().getText();
                 break;
             case "Cambio":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -537,6 +558,7 @@ public class PrincipalMetodos {
                 reg[12] = 0;
                 reg[13] = winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();
                 reg[14] = winPrincipal.getTxtScrapCambios().getText();
+                reg[15] = "";
                 break;
             case "Planeados":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -554,6 +576,7 @@ public class PrincipalMetodos {
                 reg[12] = 0;
                 reg[13] = "";
                 reg[14] = "";
+                reg[15] = "";
                 break;
         }
         return reg;

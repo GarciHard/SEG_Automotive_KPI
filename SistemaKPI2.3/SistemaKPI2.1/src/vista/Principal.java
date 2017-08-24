@@ -39,6 +39,8 @@ public class Principal extends javax.swing.JFrame {
         cmbNoPartePzasProd = new javax.swing.JComboBox();
         lblCantidadProducidaPzasProd = new javax.swing.JLabel();
         txtCantidadProducidaPzasProd = new javax.swing.JTextField();
+        txtTC = new javax.swing.JTextField();
+        lblTC = new javax.swing.JLabel();
         pnlOrganizacionales = new javax.swing.JPanel();
         lblAreaOrganizacional = new javax.swing.JLabel();
         cmbAreaOrganizacional = new javax.swing.JComboBox();
@@ -49,7 +51,7 @@ public class Principal extends javax.swing.JFrame {
         lblNoParteOrganizacional = new javax.swing.JLabel();
         cmbNoParteOrganizacional = new javax.swing.JComboBox();
         txtMatFaltante = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblMatFaltante = new javax.swing.JLabel();
         pnlCambios = new javax.swing.JPanel();
         lblAreaCambios = new javax.swing.JLabel();
         cmbAreaCambios = new javax.swing.JComboBox();
@@ -183,6 +185,10 @@ public class Principal extends javax.swing.JFrame {
         txtCantidadProducidaPzasProd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtCantidadProducidaPzasProd.setEnabled(false);
 
+        txtTC.setEnabled(false);
+
+        lblTC.setText("TC:");
+
         javax.swing.GroupLayout pnlPiezasProducidasLayout = new javax.swing.GroupLayout(pnlPiezasProducidas);
         pnlPiezasProducidas.setLayout(pnlPiezasProducidasLayout);
         pnlPiezasProducidasLayout.setHorizontalGroup(
@@ -192,11 +198,15 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblClientePzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbClientePzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 52, Short.MAX_VALUE)
                 .addComponent(lblNoPartePzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbNoPartePzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(lblTC)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTC, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
                 .addComponent(lblCantidadProducidaPzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCantidadProducidaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,7 +222,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lblNoPartePzasProd)
                     .addComponent(cmbNoPartePzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCantidadProducidaPzasProd)
-                    .addComponent(txtCantidadProducidaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidadProducidaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTC))
                 .addContainerGap())
         );
 
@@ -242,7 +254,9 @@ public class Principal extends javax.swing.JFrame {
         cmbNoParteOrganizacional.setEnabled(false);
         cmbNoParteOrganizacional.setFocusable(false);
 
-        jLabel1.setText("MATERIAL FALTANTE");
+        txtMatFaltante.setEnabled(false);
+
+        lblMatFaltante.setText("MATERIAL FALTANTE");
 
         javax.swing.GroupLayout pnlOrganizacionalesLayout = new javax.swing.GroupLayout(pnlOrganizacionales);
         pnlOrganizacionales.setLayout(pnlOrganizacionalesLayout);
@@ -253,25 +267,28 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblAreaOrganizacional)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbAreaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblProblemaOrganizacional)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbProblemaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(6, 6, 6)
-                .addComponent(txtMatFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                .addContainerGap(352, Short.MAX_VALUE)
-                .addComponent(lblClienteOrganizacional)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
-                .addComponent(lblNoParteOrganizacional)
-                .addGap(6, 6, 6)
-                .addComponent(cmbNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(lblClienteOrganizacional)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                        .addComponent(lblProblemaOrganizacional)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbProblemaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOrganizacionalesLayout.createSequentialGroup()
+                        .addComponent(lblMatFaltante)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtMatFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOrganizacionalesLayout.createSequentialGroup()
+                        .addComponent(lblNoParteOrganizacional)
+                        .addGap(6, 6, 6)
+                        .addComponent(cmbNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         pnlOrganizacionalesLayout.setVerticalGroup(
             pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,28 +296,40 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtMatFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1))
-                            .addComponent(lblProblemaOrganizacional, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)))
-                    .addComponent(lblAreaOrganizacional, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                                        .addComponent(cmbAreaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(lblAreaOrganizacional, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(42, 42, 42))
+                            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblProblemaOrganizacional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbProblemaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(lblClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbAreaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbProblemaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmbNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblNoParteOrganizacional))
-                    .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lblClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(2, 2, 2)
+                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmbNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtMatFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblMatFaltante))
+                                .addGap(45, 45, 45)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pnlCambios.setFocusable(false);
@@ -916,11 +945,11 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "LINEA", "FECHA", "HORA", "INICIO INCIDENCIA", "FIN INCIDENCIA", "DURACION", "TEMA", "OPERACION", "AREA", "PROBLEMA", "CLIENTE", "No. PARTE", "CANTIDAD", "No. PARTE CAMBIO", "SCRAP"
+                "LINEA", "FECHA", "HORA", "INICIO INCIDENCIA", "FIN INCIDENCIA", "DURACION", "TEMA", "OPERACION", "AREA", "PROBLEMA", "CLIENTE", "No. PARTE", "CANTIDAD", "No. PARTE CAMBIO", "SCRAP", "DETALLE MATERIAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1043,6 +1072,14 @@ public class Principal extends javax.swing.JFrame {
 
     public JLabel getLblTurno() {
         return lblTurno;
+    }
+    
+    public JTextField getTxtTC() {
+        return txtTC;
+    }
+
+    public JLabel getLblMatFaltante() {
+        return lblMatFaltante;
     }
     
     public JTextField getTxtMatFaltante() {
@@ -1329,7 +1366,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbProblemaTecnicas;
     private javax.swing.JComboBox cmbTema;
     private com.alee.extended.date.WebDateField dteFecha;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -1358,6 +1394,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblLinea;
+    private javax.swing.JLabel lblMatFaltante;
     private javax.swing.JLabel lblNoParteCalidad;
     private javax.swing.JLabel lblNoParteCambios;
     private javax.swing.JLabel lblNoParteOrganizacional;
@@ -1373,6 +1410,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblScrapCalidad;
     private javax.swing.JLabel lblScrapCambios;
     private javax.swing.JLabel lblScrapTecnicas;
+    private javax.swing.JLabel lblTC;
     private javax.swing.JLabel lblTema;
     private javax.swing.JLabel lblTurno;
     private javax.swing.JMenuItem mniBitacora;
@@ -1413,6 +1451,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txtScrapCalidad;
     private javax.swing.JTextField txtScrapCambios;
     private javax.swing.JTextField txtScrapTecnicas;
+    private javax.swing.JTextField txtTC;
     private javax.swing.JTextField txtTiempoFin;
     private javax.swing.JTextField txtTiempoInicio;
     // End of variables declaration//GEN-END:variables
