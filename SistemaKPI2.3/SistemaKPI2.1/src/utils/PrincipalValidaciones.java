@@ -281,7 +281,6 @@ public class PrincipalValidaciones {
                 ke.consume();
             } else {
                 if (ke.getKeyChar() == '.'){
-                    //System.err.println(dig);
                     if( dig <= 3 || dig == 5 || dig == 6 || dig == 7 || dig >= 9 ){
                         ke.consume();
                         bn = 0;
