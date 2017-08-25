@@ -203,10 +203,19 @@ public class TiempoTurno extends javax.swing.JDialog {
                 existeHorario = new TiempoTurnoDAOImpl().horarioExisteBitacora(
                         winPrincipal.getCmbLinea().getSelectedItem().toString(),
                         winPrincipal.getDteFecha().getText(),
-                        Integer.parseInt(jTextField1.getText()),
-                        Integer.parseInt(jTextField2.getText())
+                        jComboBox1.getSelectedItem().toString()
                 );
                 if (!existeHorario) {
+                    
+                    new TiempoTurnoDAOImpl().registrarHorarioBitacora(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getDteFecha().getText(),
+                            jComboBox1.getSelectedItem().toString(),
+                            Integer.parseInt(jTextField1.getText()),
+                            Integer.parseInt(jTextField2.getText()),
+                            Integer.parseInt(jTextField3.getText())
+                    );
+                    
                     int duracionTurno = Integer.parseInt(jTextField2.getText()) - Integer.parseInt(jTextField1.getText());
                     cmbTiempoModel.add("Selecciona Hora");
                     for (int i = 0, j = Integer.parseInt(jTextField1.getText()); i < duracionTurno; i++, j++) {

@@ -7,5 +7,6 @@ package modelo;
  */
 public interface TiempoTurnoDAO {
 
-    public boolean horarioExisteBitacora(String linea, String fecha, int horaInicio, int horaFin) throws Exception;
+    public void registrarHorarioBitacora(String linea, String fecha, String turno, int horaInicio, int horaFin, int noPersonal) throws Exception;
+    public boolean horarioExisteBitacora(String linea, String fecha, String turno) throws Exception;
 }
