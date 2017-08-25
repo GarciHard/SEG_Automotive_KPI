@@ -16,7 +16,7 @@ public class TiempoTurnoDAOImpl extends ConexionBD implements TiempoTurnoDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     
-    private final String REGISTRAR_HORARIO_BITACORA = "INSERT INTO TiempoTurno VALUES (?, ?, ?, ?, ?, ?)";
+    private final String REGISTRAR_HORARIO_BITACORA = "INSERT INTO TiempoTurno(Linea, Fecha, Turno, HoraInicio, HoraFin, NoPersonal) VALUES (?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?)";
     private final String EXISTE_HORARIO_BITACORA = "SELECT COUNT(*) FROM TiempoTurno WHERE Linea like ? AND Fecha = TO_DATE(?, 'DD/MM/YYYY') AND Turno LIKE ?";
     
     @Override

@@ -141,9 +141,9 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
                 <StringItem index="0" value="Selecciona turno"/>
-                <StringItem index="1" value="1er Turno"/>
-                <StringItem index="2" value="2do Turno"/>
-                <StringItem index="3" value="3er Turno"/>
+                <StringItem index="1" value="Primer Turno"/>
+                <StringItem index="2" value="Segundo Turno"/>
+                <StringItem index="3" value="Tercer Turno"/>
               </StringArray>
             </Property>
           </Properties>

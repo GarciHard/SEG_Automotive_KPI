@@ -59,7 +59,7 @@ public class TiempoTurno extends javax.swing.JDialog {
 
         jLabel4.setText("No. Personal:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona turno", "1er Turno", "2do Turno", "3er Turno" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona turno", "Primer Turno", "Segundo Turno", "Tercer Turno" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
@@ -210,7 +210,7 @@ public class TiempoTurno extends javax.swing.JDialog {
                     new TiempoTurnoDAOImpl().registrarHorarioBitacora(
                             winPrincipal.getCmbLinea().getSelectedItem().toString(),
                             winPrincipal.getDteFecha().getText(),
-                            jComboBox1.getSelectedItem().toString(),
+                            String.valueOf(jComboBox1.getSelectedItem()),
                             Integer.parseInt(jTextField1.getText()),
                             Integer.parseInt(jTextField2.getText()),
                             Integer.parseInt(jTextField3.getText())
