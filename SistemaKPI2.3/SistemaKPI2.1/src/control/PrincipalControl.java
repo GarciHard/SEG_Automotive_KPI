@@ -341,7 +341,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.agregarRegistroBitacora(winPrincipal);
                 break;
             case "_btnRevisarHoras":
-                principalMetodos.revisarTiemposFaltentes(winPrincipal);
+                principalMetodos.revisarTiemposFaltentes(winPrincipal, 1);
                 break;
             case "_btnGuardar":
                 switch (winPrincipal.getBtnGuardar().getText()) {
