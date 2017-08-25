@@ -12,7 +12,7 @@ import vista.Principal;
  * @boschUsr GJA5TL
  */
 public class PrincipalValidaciones {
-    
+    private static int bn = 0;
     public static void validarCaretUpdate(Principal winPrincipal, CaretEvent e) {
         //JTextField Cantidad Producida -> Panel Piezas Producidas
         if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(e.getSource())) {
@@ -67,10 +67,6 @@ public class PrincipalValidaciones {
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getTxtTiempoFin().setEnabled(true);
             }
-            /*if (winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
-                winPrincipal.getTxtTiempoFin().setText("");
-                winPrincipal.getTxtTiempoFin().setEnabled(false);
-            }*/
         } else if (winPrincipal.getTxtTiempoFin().equals(e.getSource())) { //JTextField TiempoFin
             if ((e.getDot() + e.getMark()) == 0) {
                 winPrincipal.getTxtDuracion().setText("");
@@ -92,6 +88,13 @@ public class PrincipalValidaciones {
             if (!winPrincipal.getTxtDuracion().getText().isEmpty()) {
                 winPrincipal.getBtnAgregarBitacora().setEnabled(true);
             }
+        } else if (winPrincipal.getTxtTC().equals(e.getSource())){
+            if (winPrincipal.getTxtTC().getText().isEmpty()) {
+                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
+                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(false);
+            }else {
+                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
+            }
         }
     }
 
@@ -102,18 +105,13 @@ public class PrincipalValidaciones {
             }
         } else if (winPrincipal.getCmbNoPartePzasProd().equals(e.getSource())) { //Panel Piezas Producidas
             if (winPrincipal.getCmbNoPartePzasProd().getSelectedIndex() == 0) {
-                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
-                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(false);
-            }/*else{
-                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
-                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
-            }*/
+                winPrincipal.getTxtTC().setText("");
+                winPrincipal.getTxtTC().setEnabled(false);
+            }
         } else if (winPrincipal.getCmbNoParteCalidad().equals(e.getSource())) { //Panel Calidad
             if (winPrincipal.getCmbNoParteCalidad().getSelectedIndex() != 0) {
                 winPrincipal.getTxtScrapCalidad().setText("");
                 winPrincipal.getTxtScrapCalidad().setEnabled(true);
-                //winPrincipal.getTxtCantidadProducidaCalidad().setText("");
-                //winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(false);
             } else {
                 winPrincipal.getTxtScrapCalidad().setText("");
                 winPrincipal.getTxtScrapCalidad().setEnabled(false);
@@ -122,24 +120,18 @@ public class PrincipalValidaciones {
             if (winPrincipal.getCmbNoParteTecnicas().getSelectedIndex() == 0) {
                 winPrincipal.getTxtScrapTecnicas().setText("");
                 winPrincipal.getTxtScrapTecnicas().setEnabled(false);
-            }/*else{
-                winPrincipal.getTxtScrapTecnicas().setText("");
-                winPrincipal.getTxtScrapTecnicas().setEnabled(true);
             }
-             */
         } else if (winPrincipal.getCmbHora().equals(e.getSource())) { //ComboBox Hora
             if (winPrincipal.getCmbHora().getSelectedIndex() == 0
                     || !winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
                 winPrincipal.getTxtTiempoInicio().setText("");
                 winPrincipal.getTxtTiempoInicio().setEnabled(false);
-            }/*else {
-                winPrincipal.getTxtTiempoInicio().setText("");
-                winPrincipal.getTxtTiempoInicio().setEnabled(true);
-            }*/
-
- /*if (!winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
-                winPrincipal.getTxtTiempoInicio().setText("");
-            }*/
+            }
+        } else if (winPrincipal.getCmbClienteOrganizacional().equals(e.getSource())){
+            if (winPrincipal.getCmbClienteOrganizacional().getSelectedIndex() == 0){
+                winPrincipal.getCmbNoParteOrganizacional().setSelectedIndex(0);
+                winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+            } 
         }
     }
 
@@ -178,7 +170,21 @@ public class PrincipalValidaciones {
          * ******** Panel Piezas Producidas *********
          */
         //JTextField Cantidad Producida
-        if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(ke.getSource())) {
+        if(winPrincipal.getTxtTC().equals(ke.getSource())) {
+            if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
+                ke.consume();
+            }
+            if(winPrincipal.getTxtTC().getText().length()>=2){
+                ke.consume();
+            }
+            if (winPrincipal.getTxtTC().getText().isEmpty()){
+                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(false);
+                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
+            }else {
+                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
+                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
+            }
+        }else if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(ke.getSource())) {
             if ((ke.getKeyChar() < '0' || ke.getKeyChar() > '9')) {
                 ke.consume();
             }
@@ -268,6 +274,52 @@ public class PrincipalValidaciones {
             if (winPrincipal.getTxtDuracion().getText().isEmpty()) {
                 winPrincipal.getTxtDuracion().setText("");
                 winPrincipal.getTxtDuracion().setEnabled(false);
+            }
+        } else if (winPrincipal.getTxtMatFaltante().equals(ke.getSource())){ /**** aqui me quede ***/
+            int dig = winPrincipal.getTxtMatFaltante().getText().length();
+            if(((ke.getKeyChar() < '0' || ke.getKeyChar() > '9') && (ke.getKeyChar() != '.'))) {
+                ke.consume();
+            } else {
+                if (ke.getKeyChar() == '.'){
+                    if( dig <= 3 || dig == 5 || dig == 6 || dig == 7 || dig >= 9 ){
+                        ke.consume();
+                        bn = 0;
+                    }else {
+                        bn = 1;
+                    }
+                }else {
+                    System.err.println("else " +bn +"  dig: "+ dig );
+                    if ( bn == 1){
+                        if (dig == 4 || dig == 8 && ke.getKeyChar() != '.' ){
+                            System.out.println("a");
+                            ke.consume();
+                            bn = 0;
+                        }
+                        if (bn == 1 && dig > 10){
+                            if (dig == 11){
+                                //ke.consume();
+                                winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
+                                winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+                            }else {
+                                ke.consume();
+                            }
+                        }
+                    } else if(bn == 0 && dig > 8){
+                        System.err.println("en");
+                        if (dig == 9){
+                            winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
+                            winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+                        }else {
+                            System.err.println("e");
+                            ke.consume();
+                        }
+                    }
+                }
+            }
+            if (winPrincipal.getTxtMatFaltante().getText().isEmpty()) {
+                winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
+                winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
+                bn = 0;
             }
         }
     }

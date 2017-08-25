@@ -18,8 +18,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     
-    private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap) "
-            + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial) "
+            + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
     private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY')";
     private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
     private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap"
@@ -49,6 +49,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setInt(13, Integer.parseInt(reg[12].toString()));
             ps.setString(14, reg[13].toString());
             ps.setString(15, reg[14].toString());
+            ps.setString(16, reg[15].toString());
             
             ps.executeUpdate();
         } catch (Exception e) {

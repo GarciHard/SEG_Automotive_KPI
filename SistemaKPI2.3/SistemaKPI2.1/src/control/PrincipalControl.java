@@ -78,8 +78,11 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbClientePzasProd().addActionListener(this);
         winPrincipal.getCmbNoPartePzasProd().addActionListener(this);
         winPrincipal.getCmbNoPartePzasProd().addItemListener(this);
+        winPrincipal.getTxtTC().addCaretListener(this);
+        winPrincipal.getTxtTC().addKeyListener(this);
         winPrincipal.getTxtCantidadProducidaPzasProd().addCaretListener(this);
         winPrincipal.getTxtCantidadProducidaPzasProd().addKeyListener(this);
+        
         
         //Panel Calidad
         winPrincipal.getCmbOperacionCalidad().addActionListener(this);
@@ -108,7 +111,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbProblemaOrganizacional().addActionListener(this);
         winPrincipal.getCmbClienteOrganizacional().addActionListener(this);
         winPrincipal.getCmbNoParteOrganizacional().addActionListener(this);
-        winPrincipal.getTxtMatFaltante().addActionListener(this);
+        winPrincipal.getTxtMatFaltante().addKeyListener(this);
         
         //Panel Cambios
         winPrincipal.getCmbAreaCambios().addActionListener(this);
@@ -245,8 +248,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
                 break;
             case "_cmbNoPartePzasProd":
-                winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
-                winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
+                winPrincipal.getTxtTC().setText("");
+                winPrincipal.getTxtTC().setEnabled(true);
+                //winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
+                //winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
                 break;
             //***** Panel Calidad *****
             case "_cmbOperacionCalidad":
