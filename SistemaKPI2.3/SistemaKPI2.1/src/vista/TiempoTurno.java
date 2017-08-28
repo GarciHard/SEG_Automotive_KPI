@@ -135,11 +135,12 @@ public class TiempoTurno extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
@@ -163,11 +164,11 @@ public class TiempoTurno extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -206,7 +207,7 @@ public class TiempoTurno extends javax.swing.JDialog {
                         jComboBox1.getSelectedItem().toString()
                 );
                 if (!existeHorario) {
-                    
+
                     new TiempoTurnoDAOImpl().registrarHorarioBitacora(
                             winPrincipal.getCmbLinea().getSelectedItem().toString(),
                             winPrincipal.getDteFecha().getText(),
@@ -215,7 +216,7 @@ public class TiempoTurno extends javax.swing.JDialog {
                             Integer.parseInt(jTextField2.getText()),
                             Integer.parseInt(jTextField3.getText())
                     );
-                    
+
                     int duracionTurno = Integer.parseInt(jTextField2.getText()) - Integer.parseInt(jTextField1.getText());
                     cmbTiempoModel.add("Selecciona Hora");
                     for (int i = 0, j = Integer.parseInt(jTextField1.getText()); i < duracionTurno; i++, j++) {
@@ -224,7 +225,7 @@ public class TiempoTurno extends javax.swing.JDialog {
 
                     winPrincipal.getLblTurno().setText(jComboBox1.getSelectedItem().toString()
                             + " <> " + jTextField1.getText() + " - " + jTextField2.getText());
-                    
+
                     winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
                     winPrincipal.getCmbTema().setEnabled(true);
                     winPrincipal.getMniOperaciones().setEnabled(true);
@@ -249,7 +250,7 @@ public class TiempoTurno extends javax.swing.JDialog {
 //                jButton1.setText("Validar");
 //                break;
 //        }
-        
+
 //        try {
 //            existeHorario = new TiempoTurnoDAOImpl().horarioExisteBitacora(
 //                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
