@@ -7,6 +7,7 @@ import dao.CalidadDAOImpl;
 import dao.LineasDAOImpl;
 import dao.OrganizacionalesDAOImpl;
 import dao.PiezasProducidasDAOImpl;
+import dao.TiempoTurnoDAOImpl;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -810,6 +811,26 @@ public class PrincipalMetodos {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.actualizarRegistroFechaAccess()\n" + e,
                     "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void eliminarTurnoVacio (Principal winPrincipal) throws Exception {
+        try {
+            String turno = "";
+            for (int i = 1; i != 0; i++) {
+                if ( !(winPrincipal.getLblTurno().getText().charAt(i - 1) == '<') ) {
+                    turno += winPrincipal.getLblTurno().getText().charAt(i - 1);
+                } else {
+                    break;
+                }
+            }
+            new TiempoTurnoDAOImpl().eliminarTurnoVacio(
+                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                    winPrincipal.getDteFecha().getText(),
+                    turno
+            );
+        } catch (Exception e) {
+            throw e;
         }
     }
 }
