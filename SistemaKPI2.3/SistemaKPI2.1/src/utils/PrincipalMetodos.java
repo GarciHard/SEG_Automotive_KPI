@@ -7,6 +7,7 @@ import dao.CalidadDAOImpl;
 import dao.LineasDAOImpl;
 import dao.OrganizacionalesDAOImpl;
 import dao.PiezasProducidasDAOImpl;
+import dao.TiempoTurnoDAOImpl;
 import java.awt.Dimension;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -393,7 +394,7 @@ public class PrincipalMetodos {
         winPrincipal.getCmbNoParteTecnicas().setSelectedIndex(0);
         winPrincipal.getTxtScrapTecnicas().setEnabled(false);
     }
-                        
+    private int contadorFila = 0;                    
     public void agregarRegistroBitacora(Principal winPrincipal) {
         int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
@@ -401,6 +402,7 @@ public class PrincipalMetodos {
 
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
             modeloTabla.addRow(registroBitacora);
+            insertarRegistroFilaAccess(winPrincipal);
             winPrincipal.getCmbTema().setSelectedIndex(0);
             winPrincipal.getCmbTema().setSelectedIndex(valorTema);
         } else {
@@ -430,6 +432,7 @@ public class PrincipalMetodos {
                                 if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmpAux[1].toString())) {
                                     modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                     ordenarTabla(modeloTabla);
+                                    insertarRegistroFilaAccess(winPrincipal);
                                     winPrincipal.getCmbTema().setSelectedIndex(0);
                                     winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                     break;
@@ -437,6 +440,7 @@ public class PrincipalMetodos {
                             } else {
                                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                 ordenarTabla(modeloTabla);
+                                insertarRegistroFilaAccess(winPrincipal);
                                 winPrincipal.getCmbTema().setSelectedIndex(0);
                                 winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                 break;
@@ -445,6 +449,7 @@ public class PrincipalMetodos {
                     } else if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())) {
                         modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                         ordenarTabla(modeloTabla);
+                        insertarRegistroFilaAccess(winPrincipal);
                         winPrincipal.getCmbTema().setSelectedIndex(0);
                         winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                         break;
@@ -453,6 +458,7 @@ public class PrincipalMetodos {
             } else {
                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                 ordenarTabla(modeloTabla);
+                insertarRegistroFilaAccess(winPrincipal);
                 winPrincipal.getCmbTema().setSelectedIndex(0);
                 winPrincipal.getCmbTema().setSelectedIndex(valorTema);
             }
@@ -592,8 +598,22 @@ public class PrincipalMetodos {
 
     public void eliminarRegistroBitacora(Principal winPrincipal) {
         DefaultTableModel reg = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
-        if (winPrincipal.getTblBitacora().getSelectedRow() >= 0) {
-            reg.removeRow(winPrincipal.getTblBitacora().getSelectedRow());
+        int posicionFila = winPrincipal.getTblBitacora().getSelectedRow();
+        if (posicionFila >= 0) {
+            try {
+                
+                int columnas = winPrincipal.getTblBitacora().getColumnCount();
+                ArrayList obj = new ArrayList();
+                for (int j = 0; j < columnas; j++) {
+                    obj.add(winPrincipal.getTblBitacora().getValueAt(posicionFila, j));
+                }
+                new BitacoraDAOImpl().borrarFilaRegistro(obj);
+                reg.removeRow(winPrincipal.getTblBitacora().getSelectedRow());
+                contadorFila--;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.eliminarRegistroBitacora()\n" + e,
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(winPrincipal, "Selecciona registro", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
@@ -821,6 +841,41 @@ public class PrincipalMetodos {
         }
     }
     
+    public void eliminarTurnoVacio(Principal winPrincipal) throws Exception {
+        try {
+            String turno = "";
+            for (int i = 1; i != 0; i++) {
+                if (!(winPrincipal.getLblTurno().getText().charAt(i - 1) == ' '
+                        && winPrincipal.getLblTurno().getText().charAt(i) == '<')) {
+                    turno += winPrincipal.getLblTurno().getText().charAt(i - 1);
+                } else {
+                    break;
+                }
+            }
+            new TiempoTurnoDAOImpl().eliminarTurnoVacio(
+                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                    winPrincipal.getDteFecha().getText(),
+                    turno
+            );
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    private void insertarRegistroFilaAccess(Principal winPrincipal) {
+        try {
+            int columnas = winPrincipal.getTblBitacora().getColumnCount();
+            ArrayList reg = new ArrayList();
+            for (int j = 0; j < columnas; j++) {
+                reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+            }
+            new BitacoraDAOImpl().insertarFilaRegistro(reg);
+            contadorFila++;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.insertarRegistroFilaAccess()\n" + e,
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public void guardaTemporalTXT (Principal winPrincipal ){
         try{
             String sucursalesCSVFile = "tmp/"+winPrincipal.getCmbLinea().getSelectedItem()+".txt";

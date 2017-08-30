@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.prompt.PromptSupport;
+import utils.PrincipalMetodos;
 
 /**
  * Hecho con <3 por:
@@ -1092,6 +1093,12 @@ public class Principal extends javax.swing.JFrame {
                 System.exit(0);
             }
         } else {
+            try {
+                new PrincipalMetodos().eliminarTurnoVacio(this);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "PrincipalMetodos.eliminarTurnoVacio()\n" + e,
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
             System.exit(0);
         }
     }//GEN-LAST:event_formWindowClosing
