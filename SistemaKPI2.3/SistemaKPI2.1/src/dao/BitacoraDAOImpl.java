@@ -19,7 +19,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private ResultSet rs;
     
     private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial) "
-            + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+            + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String BORRA_REGISTRO_FILA = "DELETE FROM Bitacora WHERE linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
     private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY')";
     private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
     private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap"
@@ -147,6 +148,65 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
         } finally {
             ps.close();
             this.cerrar();
+        }
+    }
+
+    @Override
+    public void insertarFilaRegistro(ArrayList registroFila) throws Exception {
+        Object[] reg = new Object[registroFila.size()];
+        try {
+            this.conectar();
+            for (int i = 0; i < registroFila.size(); i++) {
+                reg[i] = (Object) registroFila.get(i);
+            }
+            ps = this.conexion.prepareStatement(INSERTA_REGISTRO);
+            ps.setString(1, reg[0].toString());
+            ps.setString(2, reg[1].toString());
+            ps.setInt(3, Integer.parseInt(reg[2].toString()));
+            ps.setInt(4, Integer.parseInt(reg[3].toString()));
+            ps.setInt(5, Integer.parseInt(reg[4].toString()));
+            ps.setInt(6, Integer.parseInt(reg[5].toString()));
+            ps.setString(7, reg[6].toString());
+            ps.setString(8, reg[7].toString());
+            ps.setString(9, reg[8].toString());
+            ps.setString(10, reg[9].toString());
+            ps.setString(11, reg[10].toString());
+            ps.setString(12, reg[11].toString());
+            ps.setInt(13, Integer.parseInt(reg[12].toString()));
+            ps.setString(14, reg[13].toString());
+            ps.setString(15, reg[14].toString());
+            ps.setString(16, reg[15].toString());
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Error en INSERT FILA" + e);
+            throw e;
+        } finally {
+            ps.close();
+            this.cerrar();
+        }
+    }
+
+    @Override
+    public void borrarFilaRegistro(ArrayList bRegistroFila) throws Exception {
+        Object[] reg = new Object[bRegistroFila.size()];
+        try {
+            this.conectar();
+            for (int i = 0; i < bRegistroFila.size(); i++) {
+                reg[i] = (Object) bRegistroFila.get(i);
+            }
+            ps = this.conexion.prepareStatement(BORRA_REGISTRO_FILA);
+            ps.setString(1, reg[0].toString());
+            ps.setString(2, reg[1].toString());
+            ps.setInt(3, Integer.parseInt(reg[2].toString()));
+            ps.setInt(4, Integer.parseInt(reg[3].toString()));
+            ps.setInt(5, Integer.parseInt(reg[4].toString()));
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.cerrar();
+            ps.close();
         }
     }
 }
