@@ -20,6 +20,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     
     private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial) "
             + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String BORRA_REGISTRO_TIEMPO = "DELETE FROM Bitacora WHERE hora BETWEEN(? AND ?)";
     private final String BORRA_REGISTRO_FILA = "DELETE FROM Bitacora WHERE linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
     private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY')";
     private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
@@ -201,6 +202,22 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setInt(3, Integer.parseInt(reg[2].toString()));
             ps.setInt(4, Integer.parseInt(reg[3].toString()));
             ps.setInt(5, Integer.parseInt(reg[4].toString()));
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.cerrar();
+            ps.close();
+        }
+    }
+
+    @Override
+    public void borrarRegistroTiempo(int horaInicio, int horaFin) throws Exception {
+        try {
+            this.conectar();
+            ps = this.conexion.prepareStatement(BORRA_REGISTRO_TIEMPO);
+            ps.setInt(1, horaInicio);
+            ps.setInt(2, horaFin);
             ps.executeUpdate();
         } catch (Exception e) {
             throw e;

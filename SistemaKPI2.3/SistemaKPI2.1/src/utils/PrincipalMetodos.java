@@ -493,14 +493,14 @@ public class PrincipalMetodos {
                 reg[5] = winPrincipal.getTxtDuracion().getText();
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();//cmbOperacion.getSelectedItem();
-                reg[8] = "";
-                reg[9] = "";
+                reg[8] = " ";
+                reg[9] = " ";
                 reg[10] = winPrincipal.getCmbClientePzasProd().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoPartePzasProd().getSelectedItem();
                 reg[12] = winPrincipal.getTxtCantidadProducidaPzasProd().getText();
-                reg[13] = "";
-                reg[14] = "";
-                reg[15] = "";
+                reg[13] = " ";
+                reg[14] = " ";
+                reg[15] = " ";
                 break;
             case "Calidad":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -515,10 +515,10 @@ public class PrincipalMetodos {
                 reg[9] = winPrincipal.getCmbProblemaCalidad().getSelectedItem();
                 reg[10] = winPrincipal.getCmbClienteCalidad().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCalidad().getSelectedItem();
-                reg[12] = "";//winPrincipal.getTxtCantidadProducidaCalidad().getText();
-                reg[13] = "";
+                reg[12] = " ";//winPrincipal.getTxtCantidadProducidaCalidad().getText();
+                reg[13] = " ";
                 reg[14] = winPrincipal.getTxtScrapCalidad().getText();
-                reg[15] = "";
+                reg[15] = " ";
                 break;
             case "Tecnicas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -534,9 +534,9 @@ public class PrincipalMetodos {
                 reg[10] = winPrincipal.getCmbClienteTecnicas().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteTecnicas().getSelectedItem();
                 reg[12] = 0;
-                reg[13] = "";
+                reg[13] = " ";
                 reg[14] = winPrincipal.getTxtScrapTecnicas().getText();
-                reg[15] = "";
+                reg[15] = " ";
                 break;
             case "Organizacionales":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -552,8 +552,8 @@ public class PrincipalMetodos {
                 reg[10] = winPrincipal.getCmbClienteOrganizacional().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteOrganizacional().getSelectedItem();
                 reg[12] = 0;
-                reg[13] = "";
-                reg[14] = "";
+                reg[13] = " ";
+                reg[14] = " ";
                 reg[15] = winPrincipal.getTxtMatFaltante().getText();
                 break;
             case "Cambio":
@@ -566,13 +566,13 @@ public class PrincipalMetodos {
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaCambios().getSelectedItem();
-                reg[9] = "";//winPrincipal.getCmbProblemaCambios().getSelectedItem();
+                reg[9] = " ";//winPrincipal.getCmbProblemaCambios().getSelectedItem();
                 reg[10] = winPrincipal.getCmbClienteCambios().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCambios().getSelectedItem();
                 reg[12] = 0;
                 reg[13] = winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();
                 reg[14] = winPrincipal.getTxtScrapCambios().getText();
-                reg[15] = "";
+                reg[15] = " ";
                 break;
             case "Planeados":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -584,13 +584,13 @@ public class PrincipalMetodos {
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaPlaneados().getSelectedItem();
-                reg[9] = "";
+                reg[9] = " ";
                 reg[10] = winPrincipal.getCmbClientePlaneados().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();
                 reg[12] = 0;
-                reg[13] = "";
-                reg[14] = "";
-                reg[15] = "";
+                reg[13] = " ";
+                reg[14] = " ";
+                reg[15] = " ";
                 break;
         }
         return reg;
@@ -862,6 +862,16 @@ public class PrincipalMetodos {
         }
     }
     
+    public void eliminarRegistroTiempo (Principal winPrincipal) throws Exception{
+        int horaInicial = 1;
+        int horaFinal = winPrincipal.getCmbHora().getItemCount();
+        try {
+            new BitacoraDAOImpl().borrarRegistroTiempo(horaInicial, horaFinal);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
     private void insertarRegistroFilaAccess(Principal winPrincipal) {
         try {
             int columnas = winPrincipal.getTblBitacora().getColumnCount();
@@ -876,6 +886,7 @@ public class PrincipalMetodos {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
     public void guardaTemporalTXT (Principal winPrincipal ){
         try{
             String sucursalesCSVFile = "tmp/"+winPrincipal.getCmbLinea().getSelectedItem()+".txt";
@@ -895,6 +906,5 @@ public class PrincipalMetodos {
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"El archivo salvador no pudo asistir");
         }
-    }
-    
+    }   
 }

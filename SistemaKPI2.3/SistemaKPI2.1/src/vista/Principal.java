@@ -2,6 +2,8 @@ package vista;
 
 import com.alee.extended.date.WebDateField;
 import com.alee.extended.panel.WebCollapsiblePane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -1090,11 +1092,18 @@ public class Principal extends javax.swing.JFrame {
             if ( JOptionPane.showConfirmDialog(this, "Existe(n) " + getTblBitacora().getRowCount() +
                     " registro(s) en la bitacora que se perderán si continua\n¿Seguro que desea salir?", "Advertencia",
                     JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+                try {
+                    new PrincipalMetodos().eliminarTurnoVacio(this);
+                    new PrincipalMetodos().eliminarRegistroTiempo(this);
+                } catch (Exception ex) {
+                    System.out.println("Problema closing " + ex);
+                }
                 System.exit(0);
             }
         } else {
             try {
                 new PrincipalMetodos().eliminarTurnoVacio(this);
+                new PrincipalMetodos().eliminarRegistroTiempo(this);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "PrincipalMetodos.eliminarTurnoVacio()\n" + e,
                         "Error", JOptionPane.ERROR_MESSAGE);
