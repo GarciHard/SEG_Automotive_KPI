@@ -814,11 +814,12 @@ public class PrincipalMetodos {
         }
     }
     
-    public void eliminarTurnoVacio (Principal winPrincipal) throws Exception {
+    public void eliminarTurnoVacio(Principal winPrincipal) throws Exception {
         try {
             String turno = "";
             for (int i = 1; i != 0; i++) {
-                if ( !(winPrincipal.getLblTurno().getText().charAt(i - 1) == '<') ) {
+                if (!(winPrincipal.getLblTurno().getText().charAt(i - 1) == ' '
+                        && winPrincipal.getLblTurno().getText().charAt(i) == '<')) {
                     turno += winPrincipal.getLblTurno().getText().charAt(i - 1);
                 } else {
                     break;
