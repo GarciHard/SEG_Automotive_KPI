@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  * Hecho con <3 por:
@@ -24,6 +25,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        PromptSupport.setPrompt("Minuto Inicio",txtTiempoInicio);
+        PromptSupport.setPrompt("Minuto Fin",txtTiempoFin);
     }
     
     @SuppressWarnings("unchecked")
@@ -135,6 +138,7 @@ public class Principal extends javax.swing.JFrame {
         txtDuracion = new javax.swing.JTextField();
         btnAgregarBitacora = new javax.swing.JButton();
         btnRevisarHoras = new javax.swing.JButton();
+        btnParoPeriodo = new javax.swing.JButton();
         pnlBitacora = new javax.swing.JPanel();
         scrBitacora = new javax.swing.JScrollPane();
         tblBitacora = new javax.swing.JTable(){
@@ -910,17 +914,22 @@ public class Principal extends javax.swing.JFrame {
         btnRevisarHoras.setEnabled(false);
         btnRevisarHoras.setFocusable(false);
 
+        btnParoPeriodo.setText("Paro por Periodo");
+        btnParoPeriodo.setActionCommand("cmbParoPeriodo");
+
         javax.swing.GroupLayout pnlTiempoIncidenciaLayout = new javax.swing.GroupLayout(pnlTiempoIncidencia);
         pnlTiempoIncidencia.setLayout(pnlTiempoIncidenciaLayout);
         pnlTiempoIncidenciaLayout.setHorizontalGroup(
             pnlTiempoIncidenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTiempoIncidenciaLayout.createSequentialGroup()
                 .addComponent(pnlTiempoIncidenciaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(btnParoPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(btnAgregarBitacora, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnRevisarHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         pnlTiempoIncidenciaLayout.setVerticalGroup(
             pnlTiempoIncidenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -933,7 +942,8 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(pnlTiempoIncidenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAgregarBitacora)
-                            .addComponent(btnRevisarHoras))))
+                            .addComponent(btnRevisarHoras)
+                            .addComponent(btnParoPeriodo))))
                 .addContainerGap())
         );
 
@@ -1086,6 +1096,10 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
+    public JButton getBtnParoPeriodo() {
+        return btnParoPeriodo;
+    }
+    
     public JLabel getLblTurno() {
         return lblTurno;
     }
@@ -1353,6 +1367,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarBitacora;
+    private javax.swing.JButton btnParoPeriodo;
     private javax.swing.JButton btnRevisarHoras;
     private javax.swing.JComboBox cmbAreaCalidad;
     private javax.swing.JComboBox cmbAreaCambios;

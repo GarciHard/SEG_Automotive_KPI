@@ -23,6 +23,7 @@ import vista.Cargas;
 import vista.Lineas;
 import vista.Login;
 import vista.Operaciones;
+import vista.ParoRango;
 import vista.RegistroUsuarios;
 import vista.TiempoTurno;
 import vista.TiemposFaltantes;
@@ -151,6 +152,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getTblBitacora().setRowHeight(35);
         
         winPrincipal.setVisible(true);
+        
+        //Boton Paro por Rangos 
+        winPrincipal.getBtnParoPeriodo().addActionListener(this);
+        winPrincipal.getBtnParoPeriodo().setVisible(false);
     }   
     
     @Override
@@ -368,6 +373,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 System.err.println("linea Prin: "+linea);
                 Operaciones op = new Operaciones(winOperaciones, true);
                 op.setVisible(true);
+                break;
+                
+            case "cmbParoPeriodo":
+                new ParoRango(winPrincipal, true).setVisible(true);
                 break;
         }
         if (evt.getSource().equals(winPrincipal.getDteFecha()))

@@ -18,51 +18,64 @@ public class PrincipalValidaciones {
         if (winPrincipal.getTxtCantidadProducidaPzasProd().equals(e.getSource())) {
             if ((e.getDot() + e.getMark()) == 0) {
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getCmbHora().setEnabled(true);
+                winPrincipal.getBtnParoPeriodo().setVisible(true);
             }
             if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else if (winPrincipal.getTxtScrapCalidad().equals(e.getSource())) { //JTextField Scrap -> Panel Calidad
             if ((e.getDot() + e.getMark()) == 0) {
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getCmbHora().setEnabled(true);
+                winPrincipal.getBtnParoPeriodo().setVisible(true);
             }
             if (winPrincipal.getTxtScrapCalidad().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else if (winPrincipal.getTxtScrapTecnicas().equals(e.getSource())) { //JTextField Scrap -> Panel Tecnicas
             if ((e.getDot() + e.getMark()) == 0) {
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getCmbHora().setEnabled(true);
+                winPrincipal.getBtnParoPeriodo().setVisible(true);
             }
             if (winPrincipal.getTxtScrapTecnicas().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else if (winPrincipal.getTxtScrapCambios().equals(e.getSource())) { //JTextField Scrap -> Panel Cambios
             if ((e.getDot() + e.getMark()) == 0) {
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getCmbHora().setEnabled(true);
+                winPrincipal.getBtnParoPeriodo().setVisible(true);
             }
             if (winPrincipal.getTxtScrapCambios().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else if (winPrincipal.getTxtTiempoInicio().equals(e.getSource())) { //JTextField TiempoInicio
             if ((e.getDot() + e.getMark()) == 0 || winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
                 winPrincipal.getTxtTiempoFin().setText("");
                 winPrincipal.getTxtTiempoFin().setEnabled(false);
+                
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getTxtTiempoFin().setEnabled(true);
@@ -194,6 +207,7 @@ public class PrincipalValidaciones {
             if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else /**
          * ******** Panel Calidad *********
@@ -209,6 +223,7 @@ public class PrincipalValidaciones {
             if (winPrincipal.getTxtScrapCalidad().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else /**
          * ******** Panel Tecnicas *********
@@ -224,6 +239,7 @@ public class PrincipalValidaciones {
             if (winPrincipal.getTxtScrapTecnicas().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else /**
          * ******** Panel Organizacionales *********
@@ -243,6 +259,7 @@ public class PrincipalValidaciones {
             if (winPrincipal.getTxtScrapCambios().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else /**
          * ******** Panel Planeados *********
@@ -288,16 +305,13 @@ public class PrincipalValidaciones {
                         bn = 1;
                     }
                 }else {
-                    System.err.println("else " +bn +"  dig: "+ dig );
                     if ( bn == 1){
                         if (dig == 4 || dig == 8 && ke.getKeyChar() != '.' ){
-                            System.out.println("a");
                             ke.consume();
                             bn = 0;
                         }
                         if (bn == 1 && dig > 10){
                             if (dig == 11){
-                                //ke.consume();
                                 winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
                                 winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
                             }else {
@@ -305,12 +319,10 @@ public class PrincipalValidaciones {
                             }
                         }
                     } else if(bn == 0 && dig > 8){
-                        System.err.println("en");
                         if (dig == 9){
                             winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
                             winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
                         }else {
-                            System.err.println("e");
                             ke.consume();
                         }
                     }
@@ -327,6 +339,7 @@ public class PrincipalValidaciones {
     public static void limpiarTiemposIncidencia(Principal winPrincipal) {
         winPrincipal.getCmbHora().setSelectedIndex(0);
         winPrincipal.getCmbHora().setEnabled(false);
+        winPrincipal.getBtnParoPeriodo().setVisible(false);
     }
 
     public static void validarTableModelListener(Principal winPrincipal, TableModelEvent e) {

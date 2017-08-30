@@ -8,6 +8,8 @@ import dao.LineasDAOImpl;
 import dao.OrganizacionalesDAOImpl;
 import dao.PiezasProducidasDAOImpl;
 import java.awt.Dimension;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -218,6 +220,7 @@ public class PrincipalMetodos {
         if(winPrincipal.getCmbClienteOrganizacional().getSelectedIndex() != 0 ){
             winPrincipal.getCmbNoParteOrganizacional().setEnabled(true);
             winPrincipal.getCmbHora().setEnabled(false);
+            winPrincipal.getBtnParoPeriodo().setVisible(false);
         }   else {
             winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
         }
@@ -294,6 +297,7 @@ public class PrincipalMetodos {
                 winPrincipal.getCmbClientePlaneados().getSelectedItem().toString()));
         winPrincipal.getCmbNoPartePlaneados().setSelectedIndex(0);
         winPrincipal.getCmbHora().setEnabled(false);
+        winPrincipal.getBtnParoPeriodo().setVisible(false);
     }
     
     public void panelCalidadOperaciones(Principal winPrincipal) {
@@ -707,6 +711,7 @@ public class PrincipalMetodos {
                         }
                     }
                 } catch (Exception e) {
+                    guardaTemporalTXT(winPrincipal);
                     JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.guardarRegistroAccess()\n"
                             + "Ocurrio un error : " + e, "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -746,6 +751,7 @@ public class PrincipalMetodos {
                             }
                         }
                     } catch (Exception e) {
+                        guardaTemporalTXT(winPrincipal);
                         JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.consultarBitacoraPorDia()\n" + e,
                                 "Error", JOptionPane.ERROR_MESSAGE
                         );
@@ -770,6 +776,7 @@ public class PrincipalMetodos {
                     }
                 }
             } catch (Exception e) {
+                guardaTemporalTXT(winPrincipal);
                 JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.consultarBitacoraPorDia()\n" + e,
                         "Error", JOptionPane.ERROR_MESSAGE
                 );
@@ -808,8 +815,31 @@ public class PrincipalMetodos {
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
+            guardaTemporalTXT(winPrincipal);
             JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.actualizarRegistroFechaAccess()\n" + e,
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void guardaTemporalTXT (Principal winPrincipal ){
+        try{
+            String sucursalesCSVFile = "tmp/"+winPrincipal.getCmbLinea().getSelectedItem()+".txt";
+            BufferedWriter bfw = new BufferedWriter(new FileWriter(sucursalesCSVFile));
+            
+            for (int i = 0; i < modeloTabla.getRowCount(); i++ ){
+                for (int j = 0; j < modeloTabla.getColumnCount(); j++ ){
+                    bfw.write((String) (modeloTabla.getValueAt(i,j)));
+                    if(j < modeloTabla.getColumnCount() -1){
+                        bfw.write(",");
+                    }
+                }
+                bfw.newLine();
+            }
+            bfw.close();
+            JOptionPane.showMessageDialog(null, "Archivo salvador salio al recate");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"El archivo salvador no pudo asistir");
+        }
+    }
+    
 }

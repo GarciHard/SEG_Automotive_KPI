@@ -1316,11 +1316,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="pnlTiempoIncidenciaHora" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace pref="15" max="32767" attributes="0"/>
+                              <Component id="btnParoPeriodo" min="-2" pref="118" max="-2" attributes="0"/>
+                              <EmptySpace pref="52" max="32767" attributes="0"/>
                               <Component id="btnAgregarBitacora" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" pref="33" max="32767" attributes="0"/>
                               <Component id="btnRevisarHoras" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="33" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1337,6 +1339,7 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="btnAgregarBitacora" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btnRevisarHoras" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnParoPeriodo" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1489,6 +1492,12 @@
                         <Property name="actionCommand" type="java.lang.String" value="_btnRevisarHoras"/>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnParoPeriodo">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Paro por Periodo"/>
+                        <Property name="actionCommand" type="java.lang.String" value="cmbParoPeriodo"/>
                       </Properties>
                     </Component>
                   </SubComponents>
