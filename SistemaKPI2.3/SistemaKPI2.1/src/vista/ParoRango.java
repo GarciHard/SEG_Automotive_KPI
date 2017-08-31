@@ -110,8 +110,6 @@ public class ParoRango extends javax.swing.JDialog {
         hFin = cmbHFin.getSelectedIndex();
         int cont = hFin - hInicio;
         
-        
-        
         if(hFin <= hInicio){
             JOptionPane.showMessageDialog(this, "Revisa tu ahora de Inicio y Fin");
         }else {
