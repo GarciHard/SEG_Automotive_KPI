@@ -2,8 +2,7 @@ package vista;
 
 import com.alee.extended.date.WebDateField;
 import com.alee.extended.panel.WebCollapsiblePane;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Cursor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -30,6 +29,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         PromptSupport.setPrompt("Minuto Inicio",txtTiempoInicio);
         PromptSupport.setPrompt("Minuto Fin",txtTiempoFin);
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
     
     @SuppressWarnings("unchecked")

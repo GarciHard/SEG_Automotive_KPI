@@ -21,12 +21,10 @@ import utils.PrincipalMetodos;
 import utils.PrincipalValidaciones;
 import vista.Cargas;
 import vista.Lineas;
-import vista.Login;
 import vista.Operaciones;
 import vista.ParoRango;
 import vista.RegistroUsuarios;
 import vista.TiempoTurno;
-import vista.TiemposFaltantes;
 
 /**
  * Hecho con <3 por:
@@ -47,6 +45,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     public PrincipalControl(Principal principal) {
         PrincipalControl.winPrincipal = principal;
         initFrame();
+        
     }
 
     private void initFrame() {
