@@ -865,13 +865,19 @@ public class PrincipalMetodos {
     }
 
     public void eliminarRegistroTiempo(Principal winPrincipal) throws Exception {
-        int temporal = winPrincipal.getCmbHora().getSelectedIndex();
         winPrincipal.getCmbHora().setSelectedIndex(1);
-        int horaInicial = winPrincipal.getCmbHora().getSelectedIndex();
-        int horaFinal = winPrincipal.getCmbHora().getItemCount();
-        winPrincipal.getCmbHora().setSelectedIndex(temporal);
+        int horaInicial = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
+        int finalAux = winPrincipal.getCmbHora().getItemCount();
+        winPrincipal.getCmbHora().setSelectedIndex(finalAux - 1);
+        int horaFinal = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
+        winPrincipal.getCmbHora().setSelectedIndex(0);
         try {
-            new BitacoraDAOImpl().borrarRegistroTiempo(horaInicial, horaFinal);
+            new BitacoraDAOImpl().borrarRegistroTiempo(
+                    horaInicial,
+                    horaFinal,
+                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                    winPrincipal.getDteFecha().getText()
+            );
         } catch (Exception e) {
             throw e;
         }
