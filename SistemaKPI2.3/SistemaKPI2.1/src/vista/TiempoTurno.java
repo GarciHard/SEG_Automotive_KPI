@@ -3,8 +3,6 @@ package vista;
 import control.LoginControl;
 import dao.TiempoTurnoDAOImpl;
 import java.util.ArrayList;
-import java.util.Arrays;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
