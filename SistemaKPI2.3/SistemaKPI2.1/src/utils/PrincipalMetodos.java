@@ -692,23 +692,24 @@ public class PrincipalMetodos {
                 Object[] datos;
                 dao.BitacoraDAOImpl bitacoraObj = new dao.BitacoraDAOImpl();
                 try {
-                    if (!bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(),
-                            (DefaultTableModel) winPrincipal.getTblBitacora().getModel()).isEmpty()) {
-                        ArrayList h = bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(), (DefaultTableModel) winPrincipal.getTblBitacora().getModel());
-                        for (int i = 0; i < h.size(); i++) {
-                            datos = (Object[]) h.get(i);
-                            JOptionPane.showMessageDialog(winPrincipal, "Hora " + datos[0] + " y minuto: " + datos[2] + " Registrados en bitacora: ",
-                                    "Advertencia", JOptionPane.WARNING_MESSAGE
-                            );
-                        }
-                    } else {
+//                    if (!bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(),
+//                            (DefaultTableModel) winPrincipal.getTblBitacora().getModel()).isEmpty()) {
+//                        ArrayList h = bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(), (DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+//                        for (int i = 0; i < h.size(); i++) {
+//                            datos = (Object[]) h.get(i);
+//                            JOptionPane.showMessageDialog(winPrincipal, "Hora " + datos[0] + " y minuto: " + datos[2] + " Registrados en bitacora: ",
+//                                    "Advertencia", JOptionPane.WARNING_MESSAGE
+//                            );
+//                        }
+//                    } else {
 
                         revisarTiemposFaltentes(winPrincipal, 2);
                         int tiempoCero = 0;
                         for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
                             if (Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString()) != 0) {
                                 tiempoCero++;
-                            }
+                            } else 
+                                tiempoCero = 0;
                         }
 
                         switch (tiempoCero) {
@@ -720,6 +721,7 @@ public class PrincipalMetodos {
                                     for (int j = 0; j < columnas; j++) {
                                         reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
                                     }
+                                    new PrincipalMetodos().eliminarRegistroTiempo(winPrincipal);
                                     bitacoraObj.insertarRegistroAccess(reg);
                                 }
                                 limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
@@ -731,7 +733,7 @@ public class PrincipalMetodos {
                                         "Advertencia", JOptionPane.WARNING_MESSAGE);
                                 break;
                         }
-                    }
+//                    }
                 } catch (Exception e) {
                     guardaTemporalTXT(winPrincipal);
                     JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.guardarRegistroAccess()\n"

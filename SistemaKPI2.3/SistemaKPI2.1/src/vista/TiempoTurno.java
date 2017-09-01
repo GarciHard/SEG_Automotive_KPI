@@ -207,7 +207,9 @@ public class TiempoTurno extends javax.swing.JDialog {
                 existeHorario = new TiempoTurnoDAOImpl().horarioExisteBitacora(
                         winPrincipal.getCmbLinea().getSelectedItem().toString(),
                         winPrincipal.getDteFecha().getText(),
-                        jComboBox1.getSelectedItem().toString()
+                        jComboBox1.getSelectedItem().toString(),
+                        Integer.parseInt(jTextField1.getText()),
+                        Integer.parseInt(jTextField2.getText())
                 );
                 if (!existeHorario) {
 
@@ -238,7 +240,7 @@ public class TiempoTurno extends javax.swing.JDialog {
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
-                            + "Horario ya registrado en la bitacora", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                            + "Turno ya registrado en la bitacora", "Advertencia", JOptionPane.WARNING_MESSAGE);
                     jComboBox1.setSelectedIndex(0);
                 }
             } catch (Exception e) {
