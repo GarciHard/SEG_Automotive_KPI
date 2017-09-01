@@ -705,16 +705,13 @@ public class PrincipalMetodos {
 
                     revisarTiemposFaltentes(winPrincipal, 2);
                     int tiempoCero = 0;
-                    int tiempoFaltante = 0;
                     for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
                         if (Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString()) != 0) {
                             tiempoCero++;
-                            tiempoFaltante += Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString());
                         } else {
                             tiempoCero = 0;
                         }
                     }
-
                     switch (tiempoCero) {
                         case 0:
                             new PrincipalMetodos().eliminarRegistroTiempo(winPrincipal);
