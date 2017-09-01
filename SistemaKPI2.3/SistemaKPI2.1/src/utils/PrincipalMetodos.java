@@ -705,9 +705,11 @@ public class PrincipalMetodos {
 
                     revisarTiemposFaltentes(winPrincipal, 2);
                     int tiempoCero = 0;
+                    int tiempoFaltante = 0;
                     for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
                         if (Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString()) != 0) {
                             tiempoCero++;
+                            tiempoFaltante += Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString());
                         } else {
                             tiempoCero = 0;
                         }
@@ -715,6 +717,7 @@ public class PrincipalMetodos {
 
                     switch (tiempoCero) {
                         case 0:
+                            new PrincipalMetodos().eliminarRegistroTiempo(winPrincipal);
                             int columnas = winPrincipal.getTblBitacora().getColumnCount();
                             ArrayList reg;
                             for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
@@ -722,7 +725,6 @@ public class PrincipalMetodos {
                                 for (int j = 0; j < columnas; j++) {
                                     reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
                                 }
-                                new PrincipalMetodos().eliminarRegistroTiempo(winPrincipal);
                                 bitacoraObj.insertarRegistroAccess(reg);
                             }
                             limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
