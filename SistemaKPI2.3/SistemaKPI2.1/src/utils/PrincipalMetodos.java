@@ -703,36 +703,37 @@ public class PrincipalMetodos {
 //                        }
 //                    } else {
 
-                        revisarTiemposFaltentes(winPrincipal, 2);
-                        int tiempoCero = 0;
-                        for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
-                            if (Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString()) != 0) {
-                                tiempoCero++;
-                            } else 
-                                tiempoCero = 0;
+                    revisarTiemposFaltentes(winPrincipal, 2);
+                    int tiempoCero = 0;
+                    for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
+                        if (Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString()) != 0) {
+                            tiempoCero++;
+                        } else {
+                            tiempoCero = 0;
                         }
+                    }
 
-                        switch (tiempoCero) {
-                            case 0:
-                                int columnas = winPrincipal.getTblBitacora().getColumnCount();
-                                ArrayList reg;
-                                for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
-                                    reg = new ArrayList();
-                                    for (int j = 0; j < columnas; j++) {
-                                        reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
-                                    }
-                                    new PrincipalMetodos().eliminarRegistroTiempo(winPrincipal);
-                                    bitacoraObj.insertarRegistroAccess(reg);
+                    switch (tiempoCero) {
+                        case 0:
+                            int columnas = winPrincipal.getTblBitacora().getColumnCount();
+                            ArrayList reg;
+                            for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
+                                reg = new ArrayList();
+                                for (int j = 0; j < columnas; j++) {
+                                    reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
                                 }
-                                limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
-                                JOptionPane.showMessageDialog(winPrincipal, "Bitacora Guardada Correctamente",
-                                        "Guardar", JOptionPane.INFORMATION_MESSAGE);
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(winPrincipal, "Verifique que el total de sus horas de trabajo sean CERO",
-                                        "Advertencia", JOptionPane.WARNING_MESSAGE);
-                                break;
-                        }
+                                new PrincipalMetodos().eliminarRegistroTiempo(winPrincipal);
+                                bitacoraObj.insertarRegistroAccess(reg);
+                            }
+                            limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+                            JOptionPane.showMessageDialog(winPrincipal, "Bitacora Guardada Correctamente",
+                                    "Guardar", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(winPrincipal, "Verifique que el total de sus horas de trabajo sean CERO",
+                                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+                            break;
+                    }
 //                    }
                 } catch (Exception e) {
                     guardaTemporalTXT(winPrincipal);
