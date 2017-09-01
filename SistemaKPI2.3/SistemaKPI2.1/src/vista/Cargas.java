@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vista;
 
 import control.PrincipalControl;
@@ -24,9 +20,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import utils.LineasMetodos;
-import static utils.LineasMetodos.bndLinea;
 import utils.PrincipalMetodos;
-import static vista.Operaciones.linea;
 
 /**
  *
