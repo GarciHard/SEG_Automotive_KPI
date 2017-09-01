@@ -467,7 +467,7 @@ public class PrincipalMetodos {
 
     private void ordenarTabla(DefaultTableModel modeloTabla) {
         for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
-            registroBitacoraAux = new Object[15];
+            registroBitacoraAux = new Object[16];
             for (int j = 0; j < registroBitacoraAux.length; j++) {
                 registroBitacoraAux[j] = modeloTabla.getValueAt(i, j);
             }
@@ -863,8 +863,11 @@ public class PrincipalMetodos {
     }
     
     public void eliminarRegistroTiempo (Principal winPrincipal) throws Exception{
-        int horaInicial = 1;
+        int temporal = winPrincipal.getCmbHora().getSelectedIndex();
+        winPrincipal.getCmbHora().setSelectedIndex(1);
+        int horaInicial = winPrincipal.getCmbHora().getSelectedIndex();
         int horaFinal = winPrincipal.getCmbHora().getItemCount();
+        winPrincipal.getCmbHora().setSelectedIndex(temporal);
         try {
             new BitacoraDAOImpl().borrarRegistroTiempo(horaInicial, horaFinal);
         } catch (Exception e) {
