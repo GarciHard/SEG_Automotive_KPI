@@ -823,6 +823,7 @@ public class PrincipalMetodos {
                         }
                         limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
                         winPrincipal.getCmbTema().setSelectedIndex(0);
+                        PrincipalControl.insercionesAccess++;
                         JOptionPane.showMessageDialog(winPrincipal, "Bitacora Guardada Correctamente",
                                 "Guardar", JOptionPane.INFORMATION_MESSAGE);
                     } else if (tiempoFaltante < 0 || tiempoFaltante > 0) {

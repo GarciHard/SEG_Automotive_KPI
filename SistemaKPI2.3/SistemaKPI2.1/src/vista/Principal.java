@@ -2,6 +2,7 @@ package vista;
 
 import com.alee.extended.date.WebDateField;
 import com.alee.extended.panel.WebCollapsiblePane;
+import control.PrincipalControl;
 import java.awt.Cursor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -1101,12 +1102,14 @@ public class Principal extends javax.swing.JFrame {
                 System.exit(0);
             }
         } else {
-            try {
-                new PrincipalMetodos().eliminarTurnoVacio(this);
-                new PrincipalMetodos().eliminarRegistroTiempo(this);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "PrincipalMetodos.eliminarTurnoVacio()\n" + e,
-                        "Error", JOptionPane.ERROR_MESSAGE);
+            if (PrincipalControl.insercionesAccess == 0) {
+                try {
+                    new PrincipalMetodos().eliminarTurnoVacio(this);
+                    new PrincipalMetodos().eliminarRegistroTiempo(this);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "PrincipalMetodos.eliminarTurnoVacio()\n" + e,
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
             System.exit(0);
         }

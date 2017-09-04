@@ -33,6 +33,7 @@ import vista.TiempoTurno;
  */
 public class PrincipalControl implements ActionListener, CaretListener, ItemListener, KeyListener, TableModelListener {
     
+    public static int insercionesAccess = 0;
     public static int auxiliarPrincipal;
     private final SimpleDateFormat fechaFormato = new SimpleDateFormat("dd/MM/yyyy");
     protected static Principal winPrincipal;
