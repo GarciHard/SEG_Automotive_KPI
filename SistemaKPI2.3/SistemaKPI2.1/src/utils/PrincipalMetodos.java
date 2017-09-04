@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vista.Login;
 import vista.Principal;
+import vista.SelecTurno;
 import vista.TiemposFaltantes;
 
 /**
@@ -406,7 +407,7 @@ public class PrincipalMetodos {
         winPrincipal.getTxtScrapTecnicas().setEnabled(false);
     }
 
-    public void agregarRegistroBitacora(Principal winPrincipal) {       
+    public void agregarRegistroBitacora(Principal winPrincipal) {
         int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
         registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
@@ -498,7 +499,7 @@ public class PrincipalMetodos {
                             }
                         }
                     } else if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())) {
-                        
+
                         if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
                             if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) <= 20) {
                                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
@@ -551,7 +552,6 @@ public class PrincipalMetodos {
                     winPrincipal.getCmbTema().setSelectedIndex(0);
                     winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                 }
-
             }
         }
     }
@@ -852,6 +852,10 @@ public class PrincipalMetodos {
     }
 
     public void consultarBitacoraPorDia(Principal winPrincipal) {
+        int inicio = SelecTurno.inicioTurno;
+        int fin = SelecTurno.finTurno;
+        String fecha = SelecTurno.fecha;
+        String linea = SelecTurno.seleccionTurnoLinea;
         if (winPrincipal.getTblBitacora().getRowCount() != 0) {
             switch (JOptionPane.showConfirmDialog(winPrincipal, "En caso de tener registros sin guardar, estos se perderán.\n¿Seguro que desea continuar?", "Mensaje",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
@@ -862,8 +866,9 @@ public class PrincipalMetodos {
                     winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
                     Object[] bitacoraObj;
                     try {
-                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                                winPrincipal.getCmbLinea().getSelectedItem().toString());
+                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(fecha,linea,inicio,fin);
+                        //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
+                          //      winPrincipal.getCmbLinea().getSelectedItem().toString());
                         if (!bitacoraArr.isEmpty()) {
                             modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
                             for (int i = 0; i < bitacoraArr.size(); i++) {
@@ -887,8 +892,9 @@ public class PrincipalMetodos {
             winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
             Object[] bitacoraObj;
             try {
-                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                        winPrincipal.getCmbLinea().getSelectedItem().toString());
+                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(fecha,linea,inicio,fin);
+                //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
+                        //winPrincipal.getCmbLinea().getSelectedItem().toString());
                 if (!bitacoraArr.isEmpty()) {
                     modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
                     for (int i = 0; i < bitacoraArr.size(); i++) {

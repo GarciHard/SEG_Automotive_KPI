@@ -1090,8 +1090,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if (getTblBitacora().getRowCount() != 0) {
-            if ( JOptionPane.showConfirmDialog(this, "Existe(n) " + getTblBitacora().getRowCount() +
-                    " registro(s) en la bitacora que se perderán si continua\n¿Seguro que desea salir?", "Advertencia",
+            if (JOptionPane.showConfirmDialog(this, "Existe(n) " + getTblBitacora().getRowCount()
+                    + " registro(s) en la bitacora que se perderán si continua\n¿Seguro que desea salir?", "Advertencia",
                     JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
                 try {
                     new PrincipalMetodos().eliminarTurnoVacio(this);

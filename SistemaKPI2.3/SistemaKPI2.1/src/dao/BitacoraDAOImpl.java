@@ -24,8 +24,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private final String BORRA_REGISTRO_FILA = "DELETE FROM Bitacora WHERE linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
     private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY')";
     private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
-    private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap"
-            + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
+    private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial"
+            + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora <= ?";
     
     @Override
     public void insertarRegistroAccess(ArrayList registro) throws Exception {
@@ -96,7 +96,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     }
 
     @Override
-    public ArrayList listarBitacoras(String fecha, String linea) throws Exception {
+    public ArrayList listarBitacoras(String fecha, String linea, int horaInicia, int horaFin) throws Exception {
         Object[] bitacoraObj;
         listaRegistros = new ArrayList();
         try {
@@ -104,6 +104,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps = this.conexion.prepareStatement(LISTAR_REGISTROS_FECHA);
             ps.setString(1, fecha);
             ps.setString(2, linea);
+            ps.setInt(3, horaInicia);
+            ps.setInt(4, horaFin);
             rs = ps.executeQuery();
                 
             while (rs.next()) {

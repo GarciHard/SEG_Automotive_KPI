@@ -24,6 +24,7 @@ import vista.Lineas;
 import vista.Operaciones;
 import vista.ParoRango;
 import vista.RegistroUsuarios;
+import vista.SelecTurno;
 import vista.TiempoTurno;
 
 /**
@@ -34,6 +35,7 @@ import vista.TiempoTurno;
 public class PrincipalControl implements ActionListener, CaretListener, ItemListener, KeyListener, TableModelListener {
     
     public static int insercionesAccess = 0;
+    public static String fecha;
     public static int auxiliarPrincipal;
     private final SimpleDateFormat fechaFormato = new SimpleDateFormat("dd/MM/yyyy");
     protected static Principal winPrincipal;
@@ -175,7 +177,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 new Lineas(winPrincipal, true).setVisible(true);
                 break;
             case "_mniEditarPorDia":
-                principalMetodos.editarBitacoraPorDia(winPrincipal);
+                winPrincipal.getDteFecha().setEnabled(true);
+                winPrincipal.getBtnCancelar().setVisible(true);
                 break;
             case "_mniEliminar":
                 principalMetodos.eliminarRegistroBitacora(winPrincipal);
@@ -186,38 +189,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             //***** Panel Superior *****
             case "_btnCambiarLinea":
                 new TiempoTurno(winPrincipal, true).setVisible(true);
-//                switch (winPrincipal.getBtnCambiarLinea().getText()) {
-//                    case "Elegir turno":
-//                        auxiliarPrincipal = 1;
-//                        winPrincipal.getCmbTema().setSelectedIndex(0);
-//                        new LoginControl(new Login(winPrincipal, true));
-//                        new TiempoTurno(winPrincipal, true).setVisible(true);
-//                        break;
-//                    case "Aceptar":
-//                        winPrincipal.getCmbTema().setEnabled(true);
-//                        winPrincipal.getMniOperaciones().setEnabled(true);
-//                        winPrincipal.getMniCargaMasiva().setEnabled(true);
-//                        winPrincipal.getBtnCambiarLinea().setText("Elegir turno");
-//                        break;
-//                }         
-                break;
-//            case "_btnCambiarLinea":
-//                winPrincipal.getCmbTema().setEnabled(false);
-//                switch (winPrincipal.getBtnCambiarLinea().getText()) {
-//                    case "Cambiar Linea":
-//                        auxiliarPrincipal = 1;
-//                        winPrincipal.getCmbTema().setSelectedIndex(0);
-//                        new LoginControl(new Login(winPrincipal, true));
-//                        break;
-//                    case "Aceptar":
-//                        winPrincipal.getCmbLinea().setEnabled(false);
-//                        winPrincipal.getCmbTema().setEnabled(true);
-//                        winPrincipal.getMniOperaciones().setEnabled(true);
-//                        winPrincipal.getMniCargaMasiva().setEnabled(true);
-//                        winPrincipal.getBtnCambiarLinea().setText("Cambiar Linea");
-//                        break;
-//                }
-//                break;
+            break;
             case "_cmbTema":
                 switch (winPrincipal.getCmbTema().getSelectedIndex()) {
                     case 1:
@@ -255,8 +227,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             case "_cmbNoPartePzasProd":
                 winPrincipal.getTxtTC().setText("");
                 winPrincipal.getTxtTC().setEnabled(true);
-                //winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
-                //winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(true);
                 break;
             //***** Panel Calidad *****
             case "_cmbOperacionCalidad":
@@ -379,8 +349,12 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 new ParoRango(winPrincipal, true).setVisible(true);
                 break;
         }
-        if (evt.getSource().equals(winPrincipal.getDteFecha()))
-            principalMetodos.consultarBitacoraPorDia(winPrincipal);
+        if (evt.getSource().equals(winPrincipal.getDteFecha())) {
+            linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
+            fecha = winPrincipal.getDteFecha().getText();
+            new SelecTurno(winPrincipal, true).setVisible(true);
+        }
+            //principalMetodos.consultarBitacoraPorDia(winPrincipal);
     }
 
     @Override
