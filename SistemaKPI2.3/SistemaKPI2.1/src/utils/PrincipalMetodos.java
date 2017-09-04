@@ -269,10 +269,18 @@ public class PrincipalMetodos {
     }
 
     public void panelTiempoFaltante(Principal winPrincipal) {
-        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
-        winPrincipal.getPnlProduccionCollapsible().setContent(new javax.swing.JLabel());
-        winPrincipal.getPnlProduccionCollapsible().repaint();
-        winPrincipal.getCmbHora().setEnabled(true);
+        if (winPrincipal.getTblBitacora().getRowCount() <= 0) {
+            winPrincipal.getCmbTema().setSelectedIndex(0);
+            JOptionPane.showMessageDialog(
+                    winPrincipal, "No hay horas por justificar", "Mensaje",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+            PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+            winPrincipal.getPnlProduccionCollapsible().setContent(new javax.swing.JLabel());
+            winPrincipal.getPnlProduccionCollapsible().repaint();
+            winPrincipal.getCmbHora().setEnabled(true);
+        }
 //        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTiempoFaltante());
 //        winPrincipal.getPnlProduccionCollapsible().repaint();
     }
@@ -429,13 +437,17 @@ public class PrincipalMetodos {
                     }
                     if (Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[1].toString())) {
                         if (Integer.parseInt(registroBitacora[3].toString()) < Integer.parseInt(registroBitacoraTmp[2].toString())) {
+                            JOptionPane.showMessageDialog(
+                                    winPrincipal, "Registro dentro de intervalo no válido",
+                                    "Advertencia", JOptionPane.WARNING_MESSAGE
+                            );
                             break;
                         } else if (Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[2].toString())) {
                             if (registroBitacoraTmpAux != null) {
                                 if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmpAux[1].toString())) {
 
                                     if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
-                                        if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) < 20) {
+                                        if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) <= 20) {
                                             modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                             ordenarTabla(modeloTabla);
                                             insertarRegistroFilaAccess(winPrincipal);
@@ -443,15 +455,25 @@ public class PrincipalMetodos {
                                             winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                             break;
                                         } else {
-                                            System.out.println("EXCEDENTE DE TIEMPO PERMITIDO");
+                                            JOptionPane.showMessageDialog(
+                                                    winPrincipal, "El tiempo faltante ingresado\nexcede el límite permitido",
+                                                    "Advertencia", JOptionPane.WARNING_MESSAGE
+                                            );
                                         }
+                                    } else {
+                                        modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                                        ordenarTabla(modeloTabla);
+                                        insertarRegistroFilaAccess(winPrincipal);
+                                        winPrincipal.getCmbTema().setSelectedIndex(0);
+                                        winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                                        break;
                                     }
 
                                 }
                             } else {
 
                                 if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
-                                    if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) < 20) {
+                                    if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) <= 20) {
                                         modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                         ordenarTabla(modeloTabla);
                                         insertarRegistroFilaAccess(winPrincipal);
@@ -459,8 +481,18 @@ public class PrincipalMetodos {
                                         winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                         break;
                                     } else {
-                                        System.out.println("EXCEDENTE DE TIEMPO PERMITIDO");
+                                        JOptionPane.showMessageDialog(
+                                                winPrincipal, "El tiempo faltante ingresado\nexcede el límite permitido",
+                                                "Advertencia", JOptionPane.WARNING_MESSAGE
+                                        );
                                     }
+                                } else {
+                                    modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                                    ordenarTabla(modeloTabla);
+                                    insertarRegistroFilaAccess(winPrincipal);
+                                    winPrincipal.getCmbTema().setSelectedIndex(0);
+                                    winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                                    break;
                                 }
 
                             }
@@ -468,7 +500,7 @@ public class PrincipalMetodos {
                     } else if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())) {
                         
                         if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
-                            if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) < 20) {
+                            if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) <= 20) {
                                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                 ordenarTabla(modeloTabla);
                                 insertarRegistroFilaAccess(winPrincipal);
@@ -476,18 +508,50 @@ public class PrincipalMetodos {
                                 winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                 break;
                             } else {
-                                System.out.println("EXCEDENTE DE TIEMPO PERMITIDO");
+                                JOptionPane.showMessageDialog(
+                                        winPrincipal, "El tiempo faltante ingresado\nexcede el límite permitido",
+                                        "Advertencia", JOptionPane.WARNING_MESSAGE
+                                );
                             }
+                        } else {
+                            modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                            ordenarTabla(modeloTabla);
+                            insertarRegistroFilaAccess(winPrincipal);
+                            winPrincipal.getCmbTema().setSelectedIndex(0);
+                            winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                            break;
                         }
 
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                winPrincipal, "Tiempo de registro duplicado",
+                                "Advertencia", JOptionPane.WARNING_MESSAGE
+                        );
                     }
                 }
             } else {
-                modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
-                ordenarTabla(modeloTabla);
-                insertarRegistroFilaAccess(winPrincipal);
-                winPrincipal.getCmbTema().setSelectedIndex(0);
-                winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+
+                if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
+                    if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) <= 20) {
+                        modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                        ordenarTabla(modeloTabla);
+                        insertarRegistroFilaAccess(winPrincipal);
+                        winPrincipal.getCmbTema().setSelectedIndex(0);
+                        winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                winPrincipal, "El tiempo faltante ingresado\nexcede el límite permitido",
+                                "Advertencia", JOptionPane.WARNING_MESSAGE
+                        );
+                    }
+                } else {
+                    modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                    ordenarTabla(modeloTabla);
+                    insertarRegistroFilaAccess(winPrincipal);
+                    winPrincipal.getCmbTema().setSelectedIndex(0);
+                    winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                }
+
             }
         }
     }
@@ -758,10 +822,12 @@ public class PrincipalMetodos {
                             new BitacoraDAOImpl().insertarRegistroAccess(reg);
                         }
                         limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+                        winPrincipal.getCmbTema().setSelectedIndex(0);
                         JOptionPane.showMessageDialog(winPrincipal, "Bitacora Guardada Correctamente",
                                 "Guardar", JOptionPane.INFORMATION_MESSAGE);
                     } else if (tiempoFaltante < 0 || tiempoFaltante > 0) {
-                        JOptionPane.showMessageDialog(winPrincipal, "Verifique que el total de sus horas de trabajo sean CERO",
+                        JOptionPane.showMessageDialog(winPrincipal, "Verifique que el total de sus horas de trabajo sean CERO"
+                                + "\nTiempo faltante: " + getValueTblTiempoFaltante(winPrincipal) + " minutos",
                                 "Advertencia", JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (Exception e) {
