@@ -270,8 +270,11 @@ public class PrincipalMetodos {
 
     public void panelTiempoFaltante(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
-        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTiempoFaltante());
+        winPrincipal.getPnlProduccionCollapsible().setContent(new javax.swing.JLabel());
         winPrincipal.getPnlProduccionCollapsible().repaint();
+        winPrincipal.getCmbHora().setEnabled(true);
+//        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTiempoFaltante());
+//        winPrincipal.getPnlProduccionCollapsible().repaint();
     }
 
     public void panelPlaneadosAreas(Principal winPrincipal) {
@@ -396,6 +399,11 @@ public class PrincipalMetodos {
     }
 
     public void agregarRegistroBitacora(Principal winPrincipal) {
+        
+        if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
+            
+        }
+        
         int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
         registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
@@ -484,6 +492,24 @@ public class PrincipalMetodos {
 
     private Object[] modeloRegistroBitacora(Principal winPrincipal, Object[] reg) {
         switch (winPrincipal.getCmbTema().getSelectedItem().toString()) {
+            case "Tiempo Faltante":
+                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
+                reg[1] = winPrincipal.getDteFecha().getText();
+                reg[2] = winPrincipal.getCmbHora().getSelectedItem();
+                reg[3] = winPrincipal.getTxtTiempoInicio().getText();
+                reg[4] = winPrincipal.getTxtTiempoFin().getText();
+                reg[5] = winPrincipal.getTxtDuracion().getText();
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();
+                reg[7] = "";
+                reg[8] = "";
+                reg[9] = "";
+                reg[10] = "";
+                reg[11] = "";
+                reg[12] = 0;
+                reg[13] = "";
+                reg[14] = "";
+                reg[15] = "";
+                break;
             case "Piezas Producidas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[1] = winPrincipal.getDteFecha().getText();
@@ -493,14 +519,14 @@ public class PrincipalMetodos {
                 reg[5] = winPrincipal.getTxtDuracion().getText();
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();//cmbOperacion.getSelectedItem();
-                reg[8] = " ";
-                reg[9] = " ";
+                reg[8] = "";
+                reg[9] = "";
                 reg[10] = winPrincipal.getCmbClientePzasProd().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoPartePzasProd().getSelectedItem();
                 reg[12] = winPrincipal.getTxtCantidadProducidaPzasProd().getText();
-                reg[13] = " ";
-                reg[14] = " ";
-                reg[15] = " ";
+                reg[13] = "";
+                reg[14] = "";
+                reg[15] = "";
                 break;
             case "Calidad":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -515,10 +541,10 @@ public class PrincipalMetodos {
                 reg[9] = winPrincipal.getCmbProblemaCalidad().getSelectedItem();
                 reg[10] = winPrincipal.getCmbClienteCalidad().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCalidad().getSelectedItem();
-                reg[12] = " ";//winPrincipal.getTxtCantidadProducidaCalidad().getText();
-                reg[13] = " ";
+                reg[12] = "";//winPrincipal.getTxtCantidadProducidaCalidad().getText();
+                reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapCalidad().getText();
-                reg[15] = " ";
+                reg[15] = "";
                 break;
             case "Tecnicas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -534,9 +560,9 @@ public class PrincipalMetodos {
                 reg[10] = winPrincipal.getCmbClienteTecnicas().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteTecnicas().getSelectedItem();
                 reg[12] = 0;
-                reg[13] = " ";
+                reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapTecnicas().getText();
-                reg[15] = " ";
+                reg[15] = "";
                 break;
             case "Organizacionales":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -552,8 +578,8 @@ public class PrincipalMetodos {
                 reg[10] = winPrincipal.getCmbClienteOrganizacional().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteOrganizacional().getSelectedItem();
                 reg[12] = 0;
-                reg[13] = " ";
-                reg[14] = " ";
+                reg[13] = "";
+                reg[14] = "";
                 reg[15] = winPrincipal.getTxtMatFaltante().getText();
                 break;
             case "Cambio":
@@ -566,13 +592,13 @@ public class PrincipalMetodos {
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaCambios().getSelectedItem();
-                reg[9] = " ";//winPrincipal.getCmbProblemaCambios().getSelectedItem();
+                reg[9] = "";//winPrincipal.getCmbProblemaCambios().getSelectedItem();
                 reg[10] = winPrincipal.getCmbClienteCambios().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCambios().getSelectedItem();
                 reg[12] = 0;
                 reg[13] = winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();
                 reg[14] = winPrincipal.getTxtScrapCambios().getText();
-                reg[15] = " ";
+                reg[15] = "";
                 break;
             case "Planeados":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -584,13 +610,13 @@ public class PrincipalMetodos {
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaPlaneados().getSelectedItem();
-                reg[9] = " ";
+                reg[9] = "";
                 reg[10] = winPrincipal.getCmbClientePlaneados().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();
                 reg[12] = 0;
-                reg[13] = " ";
-                reg[14] = " ";
-                reg[15] = " ";
+                reg[13] = "";
+                reg[14] = "";
+                reg[15] = "";
                 break;
         }
         return reg;
@@ -655,6 +681,8 @@ public class PrincipalMetodos {
                 tiemposFaltantes.setVisible(true);
                 break;
             case 2:
+                bitacoraModeloCero = new DefaultTableModel();
+                tablaHorasCero = new DefaultTableModel();
                 tablaHorasCero.addColumn("Hora");
                 tablaHorasCero.addColumn("Tiempo Faltante");
                 Object[] e = new Object[2];
@@ -689,51 +717,34 @@ public class PrincipalMetodos {
         new LoginControl(new Login(winPrincipal, true));
         switch (LoginControl.auxiliarLogin) {
             case 1:
-                Object[] datos;
-                dao.BitacoraDAOImpl bitacoraObj = new dao.BitacoraDAOImpl();
                 try {
-//                    if (!bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(),
-//                            (DefaultTableModel) winPrincipal.getTblBitacora().getModel()).isEmpty()) {
-//                        ArrayList h = bitacoraObj.existeFechaBitacora(winPrincipal.getDteFecha().getText(), (DefaultTableModel) winPrincipal.getTblBitacora().getModel());
-//                        for (int i = 0; i < h.size(); i++) {
-//                            datos = (Object[]) h.get(i);
-//                            JOptionPane.showMessageDialog(winPrincipal, "Hora " + datos[0] + " y minuto: " + datos[2] + " Registrados en bitacora: ",
-//                                    "Advertencia", JOptionPane.WARNING_MESSAGE
-//                            );
-//                        }
-//                    } else {
-
                     revisarTiemposFaltentes(winPrincipal, 2);
-                    int tiempoCero = 0;
+                    int tiempoFaltante = 0;
                     for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
                         if (Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString()) != 0) {
-                            tiempoCero++;
-                        } else {
-                            tiempoCero = 0;
+                            tiempoFaltante += Integer.parseInt(
+                                    tablaHorasCero.getValueAt(i, 1).toString()
+                            );
                         }
                     }
-                    switch (tiempoCero) {
-                        case 0:
-                            new PrincipalMetodos().eliminarRegistroTiempo(winPrincipal);
-                            int columnas = winPrincipal.getTblBitacora().getColumnCount();
-                            ArrayList reg;
-                            for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
-                                reg = new ArrayList();
-                                for (int j = 0; j < columnas; j++) {
-                                    reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
-                                }
-                                bitacoraObj.insertarRegistroAccess(reg);
+                    if (tiempoFaltante == 0) {
+                        new PrincipalMetodos().eliminarRegistroTiempo(winPrincipal);
+                        int columnas = winPrincipal.getTblBitacora().getColumnCount();
+                        ArrayList reg;
+                        for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
+                            reg = new ArrayList();
+                            for (int j = 0; j < columnas; j++) {
+                                reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
                             }
-                            limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
-                            JOptionPane.showMessageDialog(winPrincipal, "Bitacora Guardada Correctamente",
-                                    "Guardar", JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(winPrincipal, "Verifique que el total de sus horas de trabajo sean CERO",
-                                    "Advertencia", JOptionPane.WARNING_MESSAGE);
-                            break;
+                            new BitacoraDAOImpl().insertarRegistroAccess(reg);
+                        }
+                        limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+                        JOptionPane.showMessageDialog(winPrincipal, "Bitacora Guardada Correctamente",
+                                "Guardar", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (tiempoFaltante < 0 || tiempoFaltante > 0) {
+                        JOptionPane.showMessageDialog(winPrincipal, "Verifique que el total de sus horas de trabajo sean CERO",
+                                "Advertencia", JOptionPane.WARNING_MESSAGE);
                     }
-//                    }
                 } catch (Exception e) {
                     guardaTemporalTXT(winPrincipal);
                     JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.guardarRegistroAccess()\n"
