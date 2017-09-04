@@ -406,7 +406,7 @@ public class PrincipalMetodos {
         winPrincipal.getTxtScrapTecnicas().setEnabled(false);
     }
 
-    public void agregarRegistroBitacora(Principal winPrincipal) {       
+    public void agregarRegistroBitacora(Principal winPrincipal) {
         int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
         registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
@@ -498,7 +498,7 @@ public class PrincipalMetodos {
                             }
                         }
                     } else if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())) {
-                        
+
                         if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
                             if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) <= 20) {
                                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
