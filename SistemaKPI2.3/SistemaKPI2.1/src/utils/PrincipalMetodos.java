@@ -398,12 +398,7 @@ public class PrincipalMetodos {
         winPrincipal.getTxtScrapTecnicas().setEnabled(false);
     }
 
-    public void agregarRegistroBitacora(Principal winPrincipal) {
-        
-        if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
-            
-        }
-        
+    public void agregarRegistroBitacora(Principal winPrincipal) {       
         int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
         registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
@@ -438,29 +433,53 @@ public class PrincipalMetodos {
                         } else if (Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[2].toString())) {
                             if (registroBitacoraTmpAux != null) {
                                 if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmpAux[1].toString())) {
-                                    modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
-                                    ordenarTabla(modeloTabla);
-                                    insertarRegistroFilaAccess(winPrincipal);
-                                    winPrincipal.getCmbTema().setSelectedIndex(0);
-                                    winPrincipal.getCmbTema().setSelectedIndex(valorTema);
-                                    break;
+
+                                    if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
+                                        if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) < 20) {
+                                            modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                                            ordenarTabla(modeloTabla);
+                                            insertarRegistroFilaAccess(winPrincipal);
+                                            winPrincipal.getCmbTema().setSelectedIndex(0);
+                                            winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                                            break;
+                                        } else {
+                                            System.out.println("EXCEDENTE DE TIEMPO PERMITIDO");
+                                        }
+                                    }
+
                                 }
                             } else {
+
+                                if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
+                                    if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) < 20) {
+                                        modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
+                                        ordenarTabla(modeloTabla);
+                                        insertarRegistroFilaAccess(winPrincipal);
+                                        winPrincipal.getCmbTema().setSelectedIndex(0);
+                                        winPrincipal.getCmbTema().setSelectedIndex(valorTema);
+                                        break;
+                                    } else {
+                                        System.out.println("EXCEDENTE DE TIEMPO PERMITIDO");
+                                    }
+                                }
+
+                            }
+                        }
+                    } else if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())) {
+                        
+                        if (winPrincipal.getCmbTema().getSelectedItem().equals("Tiempo Faltante")) {
+                            if ((Integer.parseInt(registroBitacora[5].toString()) + getValueTblBitacoraTiempoFaltante(winPrincipal)) < 20) {
                                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                 ordenarTabla(modeloTabla);
                                 insertarRegistroFilaAccess(winPrincipal);
                                 winPrincipal.getCmbTema().setSelectedIndex(0);
                                 winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                 break;
+                            } else {
+                                System.out.println("EXCEDENTE DE TIEMPO PERMITIDO");
                             }
                         }
-                    } else if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmp[1].toString())) {
-                        modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
-                        ordenarTabla(modeloTabla);
-                        insertarRegistroFilaAccess(winPrincipal);
-                        winPrincipal.getCmbTema().setSelectedIndex(0);
-                        winPrincipal.getCmbTema().setSelectedIndex(valorTema);
-                        break;
+
                     }
                 }
             } else {
@@ -930,5 +949,30 @@ public class PrincipalMetodos {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "El archivo salvador no pudo asistir");
         }
+    }
+
+    private int getValueTblTiempoFaltante(Principal winPrincipal) {
+        revisarTiemposFaltentes(winPrincipal, 2);
+        int tiempoFaltante = 0;
+        for (int b = 0; b < tablaHorasCero.getRowCount(); b++) {
+            if (Integer.parseInt(tablaHorasCero.getValueAt(b, 1).toString()) != 0) {
+                tiempoFaltante += Integer.parseInt(
+                        tablaHorasCero.getValueAt(b, 1).toString()
+                );
+            }
+        }
+        return tiempoFaltante;
+    }
+
+    private int getValueTblBitacoraTiempoFaltante(Principal winPrincipal) {
+        int tiempoFaltante = 0;
+        for (int a = 0; a < winPrincipal.getTblBitacora().getRowCount(); a++) {
+            if (winPrincipal.getTblBitacora().getValueAt(a, 6).equals("Tiempo Faltante")) {
+                tiempoFaltante += Integer.parseInt(
+                        winPrincipal.getTblBitacora().getValueAt(a, 5).toString()
+                );
+            }
+        }
+        return tiempoFaltante;
     }
 }
