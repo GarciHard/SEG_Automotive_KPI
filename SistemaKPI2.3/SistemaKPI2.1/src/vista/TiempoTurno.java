@@ -104,6 +104,9 @@ public class TiempoTurno extends javax.swing.JDialog {
             }
         });
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField3KeyTyped(evt);
             }
@@ -344,6 +347,16 @@ public class TiempoTurno extends javax.swing.JDialog {
             winPrincipal.getCmbLinea().setSelectedIndex(0);
         }
     }//GEN-LAST:event_formWindowClosed
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        if (!jTextField3.getText().isEmpty()) {
+            if (Integer.parseInt(jTextField3.getText()) > 30
+                    || Integer.parseInt(jTextField3.getText()) < 1) {
+                jTextField3.setText("");
+            }
+        }
+    }//GEN-LAST:event_jTextField3KeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
