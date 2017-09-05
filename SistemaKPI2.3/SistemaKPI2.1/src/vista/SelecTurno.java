@@ -117,8 +117,7 @@ public class SelecTurno extends javax.swing.JDialog {
 
                     inicioTurno = consultaTurno.consultaInicioTurno(fecha, seleccionTurnoLinea,turno);
                     finTurno = consultaTurno.consultaFinTurno(fecha, seleccionTurnoLinea, turno);
-                    principalMetodos.consultarBitacoraPorDia(winPrincipal);
-                            
+                    principalMetodos.consultarBitacoraPorDia(winPrincipal);                            
                 } catch (Exception ex) {
                     Logger.getLogger(SelecTurno.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -126,6 +125,8 @@ public class SelecTurno extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(this,"Debes elegir una linea, para poder hacer la edicion");
             }
+            winPrincipal.getBtnCambiarLinea().setEnabled(false);
+            winPrincipal.getCmbTema().setEnabled(true);
         }  
     }//GEN-LAST:event_btnAceptarActionPerformed
 

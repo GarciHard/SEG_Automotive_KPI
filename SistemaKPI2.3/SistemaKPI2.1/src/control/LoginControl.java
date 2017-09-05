@@ -40,55 +40,79 @@ public class LoginControl implements ActionListener, KeyListener {
         switch (evt.getActionCommand()) {
             case "_btnAceptar": // validaciones para aceptar de Login
                 winLogin.setCursor(new Cursor(Cursor.WAIT_CURSOR)); //cambia cursor
+                winLogin.getTxtUsuario().setEnabled(false);
+                winLogin.getPwdContrasena().setEnabled(false);
                 switch (TiempoTurno.auxiliarTiempoTurno) {
                     case 1:
                         if (loginMetodos.cambiarLinea(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
                             TiempoTurno.auxiliarTiempoTurno = 2;
-                            winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                             winLogin.dispose();
-                            
                         }
-                        break;
+                        winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        winLogin.getTxtUsuario().setEnabled(true);
+                        winLogin.getPwdContrasena().setEnabled(true);
+                    break;
                 }
                 switch (PrincipalControl.auxiliarPrincipal) {
                     case 1:
                         if (loginMetodos.cambiarLinea(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
                             PrincipalControl.winPrincipal.getBtnCambiarLinea().setText("Aceptar");
                             PrincipalControl.winPrincipal.getCmbLinea().setEnabled(true);
-                            winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                             winLogin.dispose();
                         }
+                        winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        winLogin.getTxtUsuario().setEnabled(true);
+                        winLogin.getPwdContrasena().setEnabled(true);
                         break;
                     case 2:
                         if (loginMetodos.validaSupervisor(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
                             auxiliarLogin = 1;
                             winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                            winLogin.getTxtUsuario().setEnabled(true);
+                            winLogin.getPwdContrasena().setEnabled(true);
                             winLogin.dispose();
                         }
+                        winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        winLogin.getTxtUsuario().setEnabled(true);
+                        winLogin.getPwdContrasena().setEnabled(true);
                         break;
                     case 3:
                         if (loginMetodos.validaAjustador(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
                             auxiliarLogin = 1;
                             winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                            winLogin.getTxtUsuario().setEnabled(true);
+                            winLogin.getPwdContrasena().setEnabled(true);
                             winLogin.dispose();
                         }
+                        winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        winLogin.getTxtUsuario().setEnabled(true);
+                        winLogin.getPwdContrasena().setEnabled(true);
                         break;
                     case 4:
                         if (loginMetodos.validaSupervisor(winLogin.getTxtUsuario(), winLogin.getPwdContrasena())) {
                             System.err.println("entro");
                             auxiliarLogin = 1;
                             winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                            winLogin.getTxtUsuario().setEnabled(true);
+                            winLogin.getPwdContrasena().setEnabled(true);
                             winLogin.dispose();
                         }
+                        winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                        winLogin.getTxtUsuario().setEnabled(true);
+                        winLogin.getPwdContrasena().setEnabled(true);
                         break;
                 }
                 break;
             case "_btnCancelar":
                 if (winPrincipal.getCmbLinea().getSelectedIndex() != 0) {
                     winPrincipal.getCmbTema().setEnabled(true);
+                    winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    winLogin.getTxtUsuario().setEnabled(true);
+                    winLogin.getPwdContrasena().setEnabled(true);
                 }
                 winLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                winLogin.dispose();
+                winLogin.getTxtUsuario().setEnabled(true);
+                winLogin.getPwdContrasena().setEnabled(true);
                 break;
         }
     }  

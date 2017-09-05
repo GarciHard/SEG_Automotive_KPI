@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import vista.Principal;
 
 /**
  * Hecho con <3 por:
@@ -14,6 +15,7 @@ import javax.swing.JTextField;
 public class LoginMetodos {
 
     private JFrame form;
+   Principal winPrinciapal = new Principal();
     
     public boolean cambiarLinea(JTextField usuario, JPasswordField contrasena) {
         boolean respuesta = false;

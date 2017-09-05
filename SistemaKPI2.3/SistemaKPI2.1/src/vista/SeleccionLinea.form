@@ -105,7 +105,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCambiarLinea">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Seleccionar Linea"/>
+            <Property name="text" type="java.lang.String" value="Selecciona Linea"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>

@@ -52,7 +52,7 @@ public class SeleccionLinea extends javax.swing.JDialog {
             }
         });
 
-        btnCambiarLinea.setText("Seleccionar Linea");
+        btnCambiarLinea.setText("Selecciona Linea");
         btnCambiarLinea.setToolTipText("");
         btnCambiarLinea.setFocusable(false);
         btnCambiarLinea.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +120,7 @@ public class SeleccionLinea extends javax.swing.JDialog {
 
     private void btnCambiarLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarLineaActionPerformed
         switch (btnCambiarLinea.getText()) {
-            case "Seleccionar Linea":
+            case "Selecciona Linea":
                 cmbLinea.setEnabled(true);
                 btnCambiarLinea.setEnabled(false);
                 break;
@@ -135,7 +135,7 @@ public class SeleccionLinea extends javax.swing.JDialog {
     private void cmbLineaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbLineaItemStateChanged
         switch (cmbLinea.getSelectedIndex()) {
             case 0:
-                btnCambiarLinea.setText("Seleccionar Linea");
+                btnCambiarLinea.setText("Selecciona Linea");
                 btnCambiarLinea.setEnabled(false);
                 break;
             default:

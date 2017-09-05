@@ -306,13 +306,13 @@ public class Operaciones extends javax.swing.JDialog {
 
     @SuppressWarnings("empty-statement")
     private void cmbTemaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTemaItemStateChanged
+        System.out.println(cmbTema.getSelectedIndex());
         if (cmbTema.getSelectedIndex() != 0) {
             cmbOperacion.setEnabled(true);
             try{
-                cmbOperacion.setModel(ModeloValidacionesOperaciones.listaOperacionesPorLinea(linea));
                 if (cmbTema.getSelectedIndex() != 1 && cmbTema.getSelectedIndex() != 2 ){
                     try{
-                        cmbOperacion.setModel(ModeloValidacionesOperaciones.listaOperacionesPorLinea(linea));
+                        cmbOperacion.setModel(ModeloValidacionesOperaciones.listaOperacionesPorLineaDESC(linea));
                         cmbOperacion.setSelectedIndex(1);
                         cmbOperacion.setEnabled(false);
                         cmbArea.setEnabled(true);
@@ -320,12 +320,14 @@ public class Operaciones extends javax.swing.JDialog {
                         Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else {
+                    cmbOperacion.setModel(ModeloValidacionesOperaciones.listaOperacionesPorLineaASC(linea));
                     cmbOperacion.setEnabled(true);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        }else if (cmbTema.getSelectedIndex() == 0){
+            System.out.println("entra"+cmbTema.getSelectedIndex());
             cmbOperacion.setSelectedIndex(-1);
             cmbOperacion.setEnabled(false);
             cmbArea.setSelectedIndex(-1);
@@ -337,7 +339,7 @@ public class Operaciones extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbTemaItemStateChanged
 
     private void cmbOperacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbOperacionItemStateChanged
-        if (cmbOperacion.getSelectedIndex() != 0) {
+        if (cmbOperacion.getSelectedIndex() != 0 && cmbTema.getSelectedIndex() != 0) {
             cmbArea.setEnabled(true);
             String operacion = cmbOperacion.getSelectedItem().toString();
             try {
@@ -366,7 +368,7 @@ public class Operaciones extends javax.swing.JDialog {
         }else {
             txtDescOpe.setText("");
             txtDescProblema.setText("");
-            txtDescProblema.setEditable(false);
+            txtDescProblema.setEnabled(false);
             cmbArea.setSelectedIndex(-1);
             cmbArea.setEnabled(false);
         }
@@ -499,21 +501,23 @@ public class Operaciones extends javax.swing.JDialog {
     private void cmbAreaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAreaItemStateChanged
         if (cmbArea.getSelectedIndex() != 0) {
             txtDescProblema.setEditable(true);
+            txtDescProblema.setEnabled(true);
         }else{
             txtDescProblema.setText("");
             txtDescProblema.setEditable(false);
+            txtDescProblema.setEnabled(false);
         }
     }//GEN-LAST:event_cmbAreaItemStateChanged
  
     public void limpiar() {
         btnGuardar.setText("Guardar");
         cmbTema.setSelectedIndex(0);
-        cmbOperacion.setSelectedIndex(0);
-        cmbArea.setSelectedIndex(0);
+        cmbOperacion.setSelectedIndex(-1);
+        cmbArea.setSelectedIndex(-1);
         txtDescOpe.setText("");
         txtDescProblema.setText("");
         txtDescProblema.setEnabled(false);
-        cmbTema.setEnabled(true);
+        cmbTema.setEnabled(false);
         cmbOperacion.setEnabled(false);
         cmbArea.setEnabled(false);
     }

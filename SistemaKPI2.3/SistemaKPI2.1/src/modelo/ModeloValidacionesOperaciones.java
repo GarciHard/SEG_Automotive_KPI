@@ -27,7 +27,6 @@ public abstract class ModeloValidacionesOperaciones  {
     private static PreparedStatement pstm;
     private static JFrame form;
     
-    
     public static DefaultTableModel llenaTablaPerdidas(String linea, DefaultTableModel model) throws Exception {
         String consulta;
         Object[] operacion = new Object[4];
@@ -43,7 +42,6 @@ public abstract class ModeloValidacionesOperaciones  {
                 operacion[2] = rs.getString(3);
                 operacion[3] = rs.getString(4);
                 model.addRow(operacion);
-
             }
             pstm.close();
             rs.close();
@@ -57,10 +55,10 @@ public abstract class ModeloValidacionesOperaciones  {
         return model;
     }
     
-    public static DefaultComboBoxModel listaOperacionesPorLinea(String linea) throws Exception {
+    public static DefaultComboBoxModel listaOperacionesPorLineaDESC(String linea) throws Exception {
         DefaultComboBoxModel listaOP = new DefaultComboBoxModel();
         String consulta, valor = null;
-        listaOP.addElement("Elije OPERACION");
+        listaOP.addElement("Selleciona Operacion");
         try {
             con.conectar();
             consulta = "select operacion from Operaciones WHERE linea='" + linea + "' ORDER BY operacion DESC";
@@ -74,10 +72,30 @@ public abstract class ModeloValidacionesOperaciones  {
             rs.close();
             con.cerrar();
         } catch (SQLException ex) {
-
             JOptionPane.showMessageDialog(form, "Error al hacer la consulta :\n" + ex.getMessage());
         }
-
+        return listaOP;
+    }
+    
+    public static DefaultComboBoxModel listaOperacionesPorLineaASC(String linea) throws Exception {
+        DefaultComboBoxModel listaOP = new DefaultComboBoxModel();
+        String consulta, valor = null;
+        listaOP.addElement("Selecciona Operacion");
+        try {
+            con.conectar();
+            consulta = "select operacion from Operaciones WHERE linea='" + linea + "' ORDER BY operacion ASC";
+            pstm = con.conexion.prepareStatement(consulta);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                valor = rs.getString(1);
+                listaOP.addElement(valor);
+            }
+            pstm.close();
+            rs.close();
+            con.cerrar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(form, "Error al hacer la consulta :\n" + ex.getMessage());
+        }
         return listaOP;
     }
     
@@ -117,10 +135,8 @@ public abstract class ModeloValidacionesOperaciones  {
             rs.close();
             con.cerrar();
         } catch (SQLException ex) {
-
             JOptionPane.showMessageDialog(form, "Error al hacer la consulta DescOp:\n" + ex.getMessage());
         }
-
         return desc;
     }
     
@@ -170,7 +186,6 @@ public abstract class ModeloValidacionesOperaciones  {
     public static DefaultTableModel busqueda(String linea, String tipo, String txtBuscado, DefaultTableModel model) throws Exception {
         String consulta;
         Object[] operacion = new Object[4];
-        //Principal.ms.ClearTable(model);
         clearTable(model);
         try {
             con.conectar();
