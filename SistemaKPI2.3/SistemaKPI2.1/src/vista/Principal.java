@@ -1085,6 +1085,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
         new SeleccionLinea(this, true).setVisible(true);
     }//GEN-LAST:event_formWindowOpened
 
@@ -1101,6 +1102,8 @@ public class Principal extends javax.swing.JFrame {
                 }
                 System.exit(0);
             }
+        } else if (lblTurno.getText().isEmpty()) {
+            System.exit(0);
         } else {
             if (PrincipalControl.insercionesAccess == 0) {
                 try {

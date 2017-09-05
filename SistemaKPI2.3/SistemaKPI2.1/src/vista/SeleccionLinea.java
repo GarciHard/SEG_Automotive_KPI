@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Cursor;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import utils.PrincipalMetodos;
@@ -17,6 +18,7 @@ public class SeleccionLinea extends javax.swing.JDialog {
     public SeleccionLinea(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         winPrincipal = (Principal) parent;
         cmbLinea.setModel(new PrincipalMetodos().listaLineas());
     }
@@ -125,6 +127,7 @@ public class SeleccionLinea extends javax.swing.JDialog {
             case "Aceptar":
                 winPrincipal.getCmbLinea().setSelectedItem(cmbLinea.getSelectedItem());
                 this.dispose();
+                winPrincipal.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;
         }
     }//GEN-LAST:event_btnCambiarLineaActionPerformed
