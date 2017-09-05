@@ -18,7 +18,6 @@ public class TiempoTurno extends javax.swing.JDialog {
     private boolean existeHorario;
     private boolean cerrarVentana;
     private Principal winPrincipal;
-    private ParoRango winParoPeriodo;
     public static  ArrayList cmbTiempoModel = new ArrayList();
     
     /** Creates new form TiempoTurno */    
@@ -27,6 +26,7 @@ public class TiempoTurno extends javax.swing.JDialog {
         initComponents();
         PromptSupport.setPrompt("0-24 hrs",txtHoraInicial);
         PromptSupport.setPrompt("0-24 hrs",txtHoraFinal);
+        PromptSupport.setPrompt("máx 30", txtnNoPersonas);
         winPrincipal = (Principal) parent;
     }
     
@@ -50,6 +50,9 @@ public class TiempoTurno extends javax.swing.JDialog {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -415,6 +418,20 @@ public class TiempoTurno extends javax.swing.JDialog {
             txtnNoPersonas.transferFocus();
         }
     }//GEN-LAST:event_txtnNoPersonasKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if (winPrincipal.getLblTurno().getText().isEmpty()) {
+            if (JOptionPane.showConfirmDialog(this, "¿Seguro que desea salir?", "Mensaje",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                System.exit(0);
+            }
+        } else {
+            if (JOptionPane.showConfirmDialog(this, "¿Seguro que desea salir?", "Mensaje",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                System.exit(0);
+            }
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
