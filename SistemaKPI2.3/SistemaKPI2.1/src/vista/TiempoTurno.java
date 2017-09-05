@@ -61,19 +61,29 @@ public class TiempoTurno extends javax.swing.JDialog {
         jLabel4.setText("No. Personal:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona turno", "Primer Turno", "Segundo Turno", "Tercer Turno" }));
+        jComboBox1.setNextFocusableComponent(jTextField1);
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
             }
         });
+        jComboBox1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jComboBox1KeyPressed(evt);
+            }
+        });
 
         jTextField1.setEnabled(false);
+        jTextField1.setNextFocusableComponent(jTextField2);
         jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jTextField1CaretUpdate(evt);
             }
         });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
             }
@@ -83,12 +93,16 @@ public class TiempoTurno extends javax.swing.JDialog {
         });
 
         jTextField2.setEnabled(false);
+        jTextField2.setNextFocusableComponent(jTextField3);
         jTextField2.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jTextField2CaretUpdate(evt);
             }
         });
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField2KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField2KeyReleased(evt);
             }
@@ -98,12 +112,16 @@ public class TiempoTurno extends javax.swing.JDialog {
         });
 
         jTextField3.setEnabled(false);
+        jTextField3.setNextFocusableComponent(jButton1);
         jTextField3.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jTextField3CaretUpdate(evt);
             }
         });
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField3KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField3KeyReleased(evt);
             }
@@ -356,6 +374,30 @@ public class TiempoTurno extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jComboBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyPressed
+        if (evt.getKeyCode() == 10 && jComboBox1.getSelectedIndex() != 0) {
+            jComboBox1.transferFocus();
+        }
+    }//GEN-LAST:event_jComboBox1KeyPressed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if (evt.getKeyCode() == 10 && !jTextField1.getText().isEmpty()) {
+            jTextField1.transferFocus();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+        if (evt.getKeyCode() == 10 && !jTextField2.getText().isEmpty()) {
+            jTextField2.transferFocus();
+        }
+    }//GEN-LAST:event_jTextField2KeyPressed
+
+    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
+        if (evt.getKeyCode() == 10 && !jTextField3.getText().isEmpty()) {
+            jTextField3.transferFocus();
+        }
+    }//GEN-LAST:event_jTextField3KeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
