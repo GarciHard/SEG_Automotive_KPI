@@ -5,6 +5,7 @@ import dao.TiempoTurnoDAOImpl;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 /**
  * Hecho con <3 por:
@@ -24,6 +25,8 @@ public class TiempoTurno extends javax.swing.JDialog {
     public TiempoTurno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        PromptSupport.setPrompt("0-24 hrs",txtHoraInicial);
+        PromptSupport.setPrompt("0-24 hrs",txtHoraFinal);
         winPrincipal = (Principal) parent;
     }
     
@@ -37,9 +40,9 @@ public class TiempoTurno extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtHoraInicial = new javax.swing.JTextField();
+        txtHoraFinal = new javax.swing.JTextField();
+        txtnNoPersonas = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -61,7 +64,7 @@ public class TiempoTurno extends javax.swing.JDialog {
         jLabel4.setText("No. Personal:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona turno", "Primer Turno", "Segundo Turno", "Tercer Turno" }));
-        jComboBox1.setNextFocusableComponent(jTextField1);
+        jComboBox1.setNextFocusableComponent(txtHoraInicial);
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
@@ -73,60 +76,60 @@ public class TiempoTurno extends javax.swing.JDialog {
             }
         });
 
-        jTextField1.setEnabled(false);
-        jTextField1.setNextFocusableComponent(jTextField2);
-        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+        txtHoraInicial.setEnabled(false);
+        txtHoraInicial.setNextFocusableComponent(txtHoraFinal);
+        txtHoraInicial.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField1CaretUpdate(evt);
+                txtHoraInicialCaretUpdate(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtHoraInicial.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
+                txtHoraInicialKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                txtHoraInicialKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtHoraInicialKeyTyped(evt);
             }
         });
 
-        jTextField2.setEnabled(false);
-        jTextField2.setNextFocusableComponent(jTextField3);
-        jTextField2.addCaretListener(new javax.swing.event.CaretListener() {
+        txtHoraFinal.setEnabled(false);
+        txtHoraFinal.setNextFocusableComponent(txtnNoPersonas);
+        txtHoraFinal.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField2CaretUpdate(evt);
+                txtHoraFinalCaretUpdate(evt);
             }
         });
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtHoraFinal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField2KeyPressed(evt);
+                txtHoraFinalKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField2KeyReleased(evt);
+                txtHoraFinalKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                txtHoraFinalKeyTyped(evt);
             }
         });
 
-        jTextField3.setEnabled(false);
-        jTextField3.setNextFocusableComponent(jButton1);
-        jTextField3.addCaretListener(new javax.swing.event.CaretListener() {
+        txtnNoPersonas.setEnabled(false);
+        txtnNoPersonas.setNextFocusableComponent(jButton1);
+        txtnNoPersonas.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField3CaretUpdate(evt);
+                txtnNoPersonasCaretUpdate(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtnNoPersonas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField3KeyPressed(evt);
+                txtnNoPersonasKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
+                txtnNoPersonasKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                txtnNoPersonasKeyTyped(evt);
             }
         });
 
@@ -160,9 +163,9 @@ public class TiempoTurno extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(txtnNoPersonas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                        .addComponent(txtHoraFinal, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtHoraInicial, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
@@ -181,15 +184,15 @@ public class TiempoTurno extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHoraInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnNoPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -227,8 +230,8 @@ public class TiempoTurno extends javax.swing.JDialog {
                         winPrincipal.getCmbLinea().getSelectedItem().toString(),
                         winPrincipal.getDteFecha().getText(),
                         jComboBox1.getSelectedItem().toString(),
-                        Integer.parseInt(jTextField1.getText()),
-                        Integer.parseInt(jTextField2.getText())
+                        Integer.parseInt(txtHoraInicial.getText()),
+                        Integer.parseInt(txtHoraFinal.getText())
                 );
                 if (!existeHorario) {
 
@@ -236,13 +239,13 @@ public class TiempoTurno extends javax.swing.JDialog {
                             winPrincipal.getCmbLinea().getSelectedItem().toString(),
                             winPrincipal.getDteFecha().getText(),
                             String.valueOf(jComboBox1.getSelectedItem()),
-                            Integer.parseInt(jTextField1.getText()),
-                            Integer.parseInt(jTextField2.getText()),
-                            Integer.parseInt(jTextField3.getText())
+                            Integer.parseInt(txtHoraInicial.getText()),
+                            Integer.parseInt(txtHoraFinal.getText()),
+                            Integer.parseInt(txtnNoPersonas.getText())
                     );
                     
-                    int horaInicial = Integer.parseInt(jTextField1.getText());
-                    int horaFinal = Integer.parseInt(jTextField2.getText());
+                    int horaInicial = Integer.parseInt(txtHoraInicial.getText());
+                    int horaFinal = Integer.parseInt(txtHoraFinal.getText());
                     if (horaInicial > horaFinal) {
                         cmbTiempoModel.add("Selecciona Hora");
                         for (int i = horaInicial; i != 0; i++) {
@@ -288,91 +291,91 @@ public class TiempoTurno extends javax.swing.JDialog {
         jComboBox1.setSelectedIndex(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField3CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField3CaretUpdate
+    private void txtnNoPersonasCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtnNoPersonasCaretUpdate
         if ((evt.getDot() + evt.getMark()) == 0) {
             jButton1.setEnabled(false);
         } else if (evt.getDot() >= 1 && evt.getMark() >= 1) {
             jButton1.setEnabled(true);
-        } else if (jTextField3.getText().isEmpty()) {
+        } else if (txtnNoPersonas.getText().isEmpty()) {
             jButton1.setEnabled(false);
         }
-    }//GEN-LAST:event_jTextField3CaretUpdate
+    }//GEN-LAST:event_txtnNoPersonasCaretUpdate
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         if (jComboBox1.getSelectedIndex() != 0) {
-            jTextField1.setText("");
-            jTextField1.setEnabled(true);
+            txtHoraInicial.setText("");
+            txtHoraInicial.setEnabled(true);
         } else {
-            jTextField1.setText("");
-            jTextField1.setEnabled(false);
+            txtHoraInicial.setText("");
+            txtHoraInicial.setEnabled(false);
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
-    private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
+    private void txtHoraInicialCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtHoraInicialCaretUpdate
         if ((evt.getDot() + evt.getMark()) == 0) {
-            jTextField2.setEnabled(false);
-            jTextField2.setText("");
+            txtHoraFinal.setEnabled(false);
+            txtHoraFinal.setText("");
         } else if (evt.getDot() >= 1 && evt.getMark() >= 1) {
-            jTextField2.setEnabled(true);
-        } else if (jTextField1.getText().isEmpty()) {
-            jTextField2.setEnabled(false);
-            jTextField2.setText("");
+            txtHoraFinal.setEnabled(true);
+        } else if (txtHoraInicial.getText().isEmpty()) {
+            txtHoraFinal.setEnabled(false);
+            txtHoraFinal.setText("");
         }
-    }//GEN-LAST:event_jTextField1CaretUpdate
+    }//GEN-LAST:event_txtHoraInicialCaretUpdate
 
-    private void jTextField2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField2CaretUpdate
+    private void txtHoraFinalCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtHoraFinalCaretUpdate
         if ((evt.getDot() + evt.getMark()) == 0) {
-            jTextField3.setEnabled(false);
-            jTextField3.setText("");
+            txtnNoPersonas.setEnabled(false);
+            txtnNoPersonas.setText("");
         } else if (evt.getDot() >= 1 && evt.getMark() >= 1) {
-            jTextField3.setEnabled(true);
-        } else if (jTextField2.getText().isEmpty()) {
-            jTextField3.setEnabled(false);
-            jTextField3.setText("");
+            txtnNoPersonas.setEnabled(true);
+        } else if (txtHoraFinal.getText().isEmpty()) {
+            txtnNoPersonas.setEnabled(false);
+            txtnNoPersonas.setText("");
         }
-    }//GEN-LAST:event_jTextField2CaretUpdate
+    }//GEN-LAST:event_txtHoraFinalCaretUpdate
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void txtHoraInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraInicialKeyTyped
         if ((evt.getKeyChar() < '0' || evt.getKeyChar() > '9')) {
             evt.consume();
-        } else if (jTextField1.getText().length() >= 2) {
+        } else if (txtHoraInicial.getText().length() >= 2) {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_txtHoraInicialKeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void txtHoraFinalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraFinalKeyTyped
         if ((evt.getKeyChar() < '0' || evt.getKeyChar() > '9')) {
             evt.consume();
-        } else if (jTextField2.getText().length() >= 2) {
+        } else if (txtHoraFinal.getText().length() >= 2) {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_txtHoraFinalKeyTyped
 
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+    private void txtnNoPersonasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnNoPersonasKeyTyped
         if ((evt.getKeyChar() < '0' || evt.getKeyChar() > '9')) {
             evt.consume();
-        } else if (jTextField3.getText().length() >= 2) {
+        } else if (txtnNoPersonas.getText().length() >= 2) {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_txtnNoPersonasKeyTyped
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        if (!jTextField1.getText().isEmpty()) {
-            if (Integer.parseInt(jTextField1.getText()) > 23
-                    || Integer.parseInt(jTextField1.getText()) < 0) {
-                jTextField1.setText("");
+    private void txtHoraInicialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraInicialKeyReleased
+        if (!txtHoraInicial.getText().isEmpty()) {
+            if (Integer.parseInt(txtHoraInicial.getText()) > 23
+                    || Integer.parseInt(txtHoraInicial.getText()) < 0) {
+                txtHoraInicial.setText("");
             }
         }
-    }//GEN-LAST:event_jTextField1KeyReleased
+    }//GEN-LAST:event_txtHoraInicialKeyReleased
 
-    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-        if (!jTextField2.getText().isEmpty()) {
-            if (Integer.parseInt(jTextField2.getText()) > 23
-                    || Integer.parseInt(jTextField2.getText()) < 0) {
-                jTextField2.setText("");
+    private void txtHoraFinalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraFinalKeyReleased
+        if (!txtHoraFinal.getText().isEmpty()) {
+            if (Integer.parseInt(txtHoraFinal.getText()) > 23
+                    || Integer.parseInt(txtHoraFinal.getText()) < 0) {
+                txtHoraFinal.setText("");
             }
         }
-    }//GEN-LAST:event_jTextField2KeyReleased
+    }//GEN-LAST:event_txtHoraFinalKeyReleased
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (cerrarVentana == false) {
@@ -380,14 +383,14 @@ public class TiempoTurno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formWindowClosed
 
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
-        if (!jTextField3.getText().isEmpty()) {
-            if (Integer.parseInt(jTextField3.getText()) > 30
-                    || Integer.parseInt(jTextField3.getText()) < 1) {
-                jTextField3.setText("");
+    private void txtnNoPersonasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnNoPersonasKeyReleased
+        if (!txtnNoPersonas.getText().isEmpty()) {
+            if (Integer.parseInt(txtnNoPersonas.getText()) > 30
+                    || Integer.parseInt(txtnNoPersonas.getText()) < 1) {
+                txtnNoPersonas.setText("");
             }
         }
-    }//GEN-LAST:event_jTextField3KeyReleased
+    }//GEN-LAST:event_txtnNoPersonasKeyReleased
 
     private void jComboBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyPressed
         if (evt.getKeyCode() == 10 && jComboBox1.getSelectedIndex() != 0) {
@@ -395,23 +398,23 @@ public class TiempoTurno extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jComboBox1KeyPressed
 
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
-        if (evt.getKeyCode() == 10 && !jTextField1.getText().isEmpty()) {
-            jTextField1.transferFocus();
+    private void txtHoraInicialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraInicialKeyPressed
+        if (evt.getKeyCode() == 10 && !txtHoraInicial.getText().isEmpty()) {
+            txtHoraInicial.transferFocus();
         }
-    }//GEN-LAST:event_jTextField1KeyPressed
+    }//GEN-LAST:event_txtHoraInicialKeyPressed
 
-    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
-        if (evt.getKeyCode() == 10 && !jTextField2.getText().isEmpty()) {
-            jTextField2.transferFocus();
+    private void txtHoraFinalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraFinalKeyPressed
+        if (evt.getKeyCode() == 10 && !txtHoraFinal.getText().isEmpty()) {
+            txtHoraFinal.transferFocus();
         }
-    }//GEN-LAST:event_jTextField2KeyPressed
+    }//GEN-LAST:event_txtHoraFinalKeyPressed
 
-    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
-        if (evt.getKeyCode() == 10 && !jTextField3.getText().isEmpty()) {
-            jTextField3.transferFocus();
+    private void txtnNoPersonasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnNoPersonasKeyPressed
+        if (evt.getKeyCode() == 10 && !txtnNoPersonas.getText().isEmpty()) {
+            txtnNoPersonas.transferFocus();
         }
-    }//GEN-LAST:event_jTextField3KeyPressed
+    }//GEN-LAST:event_txtnNoPersonasKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -422,9 +425,9 @@ public class TiempoTurno extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txtHoraFinal;
+    private javax.swing.JTextField txtHoraInicial;
+    private javax.swing.JTextField txtnNoPersonas;
     // End of variables declaration//GEN-END:variables
 
 }
