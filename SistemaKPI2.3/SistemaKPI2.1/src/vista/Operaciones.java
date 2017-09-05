@@ -130,6 +130,7 @@ public class Operaciones extends javax.swing.JDialog {
 
         jLabel4.setText("Problema:");
 
+        txtDescProblema.setEnabled(false);
         txtDescProblema.setNextFocusableComponent(btnGuardar);
 
         jLabel1.setText("Area:");
@@ -336,7 +337,7 @@ public class Operaciones extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbTemaItemStateChanged
 
     private void cmbOperacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbOperacionItemStateChanged
-        if (cmbOperacion.getSelectedIndex() > 0) {
+        if (cmbOperacion.getSelectedIndex() != 0) {
             cmbArea.setEnabled(true);
             String operacion = cmbOperacion.getSelectedItem().toString();
             try {
@@ -382,7 +383,6 @@ public class Operaciones extends javax.swing.JDialog {
                         regPerdida[2] = cmbOperacion.getSelectedItem().toString();
                         regPerdida[3] = cmbArea.getSelectedItem().toString();
                         regPerdida[4] = txtDescProblema.getText();
-                        //Principal.in.insertaPerdida(regPerdida);
                         ModeloValidacionesOperaciones.insertaPerdida(regPerdida);
                         limpiar();
                     } catch (Exception ex) {
@@ -508,13 +508,14 @@ public class Operaciones extends javax.swing.JDialog {
     public void limpiar() {
         btnGuardar.setText("Guardar");
         cmbTema.setSelectedIndex(0);
-        cmbOperacion.setSelectedIndex(-1);
-        cmbArea.setSelectedIndex(-1);
+        cmbOperacion.setSelectedIndex(0);
+        cmbArea.setSelectedIndex(0);
         txtDescOpe.setText("");
         txtDescProblema.setText("");
+        txtDescProblema.setEnabled(false);
         cmbTema.setEnabled(true);
-        cmbOperacion.setEnabled(true);
-        cmbArea.setEnabled(true);
+        cmbOperacion.setEnabled(false);
+        cmbArea.setEnabled(false);
     }
 
     public JButton getBtnCancelar() {
