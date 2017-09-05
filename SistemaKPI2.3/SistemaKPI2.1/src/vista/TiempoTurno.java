@@ -240,15 +240,29 @@ public class TiempoTurno extends javax.swing.JDialog {
                             Integer.parseInt(jTextField2.getText()),
                             Integer.parseInt(jTextField3.getText())
                     );
-
-                    int duracionTurno = Integer.parseInt(jTextField2.getText()) - Integer.parseInt(jTextField1.getText());
-                    cmbTiempoModel.add("Selecciona Hora");
-                    for (int i = 0, j = Integer.parseInt(jTextField1.getText()); i < duracionTurno; i++, j++) {
-                        cmbTiempoModel.add(j);
-                    }
-
+                    
+                    int horaInicial = Integer.parseInt(jTextField1.getText());
+                    int horaFinal = Integer.parseInt(jTextField2.getText());
+                    if (horaInicial > horaFinal) {
+                        cmbTiempoModel.add("Selecciona Hora");
+                        for (int i = horaInicial; i != 0; i++) {
+                            if (i == 24) {
+                                i = 0;
+                            } else if (i == horaFinal) {
+                                break;
+                            }
+                            cmbTiempoModel.add(i);
+                        }
+                    } else {
+                        int duracionTurno = horaFinal - horaInicial;
+                        cmbTiempoModel.add("Selecciona Hora");
+                        for (int i = 0, j = horaInicial; i < duracionTurno; i++, j++) {
+                            cmbTiempoModel.add(j);
+                        }
+                    }                 
+                    
                     winPrincipal.getLblTurno().setText(jComboBox1.getSelectedItem().toString()
-                            + " <> " + jTextField1.getText() + " - " + jTextField2.getText());
+                            + " <> " + horaInicial + " - " + horaFinal);
 
                     winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
                     winPrincipal.getCmbTema().setEnabled(true);
