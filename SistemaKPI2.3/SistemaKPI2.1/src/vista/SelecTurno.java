@@ -114,7 +114,6 @@ public class SelecTurno extends javax.swing.JDialog {
                 turno = cmbTurno.getSelectedItem().toString();
                 try {
                     System.out.println("fecha: "+fecha+" linea: "+seleccionTurnoLinea+" turno: "+turno);
-
                     inicioTurno = consultaTurno.consultaInicioTurno(fecha, seleccionTurnoLinea,turno);
                     finTurno = consultaTurno.consultaFinTurno(fecha, seleccionTurnoLinea, turno);
                     principalMetodos.consultarBitacoraPorDia(winPrincipal);                            

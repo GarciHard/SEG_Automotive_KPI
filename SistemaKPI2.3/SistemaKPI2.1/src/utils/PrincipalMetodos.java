@@ -155,11 +155,21 @@ public class PrincipalMetodos {
     public void panelPiezasProducidasNoPartes(Principal winPrincipal) {
         if (!winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
             winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
+            winPrincipal.getTxtTC().setText("");
+            winPrincipal.getTxtTC().setEnabled(false);
             winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(false);
         }
+        
+        winPrincipal.getTxtTC().setEnabled(false);
         winPrincipal.getCmbNoPartePzasProd().setEnabled(true);
         winPrincipal.getCmbNoPartePzasProd().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
                 winPrincipal.getCmbClientePzasProd().getSelectedItem().toString()));
+    }
+    
+    public void panelPiezasProducidasTC(Principal winPrincipal){
+        if(winPrincipal.getCmbNoPartePzasProd().getSelectedIndex() == 0 ){
+            
+        }
     }
 
     public void panelOrganizacionalesAreas(Principal winPrincipal) {

@@ -226,7 +226,11 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             case "_cmbNoPartePzasProd":
                 winPrincipal.getTxtTC().setText("");
-                winPrincipal.getTxtTC().setEnabled(true);
+                if(winPrincipal.getCmbNoPartePzasProd().getSelectedIndex() != 0 ){
+                    winPrincipal.getTxtTC().setEnabled(true);
+                }else {
+                    winPrincipal.getTxtTC().setEnabled(false);
+                }                
                 break;
             //***** Panel Calidad *****
             case "_cmbOperacionCalidad":
