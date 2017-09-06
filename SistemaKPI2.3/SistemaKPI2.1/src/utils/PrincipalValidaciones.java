@@ -22,7 +22,7 @@ public class PrincipalValidaciones {
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getCmbHora().setEnabled(true);
-                winPrincipal.getBtnParoPeriodo().setVisible(true);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
             if (winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
@@ -64,7 +64,7 @@ public class PrincipalValidaciones {
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getCmbHora().setEnabled(true);
-                winPrincipal.getBtnParoPeriodo().setVisible(true);
+                winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
             if (winPrincipal.getTxtScrapCambios().getText().isEmpty()) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
@@ -74,8 +74,7 @@ public class PrincipalValidaciones {
         } else if (winPrincipal.getTxtTiempoInicio().equals(e.getSource())) { //JTextField TiempoInicio
             if ((e.getDot() + e.getMark()) == 0 || winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
                 winPrincipal.getTxtTiempoFin().setText("");
-                winPrincipal.getTxtTiempoFin().setEnabled(false);
-                
+                winPrincipal.getTxtTiempoFin().setEnabled(false);                
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getTxtTiempoFin().setEnabled(true);

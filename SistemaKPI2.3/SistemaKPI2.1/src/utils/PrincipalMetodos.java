@@ -1004,6 +1004,7 @@ public class PrincipalMetodos {
             ArrayList reg = new ArrayList();
             for (int j = 0; j < columnas; j++) {
                 reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                System.out.println(j+" . "+reg);
             }
             new BitacoraDAOImpl().insertarFilaRegistro(reg);
             contadorFila++;

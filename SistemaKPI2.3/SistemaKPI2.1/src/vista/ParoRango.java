@@ -120,25 +120,27 @@ public class ParoRango extends javax.swing.JDialog {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         
-        hInicio = cmbHInicio.getSelectedIndex();
-        hFin = cmbHFin.getSelectedIndex();
+        hInicio = Integer.parseInt(cmbHInicio.getSelectedItem().toString());
+        hFin = Integer.parseInt(cmbHFin.getSelectedItem().toString());
         int cont = hFin - hInicio;
-        
+        int aux = 0;        
+        //System.out.println("i: "+hInicio+"f: "+hFin);
         if(hFin <= hInicio){
             JOptionPane.showMessageDialog(this, "Revisa tu ahora de Inicio y Fin");
         }else {
-            System.err.println(cont);
-            while (hInicio != hFin){
+            //System.err.println(cont);
+            while ( aux < cont){ //Inicio <= hFin 
                 agregarRegistroBitacora(winPrincipal);
+                //System.out.println("agrega "+hInicio+" "+aux+" "+cont);
                 hInicio = hInicio+1;
-                System.out.println(hInicio);
+                //System.out.println("next agre"+hInicio);
+                aux = aux+1;
             }
+            JOptionPane.showMessageDialog(this, "Paro de tiempo guardado");
+            winPrincipal.getCmbHora().setEnabled(false);
+            winPrincipal.getCmbTema().setSelectedIndex(0);
+            this.dispose();
         }
-        
-        JOptionPane.showMessageDialog(this, "Paro de tiempo guardado");
-        winPrincipal.getCmbHora().setEnabled(false);
-        winPrincipal.getCmbTema().setSelectedIndex(0);
-        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public void agregarRegistroBitacora(Principal winPrincipal) {
@@ -148,8 +150,7 @@ public class ParoRango extends javax.swing.JDialog {
 
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
             modeloTabla.addRow(registroBitacora);
-            insertarRegistroFilaAccess(winPrincipal);
-           
+            insertarRegistroFilaAccess(winPrincipal);           
         } else {
             tiempoHora = new ArrayList();
             for (int c = 0; c < modeloTabla.getRowCount(); c++) {
@@ -172,13 +173,14 @@ public class ParoRango extends javax.swing.JDialog {
                     if (Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[1].toString())) {
                         if (Integer.parseInt(registroBitacora[3].toString()) < Integer.parseInt(registroBitacoraTmp[2].toString())) {
                             JOptionPane.showMessageDialog(winPrincipal, "Registro dentro de intervalo no válido","Advertencia", JOptionPane.WARNING_MESSAGE );
+                            
                             break;
                         } else if (Integer.parseInt(registroBitacora[3].toString()) > Integer.parseInt(registroBitacoraTmp[2].toString())) {
                             if (registroBitacoraTmpAux != null) {
                                 if (Integer.parseInt(registroBitacora[4].toString()) < Integer.parseInt(registroBitacoraTmpAux[1].toString())) {
                                     modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                     ordenarTabla(modeloTabla);
-                                    insertarRegistroFilaAccess(winPrincipal);
+                                    insertarRegistroFilaAccess(winPrincipal);   
                                     
                                     break;
                                 }
