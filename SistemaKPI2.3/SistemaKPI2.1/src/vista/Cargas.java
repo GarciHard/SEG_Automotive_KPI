@@ -2,6 +2,7 @@
 package vista;
 
 import control.PrincipalControl;
+import java.awt.Cursor;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class Cargas extends javax.swing.JDialog {
     
     
     public static String linea = ""; //String linea = "";
-    public static String lineaLinea = LineasMetodos.lineaLinea;
+    //public static String lineaLinea = LineasMetodos.lineaLinea;
     
     private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
     /**
@@ -43,8 +44,10 @@ public class Cargas extends javax.swing.JDialog {
      */
     public Cargas(java.awt.Frame parent, boolean modal) throws IOException {
         super(parent, modal);
-        
-        validaEntrada();
+        initComponents();
+        //validaEntrada();
+        this.setLocationRelativeTo(null);
+        cmbLinea.setModel(principalMetodos.listaLineas());
     }
     
     /**
@@ -198,6 +201,7 @@ public class Cargas extends javax.swing.JDialog {
         );
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.setEnabled(false);
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -253,7 +257,8 @@ public class Cargas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        //System.err.println("l: "+linea);
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        btnGuardar.setEnabled(false);
         cargaClientes();
         cargaNumPartes();
         cargaOperaciones();
@@ -265,6 +270,7 @@ public class Cargas extends javax.swing.JDialog {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         linea = cmbLinea.getSelectedItem().toString();
+        
         int cargaM = JOptionPane.showConfirmDialog(null, "¿Desea Cargar Datos Masivamente a la linea?\n\t"+ linea,  "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (cargaM == 0) {
             int act = JOptionPane.showConfirmDialog(null, "Debe actualizar el archivo PlantillaCargaDeDatos.xls, esta en: \n I:Dep>MOE1>Shared>Informacion_general>proyectos  SG>Proyecto OEE \n\n Presione YES, cuando este actualizado", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -279,7 +285,6 @@ public class Cargas extends javax.swing.JDialog {
                     tablaOperaciones();
                     tablaPerdidas();
                     importarExcel();
-
                 } catch (IOException ex) {
                     Logger.getLogger(Cargas.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -288,44 +293,14 @@ public class Cargas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void cmbLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLineaActionPerformed
-        // TODO add your handling code here:
         if(cmbLinea.getSelectedIndex() != 0){
             btnAceptar.setEnabled(true);
+        } else {
+            btnAceptar.setEnabled(false);
         }
+        
     }//GEN-LAST:event_cmbLineaActionPerformed
 
-    public void validaEntrada() throws IOException{
-        if(LineasMetodos.bndLinea == 1){
-                linea = lineaLinea;
-                LineasMetodos.bndLinea = 0;
-                
-                initComponents();  
-                cmbLinea.setVisible(false);
-                cmbLinea.setEnabled(false);
-                btnAceptar.setVisible(false);
-                btnAceptar.setEnabled(false);
-                this.setLocationRelativeTo(null);
-                
-                tablaClientes();
-                tablaNumPartes();
-                tablaOperaciones();
-                tablaPerdidas();
-                importarExcel();
-            
-        } else if (PrincipalControl.bndLinea == 1 ){
-            PrincipalControl.bndLinea = 0;
-            initComponents();    
-            cmbLinea.setVisible(true);
-            cmbLinea.setEnabled(true);
-            cmbLinea.setModel(principalMetodos.listaLineas());
-            btnAceptar.setVisible(true);
-            btnAceptar.setEnabled(false);
-            btnGuardar.setVisible(false);
-            this.setLocationRelativeTo(null);
-                        
-        }
-    }
-    
     public void tablaClientes(){
         modeloClientes = new DefaultTableModel();
         modeloClientes.addColumn("Clientes");
@@ -357,13 +332,20 @@ public class Cargas extends javax.swing.JDialog {
     }
     
     public void importarExcel () throws IOException{
-        //File file = new File("C:\\Users\\PRR1TL\\Documents\\PlantillaCarga2.xls");
         File file = new File("I:\\Dept\\MOE1\\Shared\\Informacion_general\\proyectos  SG\\Proyecto OEE\\PlantillaCargaDeDatos.xls");
-        
-        seleccionaClientes(file);
-        seleccionaNPartes(file);
-        seleccionaOperaciones(file);
-        seleccionaPerdidas(file);
+        if (file.exists()) {
+            seleccionaClientes(file);
+            seleccionaNPartes(file);
+            seleccionaOperaciones(file);
+            seleccionaPerdidas(file);
+        }else{
+            JOptionPane.showMessageDialog(this, "El formato no existe en la ruta por el momento Ö \nDirigete con Raúl Guadarrama (ICO), el tiene la solucion");
+            tblClientes.setEnabled(false);
+            tblNumPartes.setEnabled(false);
+            tblOperaciones.setEnabled(false);
+            tblPerdidas.setEnabled(false);
+            btnGuardar.setEnabled(false);
+        }        
     }
     
     public void seleccionaClientes(File file) throws IOException{
@@ -409,7 +391,7 @@ public class Cargas extends javax.swing.JDialog {
                             cell = sheet.getCell(i, j);
                             np.add(cell.getContents());
                         }else{
-                            lblMensaje.setText("KNo puedes guardar si tus datos tienen errores \n Favor de verificarlos");
+                            lblMensaje.setText("No puedes guardar si tus datos tienen errores \n Favor de verificarlos");
                             btnGuardar.setEnabled(false);
                         }
                     }else if (i == 1) {
@@ -419,7 +401,7 @@ public class Cargas extends javax.swing.JDialog {
                             cell = sheet.getCell(i, j);
                             np.add(cell.getContents());
                         }else {
-                            lblMensaje.setText("FNo puedes guardar si tus datos tienen errores \n Favor de verificarlos");
+                            lblMensaje.setText("No puedes guardar si tus datos tienen errores \n Favor de verificarlos");
                             btnGuardar.setEnabled(false);
                         }
                     } else if (i == 2) {
@@ -428,7 +410,7 @@ public class Cargas extends javax.swing.JDialog {
                         if(mat.find()){
                             np.add(cell.getContents());
                         }else {
-                            lblMensaje.setText("DNo puedes guardar si tus datos tienen errores \n Favor de verificarlos");
+                            lblMensaje.setText("No puedes guardar si tus datos tienen errores \n Favor de verificarlos");
                             btnGuardar.setEnabled(false);
                         }
                     }                     
@@ -621,52 +603,6 @@ public class Cargas extends javax.swing.JDialog {
             i -= 1;
         }
     }
-    
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cargas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cargas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cargas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cargas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        /*ava.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Cargas dialog = new Cargas(new javax.swing.JFrame(), true);
-                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                        @Override
-                        public void windowClosing(java.awt.event.WindowEvent e) {
-                            System.exit(0);
-                        }
-                    });
-                    dialog.setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(Cargas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }*/
 
     public JComboBox<String> getCmbLinea() {
         return cmbLinea;

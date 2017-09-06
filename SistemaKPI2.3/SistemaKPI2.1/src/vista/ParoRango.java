@@ -131,9 +131,7 @@ public class ParoRango extends javax.swing.JDialog {
             //System.err.println(cont);
             while ( aux < cont){ //Inicio <= hFin 
                 agregarRegistroBitacora(winPrincipal);
-                //System.out.println("agrega "+hInicio+" "+aux+" "+cont);
                 hInicio = hInicio+1;
-                //System.out.println("next agre"+hInicio);
                 aux = aux+1;
             }
             JOptionPane.showMessageDialog(this, "Paro de tiempo guardado");

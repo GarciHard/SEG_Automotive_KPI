@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import modelo.ConexionBD;
 import modelo.CargaMasivaDAO;
 import utils.LineasMetodos;
+import vista.Cargas;
 
 /**
  *
@@ -15,15 +16,17 @@ public class CargaMasivaDAOImpl extends ConexionBD implements CargaMasivaDAO{
     private PreparedStatement ps;
     private ResultSet rs;
     
-    public static String linea = LineasMetodos.lineaLinea;//"";
+    public static String linea = Cargas.linea;//"";
     
     private final String INSERTAR_PERDIDAS = "INSERT INTO Perdidas (linea, tema, operacion, area, problema) " + "VALUES(?, ?, ?, ?, ?)";
     private final String INSERTAR_CLIENTES = "INSERT INTO Clientes (linea, cliente)" + "VALUES (?,?)";
     private final String INSERTAR_NUMPARTES = "INSERT INTO ListaNumPartes (noParte, LineaProduce, familia, cliente)" + "VALUES (?,?,?,?)";
     private final String INSERTAR_OPERACIONES = "INSERT INTO operaciones (linea, operacion, descripcion)" + "VALUES (?,?,?)";
     
+    
     public void insertarPerdidas(ArrayList registro) throws Exception {
         Object[] reg = new Object[registro.size()];
+        
         try {
             this.conectar();
             for (int i = 0; i < registro.size(); i++) {
