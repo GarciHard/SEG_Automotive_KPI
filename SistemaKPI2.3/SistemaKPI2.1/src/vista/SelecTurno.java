@@ -61,6 +61,7 @@ public class SelecTurno extends javax.swing.JDialog {
         });
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.setNextFocusableComponent(btnCancelar);
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -68,8 +69,15 @@ public class SelecTurno extends javax.swing.JDialog {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Selecciona Turno");
+
+        cmbTurno.setNextFocusableComponent(btnAceptar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,6 +148,10 @@ public class SelecTurno extends javax.swing.JDialog {
             Logger.getLogger(SelecTurno.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cmbTurno.setSelectedIndex(0);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

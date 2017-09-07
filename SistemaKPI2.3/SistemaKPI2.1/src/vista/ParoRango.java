@@ -64,6 +64,7 @@ public class ParoRango extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.setNextFocusableComponent(btnAceptar);
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -71,6 +72,15 @@ public class ParoRango extends javax.swing.JDialog {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        cmbHInicio.setNextFocusableComponent(cmbHInicio);
+
+        cmbHFin.setNextFocusableComponent(cmbHFin);
 
         jLabel1.setText("Hora Fin");
 
@@ -140,6 +150,11 @@ public class ParoRango extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cmbHInicio.setSelectedIndex(0);
+        cmbHFin.setSelectedIndex(0);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     public void agregarRegistroBitacora(Principal winPrincipal) {
         int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
