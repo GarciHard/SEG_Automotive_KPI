@@ -28,6 +28,7 @@ public class RegistroUsuariosDAOImpl extends ConexionBD implements RegistroUsuar
             ps.setString(3, usuario.getPuesto());
             ps.setInt(4, usuario.getPrivilegio());
             
+            System.out.println("entra");
             ps.executeUpdate();
         } catch (Exception e) {
             throw e;

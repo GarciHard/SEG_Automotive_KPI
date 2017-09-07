@@ -19,7 +19,7 @@ public class RegistroUsuariosMetodos {
             new RegistroUsuariosDAOImpl().registrarUsuarios(new UsuarioDTO(
                     usr, pwd, puesto, asignarPrivilegio(puesto)
             ));
-            JOptionPane.showMessageDialog(form, "Usuario creado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(form, "Usuario "+usr+" creado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(form, "RegistroUsuarioMetodos.guardarUsuario()\n"
                     + e, "Error", JOptionPane.ERROR_MESSAGE);

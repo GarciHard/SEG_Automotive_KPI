@@ -1090,6 +1090,14 @@
                 <Property name="focusable" type="boolean" value="true"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator8">
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mniEditarPorTurno">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="B&#xed;tacora por truno"/>
+                <Property name="actionCommand" type="java.lang.String" value="_mniEditarPorTurno"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>

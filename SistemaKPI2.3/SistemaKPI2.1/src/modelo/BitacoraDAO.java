@@ -16,5 +16,7 @@ public interface BitacoraDAO {
     public void borrarFilaRegistro(ArrayList bRegistroFila) throws Exception;
     public void borrarRegistroFechaAccess(String fecha) throws Exception;
     public ArrayList existeFechaBitacora(String fecha, DefaultTableModel bitacora) throws Exception;
-    public ArrayList listarBitacoras(String fecha, String linea, int horaInicio, int horaFin) throws Exception;
+    public ArrayList listarBitacorasPorFecha(String fecha, String linea) throws Exception;
+    public ArrayList listarBitacorasTurno(String fecha, String linea, int horaInicio, int horaFin) throws Exception;
+    
 }

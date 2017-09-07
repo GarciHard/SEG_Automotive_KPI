@@ -2,6 +2,7 @@ package utils;
 
 import control.PrincipalControl;
 import dao.LineasDAOImpl;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -64,6 +65,11 @@ public class LineasMetodos {
         if (e.getSource().equals(winLineas.getBtnAgregar())) {
             switch (winLineas.getBtnAgregar().getText()) {
                 case "Agregar":
+                    winLineas.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                    winLineas.getCmbTipoEnsamble().setEnabled(false);
+                    winLineas.getTxtLinea().setEnabled(false);
+                    winLineas.getTxtNombre().setEnabled(false);
+                    winLineas.getTblLineas().setEnabled(false);
                     if (!existeLinea(winLineas, winLineas.getTxtLinea().getText())) {
                         try {
                             new LineasDAOImpl().crearNvaLinea(
@@ -89,7 +95,6 @@ public class LineasMetodos {
                                     try {
                                         bndLinea = 1;
                                         new Cargas(winPrincipal, true).setVisible(true);
-                                        
                                     } catch (IOException ex) {
                                         Logger.getLogger(PrincipalControl.class.getName()).log(Level.SEVERE, null, ex);
                                     }
@@ -97,9 +102,7 @@ public class LineasMetodos {
                             } else {
                                 System.out.println("else");
                             }
-                            
                             System.out.println("utils.LineasMetodos.actionPerformed()");
-                            
                         }
                     }
                     break;

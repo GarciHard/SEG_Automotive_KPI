@@ -7,6 +7,7 @@ package vista;
 
 import control.PrincipalControl;
 import dao.ConsultaPorTurnoDAOImpl;
+import java.awt.Cursor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -115,6 +116,11 @@ public class SelecTurno extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        cmbTurno.setEnabled(false);
+        btnAceptar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        
         if((cmbTurno.getSelectedIndex() == 0)){
            JOptionPane.showMessageDialog(this, "Debes seleccionar un turno");
            bnLinea = 0;
@@ -123,10 +129,11 @@ public class SelecTurno extends javax.swing.JDialog {
             if (seleccionTurnoLinea != null){
                 turno = cmbTurno.getSelectedItem().toString();
                 try {
-                    System.out.println("fecha: "+fecha+" linea: "+seleccionTurnoLinea+" turno: "+turno);
                     inicioTurno = consultaTurno.consultaInicioTurno(fecha, seleccionTurnoLinea,turno);
                     finTurno = consultaTurno.consultaFinTurno(fecha, seleccionTurnoLinea, turno);
-                    principalMetodos.consultarBitacoraPorDia(winPrincipal);                            
+                    System.out.println("i " +inicioTurno+" f "+finTurno);
+                    //setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    principalMetodos.consultarBitacoraPorTurno(winPrincipal);                            
                 } catch (Exception ex) {
                     Logger.getLogger(SelecTurno.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -137,6 +144,7 @@ public class SelecTurno extends javax.swing.JDialog {
             winPrincipal.getBtnCambiarLinea().setEnabled(false);
             winPrincipal.getCmbTema().setEnabled(true);
         }  
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

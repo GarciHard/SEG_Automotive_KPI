@@ -1,6 +1,7 @@
 package vista;
 
 import dao.BitacoraDAOImpl;
+import java.awt.Cursor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -131,6 +132,11 @@ public class ParoRango extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        cmbHInicio.setEnabled(false);
+        cmbHFin.setEnabled(false);
+        btnAceptar.setEnabled(false);
+        btnCancelar.setEnabled(false);
         
         hInicio = Integer.parseInt(cmbHInicio.getSelectedItem().toString());
         hFin = Integer.parseInt(cmbHFin.getSelectedItem().toString());
@@ -144,6 +150,7 @@ public class ParoRango extends javax.swing.JDialog {
                 hInicio = hInicio+1;
                 aux = aux+1;
             }
+            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             JOptionPane.showMessageDialog(this, "Paro de tiempo guardado");
             winPrincipal.getCmbHora().setEnabled(false);
             winPrincipal.getCmbTema().setSelectedIndex(0);

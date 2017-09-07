@@ -167,6 +167,8 @@ public class Principal extends javax.swing.JFrame {
         mniCargaMasiva = new javax.swing.JMenuItem();
         mnuEditar = new javax.swing.JMenu();
         mniEditarPorDia = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
+        mniEditarPorTurno = new javax.swing.JMenuItem();
 
         mniEliminar.setText("Eliminar");
         mniEliminar.setActionCommand("_mniEliminar");
@@ -1063,6 +1065,11 @@ public class Principal extends javax.swing.JFrame {
         mniEditarPorDia.setActionCommand("_mniEditarPorDia");
         mniEditarPorDia.setFocusable(true);
         mnuEditar.add(mniEditarPorDia);
+        mnuEditar.add(jSeparator8);
+
+        mniEditarPorTurno.setText("Bítacora por truno");
+        mniEditarPorTurno.setActionCommand("_mniEditarPorTurno");
+        mnuEditar.add(mniEditarPorTurno);
 
         mnuBarra.add(mnuEditar);
 
@@ -1119,6 +1126,10 @@ public class Principal extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    public JMenuItem getMniEditarPorTurno() {
+        return mniEditarPorTurno;
+    }
 
     public JButton getBtnParoPeriodo() {
         return btnParoPeriodo;
@@ -1429,6 +1440,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAreaCalidad;
     private javax.swing.JLabel lblAreaCambios;
@@ -1473,6 +1485,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniClientes;
     private javax.swing.JMenuItem mniCrearUsuario;
     private javax.swing.JMenuItem mniEditarPorDia;
+    private javax.swing.JMenuItem mniEditarPorTurno;
     private javax.swing.JMenuItem mniEliminar;
     private javax.swing.JMenuItem mniLineas;
     private javax.swing.JMenuItem mniListarBitacoras;

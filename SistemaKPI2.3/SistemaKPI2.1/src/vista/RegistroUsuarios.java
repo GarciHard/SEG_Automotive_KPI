@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Cursor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -65,6 +66,11 @@ public class RegistroUsuarios extends javax.swing.JDialog {
         btnAceptar.setText("Aceptar");
         btnAceptar.setActionCommand("_btnAceptar");
         btnAceptar.setEnabled(false);
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.setActionCommand("_btnCancelar");
@@ -136,6 +142,12 @@ public class RegistroUsuarios extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     public JButton getBtnAceptar() {
         return btnAceptar;

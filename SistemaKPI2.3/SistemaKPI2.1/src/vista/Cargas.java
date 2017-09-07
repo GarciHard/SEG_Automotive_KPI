@@ -265,6 +265,7 @@ public class Cargas extends javax.swing.JDialog {
         cargaOperaciones();
         cargaPerdidas();
         dispose();
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         JOptionPane.showMessageDialog(this, "Datos Cargados Correctamente");
     }//GEN-LAST:event_btnGuardarActionPerformed
 

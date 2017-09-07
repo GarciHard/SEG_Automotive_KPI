@@ -1,5 +1,6 @@
 package utils;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
@@ -16,15 +17,27 @@ public class RegistroUsuariosValidaciones {
     public static void validarActionListener(RegistroUsuarios winRegistroUsuarios, ActionEvent e) {
         switch (e.getActionCommand()) {
             case "_btnAceptar":
+                winRegistroUsuarios.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                winRegistroUsuarios.getTxtUsuario().setEnabled(false);
+                winRegistroUsuarios.getPwdContraseña().setEnabled(false);
+                winRegistroUsuarios.getPwdVerificar().setEnabled(false);
+                winRegistroUsuarios.getCmbTipoUsuario().setEnabled(false);
+                
                 new RegistroUsuariosMetodos().guardarUsuario(winRegistroUsuarios.getTxtUsuario().getText(),
                         winRegistroUsuarios.getPwdContraseña().getText(),
                         winRegistroUsuarios.getCmbTipoUsuario().getSelectedItem().toString());
                 winRegistroUsuarios.dispose();
                 break;
             case "_btnCancelar":
+                winRegistroUsuarios.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 winRegistroUsuarios.dispose();
                 break;
         }
+        winRegistroUsuarios.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        winRegistroUsuarios.getTxtUsuario().setEnabled(true);
+        winRegistroUsuarios.getPwdContraseña().setEnabled(true);
+        winRegistroUsuarios.getPwdVerificar().setEnabled(true);
+        winRegistroUsuarios.getCmbTipoUsuario().setEnabled(true);
     }
 
     public static void validarCaretUpdate(RegistroUsuarios winRegistroUsuarios, CaretEvent ce) {

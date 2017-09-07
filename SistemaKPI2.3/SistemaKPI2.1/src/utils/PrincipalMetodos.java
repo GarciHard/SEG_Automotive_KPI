@@ -860,12 +860,13 @@ public class PrincipalMetodos {
             );
         }
     }
-
-    public void consultarBitacoraPorDia(Principal winPrincipal) {
-        int inicio = SelecTurno.inicioTurno;
-        int fin = SelecTurno.finTurno;
-        String fecha = SelecTurno.fecha;
-        String linea = SelecTurno.seleccionTurnoLinea;
+    
+    public void consultarBitacoraPorDia(Principal winPrincipal) {   
+        String fecha = PrincipalControl.fecha;
+        String linea = PrincipalControl.linea;
+        
+        System.out.println("f "+fecha+" l "+linea);
+        
         if (winPrincipal.getTblBitacora().getRowCount() != 0) {
             switch (JOptionPane.showConfirmDialog(winPrincipal, "En caso de tener registros sin guardar, estos se perderán.\n¿Seguro que desea continuar?", "Mensaje",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
@@ -875,8 +876,8 @@ public class PrincipalMetodos {
                     winPrincipal.getDteFecha().setEnabled(false);
                     winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
                     Object[] bitacoraObj;
-                    try {
-                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(fecha,linea,inicio,fin);
+                    try {                        
+                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha,linea);
                         //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
                           //      winPrincipal.getCmbLinea().getSelectedItem().toString());
                         if (!bitacoraArr.isEmpty()) {
@@ -902,7 +903,69 @@ public class PrincipalMetodos {
             winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
             Object[] bitacoraObj;
             try {
-                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(fecha,linea,inicio,fin);
+                System.out.println("ae");
+                System.out.println("f "+fecha+" l "+linea);
+                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha,linea);
+                //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
+                        //winPrincipal.getCmbLinea().getSelectedItem().toString());
+                if (!bitacoraArr.isEmpty()) {
+                    modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+                    for (int i = 0; i < bitacoraArr.size(); i++) {
+                        bitacoraObj = (Object[]) bitacoraArr.get(i);
+                        modeloTabla.addRow(bitacoraObj);
+                    }
+                }
+            } catch (Exception e) {
+                guardaTemporalTXT(winPrincipal);
+                JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.consultarBitacoraPorDia()\n" + e,
+                        "Error", JOptionPane.ERROR_MESSAGE
+                );
+            }
+        }
+    }
+
+    public void consultarBitacoraPorTurno(Principal winPrincipal) {
+        int inicio = SelecTurno.inicioTurno;
+        int fin = SelecTurno.finTurno;
+        String fecha = SelecTurno.fecha;
+        String linea = SelecTurno.seleccionTurnoLinea;
+        if (winPrincipal.getTblBitacora().getRowCount() != 0) {
+            switch (JOptionPane.showConfirmDialog(winPrincipal, "En caso de tener registros sin guardar, estos se perderán.\n¿Seguro que desea continuar?", "Mensaje",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
+                case 0:
+                    limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
+
+                    winPrincipal.getDteFecha().setEnabled(false);
+                    winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
+                    Object[] bitacoraObj;
+                    try {
+                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha,linea,inicio,fin);
+                        //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
+                          //      winPrincipal.getCmbLinea().getSelectedItem().toString());
+                        if (!bitacoraArr.isEmpty()) {
+                            modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+                            for (int i = 0; i < bitacoraArr.size(); i++) {
+                                bitacoraObj = (Object[]) bitacoraArr.get(i);
+                                modeloTabla.addRow(bitacoraObj);
+                            }
+                        }
+                    } catch (Exception e) {
+                        guardaTemporalTXT(winPrincipal);
+                        JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.consultarBitacoraPorDia()\n" + e,
+                                "Error", JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                    break;
+                case 1:
+                    cancelarEdicion(winPrincipal);
+                    break;
+            }
+        } else {
+            winPrincipal.getDteFecha().setEnabled(false);
+            winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
+            Object[] bitacoraObj;
+            try {
+                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha,linea,inicio,fin);
                 //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
                         //winPrincipal.getCmbLinea().getSelectedItem().toString());
                 if (!bitacoraArr.isEmpty()) {

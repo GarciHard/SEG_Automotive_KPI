@@ -2,6 +2,7 @@ package vista;
 
 import control.LoginControl;
 import control.PrincipalControl;
+import java.awt.Cursor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
@@ -376,6 +377,16 @@ public class Operaciones extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbOperacionItemStateChanged
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        cmbTema.setEnabled(false);
+        cmbArea.setEnabled(false);
+        cmbOperacion.setEnabled(false);
+        cmbBuscar.setEnabled(false);
+        txtBuscar.setEnabled(false);
+        txtDescOpe.setEnabled(false);
+        txtDescProblema.setEditable(false);
+        btnGuardar.setEnabled(false);
+        btnCancelar.setEnabled(false);
         try {
             Object[] regPerdida = new Object[5];
             if (btnGuardar.getText().equals("Guardar")) {
@@ -421,6 +432,9 @@ public class Operaciones extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //cmbTema.setEnabled(true);
+        //btnGuardar.setEnabled(true);
+        //btnCancelar.setEnabled(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed

@@ -42,13 +42,11 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
     public static String linea;
     protected static Operaciones winOperaciones;
-    public static int bndLinea = 0;
-    
+    public static int bnEdicion = 0;
     
     public PrincipalControl(Principal principal) {
         PrincipalControl.winPrincipal = principal;
-        initFrame();
-        
+        initFrame();        
     }
 
     private void initFrame() {
@@ -136,6 +134,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getMniLineas().addActionListener(this);
         //Menu EditarBitacora
         winPrincipal.getMniEditarPorDia().addActionListener(this);
+        winPrincipal.getMniEditarPorTurno().addActionListener(this);
         
         //MenuEliminarBitacora
         winPrincipal.getMniEliminar().addActionListener(this);
@@ -166,7 +165,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             //***** Barra de Menu *****
             case "_mniCargaMasiva":
                 linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
-                bndLinea = 1;
                 try {
                     new Cargas(winPrincipal, true).setVisible(true);
                 } catch (IOException ex) {
@@ -177,6 +175,12 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 new Lineas(winPrincipal, true).setVisible(true);
                 break;
             case "_mniEditarPorDia":
+                bnEdicion = 1;
+                winPrincipal.getDteFecha().setEnabled(true);
+                winPrincipal.getBtnCancelar().setVisible(true);                
+                break;
+            case "_mniEditarPorTurno":
+                bnEdicion = 2;
                 winPrincipal.getDteFecha().setEnabled(true);
                 winPrincipal.getBtnCancelar().setVisible(true);
                 break;
@@ -356,9 +360,13 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         if (evt.getSource().equals(winPrincipal.getDteFecha())) {
             linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
             fecha = winPrincipal.getDteFecha().getText();
-            new SelecTurno(winPrincipal, true).setVisible(true);
+            if (bnEdicion ==2 ){
+                new SelecTurno(winPrincipal, true).setVisible(true);
+            } else{
+                System.out.println("entra");
+                principalMetodos.consultarBitacoraPorDia(winPrincipal);
+            }
         }
-            //principalMetodos.consultarBitacoraPorDia(winPrincipal);
     }
 
     @Override
