@@ -1,5 +1,6 @@
 package vista;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
@@ -21,6 +22,7 @@ public class Lineas extends javax.swing.JDialog {
     public Lineas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
     }
 
     @SuppressWarnings("unchecked")

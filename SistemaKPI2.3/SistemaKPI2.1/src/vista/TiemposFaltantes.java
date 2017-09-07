@@ -1,5 +1,6 @@
 package vista;
 
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
 /**
@@ -13,6 +14,7 @@ public class TiemposFaltantes extends javax.swing.JDialog {
     public TiemposFaltantes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
     }
     
     @SuppressWarnings("unchecked")

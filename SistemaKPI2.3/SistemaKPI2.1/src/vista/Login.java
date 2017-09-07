@@ -1,5 +1,6 @@
 package vista;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -15,6 +16,7 @@ public class Login extends javax.swing.JDialog {
     public Login(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
     }
 
     /** This method is called from within the constructor to

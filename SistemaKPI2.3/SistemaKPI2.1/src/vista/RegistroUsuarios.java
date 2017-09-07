@@ -1,5 +1,6 @@
 package vista;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
@@ -16,6 +17,7 @@ public class RegistroUsuarios extends javax.swing.JDialog {
     public RegistroUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
     }
 
     @SuppressWarnings("unchecked")

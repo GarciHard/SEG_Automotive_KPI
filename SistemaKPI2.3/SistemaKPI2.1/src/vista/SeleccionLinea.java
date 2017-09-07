@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Cursor;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import utils.PrincipalMetodos;
@@ -21,6 +22,7 @@ public class SeleccionLinea extends javax.swing.JDialog {
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         winPrincipal = (Principal) parent;
         cmbLinea.setModel(new PrincipalMetodos().listaLineas());
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
     }
 
     @SuppressWarnings("unchecked")

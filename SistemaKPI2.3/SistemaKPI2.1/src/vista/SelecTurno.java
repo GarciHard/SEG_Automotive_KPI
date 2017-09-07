@@ -9,6 +9,7 @@ import control.PrincipalControl;
 import dao.ConsultaPorTurnoDAOImpl;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import utils.PrincipalMetodos;
 
@@ -34,6 +35,7 @@ public class SelecTurno extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         winPrincipal = (Principal) parent;
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
         this.setLocationRelativeTo(null);
     }
 

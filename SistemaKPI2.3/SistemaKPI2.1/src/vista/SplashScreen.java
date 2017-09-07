@@ -1,5 +1,9 @@
 package vista;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+
 /**
  * Hecho con <3 por:
  * @author GarciHard
@@ -10,6 +14,7 @@ public class SplashScreen extends javax.swing.JFrame {
     /** Creates new form SplashScreen */
     public SplashScreen() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
     }
 
     /** This method is called from within the constructor to
@@ -26,6 +31,7 @@ public class SplashScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Programa para Bítacora y reportes de producción");
+        setIconImages(null);
         setResizable(false);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LEGEND_20170802_131520.gif"))); // NOI18N
@@ -56,7 +62,14 @@ public class SplashScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    
+    
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("src/imagenes/bs.png"));
+        return retValue;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblLogo;
     private javax.swing.JPanel pnlBackground;

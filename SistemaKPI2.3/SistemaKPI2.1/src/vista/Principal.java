@@ -4,6 +4,7 @@ import com.alee.extended.date.WebDateField;
 import com.alee.extended.panel.WebCollapsiblePane;
 import control.PrincipalControl;
 import java.awt.Cursor;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -31,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         PromptSupport.setPrompt("Minuto Inicio",txtTiempoInicio);
         PromptSupport.setPrompt("Minuto Fin",txtTiempoFin);
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
     }
     
     @SuppressWarnings("unchecked")
@@ -753,6 +755,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Programa para Bítacora y reportes de producción");
+        setIconImage(getIconImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -1110,8 +1113,7 @@ public class Principal extends javax.swing.JFrame {
                     new PrincipalMetodos().eliminarTurnoVacio(this);
                     new PrincipalMetodos().eliminarRegistroTiempo(this);
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "PrincipalMetodos.eliminarTurnoVacio()\n" + e,
-                            "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "PrincipalMetodos.eliminarTurnoVacio()\n" + e,"Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
             System.exit(0);

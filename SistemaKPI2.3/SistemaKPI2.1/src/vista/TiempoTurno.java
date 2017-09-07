@@ -4,6 +4,7 @@ import control.LoginControl;
 import dao.TiempoTurnoDAOImpl;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
@@ -28,6 +29,7 @@ public class TiempoTurno extends javax.swing.JDialog {
         PromptSupport.setPrompt("0-24 hrs",txtHoraFinal);
         PromptSupport.setPrompt("máx 30", txtnNoPersonas);
         winPrincipal = (Principal) parent;
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
     }
     
     @SuppressWarnings("unchecked")

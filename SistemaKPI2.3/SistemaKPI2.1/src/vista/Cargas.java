@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -45,9 +46,9 @@ public class Cargas extends javax.swing.JDialog {
     public Cargas(java.awt.Frame parent, boolean modal) throws IOException {
         super(parent, modal);
         initComponents();
-        //validaEntrada();
         this.setLocationRelativeTo(null);
-        cmbLinea.setModel(principalMetodos.listaLineas());
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
+        cmbLinea.setModel(principalMetodos.listaLineas());        
     }
     
     /**

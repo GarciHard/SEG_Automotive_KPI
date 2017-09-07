@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utils.OrdenaTablaTiempo;
@@ -39,6 +40,7 @@ public class ParoRango extends javax.swing.JDialog {
         initComponents();
         winPrincipal = (Principal) parent;
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/bs.png")).getImage());
         cmbHInicio.setModel(new DefaultComboBoxModel(TiempoTurno.cmbTiempoModel.toArray()));
         cmbHFin.setModel(new DefaultComboBoxModel(TiempoTurno.cmbTiempoModel.toArray()));
     }
@@ -124,11 +126,9 @@ public class ParoRango extends javax.swing.JDialog {
         hFin = Integer.parseInt(cmbHFin.getSelectedItem().toString());
         int cont = hFin - hInicio;
         int aux = 0;        
-        //System.out.println("i: "+hInicio+"f: "+hFin);
         if(hFin <= hInicio){
             JOptionPane.showMessageDialog(this, "Revisa tu ahora de Inicio y Fin");
         }else {
-            //System.err.println(cont);
             while ( aux < cont){ //Inicio <= hFin 
                 agregarRegistroBitacora(winPrincipal);
                 hInicio = hInicio+1;
