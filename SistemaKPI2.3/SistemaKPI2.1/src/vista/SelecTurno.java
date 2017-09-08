@@ -10,9 +10,11 @@ import dao.ConsultaPorTurnoDAOImpl;
 import java.awt.Cursor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import utils.PrincipalMetodos;
+import static vista.TiempoTurno.cmbTiempoModel;
 
 /**
  *
@@ -131,9 +133,29 @@ public class SelecTurno extends javax.swing.JDialog {
                 try {
                     inicioTurno = consultaTurno.consultaInicioTurno(fecha, seleccionTurnoLinea,turno);
                     finTurno = consultaTurno.consultaFinTurno(fecha, seleccionTurnoLinea, turno);
-                    System.out.println("i " +inicioTurno+" f "+finTurno);
-                    //setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                    principalMetodos.consultarBitacoraPorTurno(winPrincipal);                            
+                    principalMetodos.consultarBitacoraPorTurno(winPrincipal);
+                    
+                    winPrincipal.getLblTurno().setText(turno + " <> " + inicioTurno + " - " + finTurno);
+                    
+                    if (inicioTurno > finTurno) {
+                        cmbTiempoModel.add("Selecciona Hora");
+                        for (int i = inicioTurno; i != 0; i++) {
+                            if (i == 24) {
+                                i = 0;
+                            } else if (i == finTurno) {
+                                break;
+                            }
+                            cmbTiempoModel.add(i);
+                        }
+                    } else {
+                        int duracionTurno = finTurno - inicioTurno;
+                        cmbTiempoModel.add("Selecciona Hora");
+                        for (int i = 0, j = inicioTurno; i < duracionTurno; i++, j++) {
+                            cmbTiempoModel.add(j);
+                        }
+                    }
+                    winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(SelecTurno.class.getName()).log(Level.SEVERE, null, ex);
                 }
