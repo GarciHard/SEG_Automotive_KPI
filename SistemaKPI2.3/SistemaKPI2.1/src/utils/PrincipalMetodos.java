@@ -421,7 +421,7 @@ public class PrincipalMetodos {
         int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
         registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
-
+    
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
             modeloTabla.addRow(registroBitacora);
             insertarRegistroFilaAccess(winPrincipal);
@@ -994,9 +994,8 @@ public class PrincipalMetodos {
     }
 
     public void actualizarRegistroFechaAccess(Principal winPrincipal) {
-        dao.BitacoraDAOImpl bitacoraObj = new dao.BitacoraDAOImpl();
         try {
-            bitacoraObj.borrarRegistroFechaAccess(winPrincipal.getDteFecha().getText());
+            eliminarRegistroTiempo(winPrincipal);
             if (winPrincipal.getTblBitacora().getModel().getRowCount() != 0) {
                 int columnas = winPrincipal.getTblBitacora().getColumnCount();
                 ArrayList reg;
@@ -1005,7 +1004,7 @@ public class PrincipalMetodos {
                     for (int j = 0; j < columnas; j++) {
                         reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
                     }
-                    bitacoraObj.insertarRegistroAccess(reg);
+                    new BitacoraDAOImpl().insertarRegistroAccess(reg);
                 }
                 cancelarEdicion(winPrincipal);
                 JOptionPane.showMessageDialog(winPrincipal, "Bitacora Actualizada Correctamente",
@@ -1063,14 +1062,24 @@ public class PrincipalMetodos {
 
     private void insertarRegistroFilaAccess(Principal winPrincipal) {
         try {
-            int columnas = winPrincipal.getTblBitacora().getColumnCount();
-            ArrayList reg = new ArrayList();
-            for (int j = 0; j < columnas; j++) {
-                reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
-                System.out.println(j+" . "+reg);
+            if (PrincipalControl.bnEdicion == 2) {
+                contadorFila = winPrincipal.getTblBitacora().getRowCount() - 1;
+                ArrayList reg = new ArrayList();
+                for (int j = 0; j < winPrincipal.getTblBitacora().getColumnCount(); j++) {
+                    reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                    System.out.println(j + " . " + reg);
+                }
+                new BitacoraDAOImpl().insertarFilaRegistro(reg);
+            } else {
+                int columnas = winPrincipal.getTblBitacora().getColumnCount();
+                ArrayList reg = new ArrayList();
+                for (int j = 0; j < columnas; j++) {
+                    reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                    System.out.println(j + " . " + reg);
+                }
+                new BitacoraDAOImpl().insertarFilaRegistro(reg);
+                contadorFila++;
             }
-            new BitacoraDAOImpl().insertarFilaRegistro(reg);
-            contadorFila++;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.insertarRegistroFilaAccess()\n" + e,
                     "Error", JOptionPane.ERROR_MESSAGE);

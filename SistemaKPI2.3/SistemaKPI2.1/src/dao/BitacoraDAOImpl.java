@@ -22,7 +22,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String BORRA_REGISTRO_TIEMPO = "DELETE FROM Bitacora WHERE hora BETWEEN ? AND ? AND linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY')";
     private final String BORRA_REGISTRO_FILA = "DELETE FROM Bitacora WHERE linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
-    private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY')";
+    private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea LIKE ?";
     private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
     private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial"
             + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
@@ -140,21 +140,24 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
         return listaRegistros;
     }
 
-    @Override
-    public void borrarRegistroFechaAccess(String fecha) throws Exception {
-        try {
-            this.conectar();
-            ps = this.conexion.prepareStatement(BORRA_REGISTRO_FECHA);
-            ps.setString(1, fecha);
-            ps.executeUpdate();
-            
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            ps.close();
-            this.cerrar();
-        }
-    }
+//    @Override
+//    public void borrarRegistroFechaAccess(int horaInicial, int horaFinal, String linea, String fecha) throws Exception {
+//        try {
+//            this.conectar();
+//            ps = this.conexion.prepareStatement(BORRA_REGISTRO_TIEMPO);
+//            ps.setInt(1, horaInicial);
+//            ps.setInt(2, horaFinal);
+//            ps.setString(3, linea);
+//            ps.setString(4, fecha);
+//            ps.executeUpdate();
+//            
+//        } catch (Exception e) {
+//            throw e;
+//        } finally {
+//            ps.close();
+//            this.cerrar();
+//        }
+//    }
 
     @Override
     public void insertarFilaRegistro(ArrayList registroFila) throws Exception {
@@ -249,7 +252,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             
             while (rs.next()) {
                 System.out.println(rs);
-                bitacoraObj = new Object[15];
+                bitacoraObj = new Object[16];
                 bitacoraObj[0] = rs.getString(1);
                 bitacoraObj[1] = rs.getString(2);
                 bitacoraObj[2] = rs.getInt(3);
@@ -265,6 +268,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 bitacoraObj[12] = rs.getInt(13);
                 bitacoraObj[13] = rs.getString(14);
                 bitacoraObj[14] = rs.getString(15);
+                bitacoraObj[15] = rs.getString(16);
 
                 listaRegistros.add(bitacoraObj);
             }
