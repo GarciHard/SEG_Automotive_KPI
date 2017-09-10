@@ -111,7 +111,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             rs = ps.executeQuery();
                 
             while (rs.next()) {
-                bitacoraObj = new Object[15];
+                bitacoraObj = new Object[16];
                 bitacoraObj[0] = rs.getString(1);
                 bitacoraObj[1] = rs.getString(2);
                 bitacoraObj[2] = rs.getInt(3);
@@ -127,6 +127,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 bitacoraObj[12] = rs.getInt(13);
                 bitacoraObj[13] = rs.getString(14);
                 bitacoraObj[14] = rs.getString(15);
+                bitacoraObj[15] = rs.getString(16);
 
                 listaRegistros.add(bitacoraObj);
             }
@@ -223,10 +224,10 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(BORRA_REGISTRO_TIEMPO);
-            ps.setString(3, linea);
-            ps.setString(4, fecha);
             ps.setInt(1, horaInicio);
             ps.setInt(2, horaFin);
+            ps.setString(3, linea);
+            ps.setString(4, fecha);
             ps.executeUpdate();
         } catch (Exception e) {
             throw e;
