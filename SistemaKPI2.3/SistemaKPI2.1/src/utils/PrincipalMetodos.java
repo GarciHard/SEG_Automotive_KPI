@@ -425,6 +425,7 @@ public class PrincipalMetodos {
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
             modeloTabla.addRow(registroBitacora);
             insertarRegistroFilaAccess(winPrincipal);
+//            winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
             winPrincipal.getCmbTema().setSelectedIndex(0);
             winPrincipal.getCmbTema().setSelectedIndex(valorTema);
         } else {
@@ -462,6 +463,7 @@ public class PrincipalMetodos {
                                             modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                             ordenarTabla(modeloTabla);
                                             insertarRegistroFilaAccess(winPrincipal);
+//                                            winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
                                             winPrincipal.getCmbTema().setSelectedIndex(0);
                                             winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                             break;
@@ -475,6 +477,7 @@ public class PrincipalMetodos {
                                         modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                         ordenarTabla(modeloTabla);
                                         insertarRegistroFilaAccess(winPrincipal);
+//                                        winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
                                         winPrincipal.getCmbTema().setSelectedIndex(0);
                                         winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                         break;
@@ -488,6 +491,7 @@ public class PrincipalMetodos {
                                         modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                         ordenarTabla(modeloTabla);
                                         insertarRegistroFilaAccess(winPrincipal);
+//                                        winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
                                         winPrincipal.getCmbTema().setSelectedIndex(0);
                                         winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                         break;
@@ -501,6 +505,7 @@ public class PrincipalMetodos {
                                     modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                     ordenarTabla(modeloTabla);
                                     insertarRegistroFilaAccess(winPrincipal);
+//                                    winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
                                     winPrincipal.getCmbTema().setSelectedIndex(0);
                                     winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                     break;
@@ -515,6 +520,7 @@ public class PrincipalMetodos {
                                 modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                                 ordenarTabla(modeloTabla);
                                 insertarRegistroFilaAccess(winPrincipal);
+//                                winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
                                 winPrincipal.getCmbTema().setSelectedIndex(0);
                                 winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                                 break;
@@ -528,6 +534,7 @@ public class PrincipalMetodos {
                             modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                             ordenarTabla(modeloTabla);
                             insertarRegistroFilaAccess(winPrincipal);
+//                            winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
                             winPrincipal.getCmbTema().setSelectedIndex(0);
                             winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                             break;
@@ -547,6 +554,7 @@ public class PrincipalMetodos {
                         modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                         ordenarTabla(modeloTabla);
                         insertarRegistroFilaAccess(winPrincipal);
+//                        winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
                         winPrincipal.getCmbTema().setSelectedIndex(0);
                         winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                     } else {
@@ -559,6 +567,7 @@ public class PrincipalMetodos {
                     modeloTabla.addRow(modeloRegistroBitacora(winPrincipal, registroBitacora));
                     ordenarTabla(modeloTabla);
                     insertarRegistroFilaAccess(winPrincipal);
+//                    winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
                     winPrincipal.getCmbTema().setSelectedIndex(0);
                     winPrincipal.getCmbTema().setSelectedIndex(valorTema);
                 }
@@ -1147,5 +1156,17 @@ public class PrincipalMetodos {
             }
         }
         return tiempoFaltante;
+    }
+    
+    private DefaultComboBoxModel actualizaComboHoras(Principal winPrincipal) {
+        revisarTiemposFaltentes(winPrincipal, 2);
+        ArrayList listaHorasActualizada = new ArrayList();
+        listaHorasActualizada.add("Selecciona Hora");
+        for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
+            if (Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString()) != 0) {
+                listaHorasActualizada.add(tablaHorasCero.getValueAt(i, 0).toString());
+            }
+        }
+        return new DefaultComboBoxModel(listaHorasActualizada.toArray());
     }
 }

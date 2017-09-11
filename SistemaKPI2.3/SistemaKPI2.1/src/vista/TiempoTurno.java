@@ -271,7 +271,7 @@ public class TiempoTurno extends javax.swing.JDialog {
                     
                     winPrincipal.getLblTurno().setText(jComboBox1.getSelectedItem().toString()
                             + " <> " + horaInicial + " - " + horaFinal);
-
+                    
                     winPrincipal.getCmbHora().setModel(new DefaultComboBoxModel(cmbTiempoModel.toArray()));
                     winPrincipal.getCmbTema().setEnabled(true);
                     winPrincipal.getMniOperaciones().setEnabled(true);
