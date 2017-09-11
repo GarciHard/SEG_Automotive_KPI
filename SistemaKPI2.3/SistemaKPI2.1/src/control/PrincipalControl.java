@@ -363,7 +363,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             if (bnEdicion ==2 ){
                 new SelecTurno(winPrincipal, true).setVisible(true);
             } else{
-                System.out.println("entra");
                 principalMetodos.consultarBitacoraPorDia(winPrincipal);
             }
         }

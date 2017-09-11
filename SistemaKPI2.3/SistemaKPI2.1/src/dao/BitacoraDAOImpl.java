@@ -244,11 +244,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(LISTAR_REGISTROS_FECHA);
-            System.out.println(ps.toString());
             ps.setString(1, fecha);
-            System.out.println(fecha);
             ps.setString(2, linea);
-            System.out.println(linea);
             rs = ps.executeQuery();
             
             while (rs.next()) {

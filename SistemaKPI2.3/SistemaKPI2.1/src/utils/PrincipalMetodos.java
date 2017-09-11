@@ -874,8 +874,6 @@ public class PrincipalMetodos {
         String fecha = PrincipalControl.fecha;
         String linea = PrincipalControl.linea;
         
-        System.out.println("f "+fecha+" l "+linea);
-        
         if (winPrincipal.getTblBitacora().getRowCount() != 0) {
             switch (JOptionPane.showConfirmDialog(winPrincipal, "En caso de tener registros sin guardar, estos se perderán.\n¿Seguro que desea continuar?", "Mensaje",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
@@ -912,8 +910,6 @@ public class PrincipalMetodos {
             winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
             Object[] bitacoraObj;
             try {
-                System.out.println("ae");
-                System.out.println("f "+fecha+" l "+linea);
                 ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha,linea);
                 //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
                         //winPrincipal.getCmbLinea().getSelectedItem().toString());
@@ -923,6 +919,11 @@ public class PrincipalMetodos {
                         bitacoraObj = (Object[]) bitacoraArr.get(i);
                         modeloTabla.addRow(bitacoraObj);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(
+                            winPrincipal, "No existe bitácora registrada para el día seleccionado",
+                            "Mensaje", JOptionPane.INFORMATION_MESSAGE
+                    );
                 }
             } catch (Exception e) {
                 guardaTemporalTXT(winPrincipal);
