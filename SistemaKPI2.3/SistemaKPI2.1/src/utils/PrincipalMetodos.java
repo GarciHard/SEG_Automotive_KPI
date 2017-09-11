@@ -921,7 +921,7 @@ public class PrincipalMetodos {
                     }
                 } else {
                     JOptionPane.showMessageDialog(
-                            winPrincipal, "No existe bitácora registrada para el día seleccionado",
+                            winPrincipal, "No existe(n) turno(s) para el día seleccionado",
                             "Mensaje", JOptionPane.INFORMATION_MESSAGE
                     );
                 }
