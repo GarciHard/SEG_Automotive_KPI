@@ -1094,7 +1094,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniEditarPorTurno">
               <Properties>
-                <Property name="text" type="java.lang.String" value="B&#xed;tacora por truno"/>
+                <Property name="text" type="java.lang.String" value="B&#xed;tacora por turno"/>
                 <Property name="actionCommand" type="java.lang.String" value="_mniEditarPorTurno"/>
               </Properties>
             </MenuItem>

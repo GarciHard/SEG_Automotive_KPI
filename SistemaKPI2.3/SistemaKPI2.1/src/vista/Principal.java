@@ -1067,7 +1067,7 @@ public class Principal extends javax.swing.JFrame {
         mnuEditar.add(mniEditarPorDia);
         mnuEditar.add(jSeparator8);
 
-        mniEditarPorTurno.setText("Bítacora por truno");
+        mniEditarPorTurno.setText("Bítacora por turno");
         mniEditarPorTurno.setActionCommand("_mniEditarPorTurno");
         mnuEditar.add(mniEditarPorTurno);
 
