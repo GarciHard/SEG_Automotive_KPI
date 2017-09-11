@@ -58,6 +58,9 @@ public class SelecTurno extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -182,6 +185,12 @@ public class SelecTurno extends javax.swing.JDialog {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cmbTurno.setSelectedIndex(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if (turno.equals("")) {
+            new PrincipalMetodos().cancelarEdicion(winPrincipal);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

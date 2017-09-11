@@ -921,7 +921,8 @@ public class PrincipalMetodos {
                     }
                 } else {
                     JOptionPane.showMessageDialog(
-                            winPrincipal, "No existe(n) turno(s) para el día seleccionado",
+                            winPrincipal, "Bitácora no asignada para el día seleccionado\n"
+                            + "Favor de seleccionar un turno & realizar los registros pendientes",
                             "Mensaje", JOptionPane.INFORMATION_MESSAGE
                     );
                 }
