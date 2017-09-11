@@ -249,7 +249,6 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             rs = ps.executeQuery();
             
             while (rs.next()) {
-                System.out.println(rs);
                 bitacoraObj = new Object[16];
                 bitacoraObj[0] = rs.getString(1);
                 bitacoraObj[1] = rs.getString(2);
