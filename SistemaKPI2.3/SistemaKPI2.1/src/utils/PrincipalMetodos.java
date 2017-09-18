@@ -14,12 +14,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import vista.Login;
 import vista.Principal;
 import vista.SelecTurno;
@@ -1115,21 +1119,26 @@ public class PrincipalMetodos {
         return new DefaultComboBoxModel(listaHorasActualizada.toArray());
     }
     
-    public void hourlyCounGraph() {
-        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr Shifts_v1.0.xls";
-        Workbook worbook = null;
+    public void hourlyCounGraph(Principal winPrincipal) {
+        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr Shifts_v2.0.xls";
+        String EXCEL_TEMP = "C:\\Users\\GJA5TL\\Desktop\\tmp.xls";
+        WritableWorkbook workbookC = null;
         
         try {
-            worbook = Workbook.getWorkbook(new java.io.File(EXCEL_LOCATION));
-            jxl.Sheet sheet = worbook.getSheet(1);
-            jxl.Cell cell1 = sheet.getCell(1,5);
-            System.out.println("CELDA 1,5: " + cell1.getContents());
-        } catch (IOException | IndexOutOfBoundsException | BiffException e) {
+            Workbook workbookO = Workbook.getWorkbook(new java.io.File(EXCEL_LOCATION));
+            workbookC = Workbook.createWorkbook(new java.io.File(EXCEL_TEMP), workbookO);
+            
+            //jxl.write.WritableSheet sheet = workbookC.getSheet(0);
+            //jxl.write.Label texto = new jxl.write.Label(4, 2, winPrincipal.getCmbLinea().getSelectedItem().toString());
+            //sheet.addCell(texto);
+            workbookC.write();
+            workbookC.close();
+            workbookO.close();
+            Process p = Runtime.getRuntime().exec ("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE C:\\Users\\GJA5TL\\Desktop\\tmp.xls"); 
+//            jxl.Cell cell1 = sheet.getCell(5,2);
+//            System.out.println("CELDA 5,2: " + cell1.getContents());
+        } catch (IOException | IndexOutOfBoundsException | BiffException | WriteException e) {
             System.err.println("Error: " + e);
-        } finally {
-            if (worbook != null) {
-                worbook.close();
-            }
         }
     }
 }

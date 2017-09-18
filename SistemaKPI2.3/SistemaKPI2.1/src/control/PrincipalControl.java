@@ -196,7 +196,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             case "_mniHourlyCount":
                 System.out.println("Presionado");
-                principalMetodos.hourlyCounGraph();
+                principalMetodos.hourlyCounGraph(winPrincipal);
                 break;
             //***** Panel Superior *****
             case "_btnCambiarLinea":
