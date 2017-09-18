@@ -1120,7 +1120,7 @@ public class PrincipalMetodos {
     }
     
     public void hourlyCounGraph(Principal winPrincipal) {
-        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr Shifts_v2.0.xls";
+        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr Shifts_v1.0.xls";
         String EXCEL_TEMP = "C:\\Users\\GJA5TL\\Desktop\\tmp.xls";
         WritableWorkbook workbookC = null;
         
@@ -1128,9 +1128,13 @@ public class PrincipalMetodos {
             Workbook workbookO = Workbook.getWorkbook(new java.io.File(EXCEL_LOCATION));
             workbookC = Workbook.createWorkbook(new java.io.File(EXCEL_TEMP), workbookO);
             
-            //jxl.write.WritableSheet sheet = workbookC.getSheet(0);
-            //jxl.write.Label texto = new jxl.write.Label(4, 2, winPrincipal.getCmbLinea().getSelectedItem().toString());
-            //sheet.addCell(texto);
+            jxl.write.WritableSheet sheet = workbookC.getSheet(1);
+            jxl.write.Label linea = new jxl.write.Label(5, 2, winPrincipal.getCmbLinea().getSelectedItem().toString());
+            sheet.addCell(linea);
+            
+            jxl.write.Label fecha = new jxl.write.Label(13, 2, winPrincipal.getDteFecha().getText());
+            sheet.addCell(fecha);
+            
             workbookC.write();
             workbookC.close();
             workbookO.close();
