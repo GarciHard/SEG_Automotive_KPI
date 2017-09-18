@@ -1100,6 +1100,19 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="mnuGraficas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gr&#xe1;ficas"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mniHourlyCount">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Hourly Count"/>
+                <Property name="actionCommand" type="java.lang.String" value="_mniHourlyCount"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

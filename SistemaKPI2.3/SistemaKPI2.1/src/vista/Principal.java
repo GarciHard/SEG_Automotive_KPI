@@ -169,6 +169,8 @@ public class Principal extends javax.swing.JFrame {
         mniEditarPorDia = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         mniEditarPorTurno = new javax.swing.JMenuItem();
+        mnuGraficas = new javax.swing.JMenu();
+        mniHourlyCount = new javax.swing.JMenuItem();
 
         mniEliminar.setText("Eliminar");
         mniEliminar.setActionCommand("_mniEliminar");
@@ -1073,6 +1075,14 @@ public class Principal extends javax.swing.JFrame {
 
         mnuBarra.add(mnuEditar);
 
+        mnuGraficas.setText("Gráficas");
+
+        mniHourlyCount.setText("Hourly Count");
+        mniHourlyCount.setActionCommand("_mniHourlyCount");
+        mnuGraficas.add(mniHourlyCount);
+
+        mnuBarra.add(mnuGraficas);
+
         setJMenuBar(mnuBarra);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1127,6 +1137,10 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
+    public JMenuItem getMniHourlyCount() {
+        return mniHourlyCount;
+    }
+    
     public JMenuItem getMniEditarPorTurno() {
         return mniEditarPorTurno;
     }
@@ -1487,6 +1501,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniEditarPorDia;
     private javax.swing.JMenuItem mniEditarPorTurno;
     private javax.swing.JMenuItem mniEliminar;
+    private javax.swing.JMenuItem mniHourlyCount;
     private javax.swing.JMenuItem mniLineas;
     private javax.swing.JMenuItem mniListarBitacoras;
     private javax.swing.JMenuItem mniOperaciones;
@@ -1494,6 +1509,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu mnuAdministrar;
     private javax.swing.JMenuBar mnuBarra;
     private javax.swing.JMenu mnuEditar;
+    private javax.swing.JMenu mnuGraficas;
     private javax.swing.JMenu mnuOtros;
     private javax.swing.JPopupMenu pmnClickMenu;
     private javax.swing.JPanel pnlBackground;

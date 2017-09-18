@@ -10,6 +10,7 @@ import dao.PiezasProducidasDAOImpl;
 import dao.TiempoTurnoDAOImpl;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +18,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 import vista.Login;
 import vista.Principal;
 import vista.SelecTurno;
@@ -749,68 +752,8 @@ public class PrincipalMetodos {
 
     public void revisarTiemposFaltentes(Principal winPrincipal, int opcion) {
         switch (opcion) {
-            case 1:
-                DefaultTableModel bitacoraModelo,
-                 tablaHoras = new DefaultTableModel();
-                tablaHoras.addColumn("Hora");
-                tablaHoras.addColumn("Tiempo Faltante");
-                Object[] r = new Object[2];
-                bitacoraModelo = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
-                DefaultComboBoxModel horasModelo = (DefaultComboBoxModel) winPrincipal.getCmbHora().getModel();
-                int hora,
-                 sum,
-                 faltante;
-                for (int i = 1; i < winPrincipal.getCmbHora().getItemCount(); i++) {
-                    hora = Integer.parseInt(winPrincipal.getCmbHora().getItemAt(i).toString());
-                    r[0] = hora;
-                    r[1] = 60;
-                    tablaHoras.addRow(r);
-                }
-                for (int i = 1; i < horasModelo.getSize(); i++) {
-                    hora = Integer.parseInt(winPrincipal.getCmbHora().getItemAt(i).toString());
-                    sum = 0;
-                    for (int c = 0; c < bitacoraModelo.getRowCount(); c++) {
-                        if (Integer.parseInt(bitacoraModelo.getValueAt(c, 2).toString()) == hora) {
-                            sum += Integer.parseInt(bitacoraModelo.getValueAt(c, 5).toString());
-                            faltante = 60 - sum;
-                            tablaHoras.setValueAt(faltante, i - 1, 1);
-                        }
-                    }
-
-                }
-                TiemposFaltantes tiemposFaltantes = new TiemposFaltantes(winPrincipal, true);
-                tiemposFaltantes.getTblTiemposFaltantes().setModel(tablaHoras);
-                tiemposFaltantes.setVisible(true);
-                break;
-            case 2:
-                bitacoraModeloCero = new DefaultTableModel();
-                tablaHorasCero = new DefaultTableModel();
-                tablaHorasCero.addColumn("Hora");
-                tablaHorasCero.addColumn("Tiempo Faltante");
-                Object[] e = new Object[2];
-                bitacoraModeloCero = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
-                DefaultComboBoxModel horasModeloCero = (DefaultComboBoxModel) winPrincipal.getCmbHora().getModel();
-                int horaCero,
-                 sumCero,
-                 faltanteCero;
-                for (int i = 1; i < winPrincipal.getCmbHora().getItemCount(); i++) {
-                    horaCero = Integer.parseInt(winPrincipal.getCmbHora().getItemAt(i).toString());
-                    e[0] = horaCero;
-                    e[1] = 60;
-                    tablaHorasCero.addRow(e);
-                }
-                for (int i = 1; i < horasModeloCero.getSize(); i++) {
-                    horaCero = Integer.parseInt(winPrincipal.getCmbHora().getItemAt(i).toString());
-                    sumCero = 0;
-                    for (int c = 0; c < bitacoraModeloCero.getRowCount(); c++) {
-                        if (Integer.parseInt(bitacoraModeloCero.getValueAt(c, 2).toString()) == horaCero) {
-                            sumCero += Integer.parseInt(bitacoraModeloCero.getValueAt(c, 5).toString());
-                            faltanteCero = 60 - sumCero;
-                            tablaHorasCero.setValueAt(faltanteCero, i - 1, 1);
-                        }
-                    }
-                }
-                break;
+            
+            
         }
     }
 
@@ -1170,5 +1113,23 @@ public class PrincipalMetodos {
             }
         }
         return new DefaultComboBoxModel(listaHorasActualizada.toArray());
+    }
+    
+    public void hourlyCounGraph() {
+        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr Shifts_v1.0.xls";
+        Workbook worbook = null;
+        
+        try {
+            worbook = Workbook.getWorkbook(new java.io.File(EXCEL_LOCATION));
+            jxl.Sheet sheet = worbook.getSheet(1);
+            jxl.Cell cell1 = sheet.getCell(1,5);
+            System.out.println("CELDA 1,5: " + cell1.getContents());
+        } catch (IOException | IndexOutOfBoundsException | BiffException e) {
+            System.err.println("Error: " + e);
+        } finally {
+            if (worbook != null) {
+                worbook.close();
+            }
+        }
     }
 }

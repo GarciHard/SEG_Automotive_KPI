@@ -132,6 +132,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         
         //Menu Lineas
         winPrincipal.getMniLineas().addActionListener(this);
+        
         //Menu EditarBitacora
         winPrincipal.getMniEditarPorDia().addActionListener(this);
         winPrincipal.getMniEditarPorTurno().addActionListener(this);
@@ -147,6 +148,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         
         //Carga Masiva
         winPrincipal.getMniCargaMasiva().addActionListener(this);
+        
+        //Menu Graficas
+        winPrincipal.getMniHourlyCount().addActionListener(this);
         
         //Tabla Bitacora
         winPrincipal.getTblBitacora().getModel().addTableModelListener(this);
@@ -189,6 +193,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             case "_mniCrearUsuario":
                 new RegistroUsuariosControl(new RegistroUsuarios(winPrincipal, true));
+                break;
+            case "_mniHourlyCount":
+                System.out.println("Presionado");
+                principalMetodos.hourlyCounGraph();
                 break;
             //***** Panel Superior *****
             case "_btnCambiarLinea":
