@@ -9,10 +9,18 @@ import dao.OrganizacionalesDAOImpl;
 import dao.PiezasProducidasDAOImpl;
 import dao.TiempoTurnoDAOImpl;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,14 +28,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 import jxl.write.WritableWorkbook;
-import jxl.write.WriteException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import vista.Login;
 import vista.Principal;
 import vista.SelecTurno;
-import vista.TiemposFaltantes;
 
 /**
  * Hecho con <3 por:
@@ -1120,29 +1127,61 @@ public class PrincipalMetodos {
     }
     
     public void hourlyCounGraph(Principal winPrincipal) {
-        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr Shifts_v1.0.xls";
-        String EXCEL_TEMP = "C:\\Users\\GJA5TL\\Desktop\\tmp.xls";
-        WritableWorkbook workbookC = null;
         
-        try {
-            Workbook workbookO = Workbook.getWorkbook(new java.io.File(EXCEL_LOCATION));
-            workbookC = Workbook.createWorkbook(new java.io.File(EXCEL_TEMP), workbookO);
-            
-            jxl.write.WritableSheet sheet = workbookC.getSheet(1);
-            jxl.write.Label linea = new jxl.write.Label(5, 2, winPrincipal.getCmbLinea().getSelectedItem().toString());
-            sheet.addCell(linea);
-            
-            jxl.write.Label fecha = new jxl.write.Label(13, 2, winPrincipal.getDteFecha().getText());
-            sheet.addCell(fecha);
-            
-            workbookC.write();
-            workbookC.close();
-            workbookO.close();
-            Process p = Runtime.getRuntime().exec ("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE C:\\Users\\GJA5TL\\Desktop\\tmp.xls"); 
+        
+        /*ESTE DE ABAJO ES EL BUENO*/
+//        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
+//        
+//        try {
+//            FileInputStream file = new FileInputStream(new File(EXCEL_LOCATION));
+//            XSSFWorkbook workbook = new XSSFWorkbook (file);
+//            XSSFSheet sheet = workbook.getSheetAt(1);
+//            Cell cell = null;
+//
+//            Actualizamos valor de la celda
+//            cell = sheet.getRow(2).getCell(5);
+//            cell.setCellValue("LINEA: " + winPrincipal.getCmbLinea().getSelectedItem().toString());
+//            
+//            cell = sheet.getRow(1).getCell(43);
+//            cell.setCellValue(25);
+//            
+//            cell = sheet.getRow(2).getCell(43);
+//            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+//            Date startDate = (Date)formatter.parse(winPrincipal.getDteFecha().getText()); 
+//            cell.setCellValue(winPrincipal.getDteFecha().getText());
+//            
+//            file.close();
+//                                    
+//            FileOutputStream outFile = new FileOutputStream(new File(EXCEL_LOCATION));
+//            workbook.write(outFile);
+//            outFile.close();
+//
+//            Process p = Runtime.getRuntime().exec ("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE " + EXCEL_LOCATION);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        /*TODO ESTO DE ABAJO YA NO*/
+//        try {
+//            Workbook workbookO = Workbook.getWorkbook(new java.io.File(EXCEL_LOCATION));
+//            workbookC = Workbook.createWorkbook(new java.io.File(EXCEL_TEMP), workbookO);
+//            
+//            jxl.write.WritableSheet sheet = workbookC.getSheet(1);
+//            jxl.write.Label linea = new jxl.write.Label(5, 2, winPrincipal.getCmbLinea().getSelectedItem().toString());
+//            sheet.addCell(linea);
+//            
+//            jxl.write.Label fecha = new jxl.write.Label(13, 2, winPrincipal.getDteFecha().getText());
+//            sheet.addCell(fecha);
+//            
+//            workbookC.write();
+//            workbookC.close();
+//            workbookO.close();
+//            Process p = Runtime.getRuntime().exec ("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE C:\\Users\\GJA5TL\\Desktop\\tmp.xls"); 
 //            jxl.Cell cell1 = sheet.getCell(5,2);
 //            System.out.println("CELDA 5,2: " + cell1.getContents());
-        } catch (IOException | IndexOutOfBoundsException | BiffException | WriteException e) {
-            System.err.println("Error: " + e);
-        }
+//        } catch (IOException | IndexOutOfBoundsException | BiffException | WriteException e) {
+//            System.err.println("Error: " + e);
+//        }
     }
 }
