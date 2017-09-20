@@ -18,15 +18,15 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     
-    private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial) "
-            + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo) "
+            + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String BORRA_REGISTRO_TIEMPO = "DELETE FROM Bitacora WHERE hora BETWEEN ? AND ? AND linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY')";
     private final String BORRA_REGISTRO_FILA = "DELETE FROM Bitacora WHERE linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
     private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea LIKE ?";
     private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
-    private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial"
+    private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
             + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
-    private final String LISTAR_REGISTROS_TURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial"
+    private final String LISTAR_REGISTROS_TURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
             //+ " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND linea like ? AND hora < ? ORDER BY hora ASC";
             + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora < ? ORDER BY hora,tiempoIni ASC ";
     
@@ -55,6 +55,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setString(14, reg[13].toString());
             ps.setString(15, reg[14].toString());
             ps.setString(16, reg[15].toString());
+            ps.setInt(17, Integer.parseInt(reg[16].toString()));
             
             ps.executeUpdate();
         } catch (Exception e) {
@@ -113,7 +114,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             rs = ps.executeQuery();
             
             while (rs.next()) {
-                bitacoraObj = new Object[16];
+                bitacoraObj = new Object[17];
                 bitacoraObj[0] = rs.getString(1);
                 bitacoraObj[1] = rs.getString(2);
                 bitacoraObj[2] = rs.getInt(3);
@@ -130,7 +131,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 bitacoraObj[13] = rs.getString(14);
                 bitacoraObj[14] = rs.getString(15);
                 bitacoraObj[15] = rs.getString(16);
-
+                bitacoraObj[16] = rs.getInt(17);
+                
                 listaRegistros.add(bitacoraObj);
             }
         } catch (Exception e) {
@@ -187,6 +189,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setString(14, reg[13].toString());
             ps.setString(15, reg[14].toString());
             ps.setString(16, reg[15].toString());
+            ps.setInt(17, Integer.parseInt(reg[16].toString()));
 
             ps.executeUpdate();
         } catch (Exception e) {
@@ -251,7 +254,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             rs = ps.executeQuery();
             
             while (rs.next()) {
-                bitacoraObj = new Object[16];
+                bitacoraObj = new Object[17];
                 bitacoraObj[0] = rs.getString(1);
                 bitacoraObj[1] = rs.getString(2);
                 bitacoraObj[2] = rs.getInt(3);
@@ -268,6 +271,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 bitacoraObj[13] = rs.getString(14);
                 bitacoraObj[14] = rs.getString(15);
                 bitacoraObj[15] = rs.getString(16);
+                bitacoraObj[16] = rs.getInt(17);
 
                 listaRegistros.add(bitacoraObj);
             }

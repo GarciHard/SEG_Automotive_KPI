@@ -4,6 +4,7 @@ import com.alee.extended.date.WebDateField;
 import com.alee.extended.panel.WebCollapsiblePane;
 import control.PrincipalControl;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
 import javax.swing.JTextField;
 import org.jdesktop.swingx.prompt.PromptSupport;
 import utils.PrincipalMetodos;
@@ -970,138 +972,159 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "LINEA", "FECHA", "HORA", "INICIO INCIDENCIA", "FIN INCIDENCIA", "DURACION", "TEMA", "OPERACION", "AREA", "PROBLEMA", "CLIENTE", "No. PARTE", "CANTIDAD", "No. PARTE CAMBIO", "SCRAP", "DETALLE MATERIAL"
+                "<html><center>LINEA</center></html>",
+                "<html><center>FECHA</center></html>",
+                "<html><center>HORA</center></html>",
+                "<html><center>INICIO<br>INCIDENCIA</center></html>",
+                "<html><center>FIN<br>INCIDENCIA</center></html>",
+                "<html><center>DURACION</center></html>",
+                "<html><center>TEMA</center></html>",
+                "<html><center>OPERACION</center></html>",
+                "<html><center>AREA</center></html>",
+                "<html><center>PROBLEMA</center></html>",
+                "<html><center>CLIENTE</center></html>",
+                "<html><center>NUMERO<br>PARTE</center></html>",
+                "<html><center>CANTIDAD</center></html>",
+                "<html><center>NUMERO<br>PARTE CAMBIO</center></html>",
+                "<html><center>SCRAP</center></html>",
+                "<html><center>DETALLE<br>MATERIAL</center></html>",
+                "<html><center>TC</center></html>"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblBitacora.setComponentPopupMenu(pmnClickMenu);
-        tblBitacora.setFocusable(false);
-        tblBitacora.setIntercellSpacing(new java.awt.Dimension(10, 10));
-        tblBitacora.getTableHeader().setReorderingAllowed(false);
-        tblBitacora.setUpdateSelectionOnSort(false);
-        scrBitacora.setViewportView(tblBitacora);
+        JTableHeader header = tblBitacora.getTableHeader();
+        header.setPreferredSize(new Dimension(
+            header.getPreferredSize().width, header.getPreferredSize().height * 2
+        )
+    );
+    tblBitacora.setComponentPopupMenu(pmnClickMenu);
+    tblBitacora.setFocusable(false);
+    tblBitacora.setIntercellSpacing(new java.awt.Dimension(10, 10));
+    tblBitacora.getTableHeader().setReorderingAllowed(false);
+    tblBitacora.setUpdateSelectionOnSort(false);
+    scrBitacora.setViewportView(tblBitacora);
 
-        btnGuardar.setText("Guardar Bitacora");
-        btnGuardar.setActionCommand("_btnGuardar");
-        btnGuardar.setFocusable(false);
-        btnGuardar.setNextFocusableComponent(cmbLinea);
+    btnGuardar.setText("Guardar Bitacora");
+    btnGuardar.setActionCommand("_btnGuardar");
+    btnGuardar.setFocusable(false);
+    btnGuardar.setNextFocusableComponent(cmbLinea);
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setActionCommand("_btnCancelar");
-        btnCancelar.setFocusable(false);
-        btnCancelar.setNextFocusableComponent(cmbLinea);
+    btnCancelar.setText("Cancelar");
+    btnCancelar.setActionCommand("_btnCancelar");
+    btnCancelar.setFocusable(false);
+    btnCancelar.setNextFocusableComponent(cmbLinea);
 
-        javax.swing.GroupLayout pnlBitacoraLayout = new javax.swing.GroupLayout(pnlBitacora);
-        pnlBitacora.setLayout(pnlBitacoraLayout);
-        pnlBitacoraLayout.setHorizontalGroup(
-            pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBitacoraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBitacoraLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        pnlBitacoraLayout.setVerticalGroup(
-            pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBitacoraLayout.createSequentialGroup()
-                .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnCancelar)))
-        );
+    javax.swing.GroupLayout pnlBitacoraLayout = new javax.swing.GroupLayout(pnlBitacora);
+    pnlBitacora.setLayout(pnlBitacoraLayout);
+    pnlBitacoraLayout.setHorizontalGroup(
+        pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(pnlBitacoraLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 1265, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBitacoraLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap())
+    );
+    pnlBitacoraLayout.setVerticalGroup(
+        pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBitacoraLayout.createSequentialGroup()
+            .addComponent(scrBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(pnlBitacoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnGuardar)
+                .addComponent(btnCancelar)))
+    );
 
-        pnlBorderTiempoBitacora.add(pnlBitacora, java.awt.BorderLayout.CENTER);
+    pnlBorderTiempoBitacora.add(pnlBitacora, java.awt.BorderLayout.CENTER);
 
-        pnlBorder.add(pnlBorderTiempoBitacora, java.awt.BorderLayout.CENTER);
+    pnlBorder.add(pnlBorderTiempoBitacora, java.awt.BorderLayout.CENTER);
 
-        pnlBackground.add(pnlBorder, java.awt.BorderLayout.CENTER);
+    pnlBackground.add(pnlBorder, java.awt.BorderLayout.CENTER);
 
-        mnuAdministrar.setText("Administar");
+    mnuAdministrar.setText("Administar");
 
-        mniLineas.setText("Lineas");
-        mniLineas.setActionCommand("_mniLineas");
-        mniLineas.setFocusable(true);
-        mnuAdministrar.add(mniLineas);
-        mnuAdministrar.add(jSeparator1);
+    mniLineas.setText("Lineas");
+    mniLineas.setActionCommand("_mniLineas");
+    mniLineas.setFocusable(true);
+    mnuAdministrar.add(mniLineas);
+    mnuAdministrar.add(jSeparator1);
 
-        mniOperaciones.setText("Operaciones");
-        mniOperaciones.setActionCommand("_mniOperaciones");
-        mniOperaciones.setEnabled(false);
-        mniOperaciones.setFocusable(true);
-        mnuAdministrar.add(mniOperaciones);
-        mnuAdministrar.add(jSeparator2);
+    mniOperaciones.setText("Operaciones");
+    mniOperaciones.setActionCommand("_mniOperaciones");
+    mniOperaciones.setEnabled(false);
+    mniOperaciones.setFocusable(true);
+    mnuAdministrar.add(mniOperaciones);
+    mnuAdministrar.add(jSeparator2);
 
-        mnuOtros.setText("Otros");
+    mnuOtros.setText("Otros");
 
-        mniCrearUsuario.setText("Crear Usuario");
-        mniCrearUsuario.setActionCommand("_mniCrearUsuario");
-        mniCrearUsuario.setFocusable(true);
-        mnuOtros.add(mniCrearUsuario);
-        mnuOtros.add(jSeparator7);
+    mniCrearUsuario.setText("Crear Usuario");
+    mniCrearUsuario.setActionCommand("_mniCrearUsuario");
+    mniCrearUsuario.setFocusable(true);
+    mnuOtros.add(mniCrearUsuario);
+    mnuOtros.add(jSeparator7);
 
-        mniCargaMasiva.setText("Carga Masiva");
-        mniCargaMasiva.setActionCommand("_mniCargaMasiva");
-        mnuOtros.add(mniCargaMasiva);
+    mniCargaMasiva.setText("Carga Masiva");
+    mniCargaMasiva.setActionCommand("_mniCargaMasiva");
+    mnuOtros.add(mniCargaMasiva);
 
-        mnuAdministrar.add(mnuOtros);
+    mnuAdministrar.add(mnuOtros);
 
-        mnuBarra.add(mnuAdministrar);
+    mnuBarra.add(mnuAdministrar);
 
-        mnuEditar.setText("Editar");
-        mnuEditar.setFocusable(false);
+    mnuEditar.setText("Editar");
+    mnuEditar.setFocusable(false);
 
-        mniEditarPorDia.setText("Bítacora por día");
-        mniEditarPorDia.setActionCommand("_mniEditarPorDia");
-        mniEditarPorDia.setFocusable(true);
-        mnuEditar.add(mniEditarPorDia);
-        mnuEditar.add(jSeparator8);
+    mniEditarPorDia.setText("Bítacora por día");
+    mniEditarPorDia.setActionCommand("_mniEditarPorDia");
+    mniEditarPorDia.setFocusable(true);
+    mnuEditar.add(mniEditarPorDia);
+    mnuEditar.add(jSeparator8);
 
-        mniEditarPorTurno.setText("Bítacora por turno");
-        mniEditarPorTurno.setActionCommand("_mniEditarPorTurno");
-        mnuEditar.add(mniEditarPorTurno);
+    mniEditarPorTurno.setText("Bítacora por turno");
+    mniEditarPorTurno.setActionCommand("_mniEditarPorTurno");
+    mnuEditar.add(mniEditarPorTurno);
 
-        mnuBarra.add(mnuEditar);
+    mnuBarra.add(mnuEditar);
 
-        mnuGraficas.setText("Gráficas");
+    mnuGraficas.setText("Gráficas");
 
-        mniHourlyCount.setText("Hourly Count");
-        mniHourlyCount.setActionCommand("_mniHourlyCount");
-        mnuGraficas.add(mniHourlyCount);
+    mniHourlyCount.setText("Hourly Count");
+    mniHourlyCount.setActionCommand("_mniHourlyCount");
+    mnuGraficas.add(mniHourlyCount);
 
-        mnuBarra.add(mnuGraficas);
+    mnuBarra.add(mnuGraficas);
 
-        setJMenuBar(mnuBarra);
+    setJMenuBar(mnuBarra);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 1300, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 721, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
 
-        pack();
-        setLocationRelativeTo(null);
+    pack();
+    setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

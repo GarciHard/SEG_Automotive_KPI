@@ -1585,109 +1585,11 @@
                       <SubComponents>
                         <Component class="javax.swing.JTable" name="tblBitacora">
                           <Properties>
-                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="16" rowCount="0">
-                                <Column editable="false" title="LINEA" type="java.lang.Object"/>
-                                <Column editable="false" title="FECHA" type="java.lang.Object"/>
-                                <Column editable="false" title="HORA" type="java.lang.Object"/>
-                                <Column editable="false" title="INICIO INCIDENCIA" type="java.lang.Object"/>
-                                <Column editable="false" title="FIN INCIDENCIA" type="java.lang.Object"/>
-                                <Column editable="false" title="DURACION" type="java.lang.Object"/>
-                                <Column editable="false" title="TEMA" type="java.lang.Object"/>
-                                <Column editable="false" title="OPERACION" type="java.lang.Object"/>
-                                <Column editable="false" title="AREA" type="java.lang.Object"/>
-                                <Column editable="false" title="PROBLEMA" type="java.lang.Object"/>
-                                <Column editable="false" title="CLIENTE" type="java.lang.Object"/>
-                                <Column editable="false" title="No. PARTE" type="java.lang.Object"/>
-                                <Column editable="false" title="CANTIDAD" type="java.lang.Object"/>
-                                <Column editable="false" title="No. PARTE CAMBIO" type="java.lang.Object"/>
-                                <Column editable="false" title="SCRAP" type="java.lang.Object"/>
-                                <Column editable="false" title="DETALLE MATERIAL" type="java.lang.Object"/>
-                              </Table>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="JTableHeader header = tblBitacora.getTableHeader();&#xa;    header.setPreferredSize(new Dimension(&#xa;        header.getPreferredSize().width, header.getPreferredSize().height * 2&#xa;    )&#xa;);">
+                              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;&lt;html&gt;&lt;center&gt;LINEA&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;FECHA&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;HORA&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;INICIO&lt;br&gt;INCIDENCIA&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;FIN&lt;br&gt;INCIDENCIA&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;DURACION&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;TEMA&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;OPERACION&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;AREA&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;PROBLEMA&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;CLIENTE&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;NUMERO&lt;br&gt;PARTE&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;CANTIDAD&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;NUMERO&lt;br&gt;PARTE CAMBIO&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;SCRAP&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;DETALLE&lt;br&gt;MATERIAL&lt;/center&gt;&lt;/html&gt;&quot;,&#xa;        &quot;&lt;html&gt;&lt;center&gt;TC&lt;/center&gt;&lt;/html&gt;&quot;&#xa;    }&#xa;) {&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                              <TableColumnModel selectionModel="0">
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                              </TableColumnModel>
+                              <TableColumnModel selectionModel="0"/>
                             </Property>
                             <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                               <ComponentRef name="pmnClickMenu"/>

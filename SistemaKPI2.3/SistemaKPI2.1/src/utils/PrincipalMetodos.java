@@ -48,7 +48,7 @@ public class PrincipalMetodos {
     private int contadorFila = 0;
     private JFrame form;
     private List tablaObj = new ArrayList();
-    private Object[] registroBitacora = new Object[16];
+    private Object[] registroBitacora = new Object[17];
     private Object[] registroBitacoraAux;
     private Object[] registroBitacoraTmp;
     private Object[] registroBitacoraTmpAux;
@@ -617,6 +617,7 @@ public class PrincipalMetodos {
                 reg[13] = "";
                 reg[14] = "";
                 reg[15] = "";
+                reg[16] = "";
                 break;
             case "Piezas Producidas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -635,6 +636,7 @@ public class PrincipalMetodos {
                 reg[13] = "";
                 reg[14] = "";
                 reg[15] = "";
+                reg[16] = winPrincipal.getTxtTC().getText();
                 break;
             case "Calidad":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -653,6 +655,7 @@ public class PrincipalMetodos {
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapCalidad().getText();
                 reg[15] = "";
+                reg[16] = "";
                 break;
             case "Tecnicas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -671,6 +674,7 @@ public class PrincipalMetodos {
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapTecnicas().getText();
                 reg[15] = "";
+                reg[16] = "";
                 break;
             case "Organizacionales":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -689,6 +693,7 @@ public class PrincipalMetodos {
                 reg[13] = "";
                 reg[14] = "";
                 reg[15] = winPrincipal.getTxtMatFaltante().getText();
+                reg[16] = "";
                 break;
             case "Cambio":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -707,6 +712,7 @@ public class PrincipalMetodos {
                 reg[13] = winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();
                 reg[14] = winPrincipal.getTxtScrapCambios().getText();
                 reg[15] = "";
+                reg[16] = "";
                 break;
             case "Planeados":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -725,6 +731,7 @@ public class PrincipalMetodos {
                 reg[13] = "";
                 reg[14] = "";
                 reg[15] = "";
+                reg[16] = "";
                 break;
         }
         return reg;
@@ -820,7 +827,7 @@ public class PrincipalMetodos {
         }
     }
 
-    public void guardarRegistroAccess(Principal winPrincipal) {
+     public void guardarRegistroAccess(Principal winPrincipal) {
         PrincipalControl.auxiliarPrincipal = 2;
         new LoginControl(new Login(winPrincipal, true));
         switch (LoginControl.auxiliarLogin) {
@@ -1255,6 +1262,31 @@ public class PrincipalMetodos {
     }
     
     private void generarReporteActual(Principal winPrincipal) {
+        winPrincipal.getCmbHora().setSelectedIndex(1);
+        int horaInicial = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
+        int finalAux = winPrincipal.getCmbHora().getItemCount();
+        winPrincipal.getCmbHora().setSelectedIndex(finalAux - 1);
+        int horaFinal = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
+        winPrincipal.getCmbHora().setSelectedIndex(0);
         
+        ArrayList produccion,
+                calidad,
+                tecnicas,
+                organizacionales,
+                cambio,
+                planeados;
+
+        try {
+            ArrayList bitacoraActual = new BitacoraDAOImpl().listarBitacorasTurno(
+                    winPrincipal.getDteFecha().getText(),
+                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                    horaInicial,
+                    horaFinal
+            );
+            
+            
+        } catch (Exception e) {
+
+        }
     }
 }
