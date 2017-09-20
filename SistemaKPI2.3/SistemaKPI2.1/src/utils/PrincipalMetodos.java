@@ -583,7 +583,7 @@ public class PrincipalMetodos {
 
     private void ordenarTabla(DefaultTableModel modeloTabla) {
         for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
-            registroBitacoraAux = new Object[16];
+            registroBitacoraAux = new Object[17];
             for (int j = 0; j < registroBitacoraAux.length; j++) {
                 registroBitacoraAux[j] = modeloTabla.getValueAt(i, j);
             }
@@ -1261,7 +1261,7 @@ public class PrincipalMetodos {
 //        }
     }
     
-    private void generarReporteActual(Principal winPrincipal) {
+    public void generarReporteActual(Principal winPrincipal) {
         winPrincipal.getCmbHora().setSelectedIndex(1);
         int horaInicial = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
         int finalAux = winPrincipal.getCmbHora().getItemCount();
@@ -1269,14 +1269,16 @@ public class PrincipalMetodos {
         int horaFinal = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
         winPrincipal.getCmbHora().setSelectedIndex(0);
         
-        ArrayList produccion,
-                calidad,
-                tecnicas,
-                organizacionales,
-                cambio,
-                planeados;
+        ArrayList produccion = new ArrayList();
+//        ,
+//                calidad,
+//                tecnicas,
+//                organizacionales,
+//                cambio,
+//                planeados = new ArrayList();
 
         try {
+            Object[] registro;
             ArrayList bitacoraActual = new BitacoraDAOImpl().listarBitacorasTurno(
                     winPrincipal.getDteFecha().getText(),
                     winPrincipal.getCmbLinea().getSelectedItem().toString(),
@@ -1284,9 +1286,28 @@ public class PrincipalMetodos {
                     horaFinal
             );
             
+            for (int i = 0; i < bitacoraActual.size(); i++) {
+                registro = (Object[]) bitacoraActual.get(i);
+                for (int j = 0; j < registro.length; j++) {
+                    if (registro[6].equals("Piezas Producidas")) {
+                        produccion.add(registro);
+                        break;
+                    }
+                }
+            }
+            
+            if (!produccion.isEmpty()) {
+                Object[] produccionReg;
+                for (int i = 0; i < produccion.size(); i++) {
+                    produccionReg = (Object[]) produccion.get(i);
+                    for (int j = 0; j < produccionReg.length; j++) {
+                        System.out.println(j + "." + produccionReg[j].toString());
+                    }
+                }
+            }
             
         } catch (Exception e) {
-
+            System.out.println("<><><><><> " + e);
         }
     }
 }

@@ -28,7 +28,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
     private final String LISTAR_REGISTROS_TURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
             //+ " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND linea like ? AND hora < ? ORDER BY hora ASC";
-            + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora < ? ORDER BY hora,tiempoIni ASC ";
+              + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora <= ? ORDER BY hora,tiempoIni ASC ";
     
     @Override
     public void insertarRegistroAccess(ArrayList registro) throws Exception {
