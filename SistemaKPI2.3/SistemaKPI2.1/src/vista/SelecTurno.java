@@ -136,11 +136,15 @@ public class SelecTurno extends javax.swing.JDialog {
                 try {
                     inicioTurno = consultaTurno.consultaInicioTurno(fecha, seleccionTurnoLinea,turno);
                     finTurno = consultaTurno.consultaFinTurno(fecha, seleccionTurnoLinea, turno);
-                    principalMetodos.consultarBitacoraPorTurno(winPrincipal);
+                    principalMetodos.consultarBitacoraPorTurno(winPrincipal); 
+                    winPrincipal.getMniOperaciones().setEnabled(true);
+                    winPrincipal.getCmbHora().removeAllItems();
                     
                     winPrincipal.getLblTurno().setText(turno + " <> " + inicioTurno + " - " + finTurno);
                     
+                    
                     if (inicioTurno > finTurno) {
+                        winPrincipal.getCmbHora().removeAllItems();
                         cmbTiempoModel.add("Selecciona Hora");
                         for (int i = inicioTurno; i != 0; i++) {
                             if (i == 24) {
@@ -151,6 +155,7 @@ public class SelecTurno extends javax.swing.JDialog {
                             cmbTiempoModel.add(i);
                         }
                     } else {
+                        winPrincipal.getCmbHora().removeAllItems();
                         int duracionTurno = finTurno - inicioTurno;
                         cmbTiempoModel.add("Selecciona Hora");
                         for (int i = 0, j = inicioTurno; i < duracionTurno; i++, j++) {

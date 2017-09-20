@@ -27,7 +27,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial"
             + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
     private final String LISTAR_REGISTROS_TURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial"
-            + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora <= ?";
+            //+ " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND linea like ? AND hora < ? ORDER BY hora ASC";
+            + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora < ? ORDER BY hora,tiempoIni ASC ";
     
     @Override
     public void insertarRegistroAccess(ArrayList registro) throws Exception {
@@ -99,6 +100,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
 
     @Override
     public ArrayList listarBitacorasTurno(String fecha, String linea, int horaInicia, int horaFin) throws Exception {
+        System.out.println("i "+horaInicia+" f "+horaFin);
         Object[] bitacoraObj;
         listaRegistros = new ArrayList();
         try {
@@ -108,8 +110,17 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setString(2, linea);
             ps.setInt(3, horaInicia);
             ps.setInt(4, horaFin);
+            
+            /***PARA INICIO MAYOR QUE  FIN***/
+            
+            /*ps.setString(1, fecha);
+            ps.setString(2, linea);
+            ps.setInt(3, horaInicia);
+            ps.setString(4, linea);
+            ps.setInt(5, horaFin);*/
+            
             rs = ps.executeQuery();
-                
+            System.out.println(ps.executeQuery()+" ... "+rs.toString());
             while (rs.next()) {
                 bitacoraObj = new Object[16];
                 bitacoraObj[0] = rs.getString(1);

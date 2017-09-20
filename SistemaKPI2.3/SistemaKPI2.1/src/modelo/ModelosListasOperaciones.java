@@ -26,7 +26,7 @@ public class ModelosListasOperaciones {
     
     private static final String[] areaTecnicas = {
         "Selecciona Area","Maquina Proceso","Mecanicos","Electricos",
-        "Hidraulicos Pneumaticos","Software Computadora","Reajuste Maquina"
+        "Hidraulico Pneumatico","Software Computadora","Reajuste Maquina"
     };
     
     public static DefaultComboBoxModel listaAreTecnicas(){
