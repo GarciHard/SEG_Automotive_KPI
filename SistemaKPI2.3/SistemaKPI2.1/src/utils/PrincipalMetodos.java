@@ -753,7 +753,7 @@ public class PrincipalMetodos {
         }
     }
 
-    public void revisarTiemposFaltentes(Principal winPrincipal, int opcion) {
+    public void revisarTiemposFaltantes(Principal winPrincipal, int opcion) {
         switch (opcion) {
             case 1:
                 DefaultTableModel bitacoraModelo,
@@ -826,7 +826,7 @@ public class PrincipalMetodos {
         switch (LoginControl.auxiliarLogin) {
             case 1:
                 try {
-                    revisarTiemposFaltentes(winPrincipal, 2);
+                    revisarTiemposFaltantes(winPrincipal, 2);
                     int tiempoFaltante = 0;
                     for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
                         if (Integer.parseInt(tablaHorasCero.getValueAt(i, 1).toString()) != 0) {
@@ -1142,7 +1142,7 @@ public class PrincipalMetodos {
     }
 
     private int getValueTblTiempoFaltante(Principal winPrincipal) {
-        revisarTiemposFaltentes(winPrincipal, 2);
+        revisarTiemposFaltantes(winPrincipal, 2);
         int tiempoFaltante = 0;
         for (int b = 0; b < tablaHorasCero.getRowCount(); b++) {
             if (Integer.parseInt(tablaHorasCero.getValueAt(b, 1).toString()) != 0) {
@@ -1167,7 +1167,7 @@ public class PrincipalMetodos {
     }
     
     private DefaultComboBoxModel actualizaComboHoras(Principal winPrincipal) {
-        revisarTiemposFaltentes(winPrincipal, 2);
+        revisarTiemposFaltantes(winPrincipal, 2);
         ArrayList listaHorasActualizada = new ArrayList();
         listaHorasActualizada.add("Selecciona Hora");
         for (int i = 0; i < tablaHorasCero.getRowCount(); i++) {
