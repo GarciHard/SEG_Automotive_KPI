@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jxl.write.WritableWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFPivotTable;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import vista.Login;
@@ -1127,7 +1128,23 @@ public class PrincipalMetodos {
     }
     
     public void hourlyCounGraph(Principal winPrincipal) {
-        
+        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
+        try {
+            FileInputStream file = new FileInputStream(new File(EXCEL_LOCATION));
+            XSSFWorkbook workbook = new XSSFWorkbook (file);
+            XSSFSheet sheet = workbook.getSheetAt(1);
+            XSSFPivotTable pivot = sheet.getPivotTables().get(0);
+            pivot.addReportFilter(1);
+            pivot.addRowLabel(1);
+            file.close();
+            
+            FileOutputStream outFile = new FileOutputStream(new File(EXCEL_LOCATION));
+            workbook.write(outFile);
+            outFile.close();
+            Process p = Runtime.getRuntime().exec ("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE " + EXCEL_LOCATION);
+        } catch (Exception e) {
+            System.out.println("<<< " + e);
+        }
         
         /*ESTE DE ABAJO ES EL BUENO*/
 //        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
