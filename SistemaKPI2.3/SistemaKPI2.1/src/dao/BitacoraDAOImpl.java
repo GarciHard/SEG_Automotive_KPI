@@ -100,7 +100,6 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
 
     @Override
     public ArrayList listarBitacorasTurno(String fecha, String linea, int horaInicia, int horaFin) throws Exception {
-        System.out.println("i "+horaInicia+" f "+horaFin);
         Object[] bitacoraObj;
         listaRegistros = new ArrayList();
         try {
@@ -111,16 +110,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setInt(3, horaInicia);
             ps.setInt(4, horaFin);
             
-            /***PARA INICIO MAYOR QUE  FIN***/
-            
-            /*ps.setString(1, fecha);
-            ps.setString(2, linea);
-            ps.setInt(3, horaInicia);
-            ps.setString(4, linea);
-            ps.setInt(5, horaFin);*/
-            
             rs = ps.executeQuery();
-            System.out.println(ps.executeQuery()+" ... "+rs.toString());
+            
             while (rs.next()) {
                 bitacoraObj = new Object[16];
                 bitacoraObj[0] = rs.getString(1);

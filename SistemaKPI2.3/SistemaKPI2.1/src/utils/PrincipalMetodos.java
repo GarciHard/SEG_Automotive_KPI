@@ -1253,4 +1253,8 @@ public class PrincipalMetodos {
 //            System.err.println("Error: " + e);
 //        }
     }
+    
+    private void generarReporteActual(Principal winPrincipal) {
+        
+    }
 }
