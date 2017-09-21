@@ -1261,21 +1261,18 @@ public class PrincipalMetodos {
 //        }
     }
     
-    public void generarReporteActual(Principal winPrincipal) {
+    public void generarReporteProduccionActual(Principal winPrincipal) {
         winPrincipal.getCmbHora().setSelectedIndex(1);
         int horaInicial = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
         int finalAux = winPrincipal.getCmbHora().getItemCount();
         winPrincipal.getCmbHora().setSelectedIndex(finalAux - 1);
         int horaFinal = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
         winPrincipal.getCmbHora().setSelectedIndex(0);
+
+
         
         ArrayList produccion = new ArrayList();
-//        ,
-//                calidad,
-//                tecnicas,
-//                organizacionales,
-//                cambio,
-//                planeados = new ArrayList();
+
 
         try {
             Object[] registro;
@@ -1286,11 +1283,13 @@ public class PrincipalMetodos {
                     horaFinal
             );
             
+            int indicadorHora = 0;
             for (int i = 0; i < bitacoraActual.size(); i++) {
                 registro = (Object[]) bitacoraActual.get(i);
                 for (int j = 0; j < registro.length; j++) {
                     if (registro[6].equals("Piezas Producidas")) {
-                        produccion.add(registro);
+                        indicadorHora = Integer.parseInt(registro[2].toString());
+                        
                         break;
                     }
                 }
@@ -1301,6 +1300,7 @@ public class PrincipalMetodos {
                 for (int i = 0; i < produccion.size(); i++) {
                     produccionReg = (Object[]) produccion.get(i);
                     for (int j = 0; j < produccionReg.length; j++) {
+                        
                         System.out.println(j + "." + produccionReg[j].toString());
                     }
                 }
