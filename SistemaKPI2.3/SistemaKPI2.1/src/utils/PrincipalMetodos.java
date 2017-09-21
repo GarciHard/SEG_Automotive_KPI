@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -1262,52 +1263,117 @@ public class PrincipalMetodos {
     }
     
     public void generarReporteProduccionActual(Principal winPrincipal) {
-        winPrincipal.getCmbHora().setSelectedIndex(1);
-        int horaInicial = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
-        int finalAux = winPrincipal.getCmbHora().getItemCount();
-        winPrincipal.getCmbHora().setSelectedIndex(finalAux - 1);
-        int horaFinal = Integer.parseInt(winPrincipal.getCmbHora().getSelectedItem().toString());
-        winPrincipal.getCmbHora().setSelectedIndex(0);
-
-
-        
-        ArrayList produccion = new ArrayList();
-
-
         try {
+            ArrayList produccion = new ArrayList();
             Object[] registro;
-            ArrayList bitacoraActual = new BitacoraDAOImpl().listarBitacorasTurno(
-                    winPrincipal.getDteFecha().getText(),
-                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                    horaInicial,
-                    horaFinal
-            );
-            
+            Object[] comparaRegistro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
             int indicadorHora = 0;
+            /**
+             * Comenzamos el recorrido del array bitacoraActual el cual contiene
+             * la informacion de la bitacora de acuerdo al horario del turno
+             * actual
+             */
             for (int i = 0; i < bitacoraActual.size(); i++) {
+                //obtenemos los datos de cada registro en un array de tipo Object
                 registro = (Object[]) bitacoraActual.get(i);
-                for (int j = 0; j < registro.length; j++) {
-                    if (registro[6].equals("Piezas Producidas")) {
+                //buscamos el tema del registro
+                //for (int j = 0; j < registro.length; j++) {
+                if (registro[6].equals("Piezas Producidas")) {
+                    /**
+                     * Si produccion esta vacio entonces se toma la hora del
+                     * primer registro en la bitacora el cual se asigna a
+                     * indicadorHora y se guardan los datos. En caso de que
+                     * produccion no este vacio, se compara la hora del nuevo
+                     * registro contra indicadorHora si son iguales, ahora
+                     * compara el numero de parte del cliente y en caso de que
+                     * sean iguales se suma la cantidad de piezas. Si los
+                     * numeros de partes son diferentes, hace una busqueda en el
+                     * array produccion para encontrar un numero de parte y hora
+                     * igual en caso de encontrarlo, suma la cantidad de piezas
+                     * y elimina el registro anterior para agregar el nuevo
+                     * registro. Si indicadorHora y la hora del nuevo registro
+                     * no son iguales, el valor de indicadorHora cambia por el
+                     * del nuevo registro y se guardan los datos.
+                     */
+                    if (produccion.isEmpty()) {
                         indicadorHora = Integer.parseInt(registro[2].toString());
-                        
-                        break;
+                        produccion.add(registro);
+                    } else {
+                        if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
+                            comparaRegistro = (Object[]) produccion.get(i - 1);
+                            System.out.println("productionArrSizeGetiMinus1> " + produccion.size());
+                            if (registro[11].equals(comparaRegistro[11])) {
+                                produccion.remove(i - 1);
+                                System.out.println("productionArrSizeMinusOne> " + produccion.size());
+                                comparaRegistro[12]
+                                        = Integer.parseInt(comparaRegistro[12].toString())
+                                        + Integer.parseInt(registro[12].toString());
+                                produccion.add(comparaRegistro);
+                                System.out.println("productionArrSizePlusOne> " + produccion.size());
+                            } else {
+                                for (int j = 0; j < produccion.size(); j++) {
+                                    comparaRegistro = (Object[]) produccion.get(j);
+                                    if (comparaRegistro[11].equals(registro[11])
+                                            && comparaRegistro[2].equals(registro[2])) {
+                                        produccion.remove(j);
+                                        registro[12]
+                                                = Integer.parseInt(comparaRegistro[12].toString())
+                                                + Integer.parseInt(registro[12].toString());
+                                        break;
+                                    }
+                                }
+                                produccion.add(registro);
+                            }
+                        } else {
+                            indicadorHora = Integer.parseInt(registro[2].toString());
+                            produccion.add(registro);
+                        }
                     }
+                    //break;
                 }
+                //}
             }
-            
+
             if (!produccion.isEmpty()) {
                 Object[] produccionReg;
                 for (int i = 0; i < produccion.size(); i++) {
                     produccionReg = (Object[]) produccion.get(i);
                     for (int j = 0; j < produccionReg.length; j++) {
-                        
+
                         System.out.println(j + "." + produccionReg[j].toString());
                     }
                 }
             }
-            
+
         } catch (Exception e) {
             System.out.println("<><><><><> " + e);
         }
+    }
+    
+    private int[] horarioTurno(JComboBox cmbHora) {
+        int[] horario = new int[2];
+        cmbHora.setSelectedIndex(1);
+        horario[0] = Integer.parseInt(cmbHora.getSelectedItem().toString());
+        int finalAux = cmbHora.getItemCount();
+        cmbHora.setSelectedIndex(finalAux - 1);
+        horario[1] = Integer.parseInt(cmbHora.getSelectedItem().toString());
+        cmbHora.setSelectedIndex(0);
+        return horario;
+    }
+
+    private ArrayList getBitacoraActual(int[] horarioTurno, Principal winPrincipal) throws Exception {
+        return new BitacoraDAOImpl().listarBitacorasTurno(
+                winPrincipal.getDteFecha().getText(),
+                winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                horarioTurno[0],
+                horarioTurno[1]
+        );
     }
 }
