@@ -14,21 +14,18 @@ import javax.swing.DefaultComboBoxModel;
  */
 public interface ReportesDAO {
     
-    public DefaultComboBoxModel listaLineasBitacora() throws Exception;
+    public DefaultComboBoxModel listaLineasBitacora() throws Exception;    
+    public DefaultComboBoxModel listaClientesProduccion (String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
+    public DefaultComboBoxModel listaClientesScrap(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
+    public DefaultComboBoxModel listaNoParteProduccion (String linea, String tema, String cliente, String fechaInicial, String fechaFinal) throws Exception;
+    public DefaultComboBoxModel listaNoParteScrap (String linea, String tema, String cliente, String fechaInicial, String fechaFinal) throws Exception;
     
-    public int CantidadTotalProducida (String linea, String fechaInicial, String fechaFinal) throws Exception;
-    public int CantidadProdudccionModelo(String lines, String Inicial, String fechaFinal) throws Exception;
-    public int CantidadTotalPerdidas (String linea, String fechaInicial, String fechaFinal) throws Exception;
-    public ArrayList listaTotalPerdidas (String linea, String fechaInicial, String fechaFinal) throws Exception;
-    public int cantidadTotalPerdidasPorTema(String linea, String tema, String fechaInicial, String fechaFinal)throws Exception;
-    public ArrayList listaTotalerdidasPorTema (String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
-    public int cantidadTotalPerdidadPorTemaYArea(String linea, String tema, String area, String fechaInicial, String fechaFinal) throws Exception;
+    public int produccionTotal (String linea, String fechaInicial, String fechaFinal) throws Exception;
+    public int scrapTotal (String linea, String fechaInicial, String fechaFinal) throws Exception;
     
-    //Select COUNT(*) AS [NOT NULL] FROM Bitacora WHERE Tema = "Tecnicas"  AND fecha>=#8/15/2017# AND fecha<#9/4/2017#  AND linea="L003";
     
-    /*
-    public DefaultComboBoxModel listaOperacionCalidad(String linea) throws Exception;
-    public DefaultComboBoxModel listaAreaCalidad(String linea, String tema, String operacion) throws Exception;
-    public DefaultComboBoxModel listaProblemaCalidad(String linea, String tema, String operacion, String area) throws Exception;
-    */
+    public ArrayList produccionPorModelo (String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
+       
+    public ArrayList perdidasPorTema (String linea, String fechaInicial, String fechaFinal) throws Exception;
+    public ArrayList listaPerdidasPorTemaYArea (String linea, String fechaInicial, String fechaFinal)throws Exception;
 }
