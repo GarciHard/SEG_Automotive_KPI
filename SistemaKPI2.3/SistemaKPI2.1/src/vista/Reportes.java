@@ -7,6 +7,7 @@ package vista;
 
 import dao.ReportesDAOImpl;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,11 +25,32 @@ public class Reportes extends javax.swing.JFrame {
      */
     ReportesDAOImpl reportesCosultas = new ReportesDAOImpl();
     
+    //DATOS PARA LAS CONSULTAS
+    String linea = "";
+    String tema = "";
+    String cliente = "";
+    String fechaInicial = "";
+    String fechaFinal = "";
+    
+    //BANDERAS 
+    public int bnProduccion = 0;
+    public int bnScrap = 0;
+    
+    
+    // DATOS OBTENIDOS DE LAS CONSULTAS
+    int cantidadTotalProduccion = 0 ;
+    int cantidadTotalScrap = 0;
+    int catidadRegistrosNoParteLinea = 0;
+    
+    ArrayList<String> cantidadProduccionPorParte ;
+    ArrayList<String> listadoProduccionPorParte ;
+    
     private final SimpleDateFormat fechaFormato = new SimpleDateFormat("dd/MM/yyyy");
     
     public Reportes() {
         initComponents();
         cmbArea.setVisible(false);
+        cmbCliente.setVisible(false);
         dteFechaInicial.setDateFormat(fechaFormato);
         dteFechaFinal.setDateFormat(fechaFormato);
         dteFechaInicial.setDate(new Date(System.currentTimeMillis()));
@@ -50,6 +72,7 @@ public class Reportes extends javax.swing.JFrame {
         btnGenerar = new javax.swing.JButton();
         dteFechaInicial = new com.alee.extended.date.WebDateField();
         dteFechaFinal = new com.alee.extended.date.WebDateField();
+        cmbCliente = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -92,18 +115,26 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
 
+        cmbCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(cmbLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(cmbTema, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(cmbArea, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 42, Short.MAX_VALUE)
+                .addComponent(cmbLinea, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(cmbTema, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(cmbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(cmbArea, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(dteFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dteFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,15 +146,17 @@ public class Reportes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbLinea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGenerar)
-                    .addComponent(dteFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(dteFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dteFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmbTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbLinea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGenerar)
+                        .addComponent(dteFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(166, Short.MAX_VALUE))
         );
 
@@ -139,7 +172,58 @@ public class Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void cmbTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTemaActionPerformed
-        dteFechaInicial.setEnabled(true);
+        cantidadTotalProduccion = 0 ;
+        cantidadTotalScrap = 0;
+        
+        //OBTENEMOS DATOS 
+        linea = cmbLinea.getSelectedItem().toString();
+        fechaInicial = "15/08/2017";
+        fechaFinal = "04/09/2017";
+        System.out.println(cmbTema.getSelectedIndex());
+        
+        if (cmbTema.getSelectedIndex() != 0){
+            if (cmbTema.getSelectedIndex() == 1 ){ //Produccion
+                tema  = "Piezas Producidas";
+                bnProduccion = 1;
+                bnScrap = 0;
+                try {                    
+                    cantidadTotalProduccion = reportesCosultas.produccionTotal(linea, fechaInicial, fechaFinal);
+                    cmbCliente.setModel(reportesCosultas.listaClientesProduccion(linea, tema, fechaInicial, fechaFinal));
+                    cmbCliente.setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else if (cmbTema.getSelectedIndex() == 2){//Perdidas
+                tema = "Piezas Producidas";
+                bnProduccion = 0;
+                bnScrap = 1;
+                try {
+                    cantidadTotalScrap = reportesCosultas.scrapTotal(linea, fechaInicial, fechaFinal);
+                    cmbCliente.setModel(reportesCosultas.listaClientesScrap(linea, tema, fechaInicial, fechaFinal));
+                    cmbCliente.setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (cmbTema.getSelectedIndex() == 3){ //Ambos
+                try {
+                    cantidadTotalProduccion = reportesCosultas.produccionTotal(linea, fechaInicial, fechaFinal);
+                    cantidadTotalScrap = reportesCosultas.scrapTotal(linea, fechaInicial, fechaFinal);
+                    cmbCliente.setSelectedIndex(-1);
+                    cmbCliente.setVisible(false);
+                    cmbArea.setSelectedIndex(-1);
+                    cmbArea.setVisible(false);
+                } catch (Exception ex) {
+                    Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //dteFechaInicial.setEnabled(true);
+        } else {
+            cmbArea.setSelectedItem(-1);
+            cmbArea.setEnabled(false);
+            cmbArea.setVisible(false);
+            //dteFechaInicial.setEnabled(false);
+        }
+        System.out.println("Reporte: \nPiezas Producidas: "+cantidadTotalProduccion+"\nSrap: "+cantidadTotalScrap);
     }//GEN-LAST:event_cmbTemaActionPerformed
 
     private void dteFechaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dteFechaInicialActionPerformed
@@ -162,6 +246,29 @@ public class Reportes extends javax.swing.JFrame {
     private void dteFechaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dteFechaFinalActionPerformed
         btnGenerar.setEnabled(true);
     }//GEN-LAST:event_dteFechaFinalActionPerformed
+
+    private void cmbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClienteActionPerformed
+        cliente = cmbCliente.getSelectedItem().toString(); 
+        if(cmbCliente.getSelectedIndex() != 0){
+            if (cmbCliente.getSelectedIndex() == 1){
+                try {
+                    cmbArea.setModel(reportesCosultas.listaNoParteProduccion(linea, tema, cliente, fechaInicial, fechaFinal));
+                    cmbArea.setEnabled(true);
+                    cmbArea.setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else if (cmbCliente.getSelectedIndex() == 2){
+                try {
+                    cmbArea.setModel(reportesCosultas.listaNoParteScrap(linea, tema, cliente, fechaInicial, fechaFinal));
+                    cmbArea.setEnabled(true);
+                    cmbArea.setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_cmbClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +308,7 @@ public class Reportes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerar;
     private javax.swing.JComboBox<String> cmbArea;
+    private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<String> cmbLinea;
     private javax.swing.JComboBox<String> cmbTema;
     private com.alee.extended.date.WebDateField dteFechaFinal;
