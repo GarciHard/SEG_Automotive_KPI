@@ -1357,6 +1357,10 @@ public class PrincipalMetodos {
         }
     }
     
+    public void generarReporteCalidadActual(Principal winPrincipal) {
+        
+    }
+    
     private int[] horarioTurno(JComboBox cmbHora) {
         int[] horario = new int[2];
         cmbHora.setSelectedIndex(1);
