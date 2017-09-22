@@ -1284,61 +1284,64 @@ public class PrincipalMetodos {
                 //obtenemos los datos de cada registro en un array de tipo Object
                 registro = (Object[]) bitacoraActual.get(i);
                 //buscamos el tema del registro
-                //for (int j = 0; j < registro.length; j++) {
-                if (registro[6].equals("Piezas Producidas")) {
-                    /**
-                     * Si produccion esta vacio entonces se toma la hora del
-                     * primer registro en la bitacora el cual se asigna a
-                     * indicadorHora y se guardan los datos. En caso de que
-                     * produccion no este vacio, se compara la hora del nuevo
-                     * registro contra indicadorHora si son iguales, ahora
-                     * compara el numero de parte del cliente y en caso de que
-                     * sean iguales se suma la cantidad de piezas. Si los
-                     * numeros de partes son diferentes, hace una busqueda en el
-                     * array produccion para encontrar un numero de parte y hora
-                     * igual en caso de encontrarlo, suma la cantidad de piezas
-                     * y elimina el registro anterior para agregar el nuevo
-                     * registro. Si indicadorHora y la hora del nuevo registro
-                     * no son iguales, el valor de indicadorHora cambia por el
-                     * del nuevo registro y se guardan los datos.
-                     */
-                    if (produccion.isEmpty()) {
-                        indicadorHora = Integer.parseInt(registro[2].toString());
-                        produccion.add(registro);
-                    } else {
-                        if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
-                            comparaRegistro = (Object[]) produccion.get(i - 1);
-                            System.out.println("productionArrSizeGetiMinus1> " + produccion.size());
-                            if (registro[11].equals(comparaRegistro[11])) {
-                                produccion.remove(i - 1);
-                                System.out.println("productionArrSizeMinusOne> " + produccion.size());
-                                comparaRegistro[12]
-                                        = Integer.parseInt(comparaRegistro[12].toString())
-                                        + Integer.parseInt(registro[12].toString());
-                                produccion.add(comparaRegistro);
-                                System.out.println("productionArrSizePlusOne> " + produccion.size());
-                            } else {
-                                for (int j = 0; j < produccion.size(); j++) {
-                                    comparaRegistro = (Object[]) produccion.get(j);
-                                    if (comparaRegistro[11].equals(registro[11])
-                                            && comparaRegistro[2].equals(registro[2])) {
-                                        produccion.remove(j);
-                                        registro[12]
-                                                = Integer.parseInt(comparaRegistro[12].toString())
-                                                + Integer.parseInt(registro[12].toString());
-                                        break;
-                                    }
-                                }
-                                produccion.add(registro);
-                            }
-                        } else {
+                for (int j = 0; j < registro.length; j++) {
+                    if (registro[6].equals("Piezas Producidas")) {
+                        /**
+                         * Si produccion esta vacio entonces se toma la hora del
+                         * primer registro en la bitacora el cual se asigna a
+                         * indicadorHora y se guardan los datos. En caso de que
+                         * produccion no este vacio, se compara la hora del
+                         * nuevo registro contra indicadorHora si son iguales,
+                         * ahora compara el numero de parte del cliente y en
+                         * caso de que sean iguales se suma la cantidad de
+                         * piezas. Si los numeros de partes son diferentes, hace
+                         * una busqueda en el array produccion para encontrar un
+                         * numero de parte y hora igual en caso de encontrarlo,
+                         * suma la cantidad de piezas y elimina el registro
+                         * anterior para agregar el nuevo registro. Si
+                         * indicadorHora y la hora del nuevo registro no son
+                         * iguales, el valor de indicadorHora cambia por el del
+                         * nuevo registro y se guardan los datos.
+                         */
+                        if (produccion.isEmpty()) {
                             indicadorHora = Integer.parseInt(registro[2].toString());
                             produccion.add(registro);
+                        } else {
+                            if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
+                                comparaRegistro = (Object[]) produccion.get(i - 1);
+                                System.out.println("productionArrSizeGetiMinus1> " + produccion.size());
+                                if (registro[11].equals(comparaRegistro[11])) {
+                                    produccion.remove(i - 1);
+                                    System.out.println("productionArrSizeMinusOne> " + produccion.size());
+                                    comparaRegistro[12]
+                                            = Integer.parseInt(comparaRegistro[12].toString())
+                                            + Integer.parseInt(registro[12].toString());
+                                    produccion.add(comparaRegistro);
+                                    System.out.println("productionArrSizePlusOne> " + produccion.size());
+                                } else {
+                                    for (int k = 0; k < produccion.size(); k++) {
+                                        comparaRegistro = (Object[]) produccion.get(k);
+                                        if (comparaRegistro[11].equals(registro[11])
+                                                && comparaRegistro[2].equals(registro[2])) {
+                                            produccion.remove(k);
+                                            registro[12]
+                                                    = Integer.parseInt(comparaRegistro[12].toString())
+                                                    + Integer.parseInt(registro[12].toString());
+                                            break;
+                                        }
+                                    }
+                                    produccion.add(registro);
+                                }
+                            } else {
+                                indicadorHora = Integer.parseInt(registro[2].toString());
+                                produccion.add(registro);
+                            }
                         }
+                        break;
+                    } else if (registro[6].equals("Calidad")) {
+                        
                     }
-                    //break;
                 }
-                //}
             }
 
             if (!produccion.isEmpty()) {
