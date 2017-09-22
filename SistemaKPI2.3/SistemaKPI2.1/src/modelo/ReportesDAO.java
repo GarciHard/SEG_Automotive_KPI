@@ -21,19 +21,24 @@ public interface ReportesDAO {
     public DefaultComboBoxModel listaNoParteScrap (String linea, String tema, String cliente, String fechaInicial, String fechaFinal) throws Exception;
     
     public int produccionTotal (String linea, String fechaInicial, String fechaFinal) throws Exception;
-    public int scrapTotal (String linea,String tema, String fechaInicial, String fechaFinal) throws Exception;
+    public int scrapTotal (String linea, String fechaInicial, String fechaFinal) throws Exception;
     
     public ArrayList produccionClientesGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
     public ArrayList produccionModeloGeneral(String linea, String tema, String cliente, String fechaInicial, String fechaFinal) throws Exception;
-    public ArrayList produccionClientesModelosGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
     public ArrayList produccionClienteEpecifico(String linea, String tema, String cliente, String fechaInicial, String fechaFinal) throws Exception;
     public ArrayList produccionModeloEpecifico(String linea, String tema, String noParte, String fechaInicial, String fechaFinal) throws Exception;
+    public ArrayList produccionClientesModelosGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
      
     //public ArrayList produccionPorModelo (String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
        
     //public ArrayList perdidasPorTema (String linea, String fechaInicial, String fechaFinal) throws Exception;
     public ArrayList perdidasPorTemaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
-    public ArrayList perdidasPorTemaYArea(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
-    public ArrayList produccionClienteModeloEspecifico(String linea, String tema, String cliente, String modelo, String fechaInicial, String fechaFinal) throws Exception;
-    //public ArrayList listaPerdidasPorTemaYArea (String linea, String fechaInicial, String fechaFinal)throws Exception;
+    public ArrayList perdidasPorAreaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
+    public ArrayList perdidasPorProblemaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
+    public ArrayList perdidasPorTemaAreaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
+    public ArrayList perdidasPorTemaAreaProblemaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
+    
+    public ArrayList perdidasPorTemaEspecifico(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception;
+    public ArrayList perdidasPorAreaEspecifica(String linea, String tema, String area, String fechaInicial, String fechaFinal) throws Exception;
+    public ArrayList perdidasPorProblemaEspecifico(String linea, String tema, String problema, String fechaInicial, String fechaFinal) throws Exception;
 }

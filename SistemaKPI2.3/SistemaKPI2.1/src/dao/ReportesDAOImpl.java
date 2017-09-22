@@ -33,8 +33,15 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
     private ArrayList<String> listaProduccionModelosGeneral;
     private ArrayList<String> listaProduccionModeloEspecifico;
     
-    private ArrayList<String> listaPerdidasTema;
-    private ArrayList<String> listaPerdidasTemaArea;
+    //private ArrayList<String> listaPerdidasTema;
+    private ArrayList<String> listaPerdidasGenerales;
+    private ArrayList<String> listaPerdidaEspecifica;
+    private ArrayList<String> listaAreasGenerales;
+    private ArrayList<String> listaAreaEspecifica;
+    private ArrayList<String> listaPerdidasAreasGenerales;
+    private ArrayList<String> listaProblemasGenerales;
+    private ArrayList<String> listaProblemaEspecifico;
+    private ArrayList<String> listaPerdidasAreasProblemasGenerales;
     
     //BD        
     private PreparedStatement ps;
@@ -48,7 +55,7 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
     String LISTA_NOPARTE_PERDIDAS = "SELECT NoParte FROM Bitacora WHERE linea = ? AND Tema <> ? AND cliente = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY NoParte ORDER BY NoParte ASC";
     String LISTA_LINEAS_REGISTRADAS = "SELECT Linea FROM Bitacora Group By Linea Order BY Linea ASC";
     
-    //CONSULTAS
+    //CONSULTAS PRINCIPALES
     String SCRAP_TOTAL = "SELECT Sum(scrap) FROM Bitacora WHERE linea = ? AND Tema <> 'Piezas Producidas' AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY')";
     String PRODUCCION_TOTAL = "SELECT Sum(cantPzas) FROM Bitacora WHERE linea = ? AND Tema = 'Piezas Producidas' AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY')";
     
@@ -57,16 +64,23 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
             +"WHERE linea = ? AND tema = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY cliente ORDER BY cliente ASC";
     String PRODUCCION_CLIENTE_MODELO_GENERAL = "SELECT cliente, noParte, Sum(cantPzas) FROM Bitacora "
             +"WHERE linea = ? AND tema = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY cliente, noParte ORDER BY cliente, noParte ASC";
-    String PRODUCCION_MODELOS_GENERAL = "SELECT noParte, Sum(cantPzas) FROM Bitacora "
-            +"WHERE linea = ? AND cliente = ? AND tema = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY noParte ORDER BY noParte ASC";
-    String PRODUCCION_MODELOS_ESPECIFICO = "SELECT Sum(cantPzas) FROM Bitacora "
-            +"WHERE linea = ? AND tema = ? AND noParte = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY noParte ORDER BY noParte ASC";
-    String PRODUCCION_CLIENTE_ESPECIFICO = "SELECT Sum(cantPzas) FROM Bitacora "
+     String PRODUCCION_CLIENTE_ESPECIFICO = "SELECT cliente,Sum(cantPzas) FROM Bitacora "
             +"WHERE linea = ? AND tema = ? AND Cliente = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY cliente ORDER BY cliente ASC";
-    
+    String PRODUCCION_MODELOS_GENERAL = "SELECT noParte, Sum(cantPzas) FROM Bitacora "
+            +"WHERE linea = ? AND tema = ? AND cliente = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY noParte ORDER BY noParte ASC";
+    String PRODUCCION_MODELO_ESPECIFICO = "SELECT noParte, Sum(cantPzas) FROM Bitacora "
+            +"WHERE linea = ? AND tema = ? AND noParte = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY noParte ORDER BY noParte ASC";
+       
     //PERDIDAS
-    String PERDIDAS_TEMA_GENERAL = "SELECT Sum(scrap) FROM Bitacora "
+    String PERDIDAS_TEMA_GENERAL = "SELECT tema, Sum(scrap) FROM Bitacora "
             +"WHERE linea = ? AND tema <> ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY tema ORDER BY tema ASC";
+    String PERDIDAS_AREA_GENERAL = "";
+    String PERDIDAS_PROBLEMA_GENERAL = "";
+    String PERDIDAS_TEMA_AREA_GENERAL = "";
+    String PERDIDAS_TEMA_AREA_PROBLEMA_GENERAL = "";
+    String PERDIDAS_TEMA_ESPECIFIFCO = "";
+    String PERDIDAS_AREA_ESPECIFICO = "";
+    String PERDIDAS_PROBLEMA_ESPECIFICO = "";
     
     @Override
     public DefaultComboBoxModel listaLineasBitacora() throws Exception {
@@ -241,15 +255,14 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
     }
 
     @Override
-    public int scrapTotal(String linea,String tema, String fechaInicial, String fechaFinal) throws Exception {
+    public int scrapTotal(String linea, String fechaInicial, String fechaFinal) throws Exception {
         int scrap = 0;
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(SCRAP_TOTAL);
             ps.setString(1, linea);
-            ps.setString(2, tema);
-            ps.setString(3, fechaInicial);
-            ps.setString(4, fechaFinal);
+            ps.setString(2, fechaInicial);
+            ps.setString(3, fechaFinal);
 
             rs = ps.executeQuery();
 
@@ -316,8 +329,8 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
                 while(rs.next()){
                     producionModeloObj [0] = rs.getString(1);
                     producionModeloObj [1] = rs.getString(2);
-                    listaProduccionClientesGeneral.add(Arrays.deepToString(producionModeloObj));
-                    listaProduccionClientesGeneral.add("\n");
+                    listaProduccionClienteEspecifico.add(Arrays.deepToString(producionModeloObj));
+                    listaProduccionClienteEspecifico.add("\n");
                 }
         }catch (Exception e) {
             throw e;
@@ -363,14 +376,40 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
 
     @Override
     public ArrayList produccionModeloEpecifico(String linea, String tema, String noParte, String fechaInicial, String fechaFinal) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        listaProduccionModeloEspecifico = new ArrayList<>();
+        Object[] producionModeloObj = new Object[2];
+        System.out.println(linea+" , "+tema+" , "+noParte+" , "+fechaInicial+" , "+fechaFinal);
+        try {
+            this.conectar();
+                ps = this.conexion.prepareStatement(PRODUCCION_MODELO_ESPECIFICO);
+                ps.setString(1, linea);
+                ps.setString(2, tema);
+                ps.setString(3, noParte);
+                ps.setString(4, fechaInicial);
+                ps.setString(5, fechaFinal);
+                rs = ps.executeQuery();
+                while(rs.next()){
+                    producionModeloObj [0] = rs.getString(1);
+                    producionModeloObj [1] = rs.getString(2);
+                    listaProduccionModeloEspecifico.add(Arrays.deepToString(producionModeloObj));
+                    listaProduccionModeloEspecifico.add("\n");
+                }
+        }catch (Exception e) {
+            throw e;
+        } finally {
+            ps.close();
+            rs.close();
+            this.cerrar();
+        }
+        
+        return listaProduccionModeloEspecifico;
     }
         
     @Override
     public ArrayList produccionClientesModelosGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception {
         listaProduccionClienteModelo = new ArrayList<String> ();
         Object[] producionModeloObj = new Object[3];
-        System.out.println(linea+" , "+tema+" , "+fechaInicial+" , "+fechaFinal);
+        System.err.println(linea+" , "+tema+" , "+fechaInicial+" , "+fechaFinal);
         try {
             this.conectar();
                 ps = this.conexion.prepareStatement(PRODUCCION_CLIENTE_MODELO_GENERAL);
@@ -400,9 +439,8 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
     
     @Override
     public ArrayList perdidasPorTemaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception {
-        listaPerdidasTema = new ArrayList<String> ();
+        listaPerdidasGenerales = new ArrayList<String> ();
         Object[] producionModeloObj = new Object[2];
-        //System.out.println(linea+" , "+tema+" , "+fechaInicial+" , "+fechaFinal);
         try {
             this.conectar();
                 ps = this.conexion.prepareStatement(PERDIDAS_TEMA_GENERAL);
@@ -414,8 +452,8 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
                 while(rs.next()){
                     producionModeloObj [0] = rs.getString(1);
                     producionModeloObj [1] = rs.getString(2);                    
-                    listaPerdidasTema.add(Arrays.deepToString(producionModeloObj));
-                    listaPerdidasTema.add("\n");
+                    listaPerdidasGenerales.add(Arrays.deepToString(producionModeloObj));
+                    listaPerdidasGenerales.add("\n");
                 }
             //}
         } catch (Exception e) {
@@ -425,19 +463,57 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
             rs.close();
             this.cerrar();
         }
-        return listaPerdidasTema;
-    }
-    
-    @Override
-    public ArrayList perdidasPorTemaYArea(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
-
-    @Override
-    public ArrayList produccionClienteModeloEspecifico(String linea, String tema, String cliente, String modelo, String fechaInicial, String fechaFinal) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return listaPerdidasGenerales;
     }
     
     ///////////////////////////////////////////////////
-    
+
+    @Override
+    public ArrayList perdidasPorAreaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception {
+        listaAreasGenerales = new ArrayList<>();
+        
+        return listaAreasGenerales;
+    }
+
+    @Override
+    public ArrayList perdidasPorProblemaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception {
+        listaPerdidasGenerales = new ArrayList<>();
+        
+        return listaPerdidasGenerales;
+    }
+
+    @Override
+    public ArrayList perdidasPorTemaAreaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception {
+        listaPerdidasAreasGenerales = new ArrayList<>();
+        
+        return listaPerdidasAreasGenerales;
+    }
+
+    @Override
+    public ArrayList perdidasPorTemaAreaProblemaGeneral(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception {
+       listaPerdidasAreasProblemasGenerales = new ArrayList<>();
+        
+        return listaPerdidasAreasProblemasGenerales;
+    }
+
+    @Override
+    public ArrayList perdidasPorTemaEspecifico(String linea, String tema, String fechaInicial, String fechaFinal) throws Exception {
+        listaPerdidaEspecifica = new ArrayList<>();
+        
+        return listaPerdidaEspecifica;
+    }
+
+    @Override
+    public ArrayList perdidasPorAreaEspecifica(String linea, String tema, String area, String fechaInicial, String fechaFinal) throws Exception {
+        listaAreaEspecifica = new ArrayList<>();
+        
+        return listaAreaEspecifica;
+    }
+
+    @Override
+    public ArrayList perdidasPorProblemaEspecifico(String linea, String tema, String problema, String fechaInicial, String fechaFinal) throws Exception {
+        listaProblemaEspecifico = new ArrayList<>();
+        
+        return listaProblemaEspecifico;
+    }
 }
