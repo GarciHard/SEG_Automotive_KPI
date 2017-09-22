@@ -616,7 +616,7 @@ public class PrincipalMetodos {
                 reg[11] = "";
                 reg[12] = 0;
                 reg[13] = "";
-                reg[14] = "";
+                reg[14] = "0";
                 reg[15] = "";
                 reg[16] = "";
                 break;
@@ -635,7 +635,7 @@ public class PrincipalMetodos {
                 reg[11] = winPrincipal.getCmbNoPartePzasProd().getSelectedItem();
                 reg[12] = winPrincipal.getTxtCantidadProducidaPzasProd().getText();
                 reg[13] = "";
-                reg[14] = "";
+                reg[14] = "0";
                 reg[15] = "";
                 reg[16] = winPrincipal.getTxtTC().getText();
                 break;
@@ -692,7 +692,7 @@ public class PrincipalMetodos {
                 reg[11] = winPrincipal.getCmbNoParteOrganizacional().getSelectedItem();
                 reg[12] = 0;
                 reg[13] = "";
-                reg[14] = "";
+                reg[14] = "0";
                 reg[15] = winPrincipal.getTxtMatFaltante().getText();
                 reg[16] = "";
                 break;
@@ -730,7 +730,7 @@ public class PrincipalMetodos {
                 reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();
                 reg[12] = 0;
                 reg[13] = "";
-                reg[14] = "";
+                reg[14] = "0";
                 reg[15] = "";
                 reg[16] = "";
                 break;
@@ -1262,9 +1262,9 @@ public class PrincipalMetodos {
 //        }
     }
     
-    public void generarReporteProduccionActual(Principal winPrincipal) {
+    public ArrayList generarReporteProduccionActual(Principal winPrincipal) {
+        ArrayList produccion = new ArrayList();
         try {
-            ArrayList produccion = new ArrayList();
             Object[] registro;
             Object[] comparaRegistro;
 
@@ -1346,19 +1346,48 @@ public class PrincipalMetodos {
                 for (int i = 0; i < produccion.size(); i++) {
                     produccionReg = (Object[]) produccion.get(i);
                     for (int j = 0; j < produccionReg.length; j++) {
-
                         System.out.println(j + "." + produccionReg[j].toString());
                     }
                 }
             }
-
         } catch (Exception e) {
             System.out.println("<><><><><> " + e);
         }
+        return produccion;
     }
     
     public void generarReporteCalidadActual(Principal winPrincipal) {
-        
+        ArrayList calidad = new ArrayList();
+        try {    
+            Object[] registro;
+            Object[] comparaRegistro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
+            int indicadorHora = 0;
+            
+            for (int i = 0; i < bitacoraActual.size(); i++) {
+                registro = (Object[]) bitacoraActual.get(i);
+                
+                if (registro[6].equals("Calidad")) {
+                    if (calidad.isEmpty()) {
+                        indicadorHora = Integer.parseInt(registro[2].toString());
+                        calidad.add(registro);
+                    } else {
+                        if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
+                            
+                        }
+                    }
+                }
+            }
+            
+        } catch (Exception e) {
+            System.out.println("<><>reporteCalidadActual<><> " + e);
+        }
     }
     
     private int[] horarioTurno(JComboBox cmbHora) {
