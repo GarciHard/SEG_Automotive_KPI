@@ -241,14 +241,15 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
     }
 
     @Override
-    public int scrapTotal(String linea, String fechaInicial, String fechaFinal) throws Exception {
+    public int scrapTotal(String linea,String tema, String fechaInicial, String fechaFinal) throws Exception {
         int scrap = 0;
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(SCRAP_TOTAL);
             ps.setString(1, linea);
-            ps.setString(2, fechaInicial);
-            ps.setString(3, fechaFinal);
+            ps.setString(2, tema);
+            ps.setString(3, fechaInicial);
+            ps.setString(4, fechaFinal);
 
             rs = ps.executeQuery();
 
@@ -436,4 +437,7 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
     public ArrayList produccionClienteModeloEspecifico(String linea, String tema, String cliente, String modelo, String fechaInicial, String fechaFinal) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    ///////////////////////////////////////////////////
+    
 }

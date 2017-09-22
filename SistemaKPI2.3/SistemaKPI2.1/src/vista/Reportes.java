@@ -182,6 +182,7 @@ public class Reportes extends javax.swing.JFrame {
         System.out.println(cmbTema.getSelectedIndex());
         
         if (cmbTema.getSelectedIndex() != 0){
+            tema  = "Piezas Producidas";
             if (cmbTema.getSelectedIndex() == 1 ){ //Produccion
                 tema  = "Piezas Producidas";
                 bnProduccion = 1;
@@ -198,7 +199,7 @@ public class Reportes extends javax.swing.JFrame {
                 bnProduccion = 0;
                 bnScrap = 1;
                 try {
-                    cantidadTotalScrap = reportesCosultas.scrapTotal(linea, fechaInicial, fechaFinal);
+                    cantidadTotalScrap = reportesCosultas.scrapTotal(linea, tema, fechaInicial, fechaFinal);
                     cmbCliente.setModel(reportesCosultas.listaClientesScrap(linea, tema, fechaInicial, fechaFinal));
                     cmbCliente.setVisible(true);
                 } catch (Exception ex) {
@@ -207,7 +208,7 @@ public class Reportes extends javax.swing.JFrame {
             } else if (cmbTema.getSelectedIndex() == 3){ //Ambos
                 try {
                     cantidadTotalProduccion = reportesCosultas.produccionTotal(linea, fechaInicial, fechaFinal);
-                    cantidadTotalScrap = reportesCosultas.scrapTotal(linea, fechaInicial, fechaFinal);
+                    cantidadTotalScrap = reportesCosultas.scrapTotal(linea, tema, fechaInicial, fechaFinal);
                     cmbCliente.setSelectedIndex(-1);
                     cmbCliente.setVisible(false);
                     cmbArea.setSelectedIndex(-1);
