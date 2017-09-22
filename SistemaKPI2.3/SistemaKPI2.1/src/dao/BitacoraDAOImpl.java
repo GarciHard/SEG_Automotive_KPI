@@ -55,7 +55,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setString(14, reg[13].toString());
             ps.setString(15, reg[14].toString());
             ps.setString(16, reg[15].toString());
-            ps.setInt(17, Integer.parseInt(reg[16].toString()));
+            ps.setString(17, reg[16].toString());
             
             ps.executeUpdate();
         } catch (Exception e) {
@@ -131,7 +131,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 bitacoraObj[13] = rs.getString(14);
                 bitacoraObj[14] = rs.getString(15);
                 bitacoraObj[15] = rs.getString(16);
-                bitacoraObj[16] = rs.getInt(17);
+                bitacoraObj[16] = rs.getString(17);
                 
                 listaRegistros.add(bitacoraObj);
             }
@@ -189,7 +189,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setString(14, reg[13].toString());
             ps.setString(15, reg[14].toString());
             ps.setString(16, reg[15].toString());
-            ps.setInt(17, Integer.parseInt(reg[16].toString()));
+            ps.setString(17, reg[16].toString());
 
             ps.executeUpdate();
         } catch (Exception e) {
@@ -271,7 +271,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 bitacoraObj[13] = rs.getString(14);
                 bitacoraObj[14] = rs.getString(15);
                 bitacoraObj[15] = rs.getString(16);
-                bitacoraObj[16] = rs.getInt(17);
+                bitacoraObj[16] = rs.getString(17);
 
                 listaRegistros.add(bitacoraObj);
             }

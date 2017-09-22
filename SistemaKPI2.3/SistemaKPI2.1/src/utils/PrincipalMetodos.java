@@ -1313,8 +1313,10 @@ public class PrincipalMetodos {
                                 produccion.remove(i - 1);
                                 System.out.println("productionArrSizeMinusOne> " + produccion.size());
                                 registro[12]
-                                        = Integer.parseInt(registro[12].toString())
-                                        + Integer.parseInt(comparaRegistro[12].toString());
+                                        = String.valueOf(
+                                                Integer.parseInt(registro[12].toString())
+                                                + Integer.parseInt(comparaRegistro[12].toString())
+                                        );
                                 produccion.add(registro);
                                 System.out.println("productionArrSizePlusOne> " + produccion.size());
                             } else {
@@ -1324,8 +1326,10 @@ public class PrincipalMetodos {
                                             && registro[2].equals(comparaRegistro[2])) {
                                         produccion.remove(j);
                                         registro[12]
-                                                = Integer.parseInt(registro[12].toString())
-                                                + Integer.parseInt(comparaRegistro[12].toString());
+                                                = String.valueOf(
+                                                        Integer.parseInt(registro[12].toString())
+                                                        + Integer.parseInt(comparaRegistro[12].toString())
+                                                );
                                         break;
                                     }
                                 }
@@ -1386,29 +1390,105 @@ public class PrincipalMetodos {
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                             calidad.remove(i - 1);
-                                            
+                                            registro[14]
+                                                    = Integer.parseInt(registro[14].toString())
+                                                    + Integer.parseInt(comparaRegistro[14].toString());
+                                            calidad.add(registro);
                                         } else {
                                             //NUEVO NoPARTE
+                                            for (int j = 0; j < calidad.size(); j++) {
+                                                comparaRegistro = (Object[]) calidad.get(j);
+                                                if (registro[2].equals(comparaRegistro[2])
+                                                        && registro[7].equals(comparaRegistro[7])
+                                                        && registro[8].equals(comparaRegistro[8])
+                                                        && registro[9].equals(comparaRegistro[9])
+                                                        && registro[11].equals(comparaRegistro[11])) {
+                                                    calidad.remove(j);
+                                                    registro[14]
+                                                            = Integer.parseInt(registro[14].toString())
+                                                            + Integer.parseInt(comparaRegistro[14].toString());
+                                                    break;
+                                                }
+                                            }
+                                            calidad.add(registro);
                                         }
                                     } else {
                                         //NUEVO PROBLEMA
+                                        for (int j = 0; j < calidad.size(); j++) {
+                                            comparaRegistro = (Object[]) calidad.get(j);
+                                            if (registro[2].equals(comparaRegistro[2])
+                                                    && registro[7].equals(comparaRegistro[7])
+                                                    && registro[8].equals(comparaRegistro[8])
+                                                    && registro[9].equals(comparaRegistro[9])
+                                                    && registro[11].equals(comparaRegistro[11])) {
+                                                calidad.remove(j);
+                                                registro[14]
+                                                        = Integer.parseInt(registro[14].toString())
+                                                        + Integer.parseInt(comparaRegistro[14].toString());
+                                                break;
+                                            }
+                                        }
+                                        calidad.add(registro);
                                     }
                                 } else {
                                     //AREA NUEVA
+                                    for (int j = 0; j < calidad.size(); j++) {
+                                        comparaRegistro = (Object[]) calidad.get(j);
+                                        if (registro[2].equals(comparaRegistro[2])
+                                                && registro[7].equals(comparaRegistro[7])
+                                                && registro[8].equals(comparaRegistro[8])
+                                                && registro[9].equals(comparaRegistro[9])
+                                                && registro[11].equals(comparaRegistro[11])) {
+                                            calidad.remove(j);
+                                            registro[14]
+                                                    = Integer.parseInt(registro[14].toString())
+                                                    + Integer.parseInt(comparaRegistro[14].toString());
+                                            break;
+                                        }
+                                    }
+                                    calidad.add(registro);
                                 }
                             } else {
                                 //OPERACION NUEVA
+                                for (int j = 0; j < calidad.size(); j++) {
+                                    comparaRegistro = (Object[]) calidad.get(j);
+                                    if (registro[2].equals(comparaRegistro[2])
+                                            && registro[7].equals(comparaRegistro[7])
+                                            && registro[8].equals(comparaRegistro[8])
+                                            && registro[9].equals(comparaRegistro[9])
+                                            && registro[11].equals(comparaRegistro[11])) {
+                                        calidad.remove(j);
+                                        registro[14]
+                                                = Integer.parseInt(registro[14].toString())
+                                                + Integer.parseInt(comparaRegistro[14].toString());
+                                        break;
+                                    }
+                                }
+                                calidad.add(registro);
                             }
                         } else {
                             //NUEVA HORA
+                            indicadorHora = Integer.parseInt(registro[2].toString());
+                            calidad.add(registro);
                         }
                     }
                 }
             }
             
+            if (!calidad.isEmpty()) {
+            Object[] calidadReg;
+            for (int i = 0; i < calidad.size(); i++) {
+                calidadReg = (Object[]) calidad.get(i);
+                for (int j = 0; j < calidadReg.length; j++) {
+                    System.out.println(j + "." + calidadReg[j].toString());
+                }
+            }
+        }
+            
         } catch (Exception e) {
             System.out.println("<><>reporteCalidadActual<><> " + e);
         }
+        //return calidad;
     }
     
     private int[] horarioTurno(JComboBox cmbHora) {
