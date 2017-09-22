@@ -1312,20 +1312,20 @@ public class PrincipalMetodos {
                             if (registro[11].equals(comparaRegistro[11])) {
                                 produccion.remove(i - 1);
                                 System.out.println("productionArrSizeMinusOne> " + produccion.size());
-                                comparaRegistro[12]
-                                        = Integer.parseInt(comparaRegistro[12].toString())
-                                        + Integer.parseInt(registro[12].toString());
-                                produccion.add(comparaRegistro);
+                                registro[12]
+                                        = Integer.parseInt(registro[12].toString())
+                                        + Integer.parseInt(comparaRegistro[12].toString());
+                                produccion.add(registro);
                                 System.out.println("productionArrSizePlusOne> " + produccion.size());
                             } else {
                                 for (int j = 0; j < produccion.size(); j++) {
                                     comparaRegistro = (Object[]) produccion.get(j);
-                                    if (comparaRegistro[11].equals(registro[11])
-                                            && comparaRegistro[2].equals(registro[2])) {
+                                    if (registro[11].equals(comparaRegistro[11])
+                                            && registro[2].equals(comparaRegistro[2])) {
                                         produccion.remove(j);
                                         registro[12]
-                                                = Integer.parseInt(comparaRegistro[12].toString())
-                                                + Integer.parseInt(registro[12].toString());
+                                                = Integer.parseInt(registro[12].toString())
+                                                + Integer.parseInt(comparaRegistro[12].toString());
                                         break;
                                     }
                                 }
@@ -1379,7 +1379,28 @@ public class PrincipalMetodos {
                         calidad.add(registro);
                     } else {
                         if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
+                            comparaRegistro = (Object[]) calidad.get(i - 1);
                             
+                            if (registro[7].equals(comparaRegistro[7])) { //Compara operacion
+                                if (registro[8].equals(comparaRegistro[8])) { //Compara area
+                                    if (registro[9].equals(comparaRegistro[9])) { //Compara problema
+                                        if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
+                                            calidad.remove(i - 1);
+                                            
+                                        } else {
+                                            //NUEVO NoPARTE
+                                        }
+                                    } else {
+                                        //NUEVO PROBLEMA
+                                    }
+                                } else {
+                                    //AREA NUEVA
+                                }
+                            } else {
+                                //OPERACION NUEVA
+                            }
+                        } else {
+                            //NUEVA HORA
                         }
                     }
                 }
