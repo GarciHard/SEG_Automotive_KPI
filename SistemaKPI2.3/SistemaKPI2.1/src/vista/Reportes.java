@@ -241,16 +241,16 @@ public class Reportes extends javax.swing.JFrame {
                     System.out.println("Clientes Generales: "+listaClientesGenerales);
                     System.out.println("Clientes Modelo Generales: "+listaClientesModelosGenerales);
                     
-                    System.err.println("Srap: "+cantidadTotalScrap);
-                    System.err.println("Lista Perdidas Generales: "+listaPerdidasGenerales);
-                    System.err.println("Lista Areas Generales: "+listaAreasGenerales);
-                    System.err.println("Lista Peridas, Areas, Problema: "+listaPerdidasAreasProblemasGenerales);
+                    System.err.println("\nSrap: "+cantidadTotalScrap);
+                    System.err.println("\nLista Perdidas Generales: "+listaPerdidasGenerales);
+                    System.err.println("\nLista Areas Generales: "+listaAreasGenerales);
+                    System.err.println("\nLista Peridas, Areas, Problema: "+listaPerdidasAreasProblemasGenerales);
                      
                 } catch (Exception ex) {
                     Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            //dteFechaInicial.setEnabled(true);
+            
         } else {
             cmbNoParteArea.setSelectedItem(-1);
             cmbNoParteArea.setEnabled(false);
