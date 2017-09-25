@@ -59,7 +59,6 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             
             ps.executeUpdate();
         } catch (Exception e) {
-            System.err.println("Error en INSERT " + e);
             throw e;
         } finally {
             ps.close();
@@ -193,7 +192,6 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
 
             ps.executeUpdate();
         } catch (Exception e) {
-            System.err.println("Error en INSERT FILA" + e);
             throw e;
         } finally {
             ps.close();

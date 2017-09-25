@@ -1027,7 +1027,10 @@ public class PrincipalMetodos {
                     reg = new ArrayList();
                     for (int j = 0; j < winPrincipal.getTblBitacora().getColumnCount(); j++) {
                         Object ob = winPrincipal.getTblBitacora().getValueAt(i, j);
-                        if (ob == null || ob.toString().isEmpty()) {
+                        if ((j == 12 || j == 16) && (ob == null || ob.toString().isEmpty())) {
+                            winPrincipal.getTblBitacora().setValueAt("0", i, j);
+                            reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
+                        } else if (ob == null || ob.toString().isEmpty()) {
                             winPrincipal.getTblBitacora().setValueAt("", i, j);
                             reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
                         } else {
@@ -1102,7 +1105,10 @@ public class PrincipalMetodos {
                     reg = new ArrayList();
                     for (int j = 0; j < winPrincipal.getTblBitacora().getColumnCount(); j++) {
                         Object ob = winPrincipal.getTblBitacora().getValueAt(i, j);
-                        if (ob == null || ob.toString().isEmpty()) {
+                        if ((j == 12 || j == 16) && (ob == null || ob.toString().isEmpty())) {
+                            winPrincipal.getTblBitacora().setValueAt("0", i, j);
+                            reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
+                        } else if (ob == null || ob.toString().isEmpty()) {
                             winPrincipal.getTblBitacora().setValueAt("", i, j);
                             reg.add(winPrincipal.getTblBitacora().getValueAt(i, j));
                         } else {
@@ -1116,7 +1122,17 @@ public class PrincipalMetodos {
                 int columnas = winPrincipal.getTblBitacora().getColumnCount();
                 ArrayList reg = new ArrayList();
                 for (int j = 0; j < columnas; j++) {
-                    reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                    Object ob = winPrincipal.getTblBitacora().getValueAt(contadorFila, j);
+                    if ((j== 12 || j == 16) && (ob == null || ob.toString().isEmpty())) {
+                        winPrincipal.getTblBitacora().setValueAt("0", contadorFila, j);
+                        reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                    } else if (ob == null || ob.toString().isEmpty()) {
+                        winPrincipal.getTblBitacora().setValueAt("", contadorFila, j);
+                        reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                    } else {
+                        reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                    }
+                    //reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
                     System.out.println(j + " . " + reg);
                 }
                 new BitacoraDAOImpl().insertarFilaRegistro(reg);
