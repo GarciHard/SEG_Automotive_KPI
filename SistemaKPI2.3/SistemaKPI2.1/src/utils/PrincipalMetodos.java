@@ -1387,7 +1387,7 @@ public class PrincipalMetodos {
                             horarioTurno(winPrincipal.getCmbHora()),
                             winPrincipal
                     );
-
+            //El funcionamiento es similar a produccion, solo varian los datos que se piden        
             int indicadorHora = 0;
             
             for (int i = 0; i < bitacoraActual.size(); i++) {
@@ -1406,6 +1406,9 @@ public class PrincipalMetodos {
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                             calidad.remove(i - 1);
+                                            registro[5]
+                                                    = Integer.parseInt(registro[5].toString())
+                                                    + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
@@ -1420,6 +1423,9 @@ public class PrincipalMetodos {
                                                         && registro[9].equals(comparaRegistro[9])
                                                         && registro[11].equals(comparaRegistro[11])) {
                                                     calidad.remove(j);
+                                                    registro[5]
+                                                            = Integer.parseInt(registro[5].toString())
+                                                            + Integer.parseInt(comparaRegistro[5].toString());
                                                     registro[14]
                                                             = Integer.parseInt(registro[14].toString())
                                                             + Integer.parseInt(comparaRegistro[14].toString());
@@ -1438,6 +1444,9 @@ public class PrincipalMetodos {
                                                     && registro[9].equals(comparaRegistro[9])
                                                     && registro[11].equals(comparaRegistro[11])) {
                                                 calidad.remove(j);
+                                                registro[5]
+                                                        = Integer.parseInt(registro[5].toString())
+                                                        + Integer.parseInt(comparaRegistro[5].toString());
                                                 registro[14]
                                                         = Integer.parseInt(registro[14].toString())
                                                         + Integer.parseInt(comparaRegistro[14].toString());
@@ -1456,6 +1465,9 @@ public class PrincipalMetodos {
                                                 && registro[9].equals(comparaRegistro[9])
                                                 && registro[11].equals(comparaRegistro[11])) {
                                             calidad.remove(j);
+                                            registro[5]
+                                                    = Integer.parseInt(registro[5].toString())
+                                                    + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
@@ -1474,6 +1486,9 @@ public class PrincipalMetodos {
                                             && registro[9].equals(comparaRegistro[9])
                                             && registro[11].equals(comparaRegistro[11])) {
                                         calidad.remove(j);
+                                        registro[5]
+                                                = Integer.parseInt(registro[5].toString())
+                                                + Integer.parseInt(comparaRegistro[5].toString());
                                         registro[14]
                                                 = Integer.parseInt(registro[14].toString())
                                                 + Integer.parseInt(comparaRegistro[14].toString());
@@ -1537,6 +1552,9 @@ public class PrincipalMetodos {
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                             tecnicas.remove(i - 1);
+                                            registro[5]
+                                                    = Integer.parseInt(registro[5].toString())
+                                                    + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
@@ -1551,6 +1569,9 @@ public class PrincipalMetodos {
                                                         && registro[9].equals(comparaRegistro[9])
                                                         && registro[11].equals(comparaRegistro[11])) {
                                                     tecnicas.remove(j);
+                                                    registro[5]
+                                                            = Integer.parseInt(registro[5].toString())
+                                                            + Integer.parseInt(comparaRegistro[5].toString());
                                                     registro[14]
                                                             = Integer.parseInt(registro[14].toString())
                                                             + Integer.parseInt(comparaRegistro[14].toString());
@@ -1569,6 +1590,9 @@ public class PrincipalMetodos {
                                                     && registro[9].equals(comparaRegistro[9])
                                                     && registro[11].equals(comparaRegistro[11])) {
                                                 tecnicas.remove(j);
+                                                registro[5]
+                                                        = Integer.parseInt(registro[5].toString())
+                                                        + Integer.parseInt(comparaRegistro[5].toString());
                                                 registro[14]
                                                         = Integer.parseInt(registro[14].toString())
                                                         + Integer.parseInt(comparaRegistro[14].toString());
@@ -1587,6 +1611,9 @@ public class PrincipalMetodos {
                                                 && registro[9].equals(comparaRegistro[9])
                                                 && registro[11].equals(comparaRegistro[11])) {
                                             tecnicas.remove(j);
+                                            registro[5]
+                                                    = Integer.parseInt(registro[5].toString())
+                                                    + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
@@ -1605,6 +1632,9 @@ public class PrincipalMetodos {
                                             && registro[9].equals(comparaRegistro[9])
                                             && registro[11].equals(comparaRegistro[11])) {
                                         tecnicas.remove(j);
+                                        registro[5]
+                                                = Integer.parseInt(registro[5].toString())
+                                                + Integer.parseInt(comparaRegistro[5].toString());
                                         registro[14]
                                                 = Integer.parseInt(registro[14].toString())
                                                 + Integer.parseInt(comparaRegistro[14].toString());
@@ -1635,6 +1665,27 @@ public class PrincipalMetodos {
         } catch (Exception e) {
             System.out.println("<><>reporteTecnicasActual<><> " + e);
         }
+    }
+    
+    public void generarReporteOrganizacionalActual(Principal winPrincipal) {
+        ArrayList organizacional = new ArrayList();
+        try {
+            Object[] registro;
+            Object[] comparaRegistro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
+            int indicadorHora = 0;
+
+            
+        } catch (Exception e) {
+            System.out.println("<><>reporteOrganizacionalActual<><> " + e);
+        }
+
     }
     
     private int[] horarioTurno(JComboBox cmbHora) {
