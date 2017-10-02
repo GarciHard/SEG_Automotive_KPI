@@ -1691,7 +1691,132 @@ public class PrincipalMetodos {
 
             int indicadorHora = 0;
 
-            
+            for (int i = 0; i < bitacoraActual.size(); i++) {
+                registro = (Object[]) bitacoraActual.get(i);
+
+                if (registro[6].equals("Organizacionales")) {
+                    if (organizacional.isEmpty()) {
+                        indicadorHora = Integer.parseInt(registro[2].toString());
+                        organizacional.add(registro);
+                    } else {
+                        if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
+                            comparaRegistro = (Object[]) organizacional.get(i - 1);
+                            
+                            if (registro[7].equals(comparaRegistro[7])) { //Compara operacion
+                                if (registro[8].equals(comparaRegistro[8])) { //Compara area
+                                    if (registro[9].equals(comparaRegistro[9])) { //Compara problema
+                                        if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
+                                            organizacional.remove(i - 1);
+                                            registro[5]
+                                                    = Integer.parseInt(registro[5].toString())
+                                                    + Integer.parseInt(comparaRegistro[5].toString());
+                                            if (!(registro[15].equals("") && comparaRegistro[15].equals(""))) {
+                                                registro[15]
+                                                        = Integer.parseInt(registro[15].toString())
+                                                        + Integer.parseInt(comparaRegistro[15].toString());
+                                            }
+                                            organizacional.add(registro);
+                                        } else {
+                                            //NUEVO NoPARTE
+                                            for (int j = 0; j < organizacional.size(); j++) {
+                                                comparaRegistro = (Object[]) organizacional.get(j);
+                                                if (registro[2].equals(comparaRegistro[2])
+                                                        && registro[7].equals(comparaRegistro[7])
+                                                        && registro[8].equals(comparaRegistro[8])
+                                                        && registro[9].equals(comparaRegistro[9])
+                                                        && registro[11].equals(comparaRegistro[11])) {
+                                                    organizacional.remove(j);
+                                                    registro[5]
+                                                            = Integer.parseInt(registro[5].toString())
+                                                            + Integer.parseInt(comparaRegistro[5].toString());
+                                                    if (!(registro[15].equals("") && comparaRegistro[15].equals(""))) {
+                                                        registro[15]
+                                                                = Integer.parseInt(registro[15].toString())
+                                                                + Integer.parseInt(comparaRegistro[15].toString());
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            organizacional.add(registro);
+                                        }
+                                    } else {
+                                        //NUEVO PROBLEMA
+                                        for (int j = 0; j < organizacional.size(); j++) {
+                                            comparaRegistro = (Object[]) organizacional.get(j);
+                                            if (registro[2].equals(comparaRegistro[2])
+                                                    && registro[7].equals(comparaRegistro[7])
+                                                    && registro[8].equals(comparaRegistro[8])
+                                                    && registro[9].equals(comparaRegistro[9])
+                                                    && registro[11].equals(comparaRegistro[11])) {
+                                                organizacional.remove(j);
+                                                registro[5]
+                                                        = Integer.parseInt(registro[5].toString())
+                                                        + Integer.parseInt(comparaRegistro[5].toString());
+                                                if (!(registro[15].equals("") && comparaRegistro[15].equals(""))) {
+                                                    registro[15]
+                                                            = Integer.parseInt(registro[15].toString())
+                                                            + Integer.parseInt(comparaRegistro[15].toString());
+                                                }
+                                                break;
+                                            }
+                                        }
+                                        organizacional.add(registro);
+                                    }
+                                } else {
+                                    //AREA NUEVA
+                                    for (int j = 0; j < organizacional.size(); j++) {
+                                        comparaRegistro = (Object[]) organizacional.get(j);
+                                        if (registro[2].equals(comparaRegistro[2])
+                                                && registro[7].equals(comparaRegistro[7])
+                                                && registro[8].equals(comparaRegistro[8])
+                                                && registro[9].equals(comparaRegistro[9])
+                                                && registro[11].equals(comparaRegistro[11])) {
+                                            organizacional.remove(j);
+                                            registro[5]
+                                                    = Integer.parseInt(registro[5].toString())
+                                                    + Integer.parseInt(comparaRegistro[5].toString());
+                                            if (!(registro[15].equals("") && comparaRegistro[15].equals(""))) {
+                                                registro[15]
+                                                        = Integer.parseInt(registro[15].toString())
+                                                        + Integer.parseInt(comparaRegistro[15].toString());
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    organizacional.add(registro);
+                                }
+                            } else {
+                                //OPERACION NUEVA
+                                for (int j = 0; j < organizacional.size(); j++) {
+                                    comparaRegistro = (Object[]) organizacional.get(j);
+                                    if (registro[2].equals(comparaRegistro[2])
+                                            && registro[7].equals(comparaRegistro[7])
+                                            && registro[8].equals(comparaRegistro[8])
+                                            && registro[9].equals(comparaRegistro[9])
+                                            && registro[11].equals(comparaRegistro[11])) {
+                                        organizacional.remove(j);
+                                        registro[5]
+                                                = Integer.parseInt(registro[5].toString())
+                                                + Integer.parseInt(comparaRegistro[5].toString());
+                                        if (!(registro[15].equals("") && comparaRegistro[15].equals(""))) {
+                                            registro[15]
+                                                    = Integer.parseInt(registro[15].toString())
+                                                    + Integer.parseInt(comparaRegistro[15].toString());
+                                        }
+                                        break;
+                                    }
+                                }
+                                organizacional.add(registro);
+                            }
+                        } else {
+                            //NUEVA HORA
+                            indicadorHora = Integer.parseInt(registro[2].toString());
+                            organizacional.add(registro);
+                        }
+                    }
+                }
+            }
+
         } catch (Exception e) {
             System.out.println("<><>reporteOrganizacionalActual<><> " + e);
         }
