@@ -1507,6 +1507,136 @@ public class PrincipalMetodos {
         //return calidad;
     }
     
+    public void generarReporteTecnicasActual(Principal winPrincipal) {
+        ArrayList tecnicas = new ArrayList();
+        try {
+            Object[] registro;
+            Object[] comparaRegistro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
+            int indicadorHora = 0;
+
+            for (int i = 0; i < bitacoraActual.size(); i++) {
+                registro = (Object[]) bitacoraActual.get(i);
+
+                if (registro[6].equals("Tecnicas")) {
+                    if (tecnicas.isEmpty()) {
+                        indicadorHora = Integer.parseInt(registro[2].toString());
+                        tecnicas.add(registro);
+                    } else {
+                        if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
+                            comparaRegistro = (Object[]) tecnicas.get(i - 1);
+
+                            if (registro[7].equals(comparaRegistro[7])) { //Compara operacion
+                                if (registro[8].equals(comparaRegistro[8])) { //Compara area
+                                    if (registro[9].equals(comparaRegistro[9])) { //Compara problema
+                                        if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
+                                            tecnicas.remove(i - 1);
+                                            registro[14]
+                                                    = Integer.parseInt(registro[14].toString())
+                                                    + Integer.parseInt(comparaRegistro[14].toString());
+                                            tecnicas.add(registro);
+                                        } else {
+                                            //NUEVO NoPARTE
+                                            for (int j = 0; j < tecnicas.size(); j++) {
+                                                comparaRegistro = (Object[]) tecnicas.get(j);
+                                                if (registro[2].equals(comparaRegistro[2])
+                                                        && registro[7].equals(comparaRegistro[7])
+                                                        && registro[8].equals(comparaRegistro[8])
+                                                        && registro[9].equals(comparaRegistro[9])
+                                                        && registro[11].equals(comparaRegistro[11])) {
+                                                    tecnicas.remove(j);
+                                                    registro[14]
+                                                            = Integer.parseInt(registro[14].toString())
+                                                            + Integer.parseInt(comparaRegistro[14].toString());
+                                                    break;
+                                                }
+                                            }
+                                            tecnicas.add(registro);
+                                        }
+                                    } else {
+                                        //NUEVO PROBLEMA
+                                        for (int j = 0; j < tecnicas.size(); j++) {
+                                            comparaRegistro = (Object[]) tecnicas.get(j);
+                                            if (registro[2].equals(comparaRegistro[2])
+                                                    && registro[7].equals(comparaRegistro[7])
+                                                    && registro[8].equals(comparaRegistro[8])
+                                                    && registro[9].equals(comparaRegistro[9])
+                                                    && registro[11].equals(comparaRegistro[11])) {
+                                                tecnicas.remove(j);
+                                                registro[14]
+                                                        = Integer.parseInt(registro[14].toString())
+                                                        + Integer.parseInt(comparaRegistro[14].toString());
+                                                break;
+                                            }
+                                        }
+                                        tecnicas.add(registro);
+                                    }
+                                } else {
+                                    //AREA NUEVA
+                                    for (int j = 0; j < tecnicas.size(); j++) {
+                                        comparaRegistro = (Object[]) tecnicas.get(j);
+                                        if (registro[2].equals(comparaRegistro[2])
+                                                && registro[7].equals(comparaRegistro[7])
+                                                && registro[8].equals(comparaRegistro[8])
+                                                && registro[9].equals(comparaRegistro[9])
+                                                && registro[11].equals(comparaRegistro[11])) {
+                                            tecnicas.remove(j);
+                                            registro[14]
+                                                    = Integer.parseInt(registro[14].toString())
+                                                    + Integer.parseInt(comparaRegistro[14].toString());
+                                            break;
+                                        }
+                                    }
+                                    tecnicas.add(registro);
+                                }
+                            } else {
+                                //OPERACION NUEVA
+                                for (int j = 0; j < tecnicas.size(); j++) {
+                                    comparaRegistro = (Object[]) tecnicas.get(j);
+                                    if (registro[2].equals(comparaRegistro[2])
+                                            && registro[7].equals(comparaRegistro[7])
+                                            && registro[8].equals(comparaRegistro[8])
+                                            && registro[9].equals(comparaRegistro[9])
+                                            && registro[11].equals(comparaRegistro[11])) {
+                                        tecnicas.remove(j);
+                                        registro[14]
+                                                = Integer.parseInt(registro[14].toString())
+                                                + Integer.parseInt(comparaRegistro[14].toString());
+                                        break;
+                                    }
+                                }
+                                tecnicas.add(registro);
+                            }
+                        } else {
+                            //NUEVA HORA
+                            indicadorHora = Integer.parseInt(registro[2].toString());
+                            tecnicas.add(registro);
+                        }
+                    }
+                }
+            }
+
+            if (!tecnicas.isEmpty()) {
+                Object[] tecnicasReg;
+                for (int i = 0; i < tecnicas.size(); i++) {
+                    tecnicasReg = (Object[]) tecnicas.get(i);
+                    for (int j = 0; j < tecnicasReg.length; j++) {
+                        System.out.println(j + "." + tecnicasReg[j].toString());
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("<><>reporteTecnicasActual<><> " + e);
+        }
+    }
+    
     private int[] horarioTurno(JComboBox cmbHora) {
         int[] horario = new int[2];
         cmbHora.setSelectedIndex(1);

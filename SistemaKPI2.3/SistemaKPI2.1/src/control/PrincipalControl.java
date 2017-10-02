@@ -199,6 +199,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 //principalMetodos.hourlyCounGraph(winPrincipal);
                 principalMetodos.generarReporteProduccionActual(winPrincipal);
                 principalMetodos.generarReporteCalidadActual(winPrincipal);
+                principalMetodos.generarReporteTecnicasActual(winPrincipal);
                 break;
             //***** Panel Superior *****
             case "_btnCambiarLinea":
