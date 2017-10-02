@@ -688,8 +688,18 @@ public class PrincipalMetodos {
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaOrganizacional().getSelectedItem();
                 reg[9] = winPrincipal.getCmbProblemaOrganizacional().getSelectedItem();
-                reg[10] = winPrincipal.getCmbClienteOrganizacional().getSelectedItem();
-                reg[11] = winPrincipal.getCmbNoParteOrganizacional().getSelectedItem();
+                if (winPrincipal.getCmbClienteOrganizacional()
+                        .getSelectedItem().equals(winPrincipal.getCmbClienteOrganizacional().getItemAt(0))) {
+                    reg[10] = "";
+                } else {
+                    reg[10] = winPrincipal.getCmbClienteOrganizacional().getSelectedItem();
+                }
+                if (winPrincipal.getCmbNoParteOrganizacional()
+                        .getSelectedItem().equals(winPrincipal.getCmbNoParteOrganizacional().getItemAt(0))) {
+                    reg[11] = "";
+                } else {
+                    reg[11] = winPrincipal.getCmbNoParteOrganizacional().getSelectedItem();
+                }
                 reg[12] = 0;
                 reg[13] = "";
                 reg[14] = "0";
