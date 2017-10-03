@@ -1333,19 +1333,20 @@ public class PrincipalMetodos {
                         produccion.add(registro);
                     } else {
                         if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
-                            comparaRegistro = (Object[]) produccion.get(i - 1);
+                            comparaRegistro = (Object[]) bitacoraActual.get(i - 1);
                             System.out.println("productionArrSizeGetiMinus1> " + produccion.size());
-                            if (registro[11].equals(comparaRegistro[11])) {
-                                produccion.remove(i - 1);
+                            if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
+                                //Agrega primer registro
                                 System.out.println("productionArrSizeMinusOne> " + produccion.size());
                                 registro[12]
                                         = String.valueOf(
                                                 Integer.parseInt(registro[12].toString())
                                                 + Integer.parseInt(comparaRegistro[12].toString())
                                         );
-                                produccion.add(registro);
+                                produccion.set(i - 1, registro);
                                 System.out.println("productionArrSizePlusOne> " + produccion.size());
                             } else {
+                                //Nuevo noParte
                                 for (int j = 0; j < produccion.size(); j++) {
                                     comparaRegistro = (Object[]) produccion.get(j);
                                     if (registro[11].equals(comparaRegistro[11])
@@ -1362,6 +1363,7 @@ public class PrincipalMetodos {
                                 produccion.add(registro);
                             }
                         } else {
+                            //Nueva hora
                             indicadorHora = Integer.parseInt(registro[2].toString());
                             produccion.add(registro);
                         }
@@ -1371,7 +1373,7 @@ public class PrincipalMetodos {
                 //}
             }
 
-            if (!produccion.isEmpty()) {
+            if (!produccion.isEmpty()) { //Listamos el array
                 Object[] produccionReg;
                 for (int i = 0; i < produccion.size(); i++) {
                     produccionReg = (Object[]) produccion.get(i);
@@ -1381,14 +1383,14 @@ public class PrincipalMetodos {
                 }
             }
         } catch (Exception e) {
-            System.out.println("<><><><><> " + e);
+            System.out.println("<><>reporteProduccionActual<><> " + e);
         }
         return produccion;
     }
-    
-    public void generarReporteCalidadActual(Principal winPrincipal) {
+
+    public ArrayList generarReporteCalidadActual(Principal winPrincipal) {
         ArrayList calidad = new ArrayList();
-        try {    
+        try {
             Object[] registro;
             Object[] comparaRegistro;
 
@@ -1399,32 +1401,32 @@ public class PrincipalMetodos {
                     );
             //El funcionamiento es similar a produccion, solo varian los datos que se piden        
             int indicadorHora = 0;
-            
+
             for (int i = 0; i < bitacoraActual.size(); i++) {
                 registro = (Object[]) bitacoraActual.get(i);
-                
+
                 if (registro[6].equals("Calidad")) {
-                    if (calidad.isEmpty()) {
+                    if (calidad.isEmpty()) { //Agrega primer registro
                         indicadorHora = Integer.parseInt(registro[2].toString());
                         calidad.add(registro);
                     } else {
                         if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
-                            comparaRegistro = (Object[]) calidad.get(i - 1);
-                            
+                            comparaRegistro = (Object[]) bitacoraActual.get(i - 1);
+
                             if (registro[7].equals(comparaRegistro[7])) { //Compara operacion
                                 if (registro[8].equals(comparaRegistro[8])) { //Compara area
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
-                                            calidad.remove(i - 1);
+                                            //Agrega registro igual
                                             registro[5]
                                                     = Integer.parseInt(registro[5].toString())
                                                     + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
-                                            calidad.add(registro);
+                                            calidad.set(i - 1, registro);
                                         } else {
-                                            //NUEVO NoPARTE
+                                            //Nuevo noParte
                                             for (int j = 0; j < calidad.size(); j++) {
                                                 comparaRegistro = (Object[]) calidad.get(j);
                                                 if (registro[2].equals(comparaRegistro[2])
@@ -1445,7 +1447,7 @@ public class PrincipalMetodos {
                                             calidad.add(registro);
                                         }
                                     } else {
-                                        //NUEVO PROBLEMA
+                                        //Nuevo problema
                                         for (int j = 0; j < calidad.size(); j++) {
                                             comparaRegistro = (Object[]) calidad.get(j);
                                             if (registro[2].equals(comparaRegistro[2])
@@ -1466,7 +1468,7 @@ public class PrincipalMetodos {
                                         calidad.add(registro);
                                     }
                                 } else {
-                                    //AREA NUEVA
+                                    //Nueva area
                                     for (int j = 0; j < calidad.size(); j++) {
                                         comparaRegistro = (Object[]) calidad.get(j);
                                         if (registro[2].equals(comparaRegistro[2])
@@ -1487,7 +1489,7 @@ public class PrincipalMetodos {
                                     calidad.add(registro);
                                 }
                             } else {
-                                //OPERACION NUEVA
+                                //Nueva operacion
                                 for (int j = 0; j < calidad.size(); j++) {
                                     comparaRegistro = (Object[]) calidad.get(j);
                                     if (registro[2].equals(comparaRegistro[2])
@@ -1508,31 +1510,31 @@ public class PrincipalMetodos {
                                 calidad.add(registro);
                             }
                         } else {
-                            //NUEVA HORA
+                            //Nueva hora
                             indicadorHora = Integer.parseInt(registro[2].toString());
                             calidad.add(registro);
                         }
                     }
                 }
             }
-            
-            if (!calidad.isEmpty()) {
-            Object[] calidadReg;
-            for (int i = 0; i < calidad.size(); i++) {
-                calidadReg = (Object[]) calidad.get(i);
-                for (int j = 0; j < calidadReg.length; j++) {
-                    System.out.println(j + "." + calidadReg[j].toString());
+
+            if (!calidad.isEmpty()) { //Listamos el array
+                Object[] calidadReg;
+                for (int i = 0; i < calidad.size(); i++) {
+                    calidadReg = (Object[]) calidad.get(i);
+                    for (int j = 0; j < calidadReg.length; j++) {
+                        System.out.println(j + "." + calidadReg[j].toString());
+                    }
                 }
             }
-        }
-            
+
         } catch (Exception e) {
             System.out.println("<><>reporteCalidadActual<><> " + e);
         }
-        //return calidad;
+        return calidad;
     }
-    
-    public void generarReporteTecnicasActual(Principal winPrincipal) {
+
+    public ArrayList generarReporteTecnicasActual(Principal winPrincipal) {
         ArrayList tecnicas = new ArrayList();
         try {
             Object[] registro;
@@ -1550,27 +1552,27 @@ public class PrincipalMetodos {
                 registro = (Object[]) bitacoraActual.get(i);
 
                 if (registro[6].equals("Tecnicas")) {
-                    if (tecnicas.isEmpty()) {
+                    if (tecnicas.isEmpty()) { //Agrega primer registro
                         indicadorHora = Integer.parseInt(registro[2].toString());
                         tecnicas.add(registro);
                     } else {
                         if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
-                            comparaRegistro = (Object[]) tecnicas.get(i - 1);
+                            comparaRegistro = (Object[]) bitacoraActual.get(i - 1);
 
                             if (registro[7].equals(comparaRegistro[7])) { //Compara operacion
                                 if (registro[8].equals(comparaRegistro[8])) { //Compara area
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
-                                            tecnicas.remove(i - 1);
+                                            //Agrega registro igual
                                             registro[5]
                                                     = Integer.parseInt(registro[5].toString())
                                                     + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
-                                            tecnicas.add(registro);
+                                            tecnicas.set(i - 1, registro);
                                         } else {
-                                            //NUEVO NoPARTE
+                                            //Nuevo noParte
                                             for (int j = 0; j < tecnicas.size(); j++) {
                                                 comparaRegistro = (Object[]) tecnicas.get(j);
                                                 if (registro[2].equals(comparaRegistro[2])
@@ -1591,7 +1593,7 @@ public class PrincipalMetodos {
                                             tecnicas.add(registro);
                                         }
                                     } else {
-                                        //NUEVO PROBLEMA
+                                        //Nuevo problema
                                         for (int j = 0; j < tecnicas.size(); j++) {
                                             comparaRegistro = (Object[]) tecnicas.get(j);
                                             if (registro[2].equals(comparaRegistro[2])
@@ -1612,7 +1614,7 @@ public class PrincipalMetodos {
                                         tecnicas.add(registro);
                                     }
                                 } else {
-                                    //AREA NUEVA
+                                    //Nueva area
                                     for (int j = 0; j < tecnicas.size(); j++) {
                                         comparaRegistro = (Object[]) tecnicas.get(j);
                                         if (registro[2].equals(comparaRegistro[2])
@@ -1633,7 +1635,7 @@ public class PrincipalMetodos {
                                     tecnicas.add(registro);
                                 }
                             } else {
-                                //OPERACION NUEVA
+                                //Nueva operacion
                                 for (int j = 0; j < tecnicas.size(); j++) {
                                     comparaRegistro = (Object[]) tecnicas.get(j);
                                     if (registro[2].equals(comparaRegistro[2])
@@ -1654,7 +1656,7 @@ public class PrincipalMetodos {
                                 tecnicas.add(registro);
                             }
                         } else {
-                            //NUEVA HORA
+                            //Nueva hora
                             indicadorHora = Integer.parseInt(registro[2].toString());
                             tecnicas.add(registro);
                         }
@@ -1662,7 +1664,7 @@ public class PrincipalMetodos {
                 }
             }
 
-            if (!tecnicas.isEmpty()) {
+            if (!tecnicas.isEmpty()) { //Listamos el array
                 Object[] tecnicasReg;
                 for (int i = 0; i < tecnicas.size(); i++) {
                     tecnicasReg = (Object[]) tecnicas.get(i);
@@ -1675,9 +1677,10 @@ public class PrincipalMetodos {
         } catch (Exception e) {
             System.out.println("<><>reporteTecnicasActual<><> " + e);
         }
+        return tecnicas;
     }
-    
-    public void generarReporteOrganizacionalActual(Principal winPrincipal) {
+
+    public ArrayList generarReporteOrganizacionalActual(Principal winPrincipal) {
         ArrayList organizacional = new ArrayList();
         try {
             Object[] registro;
@@ -1695,52 +1698,28 @@ public class PrincipalMetodos {
                 registro = (Object[]) bitacoraActual.get(i);
 
                 if (registro[6].equals("Organizacionales")) {
-                    if (organizacional.isEmpty()) {
+                    if (organizacional.isEmpty()) { //Agrega primer registro
                         indicadorHora = Integer.parseInt(registro[2].toString());
                         organizacional.add(registro);
                     } else {
                         if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
-                            comparaRegistro = (Object[]) organizacional.get(i - 1);
-                            
-                            if (registro[7].equals(comparaRegistro[7])) { //Compara operacion
-                                if (registro[8].equals(comparaRegistro[8])) { //Compara area
-                                    if (registro[9].equals(comparaRegistro[9])) { //Compara problema
-                                        if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
-                                            organizacional.remove(i - 1);
-                                            registro[5]
-                                                    = Integer.parseInt(registro[5].toString())
-                                                    + Integer.parseInt(comparaRegistro[5].toString());
-                                            if (!(registro[15].equals("") && comparaRegistro[15].equals(""))) {
-                                                registro[15]
-                                                        = Integer.parseInt(registro[15].toString())
-                                                        + Integer.parseInt(comparaRegistro[15].toString());
-                                            }
-                                            organizacional.add(registro);
-                                        } else {
-                                            //NUEVO NoPARTE
-                                            for (int j = 0; j < organizacional.size(); j++) {
-                                                comparaRegistro = (Object[]) organizacional.get(j);
-                                                if (registro[2].equals(comparaRegistro[2])
-                                                        && registro[7].equals(comparaRegistro[7])
-                                                        && registro[8].equals(comparaRegistro[8])
-                                                        && registro[9].equals(comparaRegistro[9])
-                                                        && registro[11].equals(comparaRegistro[11])) {
-                                                    organizacional.remove(j);
-                                                    registro[5]
-                                                            = Integer.parseInt(registro[5].toString())
-                                                            + Integer.parseInt(comparaRegistro[5].toString());
-                                                    if (!(registro[15].equals("") && comparaRegistro[15].equals(""))) {
-                                                        registro[15]
-                                                                = Integer.parseInt(registro[15].toString())
-                                                                + Integer.parseInt(comparaRegistro[15].toString());
-                                                    }
-                                                    break;
-                                                }
-                                            }
-                                            organizacional.add(registro);
+                            comparaRegistro = (Object[]) bitacoraActual.get(i - 1);
+
+                            if (registro[8].equals(comparaRegistro[8])) { //Compara area
+                                if (registro[9].equals(comparaRegistro[9])) { //Compara problema
+                                    if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
+                                        //Agrega registro igual
+                                        registro[5]
+                                                = Integer.parseInt(registro[5].toString())
+                                                + Integer.parseInt(comparaRegistro[5].toString());
+                                        if (!(registro[15].equals("") && comparaRegistro[15].equals(""))) {
+                                            registro[15]
+                                                    = Integer.parseInt(registro[15].toString())
+                                                    + Integer.parseInt(comparaRegistro[15].toString());
                                         }
+                                        organizacional.set(i - 1, registro);
                                     } else {
-                                        //NUEVO PROBLEMA
+                                        //Nuevo noParte
                                         for (int j = 0; j < organizacional.size(); j++) {
                                             comparaRegistro = (Object[]) organizacional.get(j);
                                             if (registro[2].equals(comparaRegistro[2])
@@ -1763,7 +1742,7 @@ public class PrincipalMetodos {
                                         organizacional.add(registro);
                                     }
                                 } else {
-                                    //AREA NUEVA
+                                    //Nuevo problema
                                     for (int j = 0; j < organizacional.size(); j++) {
                                         comparaRegistro = (Object[]) organizacional.get(j);
                                         if (registro[2].equals(comparaRegistro[2])
@@ -1786,7 +1765,7 @@ public class PrincipalMetodos {
                                     organizacional.add(registro);
                                 }
                             } else {
-                                //OPERACION NUEVA
+                                //Nueva area
                                 for (int j = 0; j < organizacional.size(); j++) {
                                     comparaRegistro = (Object[]) organizacional.get(j);
                                     if (registro[2].equals(comparaRegistro[2])
@@ -1809,7 +1788,7 @@ public class PrincipalMetodos {
                                 organizacional.add(registro);
                             }
                         } else {
-                            //NUEVA HORA
+                            //Nueva hora
                             indicadorHora = Integer.parseInt(registro[2].toString());
                             organizacional.add(registro);
                         }
@@ -1817,10 +1796,20 @@ public class PrincipalMetodos {
                 }
             }
 
+            if (!organizacional.isEmpty()) { //Listamos el array
+                Object[] organizacionalReg;
+                for (int i = 0; i < organizacional.size(); i++) {
+                    organizacionalReg = (Object[]) organizacional.get(i);
+                    for (int j = 0; j < organizacionalReg.length; j++) {
+                        System.out.println(j + "." + organizacionalReg[j].toString());
+                    }
+                }
+            }
+
         } catch (Exception e) {
             System.out.println("<><>reporteOrganizacionalActual<><> " + e);
         }
-
+        return organizacional;
     }
     
     private int[] horarioTurno(JComboBox cmbHora) {
