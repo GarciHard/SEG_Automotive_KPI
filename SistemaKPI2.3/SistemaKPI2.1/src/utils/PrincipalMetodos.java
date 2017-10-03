@@ -281,7 +281,7 @@ public class PrincipalMetodos {
     public void panelCambiosNoPartesCambios(Principal winPrincipal) {
         winPrincipal.getCmbNoParteCambioCambios().setEnabled(true);
         winPrincipal.getCmbNoParteCambioCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteCambios().getSelectedItem().toString()));
+                winPrincipal.getCmbClienteNuevoCambios().getSelectedItem().toString()));
         winPrincipal.getCmbNoParteCambioCambios().setSelectedIndex(0);
         winPrincipal.getTxtScrapCambios().setEnabled(false);
     }
@@ -1810,6 +1810,36 @@ public class PrincipalMetodos {
             System.out.println("<><>reporteOrganizacionalActual<><> " + e);
         }
         return organizacional;
+    }
+    
+    public void cargarHourlyCount() {
+        try {
+            Object[] registro = new Object[13];
+            ArrayList registroHourlyCount = new ArrayList();
+            ArrayList arrayProduccion = generarReporteProduccionActual(new Principal());
+            ArrayList arrayCalidad = generarReporteCalidadActual(new Principal());
+            ArrayList arrayTecnicas = generarReporteTecnicasActual(new Principal());
+            ArrayList arrayOrganizacional = generarReporteOrganizacionalActual(new Principal());
+            
+            if (!arrayProduccion.isEmpty()) {
+                for (int i = 0; i < arrayProduccion.size(); i++) {
+                    Object[] registroArray = (Object[]) arrayProduccion.get(i);
+                    registro[0] = registroArray[1];//fecha
+                    registro[1] = registroArray[0];//linea
+                    registro[2] = registroArray[2];//hora
+                    registro[3] = registroArray[12];//produccion
+                    registro[4] = registroArray[13];//noParteTc
+                    registroHourlyCount.add(registro);
+                }
+            } else if (!arrayCalidad.isEmpty()) {
+                
+            } 
+            
+ 
+            
+        } catch (Exception e) {
+            System.out.println("problemaCargarHourlyCount: " + e);
+        }
     }
     
     private int[] horarioTurno(JComboBox cmbHora) {
