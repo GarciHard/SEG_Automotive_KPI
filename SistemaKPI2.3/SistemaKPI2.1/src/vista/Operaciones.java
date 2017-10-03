@@ -308,7 +308,7 @@ public class Operaciones extends javax.swing.JDialog {
 
     @SuppressWarnings("empty-statement")
     private void cmbTemaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTemaItemStateChanged
-        System.out.println(cmbTema.getSelectedIndex());
+        //System.out.println(cmbTema.getSelectedIndex());
         if (cmbTema.getSelectedIndex() != 0) {
             cmbOperacion.setEnabled(true);
             try{
@@ -329,7 +329,7 @@ public class Operaciones extends javax.swing.JDialog {
                 Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if (cmbTema.getSelectedIndex() == 0){
-            System.out.println("entra"+cmbTema.getSelectedIndex());
+            //System.out.println("entra"+cmbTema.getSelectedIndex());
             cmbOperacion.setSelectedIndex(-1);
             cmbOperacion.setEnabled(false);
             cmbArea.setSelectedIndex(-1);
@@ -432,6 +432,8 @@ public class Operaciones extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(Operaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        cmbTema.setEnabled(true);
         //cmbTema.setEnabled(true);
         //btnGuardar.setEnabled(true);
         //btnCancelar.setEnabled(true);

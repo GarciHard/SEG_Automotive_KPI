@@ -726,23 +726,23 @@ public class PrincipalMetodos {
                 reg[16] = "";
                 break;
             case "Planeados":
-                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
-                reg[1] = winPrincipal.getDteFecha().getText();
-                reg[2] = winPrincipal.getCmbHora().getSelectedItem();
-                reg[3] = winPrincipal.getTxtTiempoInicio().getText();
-                reg[4] = winPrincipal.getTxtTiempoFin().getText();
-                reg[5] = winPrincipal.getTxtDuracion().getText();
-                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
-                reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
-                reg[8] = winPrincipal.getCmbAreaPlaneados().getSelectedItem();
-                reg[9] = "";
-                reg[10] = winPrincipal.getCmbClientePlaneados().getSelectedItem();
-                reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();
-                reg[12] = 0;
-                reg[13] = "";
-                reg[14] = "0";
-                reg[15] = "";
-                reg[16] = "";
+                reg[0] = winPrincipal.getCmbLinea().getSelectedItem(); //linea
+                reg[1] = winPrincipal.getDteFecha().getText(); //fecha
+                reg[2] = winPrincipal.getCmbHora().getSelectedItem();//hora
+                reg[3] = winPrincipal.getTxtTiempoInicio().getText();//inicio
+                reg[4] = winPrincipal.getTxtTiempoFin().getText();//fin
+                reg[5] = winPrincipal.getTxtDuracion().getText();//duracion
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//tema
+                reg[7] = winPrincipal.getCmbLinea().getSelectedItem();//operacion
+                reg[8] = winPrincipal.getCmbAreaPlaneados().getSelectedItem();//area
+                reg[9] = "";//problema
+                reg[10] = winPrincipal.getCmbClientePlaneados().getSelectedItem();// cliente
+                reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();//parte
+                reg[12] = 0;//cantidad
+                reg[13] = "";//parte nuevo
+                reg[14] = "0";//scrap
+                reg[15] = "";//detalle material
+                reg[16] = ""; //tc
                 break;
         }
         return reg;

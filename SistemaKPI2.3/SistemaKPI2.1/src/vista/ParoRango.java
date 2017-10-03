@@ -22,7 +22,7 @@ public class ParoRango extends javax.swing.JDialog {
     public static int hFin = 0;
     ///registro
     private static DefaultTableModel modeloTabla;
-    private static Object[] registroBitacora = new Object[16];
+    private static Object[] registroBitacora = new Object[17];
     private static int contadorFila = 0;  
     private static ArrayList tiempoHora;
     private static Object[] tiempos;
@@ -238,34 +238,17 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[3] = "0";//winPrincipal.getTxtTiempoInicio().getText();
                 reg[4] = "59";//winPrincipal.getTxtTiempoFin().getText();
                 reg[5] = "60";//winPrincipal.getTxtDuracion().getText();
-                reg[6] = winPrincipal.getCmbTema().getSelectedItem();
-                reg[7] = "";
-                reg[8] = "";
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
+                reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
+                reg[8] = winPrincipal.getCmbAreaPlaneados().getSelectedItem();
                 reg[9] = "";
-                reg[10] = "";
-                reg[11] = "";
+                reg[10] = winPrincipal.getCmbClientePlaneados().getSelectedItem();
+                reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();
                 reg[12] = 0;
                 reg[13] = "";
-                reg[14] = "";
+                reg[14] = "0";
                 reg[15] = "";
-                break;
-            case "Piezas Producidas":
-                reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
-                reg[1] = winPrincipal.getDteFecha().getText();
-                reg[2] = String.valueOf(ParoRango.hInicio);//winPrincipal.getCmbHora().getSelectedItem();
-                reg[3] = "0";//winPrincipal.getTxtTiempoInicio().getText();
-                reg[4] = "59";//winPrincipal.getTxtTiempoFin().getText();
-                reg[5] = "60";//winPrincipal.getTxtDuracion().getText();
-                reg[6] = winPrincipal.getCmbTema().getSelectedItem();
-                reg[7] = winPrincipal.getCmbLinea().getSelectedItem();//cmbOperacion.getSelectedItem();
-                reg[8] = "";
-                reg[9] = "";
-                reg[10] = winPrincipal.getCmbClientePzasProd().getSelectedItem();
-                reg[11] = winPrincipal.getCmbNoPartePzasProd().getSelectedItem();
-                reg[12] = winPrincipal.getTxtCantidadProducidaPzasProd().getText();
-                reg[13] = "";
-                reg[14] = "";
-                reg[15] = "";
+                reg[16] = "";
                 break;
             case "Calidad":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -284,6 +267,7 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapCalidad().getText();
                 reg[15] = "";
+                reg[16] = "";
                 break;
             case "Tecnicas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -302,6 +286,7 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapTecnicas().getText();
                 reg[15] = "";
+                reg[16] = "";
                 break;
             case "Organizacionales":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -314,12 +299,23 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaOrganizacional().getSelectedItem();
                 reg[9] = winPrincipal.getCmbProblemaOrganizacional().getSelectedItem();
-                reg[10] = winPrincipal.getCmbClienteOrganizacional().getSelectedItem();
-                reg[11] = winPrincipal.getCmbNoParteOrganizacional().getSelectedItem();
+                if (winPrincipal.getCmbClienteOrganizacional()
+                        .getSelectedItem().equals(winPrincipal.getCmbClienteOrganizacional().getItemAt(0))) {
+                    reg[10] = "";
+                } else {
+                    reg[10] = winPrincipal.getCmbClienteOrganizacional().getSelectedItem();
+                }
+                if (winPrincipal.getCmbNoParteOrganizacional()
+                        .getSelectedItem().equals(winPrincipal.getCmbNoParteOrganizacional().getItemAt(0))) {
+                    reg[11] = "";
+                } else {
+                    reg[11] = winPrincipal.getCmbNoParteOrganizacional().getSelectedItem();
+                }
                 reg[12] = 0;
                 reg[13] = "";
-                reg[14] = "";
+                reg[14] = "0";
                 reg[15] = winPrincipal.getTxtMatFaltante().getText();
+                reg[16] = "";
                 break;
             case "Cambio":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -338,6 +334,7 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[13] = winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();
                 reg[14] = winPrincipal.getTxtScrapCambios().getText();
                 reg[15] = "";
+                reg[16] = "";
                 break;
             case "Planeados":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -346,16 +343,17 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[3] = "0";//winPrincipal.getTxtTiempoInicio().getText();
                 reg[4] = "59";//winPrincipal.getTxtTiempoFin().getText();
                 reg[5] = "60";//winPrincipal.getTxtDuracion().getText();
-                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
-                reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
-                reg[8] = winPrincipal.getCmbAreaPlaneados().getSelectedItem();
-                reg[9] = "";
-                reg[10] = winPrincipal.getCmbClientePlaneados().getSelectedItem();
-                reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();
-                reg[12] = 0;
-                reg[13] = "";
-                reg[14] = "";
-                reg[15] = "";
+                reg[6] = winPrincipal.getCmbTema().getSelectedItem();//tema
+                reg[7] = winPrincipal.getCmbLinea().getSelectedItem();//operacion
+                reg[8] = winPrincipal.getCmbAreaPlaneados().getSelectedItem();//area
+                reg[9] = "";//problema
+                reg[10] = winPrincipal.getCmbClientePlaneados().getSelectedItem();// cliente
+                reg[11] = winPrincipal.getCmbNoPartePlaneados().getSelectedItem();//parte
+                reg[12] = 0;//cantidad
+                reg[13] = "";//parte nuevo
+                reg[14] = "0";//scrap
+                reg[15] = "";//detalle material
+                reg[16] = ""; //tc
                 break;
         }
         return reg;
@@ -371,7 +369,7 @@ public class ParoRango extends javax.swing.JDialog {
             new BitacoraDAOImpl().insertarFilaRegistro(reg);
             contadorFila++;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(winPrincipal, "PrincipalMetodos.insertarRegistroFilaAccess()\n" + e,
+            JOptionPane.showMessageDialog(winPrincipal, "Paro Rango.insertarRegistroFilaAccess()\n" + e,
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
