@@ -202,6 +202,8 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
 //                principalMetodos.generarReporteTecnicasActual(winPrincipal);
 //                principalMetodos.generarReporteOrganizacionalActual(winPrincipal);
                 principalMetodos.topCalidad(winPrincipal);
+                principalMetodos.topTecnicas(winPrincipal);
+                principalMetodos.topOrganizacionales(winPrincipal);
                 break;
             //***** Panel Superior *****
             case "_btnCambiarLinea":

@@ -1891,16 +1891,144 @@ public class PrincipalMetodos {
             
             if (!topCalidad.isEmpty()) { //Listamos el array
                 Object[] topCalidadReg;
+                System.out.println("<><><>CALIDAD<><><>");
                 for (int i = 0; i < topCalidad.size(); i++) {
                     topCalidadReg = (Object[]) topCalidad.get(i);
                     for (int j = 0; j < topCalidadReg.length; j++) {
                         System.out.println(j + "." + topCalidadReg[j].toString());
                     }
                 }
+                System.out.println("<><><><><><><><><><>");
             }
             
         } catch (Exception e) {
             System.out.println("<><>topCalidad<><> " + e);
+        }
+    }
+    
+    public void topTecnicas(Principal winPrincipal) {
+        ArrayList topTecnicas = new ArrayList();
+        try {
+            Object[] registroTopTecnicas;
+            Object[] registroTopAux;
+            Object[] registro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
+            for (int i = 0; i < bitacoraActual.size(); i++) { //Recorremos la bitacora
+                registro = (Object[]) bitacoraActual.get(i); //Obtenemos el primer registro
+                
+                if (registro[6].equals("Tecnicas")) { //Evaluamos y creamos registroTopCalidad
+                    registroTopTecnicas = new Object[4];
+                    registroTopTecnicas[0] = registro[7];
+                    registroTopTecnicas[1] = registro[9];
+                    registroTopTecnicas[2] = registro[5];
+                    registroTopTecnicas[3] = 1;
+                    
+                    if (topTecnicas.isEmpty()) { //Creamos el primer registro para el top
+                        topTecnicas.add(registroTopTecnicas);
+                    } else { //Existe un registro en el top
+                        for (int j = 0; j < topTecnicas.size(); j++) {
+                            registroTopAux = (Object[]) topTecnicas.get(j);
+                            if (registroTopTecnicas[0].equals(registroTopAux[0])
+                                    && registroTopTecnicas[1].equals(registroTopAux[1])) {
+                                topTecnicas.remove(j);
+                                registroTopTecnicas[2]
+                                        = Integer.parseInt(registroTopTecnicas[2].toString())
+                                        + Integer.parseInt(registroTopAux[2].toString());
+                                registroTopTecnicas[3]
+                                        = Integer.parseInt(registroTopTecnicas[3].toString())
+                                        + Integer.parseInt(registroTopAux[3].toString());
+                                break;
+                            }
+                            registroTopAux = null;
+                        }
+                        topTecnicas.add(registroTopTecnicas);
+                    }
+                }
+            }
+            
+            if (!topTecnicas.isEmpty()) { //Listamos el array
+                Object[] topTecnicasReg;
+                System.out.println("<><><>TECNICAS<><><>");
+                for (int i = 0; i < topTecnicas.size(); i++) {
+                    topTecnicasReg = (Object[]) topTecnicas.get(i);
+                    for (int j = 0; j < topTecnicasReg.length; j++) {
+                        System.out.println(j + "." + topTecnicasReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><>");
+            }
+            
+        } catch (Exception e) {
+            System.out.println("<><>topTecnicas<><> " + e);
+        }
+    }
+    
+    public void topOrganizacionales(Principal winPrincipal) {
+        ArrayList topOrganizacionales = new ArrayList();
+        try {
+            Object[] registroTopOrganizacionales;
+            Object[] registroTopAux;
+            Object[] registro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
+            for (int i = 0; i < bitacoraActual.size(); i++) { //Recorremos la bitacora
+                registro = (Object[]) bitacoraActual.get(i); //Obtenemos el primer registro
+                
+                if (registro[6].equals("Organizacionales")) { //Evaluamos y creamos registroTopCalidad
+                    registroTopOrganizacionales = new Object[4];
+                    registroTopOrganizacionales[0] = registro[7];
+                    registroTopOrganizacionales[1] = registro[9];
+                    registroTopOrganizacionales[2] = registro[5];
+                    registroTopOrganizacionales[3] = 1;
+                    
+                    if (topOrganizacionales.isEmpty()) { //Creamos el primer registro para el top
+                        topOrganizacionales.add(registroTopOrganizacionales);
+                    } else { //Existe un registro en el top
+                        for (int j = 0; j < topOrganizacionales.size(); j++) {
+                            registroTopAux = (Object[]) topOrganizacionales.get(j);
+                            if (registroTopOrganizacionales[0].equals(registroTopAux[0])
+                                    && registroTopOrganizacionales[1].equals(registroTopAux[1])) {
+                                topOrganizacionales.remove(j);
+                                registroTopOrganizacionales[2]
+                                        = Integer.parseInt(registroTopOrganizacionales[2].toString())
+                                        + Integer.parseInt(registroTopAux[2].toString());
+                                registroTopOrganizacionales[3]
+                                        = Integer.parseInt(registroTopOrganizacionales[3].toString())
+                                        + Integer.parseInt(registroTopAux[3].toString());
+                                break;
+                            }
+                            registroTopAux = null;
+                        }
+                        topOrganizacionales.add(registroTopOrganizacionales);
+                    }
+                }
+            }
+            
+            if (!topOrganizacionales.isEmpty()) { //Listamos el array
+                Object[] topOrganizacionalesReg;
+                System.out.println("<><><>ORGANIZACIONALES<><><>");
+                for (int i = 0; i < topOrganizacionales.size(); i++) {
+                    topOrganizacionalesReg = (Object[]) topOrganizacionales.get(i);
+                    for (int j = 0; j < topOrganizacionalesReg.length; j++) {
+                        System.out.println(j + "." + topOrganizacionalesReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><>");
+            }
+            
+        } catch (Exception e) {
+            System.out.println("<><>topTecnicas<><> " + e);
         }
     }
     
