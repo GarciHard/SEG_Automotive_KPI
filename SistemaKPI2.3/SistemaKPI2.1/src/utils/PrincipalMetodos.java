@@ -1843,6 +1843,67 @@ public class PrincipalMetodos {
         }
     }
     
+    public void topCalidad(Principal winPrincipal) {
+        ArrayList topCalidad = new ArrayList();
+        try {
+            Object[] registroTopCalidad;
+            Object[] registroTopAux;
+            Object[] registro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
+            for (int i = 0; i < bitacoraActual.size(); i++) { //Recorremos la bitacora
+                registro = (Object[]) bitacoraActual.get(i); //Obtenemos el primer registro
+                
+                if (registro[6].equals("Calidad")) { //Evaluamos y creamos registroTopCalidad
+                    registroTopCalidad = new Object[4];
+                    registroTopCalidad[0] = registro[7];
+                    registroTopCalidad[1] = registro[9];
+                    registroTopCalidad[2] = registro[5];
+                    registroTopCalidad[3] = 1;
+                    
+                    if (topCalidad.isEmpty()) { //Creamos el primer registro para el top
+                        topCalidad.add(registroTopCalidad);
+                    } else { //Existe un registro en el top
+                        for (int j = 0; j < topCalidad.size(); j++) {
+                            registroTopAux = (Object[]) topCalidad.get(j);
+                            if (registroTopCalidad[0].equals(registroTopAux[0])
+                                    && registroTopCalidad[1].equals(registroTopAux[1])) {
+                                topCalidad.remove(j);
+                                registroTopCalidad[2]
+                                        = Integer.parseInt(registroTopCalidad[2].toString())
+                                        + Integer.parseInt(registroTopAux[2].toString());
+                                registroTopCalidad[3]
+                                        = Integer.parseInt(registroTopCalidad[3].toString())
+                                        + Integer.parseInt(registroTopAux[3].toString());
+                                break;
+                            }
+                            registroTopAux = null;
+                        }
+                        topCalidad.add(registroTopCalidad);
+                    }
+                }
+            }
+            
+            if (!topCalidad.isEmpty()) { //Listamos el array
+                Object[] topCalidadReg;
+                for (int i = 0; i < topCalidad.size(); i++) {
+                    topCalidadReg = (Object[]) topCalidad.get(i);
+                    for (int j = 0; j < topCalidadReg.length; j++) {
+                        System.out.println(j + "." + topCalidadReg[j].toString());
+                    }
+                }
+            }
+            
+        } catch (Exception e) {
+            System.out.println("<><>topCalidad<><> " + e);
+        }
+    }
+    
     private int[] horarioTurno(JComboBox cmbHora) {
         int[] horario = new int[2];
         cmbHora.setSelectedIndex(1);
