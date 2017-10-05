@@ -716,7 +716,7 @@ public class PrincipalMetodos {
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaCambios().getSelectedItem();
-                reg[9] = "";//winPrincipal.getCmbProblemaCambios().getSelectedItem();
+                reg[9] = winPrincipal.getCmbClienteCambios().getSelectedItem()+"-"+winPrincipal.getCmbNoParteCambios().getSelectedItem()+" a "+winPrincipal.getCmbClienteNuevoCambios().getSelectedItem()+"-"+winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();//winPrincipal.getCmbProblemaCambios().getSelectedItem(); //problema
                 reg[10] = winPrincipal.getCmbClienteCambios().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCambios().getSelectedItem();
                 reg[12] = 0;
