@@ -252,6 +252,7 @@ public class TiempoTurno extends javax.swing.JDialog {
                     int horaInicial = Integer.parseInt(txtHoraInicial.getText());
                     int horaFinal = Integer.parseInt(txtHoraFinal.getText());
                     if (horaInicial > horaFinal) {
+                        cmbTiempoModel.clear();
                         cmbTiempoModel.add("Selecciona Hora");
                         for (int i = horaInicial; i != 0; i++) {
                             if (i == 24) {
@@ -263,6 +264,7 @@ public class TiempoTurno extends javax.swing.JDialog {
                         }
                     } else {
                         int duracionTurno = horaFinal - horaInicial;
+                        cmbTiempoModel.clear();
                         cmbTiempoModel.add("Selecciona Hora");
                         for (int i = 0, j = horaInicial; i < duracionTurno; i++, j++) {
                             cmbTiempoModel.add(j);
@@ -375,7 +377,7 @@ public class TiempoTurno extends javax.swing.JDialog {
 
     private void txtHoraFinalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraFinalKeyReleased
         if (!txtHoraFinal.getText().isEmpty()) {
-            if (Integer.parseInt(txtHoraFinal.getText()) > 23
+            if (Integer.parseInt(txtHoraFinal.getText()) > 24
                     || Integer.parseInt(txtHoraFinal.getText()) < 0) {
                 txtHoraFinal.setText("");
             }

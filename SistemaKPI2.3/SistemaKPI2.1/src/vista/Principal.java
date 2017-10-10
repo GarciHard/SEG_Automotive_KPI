@@ -189,6 +189,11 @@ public class Principal extends javax.swing.JFrame {
 
         cmbClientePzasProd.setActionCommand("_cmbClientePzasProd");
         cmbClientePzasProd.setEnabled(false);
+        cmbClientePzasProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbClientePzasProdActionPerformed(evt);
+            }
+        });
 
         lblNoPartePzasProd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoPartePzasProd.setText("No. PARTE");
@@ -223,7 +228,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblTC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTC, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(lblCantidadProducidaPzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCantidadProducidaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +264,7 @@ public class Principal extends javax.swing.JFrame {
         cmbProblemaOrganizacional.setActionCommand("_cmbProblemaOrganizacional");
         cmbProblemaOrganizacional.setEnabled(false);
         cmbProblemaOrganizacional.setFocusable(false);
-        cmbProblemaOrganizacional.setNextFocusableComponent(txtMatFaltante);
+        cmbProblemaOrganizacional.setNextFocusableComponent(cmbProblemaOrganizacional);
 
         lblClienteOrganizacional.setText("CLIENTE");
 
@@ -550,6 +555,11 @@ public class Principal extends javax.swing.JFrame {
         cmbProblemaTecnicas.setEnabled(false);
         cmbProblemaTecnicas.setFocusable(false);
         cmbProblemaTecnicas.setNextFocusableComponent(cmbClienteTecnicas);
+        cmbProblemaTecnicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProblemaTecnicasActionPerformed(evt);
+            }
+        });
 
         lblClienteTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClienteTecnicas.setText("CLIENTE");
@@ -1189,6 +1199,14 @@ public class Principal extends javax.swing.JFrame {
     private void txtScrapTecnicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtScrapTecnicasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtScrapTecnicasActionPerformed
+
+    private void cmbClientePzasProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientePzasProdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbClientePzasProdActionPerformed
+
+    private void cmbProblemaTecnicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProblemaTecnicasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProblemaTecnicasActionPerformed
 
     public JMenuItem getMniHourlyCount() {
         return mniHourlyCount;

@@ -173,12 +173,6 @@ public class PrincipalMetodos {
                 winPrincipal.getCmbClientePzasProd().getSelectedItem().toString()));
     }
     
-    public void panelPiezasProducidasTC(Principal winPrincipal){
-        if(winPrincipal.getCmbNoPartePzasProd().getSelectedIndex() == 0 ){
-            
-        }
-    }
-
     public void panelOrganizacionalesAreas(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
         winPrincipal.getCmbAreaOrganizacional().setEnabled(true);
@@ -203,14 +197,12 @@ public class PrincipalMetodos {
     public void panelOrganizacionalesClientes(Principal winPrincipal) {
         if (winPrincipal.getCmbAreaOrganizacional().getSelectedIndex() == 1) {
             if (winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() >= 2 && winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() <= 5) {
-                //System.out.println("entra "+winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex());
                 winPrincipal.getLblMatFaltante().setVisible(true);
                 winPrincipal.getTxtMatFaltante().setVisible(true);
                 winPrincipal.getTxtMatFaltante().setText("");
                 winPrincipal.getTxtMatFaltante().setEnabled(true);
                 winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
                 winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
-                //winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
             } else {
                 //System.out.println("e");
                 winPrincipal.getLblMatFaltante().setVisible(false);

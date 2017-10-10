@@ -434,9 +434,10 @@ public class Operaciones extends javax.swing.JDialog {
         }
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         cmbTema.setEnabled(true);
-        //cmbTema.setEnabled(true);
-        //btnGuardar.setEnabled(true);
-        //btnCancelar.setEnabled(true);
+        cmbBuscar.setEnabled(true);
+        txtBuscar.setEnabled(true);
+        btnGuardar.setEnabled(true);
+        btnCancelar.setEnabled(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed

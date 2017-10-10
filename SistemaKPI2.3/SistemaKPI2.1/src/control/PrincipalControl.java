@@ -82,8 +82,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getTxtTC().addCaretListener(this);
         winPrincipal.getTxtTC().addKeyListener(this);
         winPrincipal.getTxtCantidadProducidaPzasProd().addCaretListener(this);
-        winPrincipal.getTxtCantidadProducidaPzasProd().addKeyListener(this);
-        
+        winPrincipal.getTxtCantidadProducidaPzasProd().addKeyListener(this);        
         
         //Panel Calidad
         winPrincipal.getCmbOperacionCalidad().addActionListener(this);
@@ -92,8 +91,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbClienteCalidad().addActionListener(this);
         winPrincipal.getCmbNoParteCalidad().addActionListener(this);
         winPrincipal.getCmbNoParteCalidad().addItemListener(this);
-        //winPrincipal.getTxtCantidadProducidaCalidad().addCaretListener(this);
-        //winPrincipal.getTxtCantidadProducidaCalidad().addKeyListener(this);
         winPrincipal.getTxtScrapCalidad().addCaretListener(this);
         winPrincipal.getTxtScrapCalidad().addKeyListener(this);
         
@@ -116,7 +113,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         
         //Panel Cambios
         winPrincipal.getCmbAreaCambios().addActionListener(this);
-//        winPrincipal.getCmbProblemaCambios().addActionListener(this);
         winPrincipal.getCmbClienteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambioCambios().addActionListener(this);
@@ -180,6 +176,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             case "_mniEditarPorDia":
                 bnEdicion = 1;
+                winPrincipal.getBtnCambiarLinea().setEnabled(true);
                 winPrincipal.getDteFecha().setEnabled(true);
                 winPrincipal.getBtnCancelar().setVisible(true);                
                 break;
@@ -353,6 +350,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         break;
                     case "Actualizar Bitacora":
                         principalMetodos.actualizarRegistroFechaAccess(winPrincipal);
+                        winPrincipal.getBtnCambiarLinea().setEnabled(true);
                         break;
                 }
                 break;
