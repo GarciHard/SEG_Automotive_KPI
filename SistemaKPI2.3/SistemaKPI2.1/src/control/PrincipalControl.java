@@ -350,7 +350,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                         break;
                     case "Actualizar Bitacora":
                         principalMetodos.actualizarRegistroFechaAccess(winPrincipal);
-                        winPrincipal.getBtnCambiarLinea().setEnabled(true);
                         break;
                 }
                 break;

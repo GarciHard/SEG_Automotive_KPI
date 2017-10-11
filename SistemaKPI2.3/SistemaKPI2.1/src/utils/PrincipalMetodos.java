@@ -1044,6 +1044,9 @@ public class PrincipalMetodos {
                     new BitacoraDAOImpl().insertarRegistroAccess(reg);
                 }
                 cancelarEdicion(winPrincipal);
+                winPrincipal.getLblTurno().setText("");
+                winPrincipal.getCmbTema().setSelectedIndex(0);
+                winPrincipal.getCmbTema().setEnabled(false);
                 PrincipalControl.insercionesAccess = 1;
                 JOptionPane.showMessageDialog(winPrincipal, "Bitacora Actualizada Correctamente",
                         "Actualizar", JOptionPane.INFORMATION_MESSAGE);
