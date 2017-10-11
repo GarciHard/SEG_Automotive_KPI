@@ -1022,8 +1022,9 @@ public class PrincipalMetodos {
 
     public void actualizarRegistroFechaAccess(Principal winPrincipal) {
         try {
-            eliminarRegistroTiempo(winPrincipal);
+            
             if (winPrincipal.getTblBitacora().getModel().getRowCount() != 0) {
+                eliminarRegistroTiempoActualizar(winPrincipal);
                 ArrayList reg;
                 for (int i = 0; i < winPrincipal.getTblBitacora().getRowCount(); i++) {
                     reg = new ArrayList();
@@ -1097,6 +1098,26 @@ public class PrincipalMetodos {
         }
     }
 
+    public void eliminarRegistroTiempoActualizar(Principal winPrincipal) throws Exception {
+        
+        int horaInicial = Integer.parseInt(winPrincipal.getTblBitacora().getValueAt(0, 2).toString());
+        
+        
+        int horaFinal = Integer.parseInt(winPrincipal.getTblBitacora().getValueAt(
+                winPrincipal.getTblBitacora().getRowCount() - 1, 2).toString());
+        
+        try {
+            new BitacoraDAOImpl().borrarRegistroTiempo(
+                    horaInicial,
+                    horaFinal,
+                    winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                    winPrincipal.getDteFecha().getText()
+            );
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
     private void insertarRegistroFilaAccess(Principal winPrincipal) {
         try {
             if (PrincipalControl.bnEdicion == 2) {
