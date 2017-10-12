@@ -20,17 +20,17 @@ public class PiezasProducidasDAOImpl extends ConexionBD implements PiezasProduci
     private PreparedStatement ps;
     private ResultSet rs;
     
-    private final String LISTA_FAMILIA = "SELECT familia FROM ListaNumPartes WHERE LineaProduce LIKE ? ORDER BY familia ASC";
+    private final String LISTA_FAMILIA = "SELECT familia FROM ListaNumPartes WHERE LineaProduce LIKE ? GROUP BY familia ORDER BY familia ASC";
     private final String LISTA_CLIENTES = "SELECT cliente FROM Clientes WHERE linea LIKE ? ORDER BY cliente ASC";
-    private final String LISTA_NO_PARTES = "SELECT noParte FROM ListaNumPartes WHERE LineaProduce LIKE ? AND Cliente LIKE ? ORDER BY noParte ASC";
+    private final String LISTA_NO_PARTES = "SELECT noParte FROM ListaNumPartes WHERE LineaProduce LIKE ? AND familia LIKE ? ORDER BY noParte ASC";
     
     @Override
     public DefaultComboBoxModel listaClientes(String linea) throws Exception {
         clienteArr = new ArrayList<>();
-        clienteArr.add("Seleccione un cliente");
+        clienteArr.add("Seleccione una familia");
         try {
             this.conectar();
-            ps = this.conexion.prepareStatement(LISTA_CLIENTES);
+            ps = this.conexion.prepareStatement(LISTA_FAMILIA);
             ps.setString(1, linea);
             rs = ps.executeQuery();
             

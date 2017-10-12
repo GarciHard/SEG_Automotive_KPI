@@ -38,7 +38,7 @@
                   <Component id="lblClientePzasProd" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cmbClientePzasProd" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" pref="52" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" pref="53" max="32767" attributes="0"/>
                   <Component id="lblNoPartePzasProd" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cmbNoPartePzasProd" min="-2" pref="200" max="-2" attributes="0"/>
@@ -77,7 +77,7 @@
         <Component class="javax.swing.JLabel" name="lblClientePzasProd">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="CLIENTE"/>
+            <Property name="text" type="java.lang.String" value="FAMILIA"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbClientePzasProd">

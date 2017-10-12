@@ -185,7 +185,7 @@ public class Principal extends javax.swing.JFrame {
         pnlPiezasProducidas.setFocusable(false);
 
         lblClientePzasProd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblClientePzasProd.setText("CLIENTE");
+        lblClientePzasProd.setText("FAMILIA");
 
         cmbClientePzasProd.setActionCommand("_cmbClientePzasProd");
         cmbClientePzasProd.setEnabled(false);
@@ -220,7 +220,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblClientePzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbClientePzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 53, Short.MAX_VALUE)
                 .addComponent(lblNoPartePzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbNoPartePzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
