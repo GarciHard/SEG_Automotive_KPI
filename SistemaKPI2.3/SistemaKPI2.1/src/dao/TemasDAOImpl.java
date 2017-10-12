@@ -10,7 +10,7 @@ import javax.swing.DefaultComboBoxModel;
 public class TemasDAOImpl {
 
     private static final String[] temas = {"Selecciona Tema", "Piezas Producidas", "Calidad",
-        "Tecnicas", "Organizacionales", "Cambios de Modelo", "Paros Planeados", "Tiempo Faltante"};
+        "Tecnicas", "Organizacionales", "Cambio de Modelo", "Paros Planeados", "Tiempo Faltante"};
 
     public static DefaultComboBoxModel listaTema() {
         return new DefaultComboBoxModel(temas);

@@ -149,12 +149,12 @@
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="lblClienteOrganizacional" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbClienteOrganizacional" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="cmbClienteOrganizacional" pref="252" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lblProblemaOrganizacional" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbProblemaOrganizacional" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="cmbProblemaOrganizacional" pref="250" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="200" max="32767" attributes="0"/>

@@ -291,6 +291,8 @@ public class PrincipalMetodos {
             winPrincipal.getPnlProduccionCollapsible().repaint();
             winPrincipal.getCmbHora().setEnabled(true);
         }
+//        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTiempoFaltante());
+//        winPrincipal.getPnlProduccionCollapsible().repaint();
     }
 
     public void panelPlaneadosAreas(Principal winPrincipal) {
@@ -422,7 +424,6 @@ public class PrincipalMetodos {
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
             modeloTabla.addRow(registroBitacora);
             insertarRegistroFilaAccess(winPrincipal);
-//            winPrincipal.getCmbHora().setModel(actualizaComboHoras(winPrincipal));
             winPrincipal.getCmbTema().setSelectedIndex(0);
             winPrincipal.getCmbTema().setSelectedIndex(valorTema);
         } else {
@@ -696,7 +697,7 @@ public class PrincipalMetodos {
                 reg[15] = winPrincipal.getTxtMatFaltante().getText();
                 reg[16] = "";
                 break;
-            case "Cambio":
+            case "Cambio de Modelo":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[1] = winPrincipal.getDteFecha().getText();
                 reg[2] = winPrincipal.getCmbHora().getSelectedItem();
@@ -715,7 +716,7 @@ public class PrincipalMetodos {
                 reg[15] = "";
                 reg[16] = "";
                 break;
-            case "Planeados":
+            case "Paros Planeados":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem(); //linea
                 reg[1] = winPrincipal.getDteFecha().getText(); //fecha
                 reg[2] = winPrincipal.getCmbHora().getSelectedItem();//hora
