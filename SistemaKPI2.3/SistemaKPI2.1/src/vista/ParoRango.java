@@ -145,7 +145,7 @@ public class ParoRango extends javax.swing.JDialog {
         if(hFin <= hInicio){
             JOptionPane.showMessageDialog(this, "Revisa tu ahora de Inicio y Fin");
         }else {
-            while ( aux < cont){ //Inicio <= hFin 
+            while ( aux <= cont){ //Inicio <= hFin 
                 agregarRegistroBitacora(winPrincipal);
                 hInicio = hInicio+1;
                 aux = aux+1;
