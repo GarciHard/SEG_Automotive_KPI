@@ -293,7 +293,7 @@ public class PrincipalValidaciones {
             }
         } else if (winPrincipal.getTxtMatFaltante().equals(ke.getSource())){ /**** aqui me quede ***/
             int dig = winPrincipal.getTxtMatFaltante().getText().length();
-            if(((ke.getKeyChar() < '0' || ke.getKeyChar() > '9') && (ke.getKeyChar() != '.'))) {
+            if(((ke.getKeyChar() < '0' || ke.getKeyChar() > '9') && (ke.getKeyChar() < 'F' || ke.getKeyChar() > 'M')  && (ke.getKeyChar() != '.'))) {
                 ke.consume();
             } else {
                 if (ke.getKeyChar() == '.'){
