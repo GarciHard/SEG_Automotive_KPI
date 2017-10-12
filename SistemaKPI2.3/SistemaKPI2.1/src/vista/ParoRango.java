@@ -263,11 +263,11 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[9] = winPrincipal.getCmbProblemaCalidad().getSelectedItem();
                 reg[10] = winPrincipal.getCmbClienteCalidad().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCalidad().getSelectedItem();
-                reg[12] = "";//winPrincipal.getTxtCantidadProducidaCalidad().getText();
+                reg[12] = "0";//winPrincipal.getTxtCantidadProducidaCalidad().getText();
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapCalidad().getText();
                 reg[15] = "";
-                reg[16] = "";
+                reg[16] = "0";
                 break;
             case "Tecnicas":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -286,7 +286,7 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[13] = "";
                 reg[14] = winPrincipal.getTxtScrapTecnicas().getText();
                 reg[15] = "";
-                reg[16] = "";
+                reg[16] = "0";
                 break;
             case "Organizacionales":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
@@ -315,9 +315,9 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[13] = "";
                 reg[14] = "0";
                 reg[15] = winPrincipal.getTxtMatFaltante().getText();
-                reg[16] = "";
+                reg[16] = "0";
                 break;
-            case "Cambio":
+            case "Cambio de Modelo":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[1] = winPrincipal.getDteFecha().getText();
                 reg[2] = String.valueOf(ParoRango.hInicio);//winPrincipal.getCmbHora().getSelectedItem();
@@ -327,16 +327,16 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaCambios().getSelectedItem();
-                reg[9] = "";//winPrincipal.getCmbProblemaCambios().getSelectedItem();
+                reg[9] = winPrincipal.getCmbClienteCambios().getSelectedItem()+"-"+winPrincipal.getCmbNoParteCambios().getSelectedItem()+" a "+winPrincipal.getCmbClienteNuevoCambios().getSelectedItem()+"-"+winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();//winPrincipal.getCmbProblemaCambios().getSelectedItem(); //problema
                 reg[10] = winPrincipal.getCmbClienteCambios().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCambios().getSelectedItem();
                 reg[12] = 0;
                 reg[13] = winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();
                 reg[14] = winPrincipal.getTxtScrapCambios().getText();
                 reg[15] = "";
-                reg[16] = "";
+                reg[16] = "0";
                 break;
-            case "Planeados":
+            case "Paros Planeados":
                 reg[0] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[1] = winPrincipal.getDteFecha().getText();
                 reg[2] = String.valueOf(ParoRango.hInicio);//winPrincipal.getCmbHora().getSelectedItem();
@@ -353,26 +353,37 @@ public class ParoRango extends javax.swing.JDialog {
                 reg[13] = "";//parte nuevo
                 reg[14] = "0";//scrap
                 reg[15] = "";//detalle material
-                reg[16] = ""; //tc
+                reg[16] = "0"; //tc
                 break;
         }
         return reg;
     }
     
     private void insertarRegistroFilaAccess(Principal winPrincipal) {
-        try {
-            int columnas = winPrincipal.getTblBitacora().getColumnCount();
-            ArrayList reg = new ArrayList();
-            for (int j = 0; j < columnas; j++) {
-                reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+            try {
+              int columnas = winPrincipal.getTblBitacora().getColumnCount();
+              ArrayList reg = new ArrayList();
+              for (int j = 0; j < columnas; j++) {
+                  Object ob = winPrincipal.getTblBitacora().getValueAt(contadorFila, j);
+                  if ((j== 12 || j == 16) && (ob == null || ob.toString().isEmpty())) {
+                      winPrincipal.getTblBitacora().setValueAt("0", contadorFila, j);
+                      reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                  } else if (ob == null || ob.toString().isEmpty()) {
+                      winPrincipal.getTblBitacora().setValueAt("", contadorFila, j);
+                      reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                  } else {
+                      reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                  }
+                  //reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
+                  System.out.println(j + " . " + reg);
+              }
+              new BitacoraDAOImpl().insertarFilaRegistro(reg);
+              contadorFila++;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(winPrincipal, "ParoRango.insertarRegistroFilaAccess()\n" + e,
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
-            new BitacoraDAOImpl().insertarFilaRegistro(reg);
-            contadorFila++;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(winPrincipal, "Paro Rango.insertarRegistroFilaAccess()\n" + e,
-                    "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
     
     private void ordenarTabla(DefaultTableModel modeloTabla) {
         for (int i = modeloTabla.getRowCount() - 1; i >= 0; i--) {
