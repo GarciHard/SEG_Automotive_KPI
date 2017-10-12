@@ -20,6 +20,7 @@ public class PiezasProducidasDAOImpl extends ConexionBD implements PiezasProduci
     private PreparedStatement ps;
     private ResultSet rs;
     
+    private final String LISTA_FAMILIA = "SELECT familia FROM ListaNumPartes WHERE LineaProduce LIKE ? ORDER BY familia ASC";
     private final String LISTA_CLIENTES = "SELECT cliente FROM Clientes WHERE linea LIKE ? ORDER BY cliente ASC";
     private final String LISTA_NO_PARTES = "SELECT noParte FROM ListaNumPartes WHERE LineaProduce LIKE ? AND Cliente LIKE ? ORDER BY noParte ASC";
     
