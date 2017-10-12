@@ -335,6 +335,9 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             case "_cmbHora":
                 if (winPrincipal.getCmbHora().getSelectedIndex() != 0) {
                     winPrincipal.getTxtTiempoInicio().setEnabled(true);
+                    winPrincipal.getBtnParoPeriodo().setVisible(false);
+                }else if (winPrincipal.getCmbTema().getSelectedIndex() != 1 &&  winPrincipal.getCmbTema().getSelectedIndex() != 5 && winPrincipal.getCmbTema().getSelectedIndex() != 7){
+                    winPrincipal.getBtnParoPeriodo().setVisible(true);
                 }
                 break;
             case "_btnAgregarBitacora":

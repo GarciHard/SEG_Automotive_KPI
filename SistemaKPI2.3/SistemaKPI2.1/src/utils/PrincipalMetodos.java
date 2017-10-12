@@ -291,8 +291,6 @@ public class PrincipalMetodos {
             winPrincipal.getPnlProduccionCollapsible().repaint();
             winPrincipal.getCmbHora().setEnabled(true);
         }
-//        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTiempoFaltante());
-//        winPrincipal.getPnlProduccionCollapsible().repaint();
     }
 
     public void panelPlaneadosAreas(Principal winPrincipal) {
