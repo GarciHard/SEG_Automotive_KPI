@@ -29,6 +29,7 @@ public class LineasDAOImpl extends ConexionBD implements LineasDAO {
     private final String ACTUALIZA_LINEA = "UPDATE Lineas set linea = ?, tipo = ?, nombre = ? WHERE linea LIKE ?";
     private final String ELIMINA_LINEA = "DELETE FROM Lineas WHERE linea LIKE ?";
     private final String BUSCAR_REGISTRO = "SELECT linea, tipo, nombre FROM Lineas WHERE linea like ?";
+    private final String TIPO_ENSAMBLE_LINEA = "SELECT nombre FROM Lineas WHERE linea LIKE ? AND nombre LIKE \"%Ensamble Final%\"";
     
     @Override
     public DefaultComboBoxModel listaLineas() throws Exception {
@@ -171,4 +172,26 @@ public class LineasDAOImpl extends ConexionBD implements LineasDAO {
         }
         return lineaObj;
     }
+
+    @Override
+    public int tipoEnsambleLinea(String linea) throws Exception {
+        int tipoEnsamble = 0;
+        try {
+            this.conectar();
+            ps = this.conexion.prepareStatement(TIPO_ENSAMBLE_LINEA);
+            ps.setString(1, linea);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                tipoEnsamble = 3;
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ps.close();
+            rs.close();
+            this.cerrar();
+        }
+        return tipoEnsamble;
+    }   
 }

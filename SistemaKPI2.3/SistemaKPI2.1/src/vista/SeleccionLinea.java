@@ -1,6 +1,10 @@
 package vista;
 
+import control.PrincipalControl;
+import dao.LineasDAOImpl;
 import java.awt.Cursor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -128,6 +132,12 @@ public class SeleccionLinea extends javax.swing.JDialog {
                 break;
             case "Aceptar":
                 winPrincipal.getCmbLinea().setSelectedItem(cmbLinea.getSelectedItem());
+                try {
+                    PrincipalControl.tipoEnsambleLinea
+                            = new LineasDAOImpl().tipoEnsambleLinea(cmbLinea.getSelectedItem().toString());
+                } catch (Exception ex) {
+                    System.out.println("SeleccionLinea.LineasDAOImpl.tipoEnsambleLinea: " + ex);
+                }
                 this.dispose();
                 winPrincipal.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 break;

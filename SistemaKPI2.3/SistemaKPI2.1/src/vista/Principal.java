@@ -53,6 +53,8 @@ public class Principal extends javax.swing.JFrame {
         txtCantidadProducidaPzasProd = new javax.swing.JTextField();
         txtTC = new javax.swing.JTextField();
         lblTC = new javax.swing.JLabel();
+        lblFamiliaPzasProd = new javax.swing.JLabel();
+        cmbFamiliaPzasProd = new javax.swing.JComboBox<>();
         pnlOrganizacionales = new javax.swing.JPanel();
         lblAreaOrganizacional = new javax.swing.JLabel();
         cmbAreaOrganizacional = new javax.swing.JComboBox();
@@ -209,7 +211,11 @@ public class Principal extends javax.swing.JFrame {
 
         txtTC.setEnabled(false);
 
-        lblTC.setText("TC:");
+        lblTC.setText("TC");
+
+        lblFamiliaPzasProd.setText("CLIENTE");
+
+        cmbFamiliaPzasProd.setActionCommand("_cmbFamiliaPzasProd");
 
         javax.swing.GroupLayout pnlPiezasProducidasLayout = new javax.swing.GroupLayout(pnlPiezasProducidas);
         pnlPiezasProducidas.setLayout(pnlPiezasProducidasLayout);
@@ -220,18 +226,22 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lblClientePzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbClientePzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(lblFamiliaPzasProd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbFamiliaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(lblNoPartePzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbNoPartePzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(lblTC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTC, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(lblCantidadProducidaPzasProd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCantidadProducidaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCantidadProducidaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlPiezasProducidasLayout.setVerticalGroup(
@@ -246,7 +256,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lblCantidadProducidaPzasProd)
                     .addComponent(txtCantidadProducidaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTC))
+                    .addComponent(lblTC)
+                    .addComponent(cmbFamiliaPzasProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFamiliaPzasProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1343,6 +1355,18 @@ public class Principal extends javax.swing.JFrame {
     public JTextField getTxtCantidadProducidaPzasProd() {
         return txtCantidadProducidaPzasProd;
     }
+    
+    public JLabel getLblClientePzasProd(){
+        return lblClientePzasProd;
+    }
+    
+    public JLabel getLblFamiliaPzasProd() {
+        return lblFamiliaPzasProd;
+    }
+    
+    public JComboBox getCmbFamiliaPzasProd() {
+        return cmbFamiliaPzasProd;
+    }
     //PANEL CALIDAD
     public JComboBox getCmbAreaCalidad() {
         return cmbAreaCalidad;
@@ -1501,6 +1525,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbClientePlaneados;
     private javax.swing.JComboBox cmbClientePzasProd;
     private javax.swing.JComboBox cmbClienteTecnicas;
+    private javax.swing.JComboBox<String> cmbFamiliaPzasProd;
     private javax.swing.JComboBox cmbHora;
     private javax.swing.JComboBox cmbLinea;
     private javax.swing.JComboBox cmbNoParteCalidad;
@@ -1541,6 +1566,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblClientePzasProd;
     private javax.swing.JLabel lblClienteTecnicas;
     private javax.swing.JLabel lblDuracion;
+    private javax.swing.JLabel lblFamiliaPzasProd;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFin;
     private javax.swing.JLabel lblHora;

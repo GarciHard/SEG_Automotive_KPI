@@ -38,25 +38,29 @@
                   <Component id="lblClientePzasProd" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cmbClientePzasProd" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" pref="53" max="32767" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                  <Component id="lblFamiliaPzasProd" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="cmbFamiliaPzasProd" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
                   <Component id="lblNoPartePzasProd" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cmbNoPartePzasProd" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace pref="70" max="32767" attributes="0"/>
+                  <EmptySpace pref="69" max="32767" attributes="0"/>
                   <Component id="lblTC" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtTC" min="-2" pref="83" max="-2" attributes="0"/>
-                  <EmptySpace pref="70" max="32767" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
                   <Component id="lblCantidadProducidaPzasProd" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtCantidadProducidaPzasProd" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="txtCantidadProducidaPzasProd" min="-2" pref="83" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblClientePzasProd" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -67,6 +71,8 @@
                       <Component id="txtCantidadProducidaPzasProd" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTC" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbFamiliaPzasProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFamiliaPzasProd" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -125,8 +131,21 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblTC">
           <Properties>
-            <Property name="text" type="java.lang.String" value="TC:"/>
+            <Property name="text" type="java.lang.String" value="TC"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblFamiliaPzasProd">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CLIENTE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbFamiliaPzasProd">
+          <Properties>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbFamiliaPzasProd"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

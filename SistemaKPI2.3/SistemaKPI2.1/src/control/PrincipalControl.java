@@ -43,6 +43,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
     public static String linea;
     protected static Operaciones winOperaciones;
     public static int bnEdicion = 0;
+    public static int tipoEnsambleLinea;
     
     public PrincipalControl(Principal principal) {
         PrincipalControl.winPrincipal = principal;
@@ -77,6 +78,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         
         //Panel Piezas Producias
         winPrincipal.getCmbClientePzasProd().addActionListener(this);
+        winPrincipal.getCmbFamiliaPzasProd().addActionListener(this);
         winPrincipal.getCmbNoPartePzasProd().addActionListener(this);
         winPrincipal.getCmbNoPartePzasProd().addItemListener(this);
         winPrincipal.getTxtTC().addCaretListener(this);
@@ -238,6 +240,19 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;        
             //***** Panel Piezas Producidas *****
             case "_cmbClientePzasProd":
+                if (tipoEnsambleLinea == 3) {
+                    principalMetodos.panelPiezasProducidasFamilias(winPrincipal);
+                } else {
+                    principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
+                }
+//                if (tipoEnsambleLinea == 3) {
+//                    principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
+//                    
+//                } else {
+//                    principalMetodos.panelPiezasProducidasFamilias(winPrincipal);
+//                }
+                break;
+            case "_cmbFamiliaPzasProd":
                 principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
                 break;
             case "_cmbNoPartePzasProd":

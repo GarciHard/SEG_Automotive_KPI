@@ -17,5 +17,6 @@ public interface LineasDAO {
     public void eliminarLinea(String linea) throws Exception;
     public DefaultTableModel listaLineasDesc(DefaultTableModel tablaModel) throws Exception;
     public String[] buscarRegistro(String linea) throws Exception;
+    public int tipoEnsambleLinea(String linea) throws Exception;
     
 }

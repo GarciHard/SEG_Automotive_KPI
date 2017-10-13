@@ -81,12 +81,50 @@ public class PrincipalMetodos {
         }
         return listaCliente;
     }
+    
+    private DefaultComboBoxModel listaFamilias(String linea) {
+        try {
+            listaCliente = new PiezasProducidasDAOImpl().listaFamilias(linea);
+            if (listaCliente.getSize() == 0) {
+                JOptionPane.showMessageDialog(form, "PrincipalMetodos.listaFamilias()\n"
+                        + "No hay familias para la linea seleccionada", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(form, "PrincipalMetodos.listaFamilias()\n"
+                    + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return listaCliente;
+    }
+    
+    private DefaultComboBoxModel listaFamiliasClientes(String linea, String familia) {
+        try {
+            listaCliente = new PiezasProducidasDAOImpl().listaFamiliasClientes(linea, familia);
+            if (listaCliente.getSize() == 0) {
+                JOptionPane.showMessageDialog(form, "PrincipalMetodos.listaFamiliasClientes()\n"
+                        + "No hay clientes para la linea seleccionada", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(form, "PrincipalMetodos.listaFamiliasClientes()\n"
+                    + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return listaCliente;
+    }
 
     private DefaultComboBoxModel listaNoPartes(String linea, String cliente) {
         try {
             listaNoParte = new PiezasProducidasDAOImpl().listaNoParte(linea, cliente);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(form, "PrincipalMetodos.listaNoParte()\n"
+                    + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return listaNoParte;
+    }
+    
+    private DefaultComboBoxModel listaNoPartesFamilia(String linea, String familia, String cliente) {
+        try {
+            listaNoParte = new PiezasProducidasDAOImpl().listaNoParteFamilia(linea, familia, cliente);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(form, "PrincipalMetodos.listaNoParteFamilia()\n"
                     + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
         return listaNoParte;
@@ -151,26 +189,50 @@ public class PrincipalMetodos {
 
     public void panelPiezasProducidasClientes(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getLblClientePzasProd().setText("FAMILIA");
+            winPrincipal.getLblFamiliaPzasProd().setVisible(true);
+            winPrincipal.getCmbFamiliaPzasProd().setVisible(true);
+            winPrincipal.getCmbClientePzasProd().setModel(
+                    listaFamilias(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getLblClientePzasProd().setText("CLIENTE");
+            winPrincipal.getLblFamiliaPzasProd().setVisible(false);
+            winPrincipal.getCmbFamiliaPzasProd().setVisible(false);
+            winPrincipal.getCmbClientePzasProd().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        }
         winPrincipal.getCmbClientePzasProd().setEnabled(true);
-        winPrincipal.getCmbClientePzasProd().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlPiezasProducidas());
         winPrincipal.getPnlProduccionCollapsible().repaint();
         winPrincipal.getCmbClientePzasProd().setSelectedIndex(0);
-        winPrincipal.getCmbNoPartePzasProd().setEnabled(false);
     }
 
+    public void panelPiezasProducidasFamilias(Principal winPrincipal) {
+        winPrincipal.getCmbFamiliaPzasProd().setEnabled(true);
+        winPrincipal.getCmbFamiliaPzasProd().setModel(
+                listaFamiliasClientes(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                        winPrincipal.getCmbClientePzasProd().getSelectedItem().toString()
+                )
+        );
+        winPrincipal.getCmbFamiliaPzasProd().setSelectedIndex(0);
+        //winPrincipal.getCmbNoPartePzasProd().setEnabled(false);
+    }
+    
     public void panelPiezasProducidasNoPartes(Principal winPrincipal) {
-        if (!winPrincipal.getTxtCantidadProducidaPzasProd().getText().isEmpty()) {
-            winPrincipal.getTxtCantidadProducidaPzasProd().setText("");
-            winPrincipal.getTxtTC().setText("");
-            winPrincipal.getTxtTC().setEnabled(false);
-            winPrincipal.getTxtCantidadProducidaPzasProd().setEnabled(false);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbNoPartePzasProd().setModel(listaNoPartesFamilia(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                    winPrincipal.getCmbClientePzasProd().getSelectedItem().toString(),
+                    winPrincipal.getCmbFamiliaPzasProd().getSelectedItem().toString()));
+            winPrincipal.getCmbNoPartePzasProd().setEnabled(true);
+        } else {
+            winPrincipal.getCmbNoPartePzasProd().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                    winPrincipal.getCmbClientePzasProd().getSelectedItem().toString()));
+            winPrincipal.getCmbNoPartePzasProd().setEnabled(true);
         }
-        
-        winPrincipal.getTxtTC().setEnabled(false);
-        winPrincipal.getCmbNoPartePzasProd().setEnabled(true);
-        winPrincipal.getCmbNoPartePzasProd().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClientePzasProd().getSelectedItem().toString()));
     }
     
     public void panelOrganizacionalesAreas(Principal winPrincipal) {
