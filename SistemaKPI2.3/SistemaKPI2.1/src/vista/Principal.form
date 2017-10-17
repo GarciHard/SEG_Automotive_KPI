@@ -90,6 +90,9 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbClientePzasProd"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbClientePzasProd"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbClientePzasProdActionPerformed"/>
@@ -108,6 +111,9 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbNoPartePzasProd"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtTC"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCantidadProducidaPzasProd">
@@ -122,11 +128,17 @@
               <Color id="Default Cursor"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbHora"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTC">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtCantidadProducidaPzasProd"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTC">
@@ -142,6 +154,9 @@
         <Component class="javax.swing.JComboBox" name="cmbFamiliaPzasProd">
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbFamiliaPzasProd"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbNoPartePzasProd"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -684,29 +699,38 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbOperacionTecnicas" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cmbAreaTecnicas" alignment="0" pref="250" max="32767" attributes="0"/>
+                      <Component id="cmbAreaTecnicas" pref="200" max="32767" attributes="0"/>
+                      <Component id="cmbOperacionTecnicas" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lblProblemaTecnicas" pref="86" max="32767" attributes="0"/>
-                      <Component id="lblClienteTecnicas" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbProblemaTecnicas" pref="250" max="32767" attributes="0"/>
-                      <Component id="cmbClienteTecnicas" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblNoParteTecnicas" max="32767" attributes="0"/>
-                      <Component id="lblScrapTecnicas" max="32767" attributes="0"/>
+                      <Component id="lblFamiliaTecnicas" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cmbNoParteTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="txtScrapTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="cmbProblemaTecnicas" pref="300" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="cmbFamiliaTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblClienteTecnicas" max="32767" attributes="0"/>
+                      <Component id="lblNoParteTecnicas" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="cmbNoParteTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="cmbClienteTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="lblScrapTecnicas" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txtScrapTecnicas" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -716,17 +740,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblScrapTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtScrapTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="lblNoParteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbNoParteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblOperacionTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -736,17 +749,27 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblAreaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cmbAreaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFamiliaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbFamiliaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblProblemaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cmbProblemaTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                  <Component id="cmbClienteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblClienteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cmbClienteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblClienteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblScrapTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtScrapTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                  <Component id="lblNoParteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbNoParteTecnicas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -766,7 +789,6 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbOperacionTecnicas"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="cmbAreaTecnicas"/>
             </Property>
@@ -782,7 +804,6 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbAreaTecnicas"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="cmbProblemaTecnicas"/>
             </Property>
@@ -798,9 +819,8 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaTecnicas"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="cmbClienteTecnicas"/>
+              <ComponentRef name="cmbFamiliaTecnicas"/>
             </Property>
           </Properties>
           <Events>
@@ -817,9 +837,8 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbClienteTecnicas"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="cmbNoParteTecnicas"/>
+              <ComponentRef name="btnParoPeriodo"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -836,7 +855,6 @@
           <Properties>
             <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteTecnicas"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="txtScrapTecnicas"/>
             </Property>
@@ -855,11 +873,31 @@
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="cmbHora"/>
             </Property>
-            <Property name="requestFocusEnabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtScrapTecnicasActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblFamiliaTecnicas">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="FAMILIA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbFamiliaTecnicas">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbFamiliaTecnicas"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="btnParoPeriodo"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -893,7 +931,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cmbProblemaCalidad" pref="300" max="32767" attributes="0"/>
-                      <Component id="cmbFamiliaCalidad" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="cmbFamiliaCalidad" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -911,7 +949,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblScrapCalidad" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtScrapCalidad" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="txtScrapCalidad" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -1006,7 +1044,7 @@
             <Property name="actionCommand" type="java.lang.String" value="_cmbProblemaCalidad"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="cmbClienteCalidad"/>
+              <ComponentRef name="cmbFamiliaCalidad"/>
             </Property>
           </Properties>
         </Component>
@@ -1070,6 +1108,9 @@
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="_cmbFamiliaCalidad"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbClienteCalidad"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

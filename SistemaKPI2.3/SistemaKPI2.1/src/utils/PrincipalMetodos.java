@@ -477,6 +477,13 @@ public class PrincipalMetodos {
 
     public void panelTecnicasOperaciones(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getLblFamiliaTecnicas().setVisible(true);
+            winPrincipal.getCmbFamiliaTecnicas().setVisible(true);
+        } else {
+            winPrincipal.getLblFamiliaTecnicas().setVisible(false);
+            winPrincipal.getCmbFamiliaTecnicas().setVisible(false);
+        }
         winPrincipal.getCmbOperacionTecnicas().setEnabled(true);
         winPrincipal.getCmbOperacionTecnicas().setModel(listaOperacionesCalidad(winPrincipal.getCmbLinea().getSelectedItem().toString()));
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTecnicas());
@@ -497,35 +504,75 @@ public class PrincipalMetodos {
 
     public void panelTecnicasProblemas(Principal winPrincipal) {
         winPrincipal.getCmbProblemaTecnicas().setEnabled(true);
-        winPrincipal.getCmbProblemaTecnicas().setModel(listaProblemasCalidad(
-                winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbTema().getSelectedItem().toString(),
-                winPrincipal.getCmbOperacionTecnicas().getSelectedItem().toString(),
-                winPrincipal.getCmbAreaTecnicas().getSelectedItem().toString()));
+        winPrincipal.getCmbProblemaTecnicas().setModel(
+                listaProblemasCalidad(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                        winPrincipal.getCmbTema().getSelectedItem().toString(),
+                        winPrincipal.getCmbOperacionTecnicas().getSelectedItem().toString(),
+                        winPrincipal.getCmbAreaTecnicas().getSelectedItem().toString()
+                )
+        );
         winPrincipal.getCmbProblemaTecnicas().setSelectedIndex(0);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbFamiliaTecnicas().setEnabled(false);
+        } else {
+            winPrincipal.getCmbClienteTecnicas().setEnabled(false);
+        }
+    }
+
+    public void panelTecnicasFamilias(Principal winPrincipal) {
+        winPrincipal.getCmbFamiliaTecnicas().setEnabled(true);
+        winPrincipal.getCmbFamiliaTecnicas().setModel(
+                listaFamilias(winPrincipal.getCmbLinea().getSelectedItem().toString())
+        );
+        winPrincipal.getCmbFamiliaTecnicas().setSelectedIndex(0);
         winPrincipal.getCmbClienteTecnicas().setEnabled(false);
     }
 
     public void panelTecnicasClientes(Principal winPrincipal) {
         winPrincipal.getCmbClienteTecnicas().setEnabled(true);
-        winPrincipal.getCmbClienteTecnicas().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbClienteTecnicas().setModel(
+                    listaFamiliasClientes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaTecnicas().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbClienteTecnicas().setModel(
+                    listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        }
         winPrincipal.getCmbClienteTecnicas().setSelectedIndex(0);
         winPrincipal.getCmbNoParteTecnicas().setEnabled(false);
     }
 
     public void panelTecnicasNoPartes(Principal winPrincipal) {
+        if (!winPrincipal.getTxtScrapTecnicas().getText().isEmpty()) {
+            winPrincipal.getTxtScrapTecnicas().setText("");
+            winPrincipal.getTxtScrapTecnicas().setEnabled(false);
+        }
         winPrincipal.getCmbNoParteTecnicas().setEnabled(true);
-        winPrincipal.getCmbNoParteTecnicas().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteTecnicas().getSelectedItem().toString()));
-        winPrincipal.getCmbNoParteTecnicas().setSelectedIndex(0);
-        winPrincipal.getTxtScrapTecnicas().setEnabled(false);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbNoParteTecnicas().setModel(
+                    listaNoPartesFamilia(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaTecnicas().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteTecnicas().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbNoParteTecnicas().setModel(
+                    listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteTecnicas().getSelectedItem().toString()
+                    )
+            );
+        }
     }
 
     public void agregarRegistroBitacora(Principal winPrincipal) {
         int valorTema = winPrincipal.getCmbTema().getSelectedIndex();
         modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
         registroBitacora = modeloRegistroBitacora(winPrincipal, registroBitacora);
-    
+
         if (winPrincipal.getTblBitacora().getRowCount() == 0) {
             modeloTabla.addRow(registroBitacora);
             insertarRegistroFilaAccess(winPrincipal);

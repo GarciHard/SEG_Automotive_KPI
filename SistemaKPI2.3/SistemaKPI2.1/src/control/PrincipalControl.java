@@ -102,6 +102,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbAreaTecnicas().addActionListener(this);
         winPrincipal.getCmbProblemaTecnicas().addActionListener(this);
         winPrincipal.getCmbClienteTecnicas().addActionListener(this);
+        winPrincipal.getCmbFamiliaTecnicas().addActionListener(this);
         winPrincipal.getCmbNoParteTecnicas().addActionListener(this);
         winPrincipal.getCmbNoParteTecnicas().addItemListener(this);
         winPrincipal.getTxtScrapTecnicas().addCaretListener(this);
@@ -246,12 +247,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 } else {
                     principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
                 }
-//                if (tipoEnsambleLinea == 3) {
-//                    principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
-//                    
-//                } else {
-//                    principalMetodos.panelPiezasProducidasFamilias(winPrincipal);
-//                }
                 break;
             case "_cmbFamiliaPzasProd":
                 principalMetodos.panelPiezasProducidasNoPartes(winPrincipal);
@@ -284,12 +279,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             case "_cmbClienteCalidad":
                 principalMetodos.panelCalidadNoPartes(winPrincipal);
                 break;
-            case "_cmbNoParteCalidad":
-                //winPrincipal.getTxtScrapCalidad().setText("");
-                //winPrincipal.getTxtScrapCalidad().setEnabled(true);
-                //winPrincipal.getTxtCantidadProducidaCalidad().setText("");
-                //winPrincipal.getTxtCantidadProducidaCalidad().setEnabled(true);
-                break;
             //***** Panel Tecnicas *****
             case "_cmbOperacionTecnicas":
                 principalMetodos.panelTecnicasAreas(winPrincipal);
@@ -298,6 +287,13 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelTecnicasProblemas(winPrincipal);
                 break;
             case "_cmbProblemaTecnicas":
+                if (tipoEnsambleLinea == 3) {
+                    principalMetodos.panelTecnicasFamilias(winPrincipal);
+                } else {
+                    principalMetodos.panelTecnicasClientes(winPrincipal);
+                }
+                break;
+            case "_cmbFamiliaTecnicas":
                 principalMetodos.panelTecnicasClientes(winPrincipal);
                 break;
             case "_cmbClienteTecnicas":
