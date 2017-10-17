@@ -386,6 +386,13 @@ public class PrincipalMetodos {
 
     public void panelCalidadOperaciones(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getLblFamiliaCalidad().setVisible(true);
+            winPrincipal.getCmbFamiliaCalidad().setVisible(true);
+        } else {
+            winPrincipal.getLblFamiliaCalidad().setVisible(false);
+            winPrincipal.getCmbFamiliaCalidad().setVisible(false);
+        }
         winPrincipal.getCmbOperacionCalidad().setEnabled(true);
         winPrincipal.getCmbOperacionCalidad().setModel(listaOperacionesCalidad(winPrincipal.getCmbLinea().getSelectedItem().toString()));
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlCalidad());
@@ -410,14 +417,37 @@ public class PrincipalMetodos {
                 winPrincipal.getCmbLinea().getSelectedItem().toString(),
                 winPrincipal.getCmbTema().getSelectedItem().toString(),
                 winPrincipal.getCmbOperacionCalidad().getSelectedItem().toString(),
-                winPrincipal.getCmbAreaCalidad().getSelectedItem().toString()));
+                winPrincipal.getCmbAreaCalidad().getSelectedItem().toString())
+        );
         winPrincipal.getCmbProblemaCalidad().setSelectedIndex(0);
-        winPrincipal.getCmbClienteCalidad().setEnabled(false);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbFamiliaCalidad().setEnabled(false);
+        } else {
+            winPrincipal.getCmbClienteCalidad().setEnabled(false);
+        }
     }
 
+    public void panelCalidadFamilias(Principal winPrincipal) {
+        winPrincipal.getCmbFamiliaCalidad().setEnabled(true);
+        winPrincipal.getCmbFamiliaCalidad().setModel(
+                listaFamilias(winPrincipal.getCmbLinea().getSelectedItem().toString())
+        );
+        winPrincipal.getCmbFamiliaCalidad().setSelectedIndex(0);
+        winPrincipal.getCmbClienteCalidad().setEnabled(false);
+    }
+    
     public void panelCalidadClientes(Principal winPrincipal) {
         winPrincipal.getCmbClienteCalidad().setEnabled(true);
-        winPrincipal.getCmbClienteCalidad().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbClienteCalidad().setModel(
+                    listaFamiliasClientes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaCalidad().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbClienteCalidad().setModel(
+                    listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        }
         winPrincipal.getCmbClienteCalidad().setSelectedIndex(0);
         winPrincipal.getCmbNoParteCalidad().setEnabled(false);
     }
@@ -428,8 +458,21 @@ public class PrincipalMetodos {
             winPrincipal.getTxtScrapCalidad().setEnabled(false);
         }
         winPrincipal.getCmbNoParteCalidad().setEnabled(true);
-        winPrincipal.getCmbNoParteCalidad().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteCalidad().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbNoParteCalidad().setModel(
+                    listaNoPartesFamilia(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaCalidad().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteCalidad().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbNoParteCalidad().setModel(
+                    listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteCalidad().getSelectedItem().toString()
+                    )
+            );
+        }
     }
 
     public void panelTecnicasOperaciones(Principal winPrincipal) {

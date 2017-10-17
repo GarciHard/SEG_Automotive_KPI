@@ -879,33 +879,40 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lblOperacionCalidad" alignment="0" max="32767" attributes="0"/>
                       <Component id="lblAreaCalidad" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lblProblemaCalidad" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cmbAreaCalidad" alignment="0" pref="250" max="32767" attributes="0"/>
-                      <Component id="cmbOperacionCalidad" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="cmbProblemaCalidad" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cmbOperacionCalidad" pref="200" max="32767" attributes="0"/>
+                      <Component id="cmbAreaCalidad" pref="200" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" pref="69" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblProblemaCalidad" max="32767" attributes="0"/>
+                      <Component id="lblFamiliaCalidad" min="-2" pref="86" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="cmbProblemaCalidad" pref="300" max="32767" attributes="0"/>
+                      <Component id="cmbFamiliaCalidad" min="-2" pref="150" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblNoParteCalidad" min="-2" pref="177" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbNoParteCalidad" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblClienteCalidad" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblClienteCalidad" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="cmbClienteCalidad" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblScrapCalidad" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lblNoParteCalidad" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtScrapCalidad" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="cmbNoParteCalidad" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="lblScrapCalidad" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txtScrapCalidad" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -913,38 +920,42 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="lblOperacionCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbOperacionCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="cmbClienteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblClienteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblAreaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbAreaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbClienteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblClienteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblNoParteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbNoParteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                  <Component id="lblScrapCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtScrapCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblProblemaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cmbProblemaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblNoParteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbNoParteCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFamiliaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbFamiliaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblOperacionCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbOperacionCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblScrapCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtScrapCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAreaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbAreaCalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1045,6 +1056,24 @@
               <ComponentRef name="cmbHora"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblFamiliaCalidad">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="FAMILIA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbFamiliaCalidad">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbFamiliaCalidad"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

@@ -90,6 +90,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbOperacionCalidad().addActionListener(this);
         winPrincipal.getCmbAreaCalidad().addActionListener(this);
         winPrincipal.getCmbProblemaCalidad().addActionListener(this);
+        winPrincipal.getCmbFamiliaCalidad().addActionListener(this);
         winPrincipal.getCmbClienteCalidad().addActionListener(this);
         winPrincipal.getCmbNoParteCalidad().addActionListener(this);
         winPrincipal.getCmbNoParteCalidad().addItemListener(this);
@@ -271,6 +272,13 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelCalidadProblemas(winPrincipal);
                 break;
             case "_cmbProblemaCalidad":
+                if (tipoEnsambleLinea == 3) {
+                    principalMetodos.panelCalidadFamilias(winPrincipal);
+                } else {
+                    principalMetodos.panelCalidadClientes(winPrincipal);
+                }
+                break;
+            case  "_cmbFamiliaCalidad":
                 principalMetodos.panelCalidadClientes(winPrincipal);
                 break;
             case "_cmbClienteCalidad":
