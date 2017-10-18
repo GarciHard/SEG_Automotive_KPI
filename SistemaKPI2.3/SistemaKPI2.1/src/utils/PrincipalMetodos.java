@@ -578,26 +578,76 @@ public class PrincipalMetodos {
 
     public void panelPlaneadosAreas(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getLblFamiliaPlaneados().setVisible(true);
+            winPrincipal.getCmbFamiliaPlaneados().setVisible(true);
+        } else {
+            winPrincipal.getLblFamiliaPlaneados().setVisible(false);
+            winPrincipal.getCmbFamiliaPlaneados().setVisible(false);
+        }
         winPrincipal.getCmbAreaPlaneados().setEnabled(true);
-        winPrincipal.getCmbAreaPlaneados().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbTema().getSelectedItem().toString()));
+        winPrincipal.getCmbAreaPlaneados().setModel(
+                listaAreasOrganizacional(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                        winPrincipal.getCmbTema().getSelectedItem().toString()
+                )
+        );
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlPlaneados());
         winPrincipal.getPnlProduccionCollapsible().repaint();
         winPrincipal.getCmbAreaPlaneados().setSelectedIndex(0);
+        winPrincipal.getCmbFamiliaPlaneados().setEnabled(false);
+        winPrincipal.getCmbClientePlaneados().setEnabled(false);
+    }
+
+    public void panelPlaneadosFamilias(Principal winPrincipal) {
+        winPrincipal.getCmbFamiliaPlaneados().setEnabled(true);
+        winPrincipal.getCmbFamiliaPlaneados().setModel(
+                listaFamilias(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString()
+                )
+        );
+        winPrincipal.getCmbFamiliaPlaneados().setSelectedIndex(0);
         winPrincipal.getCmbClientePlaneados().setEnabled(false);
     }
 
     public void panelPlaneadosClientes(Principal winPrincipal) {
         winPrincipal.getCmbClientePlaneados().setEnabled(true);
-        winPrincipal.getCmbClientePlaneados().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbClientePlaneados().setModel(
+                    listaFamiliasClientes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaPlaneados().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbClientePlaneados().setModel(
+                    listaClientes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString()
+                    )
+            );
+        }
         winPrincipal.getCmbClientePlaneados().setSelectedIndex(0);
         winPrincipal.getCmbNoPartePlaneados().setEnabled(false);
     }
 
     public void panelPlaneadosNoPartes(Principal winPrincipal) {
         winPrincipal.getCmbNoPartePlaneados().setEnabled(true);
-        winPrincipal.getCmbNoPartePlaneados().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClientePlaneados().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbNoPartePlaneados().setModel(
+                    listaNoPartesFamilia(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaPlaneados().getSelectedItem().toString(),
+                            winPrincipal.getCmbClientePlaneados().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbNoPartePlaneados().setModel(
+                    listaNoPartes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbClientePlaneados().getSelectedItem().toString()
+                    )
+            );
+        }
         winPrincipal.getCmbNoPartePlaneados().setSelectedIndex(0);
         winPrincipal.getCmbHora().setEnabled(false);
         winPrincipal.getBtnParoPeriodo().setVisible(false);

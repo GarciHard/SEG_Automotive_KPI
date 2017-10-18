@@ -129,6 +129,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         //Panel Planeados
         winPrincipal.getCmbAreaPlaneados().addActionListener(this);
         winPrincipal.getCmbClientePlaneados().addActionListener(this);
+        winPrincipal.getCmbFamiliaPlaneados().addActionListener(this);
         winPrincipal.getCmbNoPartePlaneados().addActionListener(this);
         
         //Menu Lineas
@@ -349,6 +350,13 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             //***** Panel Planeados *****
             case "_cmbAreaPlaneados":
+                if (tipoEnsambleLinea == 3) {
+                    principalMetodos.panelPlaneadosFamilias(winPrincipal);
+                } else {
+                    principalMetodos.panelPlaneadosClientes(winPrincipal);
+                }
+                break;
+            case "_cmbFamiliaPlaneados":
                 principalMetodos.panelPlaneadosClientes(winPrincipal);
                 break;
             case "_cmbClientePlaneados":

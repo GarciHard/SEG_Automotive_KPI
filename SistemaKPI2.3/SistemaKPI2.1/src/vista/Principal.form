@@ -125,7 +125,7 @@
         <Component class="javax.swing.JTextField" name="txtCantidadProducidaPzasProd">
           <Properties>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor Por defecto"/>
+              <Color id="Default Cursor"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
@@ -174,30 +174,37 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblAreaOrganizacional" max="32767" attributes="0"/>
+                      <Component id="lblProblemaOrganizacional" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblAreaOrganizacional" min="-2" pref="66" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbAreaOrganizacional" min="-2" pref="200" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblProblemaOrganizacional" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="cmbProblemaOrganizacional" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                          <Component id="cmbAreaOrganizacional" min="-2" pref="188" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lblClienteOrganizacional" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblFamiliaOrganizacional" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="separate" max="32767" attributes="0"/>
+                          <Component id="lblFamiliaOrganizacional" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="separate" max="32767" attributes="0"/>
+                          <Component id="lblClienteOrganizacional" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="cmbFamiliaOrganizacional" min="-2" pref="200" max="-2" attributes="0"/>
                       <Component id="cmbClienteOrganizacional" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblMatFaltante" max="32767" attributes="0"/>
@@ -225,35 +232,37 @@
                               <Component id="lblAreaOrganizacional" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblProblemaOrganizacional" alignment="3" max="32767" attributes="0"/>
-                              <Component id="cmbProblemaOrganizacional" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cmbProblemaOrganizacional" max="32767" attributes="0"/>
+                              <Component id="lblProblemaOrganizacional" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="cmbFamiliaOrganizacional" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblFamiliaOrganizacional" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFamiliaOrganizacional" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="lblMatFaltante" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtMatFaltante" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblNoParteOrganizacional" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                  <Component id="lblClienteOrganizacional" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cmbClienteOrganizacional" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblClienteOrganizacional" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cmbClienteOrganizacional" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cmbNoParteOrganizacional" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cmbNoParteOrganizacional" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblNoParteOrganizacional" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -602,12 +611,16 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblAreaPlaneados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cmbAreaPlaneados" pref="250" max="32767" attributes="0"/>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <Component id="cmbAreaPlaneados" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                  <Component id="lblFamiliaPlaneados" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="cmbFamiliaPlaneados" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Component id="lblClientePlaneados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cmbClientePlaneados" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Component id="lblNoPartePlaneados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cmbNoPartePlaneados" min="-2" pref="200" max="-2" attributes="0"/>
@@ -617,23 +630,24 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cmbAreaPlaneados" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbClientePlaneados" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbNoPartePlaneados" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cmbAreaPlaneados" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbClientePlaneados" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbNoPartePlaneados" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="lblFamiliaPlaneados" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbFamiliaPlaneados" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblNoPartePlaneados" max="32767" attributes="0"/>
-                              <Component id="lblClientePlaneados" max="32767" attributes="0"/>
-                              <Component id="lblAreaPlaneados" max="32767" attributes="0"/>
+                              <Component id="lblAreaPlaneados" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblClientePlaneados" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNoPartePlaneados" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -691,6 +705,22 @@
             </Property>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="lblFamiliaPlaneados">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="FAMILIA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbFamiliaPlaneados">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbFamiliaPlaneados"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pnlTecnicas">
@@ -722,15 +752,10 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="cmbProblemaTecnicas" pref="300" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="cmbFamiliaTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="cmbProblemaTecnicas" pref="300" max="32767" attributes="0"/>
+                      <Component id="cmbFamiliaTecnicas" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lblClienteTecnicas" max="32767" attributes="0"/>
                       <Component id="lblNoParteTecnicas" max="32767" attributes="0"/>
