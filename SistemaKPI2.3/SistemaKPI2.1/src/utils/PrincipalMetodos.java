@@ -81,7 +81,7 @@ public class PrincipalMetodos {
         }
         return listaCliente;
     }
-    
+
     private DefaultComboBoxModel listaFamilias(String linea) {
         try {
             listaCliente = new PiezasProducidasDAOImpl().listaFamilias(linea);
@@ -95,7 +95,7 @@ public class PrincipalMetodos {
         }
         return listaCliente;
     }
-    
+
     private DefaultComboBoxModel listaFamiliasClientes(String linea, String familia) {
         try {
             listaCliente = new PiezasProducidasDAOImpl().listaFamiliasClientes(linea, familia);
@@ -119,7 +119,7 @@ public class PrincipalMetodos {
         }
         return listaNoParte;
     }
-    
+
     private DefaultComboBoxModel listaNoPartesFamilia(String linea, String familia, String cliente) {
         try {
             listaNoParte = new PiezasProducidasDAOImpl().listaNoParteFamilia(linea, familia, cliente);
@@ -221,7 +221,7 @@ public class PrincipalMetodos {
         winPrincipal.getCmbFamiliaPzasProd().setSelectedIndex(0);
         //winPrincipal.getCmbNoPartePzasProd().setEnabled(false);
     }
-    
+
     public void panelPiezasProducidasNoPartes(Principal winPrincipal) {
         if (PrincipalControl.tipoEnsambleLinea == 3) {
             winPrincipal.getCmbNoPartePzasProd().setModel(listaNoPartesFamilia(winPrincipal.getCmbLinea().getSelectedItem().toString(),
@@ -233,155 +233,6 @@ public class PrincipalMetodos {
                     winPrincipal.getCmbClientePzasProd().getSelectedItem().toString()));
             winPrincipal.getCmbNoPartePzasProd().setEnabled(true);
         }
-    }
-    
-    public void panelOrganizacionalesAreas(Principal winPrincipal) {
-        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
-        winPrincipal.getCmbAreaOrganizacional().setEnabled(true);
-        winPrincipal.getCmbAreaOrganizacional().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbTema().getSelectedItem().toString()));
-        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlOrganizacionales());
-        winPrincipal.getPnlProduccionCollapsible().repaint();
-        winPrincipal.getCmbAreaOrganizacional().setSelectedIndex(0);
-        winPrincipal.getCmbProblemaOrganizacional().setEnabled(false);
-    }
-
-    public void panelOrganizacionalesProblemas(Principal winPrincipal) {
-        winPrincipal.getCmbProblemaOrganizacional().setEnabled(true);
-        winPrincipal.getCmbProblemaOrganizacional().setModel(listaProblemasOrganizacional(
-                winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbTema().getSelectedItem().toString(),
-                winPrincipal.getCmbAreaOrganizacional().getSelectedItem().toString()));
-        winPrincipal.getCmbProblemaOrganizacional().setSelectedIndex(0);
-        winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
-    }
-
-    public void panelOrganizacionalesClientes(Principal winPrincipal) {
-        if (winPrincipal.getCmbAreaOrganizacional().getSelectedIndex() == 1) {
-            if (winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() >= 2 && winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() <= 5) {
-                winPrincipal.getLblMatFaltante().setVisible(true);
-                winPrincipal.getTxtMatFaltante().setVisible(true);
-                winPrincipal.getTxtMatFaltante().setText("");
-                winPrincipal.getTxtMatFaltante().setEnabled(true);
-                winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
-                winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
-            } else {
-                //System.out.println("e");
-                winPrincipal.getLblMatFaltante().setVisible(false);
-                winPrincipal.getTxtMatFaltante().setText("");
-                winPrincipal.getTxtMatFaltante().setVisible(false);
-                winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
-            }
-        } else {
-            //System.out.println("etn");
-            winPrincipal.getLblMatFaltante().setVisible(false);
-            winPrincipal.getTxtMatFaltante().setText("");
-            winPrincipal.getTxtMatFaltante().setVisible(false);
-            winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
-        }
-
-        winPrincipal.getCmbClienteOrganizacional().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
-        winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
-        winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
-    }
-
-    public void panelOrganizacionalesNoPartes(Principal winPrincipal) {
-        winPrincipal.getCmbNoParteOrganizacional().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteOrganizacional().getSelectedItem().toString()));
-        winPrincipal.getCmbNoParteOrganizacional().setSelectedIndex(0);
-
-        if (winPrincipal.getCmbClienteOrganizacional().getSelectedIndex() != 0) {
-            winPrincipal.getCmbNoParteOrganizacional().setEnabled(true);
-            winPrincipal.getCmbHora().setEnabled(false);
-            winPrincipal.getBtnParoPeriodo().setVisible(false);
-        } else {
-            winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
-        }
-    }
-
-    public void panelCambiosAreas(Principal winPrincipal) {
-        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
-        winPrincipal.getCmbAreaCambios().setEnabled(true);
-        winPrincipal.getCmbAreaCambios().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbTema().getSelectedItem().toString()));
-        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlCambios());
-        winPrincipal.getPnlProduccionCollapsible().repaint();
-        winPrincipal.getCmbAreaCambios().setSelectedIndex(0);
-        winPrincipal.getCmbClienteCambios().setEnabled(false);
-    }
-
-    public void panelCambiosClientes(Principal winPrincipal) {
-        winPrincipal.getCmbClienteCambios().setEnabled(true);
-        winPrincipal.getCmbClienteCambios().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
-        winPrincipal.getCmbClienteCambios().setSelectedIndex(0);
-        winPrincipal.getCmbNoParteCambios().setEnabled(false);
-    }
-
-    public void panelCambiosNoPartes(Principal winPrincipal) {
-        winPrincipal.getCmbNoParteCambios().setEnabled(true);
-        winPrincipal.getCmbNoParteCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteCambios().getSelectedItem().toString()));
-        winPrincipal.getCmbNoParteCambios().setSelectedIndex(0);
-        winPrincipal.getCmbClienteNuevoCambios().setEnabled(false);
-    }
-
-    public void panelCambiosClienteNuevo(Principal winPrincipal) {
-        winPrincipal.getCmbClienteNuevoCambios().setEnabled(true);
-        winPrincipal.getCmbClienteNuevoCambios().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
-        winPrincipal.getCmbClienteNuevoCambios().setSelectedIndex(0);
-        winPrincipal.getCmbNoParteCambioCambios().setEnabled(false);
-    }
-
-    public void panelCambiosNoPartesCambios(Principal winPrincipal) {
-        winPrincipal.getCmbNoParteCambioCambios().setEnabled(true);
-        winPrincipal.getCmbNoParteCambioCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteNuevoCambios().getSelectedItem().toString()));
-        winPrincipal.getCmbNoParteCambioCambios().setSelectedIndex(0);
-        winPrincipal.getTxtScrapCambios().setEnabled(false);
-    }
-
-    public void panelTiempoFaltante(Principal winPrincipal) {
-        if (winPrincipal.getTblBitacora().getRowCount() <= 0) {
-            winPrincipal.getCmbTema().setSelectedIndex(0);
-            JOptionPane.showMessageDialog(
-                    winPrincipal, "No hay horas por justificar", "Mensaje",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-        } else {
-            PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
-            winPrincipal.getPnlProduccionCollapsible().setContent(new javax.swing.JLabel());
-            winPrincipal.getPnlProduccionCollapsible().repaint();
-            winPrincipal.getCmbHora().setEnabled(true);
-        }
-//        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTiempoFaltante());
-//        winPrincipal.getPnlProduccionCollapsible().repaint();
-    }
-
-    public void panelPlaneadosAreas(Principal winPrincipal) {
-        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
-        winPrincipal.getCmbAreaPlaneados().setEnabled(true);
-        winPrincipal.getCmbAreaPlaneados().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbTema().getSelectedItem().toString()));
-        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlPlaneados());
-        winPrincipal.getPnlProduccionCollapsible().repaint();
-        winPrincipal.getCmbAreaPlaneados().setSelectedIndex(0);
-        winPrincipal.getCmbClientePlaneados().setEnabled(false);
-    }
-
-    public void panelPlaneadosClientes(Principal winPrincipal) {
-        winPrincipal.getCmbClientePlaneados().setEnabled(true);
-        winPrincipal.getCmbClientePlaneados().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
-        winPrincipal.getCmbClientePlaneados().setSelectedIndex(0);
-        winPrincipal.getCmbNoPartePlaneados().setEnabled(false);
-    }
-
-    public void panelPlaneadosNoPartes(Principal winPrincipal) {
-        winPrincipal.getCmbNoPartePlaneados().setEnabled(true);
-        winPrincipal.getCmbNoPartePlaneados().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClientePlaneados().getSelectedItem().toString()));
-        winPrincipal.getCmbNoPartePlaneados().setSelectedIndex(0);
-        winPrincipal.getCmbHora().setEnabled(false);
-        winPrincipal.getBtnParoPeriodo().setVisible(false);
     }
 
     public void panelCalidadOperaciones(Principal winPrincipal) {
@@ -435,7 +286,7 @@ public class PrincipalMetodos {
         winPrincipal.getCmbFamiliaCalidad().setSelectedIndex(0);
         winPrincipal.getCmbClienteCalidad().setEnabled(false);
     }
-    
+
     public void panelCalidadClientes(Principal winPrincipal) {
         winPrincipal.getCmbClienteCalidad().setEnabled(true);
         if (PrincipalControl.tipoEnsambleLinea == 3) {
@@ -566,6 +417,207 @@ public class PrincipalMetodos {
                     )
             );
         }
+    }
+
+    public void panelOrganizacionalesAreas(Principal winPrincipal) {
+        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getLblFamiliaOrganizacional().setVisible(true);
+            winPrincipal.getCmbFamiliaOrganizacional().setVisible(true);
+        } else {
+            winPrincipal.getLblFamiliaOrganizacional().setVisible(false);
+            winPrincipal.getCmbFamiliaOrganizacional().setVisible(false);
+        }
+        winPrincipal.getCmbAreaOrganizacional().setEnabled(true);
+        winPrincipal.getCmbAreaOrganizacional().setModel(
+                listaAreasOrganizacional(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                        winPrincipal.getCmbTema().getSelectedItem().toString()
+                )
+        );
+        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlOrganizacionales());
+        winPrincipal.getPnlProduccionCollapsible().repaint();
+        winPrincipal.getCmbAreaOrganizacional().setSelectedIndex(0);
+        winPrincipal.getCmbProblemaOrganizacional().setEnabled(false);
+    }
+
+    public void panelOrganizacionalesProblemas(Principal winPrincipal) {
+        winPrincipal.getCmbProblemaOrganizacional().setEnabled(true);
+        winPrincipal.getCmbProblemaOrganizacional().setModel(
+                listaProblemasOrganizacional(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                        winPrincipal.getCmbTema().getSelectedItem().toString(),
+                        winPrincipal.getCmbAreaOrganizacional().getSelectedItem().toString()
+                )
+        );
+        winPrincipal.getCmbProblemaOrganizacional().setSelectedIndex(0);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbFamiliaOrganizacional().setEnabled(false);
+        } else {
+            winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
+        }
+    }
+
+    public void panelOrganizacionalesFamilias(Principal winPrincipal) {
+        winPrincipal.getCmbFamiliaOrganizacional().setEnabled(true);
+        winPrincipal.getCmbFamiliaOrganizacional().setModel(
+                listaFamilias(winPrincipal.getCmbLinea().getSelectedItem().toString())
+        );
+        winPrincipal.getCmbFamiliaOrganizacional().setSelectedIndex(0);
+        winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
+    }
+
+    public void panelOrganizacionalesClientes(Principal winPrincipal) {
+        if (winPrincipal.getCmbAreaOrganizacional().getSelectedIndex() == 1) {
+            if (winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() >= 2 && winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() <= 5) {
+                winPrincipal.getLblMatFaltante().setVisible(true);
+                winPrincipal.getTxtMatFaltante().setVisible(true);
+                winPrincipal.getTxtMatFaltante().setText("");
+                winPrincipal.getTxtMatFaltante().setEnabled(true);
+                winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
+                winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
+            } else {
+                winPrincipal.getLblMatFaltante().setVisible(false);
+                winPrincipal.getTxtMatFaltante().setText("");
+                winPrincipal.getTxtMatFaltante().setVisible(false);
+                winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
+            }
+        } else {
+            winPrincipal.getLblMatFaltante().setVisible(false);
+            winPrincipal.getTxtMatFaltante().setText("");
+            winPrincipal.getTxtMatFaltante().setVisible(false);
+            winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
+        }
+
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbClienteOrganizacional().setModel(
+                    listaFamiliasClientes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaOrganizacional().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbClienteOrganizacional().setModel(
+                    listaClientes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString()
+                    )
+            );
+        }
+        winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
+        winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+    }
+
+    public void panelOrganizacionalesNoPartes(Principal winPrincipal) {
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbNoParteOrganizacional().setModel(
+                    listaNoPartesFamilia(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaOrganizacional().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteOrganizacional().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbNoParteOrganizacional().setModel(
+                    listaNoPartes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteOrganizacional().getSelectedItem().toString()
+                    )
+            );
+        }
+        winPrincipal.getCmbNoParteOrganizacional().setSelectedIndex(0);
+
+        if (winPrincipal.getCmbClienteOrganizacional().getSelectedIndex() != 0) {
+            winPrincipal.getCmbNoParteOrganizacional().setEnabled(true);
+            winPrincipal.getCmbHora().setEnabled(false);
+            winPrincipal.getBtnParoPeriodo().setVisible(false);
+        } else {
+            winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+        }
+    }
+
+    public void panelCambiosAreas(Principal winPrincipal) {
+        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        winPrincipal.getCmbAreaCambios().setEnabled(true);
+        winPrincipal.getCmbAreaCambios().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbTema().getSelectedItem().toString()));
+        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlCambios());
+        winPrincipal.getPnlProduccionCollapsible().repaint();
+        winPrincipal.getCmbAreaCambios().setSelectedIndex(0);
+        winPrincipal.getCmbClienteCambios().setEnabled(false);
+    }
+
+    public void panelCambiosClientes(Principal winPrincipal) {
+        winPrincipal.getCmbClienteCambios().setEnabled(true);
+        winPrincipal.getCmbClienteCambios().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        winPrincipal.getCmbClienteCambios().setSelectedIndex(0);
+        winPrincipal.getCmbNoParteCambios().setEnabled(false);
+    }
+
+    public void panelCambiosNoPartes(Principal winPrincipal) {
+        winPrincipal.getCmbNoParteCambios().setEnabled(true);
+        winPrincipal.getCmbNoParteCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbClienteCambios().getSelectedItem().toString()));
+        winPrincipal.getCmbNoParteCambios().setSelectedIndex(0);
+        winPrincipal.getCmbClienteNuevoCambios().setEnabled(false);
+    }
+
+    public void panelCambiosClienteNuevo(Principal winPrincipal) {
+        winPrincipal.getCmbClienteNuevoCambios().setEnabled(true);
+        winPrincipal.getCmbClienteNuevoCambios().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        winPrincipal.getCmbClienteNuevoCambios().setSelectedIndex(0);
+        winPrincipal.getCmbNoParteCambioCambios().setEnabled(false);
+    }
+
+    public void panelCambiosNoPartesCambios(Principal winPrincipal) {
+        winPrincipal.getCmbNoParteCambioCambios().setEnabled(true);
+        winPrincipal.getCmbNoParteCambioCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbClienteNuevoCambios().getSelectedItem().toString()));
+        winPrincipal.getCmbNoParteCambioCambios().setSelectedIndex(0);
+        winPrincipal.getTxtScrapCambios().setEnabled(false);
+    }
+
+    public void panelPlaneadosAreas(Principal winPrincipal) {
+        PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        winPrincipal.getCmbAreaPlaneados().setEnabled(true);
+        winPrincipal.getCmbAreaPlaneados().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbTema().getSelectedItem().toString()));
+        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlPlaneados());
+        winPrincipal.getPnlProduccionCollapsible().repaint();
+        winPrincipal.getCmbAreaPlaneados().setSelectedIndex(0);
+        winPrincipal.getCmbClientePlaneados().setEnabled(false);
+    }
+
+    public void panelPlaneadosClientes(Principal winPrincipal) {
+        winPrincipal.getCmbClientePlaneados().setEnabled(true);
+        winPrincipal.getCmbClientePlaneados().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        winPrincipal.getCmbClientePlaneados().setSelectedIndex(0);
+        winPrincipal.getCmbNoPartePlaneados().setEnabled(false);
+    }
+
+    public void panelPlaneadosNoPartes(Principal winPrincipal) {
+        winPrincipal.getCmbNoPartePlaneados().setEnabled(true);
+        winPrincipal.getCmbNoPartePlaneados().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                winPrincipal.getCmbClientePlaneados().getSelectedItem().toString()));
+        winPrincipal.getCmbNoPartePlaneados().setSelectedIndex(0);
+        winPrincipal.getCmbHora().setEnabled(false);
+        winPrincipal.getBtnParoPeriodo().setVisible(false);
+    }
+
+    public void panelTiempoFaltante(Principal winPrincipal) {
+        if (winPrincipal.getTblBitacora().getRowCount() <= 0) {
+            winPrincipal.getCmbTema().setSelectedIndex(0);
+            JOptionPane.showMessageDialog(
+                    winPrincipal, "No hay horas por justificar", "Mensaje",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+            PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+            winPrincipal.getPnlProduccionCollapsible().setContent(new javax.swing.JLabel());
+            winPrincipal.getPnlProduccionCollapsible().repaint();
+            winPrincipal.getCmbHora().setEnabled(true);
+        }
+//        winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlTiempoFaltante());
+//        winPrincipal.getPnlProduccionCollapsible().repaint();
     }
 
     public void agregarRegistroBitacora(Principal winPrincipal) {
@@ -859,7 +911,7 @@ public class PrincipalMetodos {
                 reg[6] = winPrincipal.getCmbTema().getSelectedItem();//
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();
                 reg[8] = winPrincipal.getCmbAreaCambios().getSelectedItem();
-                reg[9] = winPrincipal.getCmbClienteCambios().getSelectedItem()+"-"+winPrincipal.getCmbNoParteCambios().getSelectedItem()+" a "+winPrincipal.getCmbClienteNuevoCambios().getSelectedItem()+"-"+winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();//winPrincipal.getCmbProblemaCambios().getSelectedItem(); //problema
+                reg[9] = winPrincipal.getCmbClienteCambios().getSelectedItem() + "-" + winPrincipal.getCmbNoParteCambios().getSelectedItem() + " a " + winPrincipal.getCmbClienteNuevoCambios().getSelectedItem() + "-" + winPrincipal.getCmbNoParteCambioCambios().getSelectedItem();//winPrincipal.getCmbProblemaCambios().getSelectedItem(); //problema
                 reg[10] = winPrincipal.getCmbClienteCambios().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoParteCambios().getSelectedItem();
                 reg[12] = 0;
@@ -981,7 +1033,7 @@ public class PrincipalMetodos {
         }
     }
 
-     public void guardarRegistroAccess(Principal winPrincipal) {
+    public void guardarRegistroAccess(Principal winPrincipal) {
         PrincipalControl.auxiliarPrincipal = 2;
         new LoginControl(new Login(winPrincipal, true));
         switch (LoginControl.auxiliarLogin) {
@@ -1036,11 +1088,11 @@ public class PrincipalMetodos {
             );
         }
     }
-    
-    public void consultarBitacoraPorDia(Principal winPrincipal) {   
+
+    public void consultarBitacoraPorDia(Principal winPrincipal) {
         String fecha = PrincipalControl.fecha;
         String linea = PrincipalControl.linea;
-        
+
         if (winPrincipal.getTblBitacora().getRowCount() != 0) {
             switch (JOptionPane.showConfirmDialog(winPrincipal, "En caso de tener registros sin guardar, estos se perderán.\n¿Seguro que desea continuar?", "Mensaje",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
@@ -1050,10 +1102,10 @@ public class PrincipalMetodos {
                     winPrincipal.getDteFecha().setEnabled(false);
                     winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
                     Object[] bitacoraObj;
-                    try {                        
-                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha,linea);
+                    try {
+                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha, linea);
                         //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                          //      winPrincipal.getCmbLinea().getSelectedItem().toString());
+                        //      winPrincipal.getCmbLinea().getSelectedItem().toString());
                         if (!bitacoraArr.isEmpty()) {
                             modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
                             for (int i = 0; i < bitacoraArr.size(); i++) {
@@ -1077,9 +1129,9 @@ public class PrincipalMetodos {
             winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
             Object[] bitacoraObj;
             try {
-                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha,linea);
+                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha, linea);
                 //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                        //winPrincipal.getCmbLinea().getSelectedItem().toString());
+                //winPrincipal.getCmbLinea().getSelectedItem().toString());
                 if (!bitacoraArr.isEmpty()) {
                     modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
                     for (int i = 0; i < bitacoraArr.size(); i++) {
@@ -1117,9 +1169,9 @@ public class PrincipalMetodos {
                     winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
                     Object[] bitacoraObj;
                     try {
-                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha,linea,inicio,fin);
+                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha, linea, inicio, fin);
                         //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                          //      winPrincipal.getCmbLinea().getSelectedItem().toString());
+                        //      winPrincipal.getCmbLinea().getSelectedItem().toString());
                         if (!bitacoraArr.isEmpty()) {
                             modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
                             for (int i = 0; i < bitacoraArr.size(); i++) {
@@ -1143,9 +1195,9 @@ public class PrincipalMetodos {
             winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
             Object[] bitacoraObj;
             try {
-                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha,linea,inicio,fin);
+                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha, linea, inicio, fin);
                 //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                        //winPrincipal.getCmbLinea().getSelectedItem().toString());
+                //winPrincipal.getCmbLinea().getSelectedItem().toString());
                 if (!bitacoraArr.isEmpty()) {
                     modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
                     for (int i = 0; i < bitacoraArr.size(); i++) {
@@ -1173,7 +1225,7 @@ public class PrincipalMetodos {
 
     public void actualizarRegistroFechaAccess(Principal winPrincipal) {
         try {
-            
+
             if (winPrincipal.getTblBitacora().getModel().getRowCount() != 0) {
                 eliminarRegistroTiempoActualizar(winPrincipal);
                 ArrayList reg;
@@ -1253,13 +1305,12 @@ public class PrincipalMetodos {
     }
 
     public void eliminarRegistroTiempoActualizar(Principal winPrincipal) throws Exception {
-        
+
         int horaInicial = Integer.parseInt(winPrincipal.getTblBitacora().getValueAt(0, 2).toString());
-        
-        
+
         int horaFinal = Integer.parseInt(winPrincipal.getTblBitacora().getValueAt(
                 winPrincipal.getTblBitacora().getRowCount() - 1, 2).toString());
-        
+
         try {
             new BitacoraDAOImpl().borrarRegistroTiempo(
                     horaInicial,
@@ -1271,7 +1322,7 @@ public class PrincipalMetodos {
             throw e;
         }
     }
-    
+
     private void insertarRegistroFilaAccess(Principal winPrincipal) {
         try {
             if (PrincipalControl.bnEdicion == 2) {
@@ -1300,7 +1351,7 @@ public class PrincipalMetodos {
                 ArrayList reg = new ArrayList();
                 for (int j = 0; j < columnas; j++) {
                     Object ob = winPrincipal.getTblBitacora().getValueAt(contadorFila, j);
-                    if ((j== 12 || j == 16) && (ob == null || ob.toString().isEmpty())) {
+                    if ((j == 12 || j == 16) && (ob == null || ob.toString().isEmpty())) {
                         winPrincipal.getTblBitacora().setValueAt("0", contadorFila, j);
                         reg.add(winPrincipal.getTblBitacora().getValueAt(contadorFila, j));
                     } else if (ob == null || ob.toString().isEmpty()) {
@@ -1366,7 +1417,7 @@ public class PrincipalMetodos {
         }
         return tiempoFaltante;
     }
-    
+
     private DefaultComboBoxModel actualizaComboHoras(Principal winPrincipal) {
         revisarTiemposFaltantes(winPrincipal, 2);
         ArrayList listaHorasActualizada = new ArrayList();
@@ -1378,27 +1429,27 @@ public class PrincipalMetodos {
         }
         return new DefaultComboBoxModel(listaHorasActualizada.toArray());
     }
-    
+
     public void hourlyCounGraph(Principal winPrincipal) {
-        
+
         String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
         try {
             FileInputStream file = new FileInputStream(new File(EXCEL_LOCATION));
-            XSSFWorkbook workbook = new XSSFWorkbook (file);
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheetAt(1);
             XSSFPivotTable pivot = sheet.getPivotTables().get(0);
             pivot.addReportFilter(1);
             pivot.addRowLabel(1);
             file.close();
-            
+
             FileOutputStream outFile = new FileOutputStream(new File(EXCEL_LOCATION));
             workbook.write(outFile);
             outFile.close();
-            Process p = Runtime.getRuntime().exec ("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE " + EXCEL_LOCATION);
+            Process p = Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE " + EXCEL_LOCATION);
         } catch (Exception e) {
             System.out.println("<<< " + e);
         }
-        
+
         /*ESTE DE ABAJO ES EL BUENO*/
 //        String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
 //        
@@ -1454,7 +1505,7 @@ public class PrincipalMetodos {
 //            System.err.println("Error: " + e);
 //        }
     }
-    
+
     public ArrayList generarReporteProduccionActual(Principal winPrincipal) {
         ArrayList produccion = new ArrayList();
         try {
@@ -1978,7 +2029,7 @@ public class PrincipalMetodos {
         }
         return organizacional;
     }
-    
+
     public void cargarHourlyCount() {
         try {
             Object[] registro = new Object[13];
@@ -1987,7 +2038,7 @@ public class PrincipalMetodos {
             ArrayList arrayCalidad = generarReporteCalidadActual(new Principal());
             ArrayList arrayTecnicas = generarReporteTecnicasActual(new Principal());
             ArrayList arrayOrganizacional = generarReporteOrganizacionalActual(new Principal());
-            
+
             if (!arrayProduccion.isEmpty()) {
                 for (int i = 0; i < arrayProduccion.size(); i++) {
                     Object[] registroArray = (Object[]) arrayProduccion.get(i);
@@ -1999,17 +2050,14 @@ public class PrincipalMetodos {
                     registroHourlyCount.add(registro);
                 }
             } else if (!arrayCalidad.isEmpty()) {
-                
-                
-            } 
-            
- 
-            
+
+            }
+
         } catch (Exception e) {
             System.out.println("problemaCargarHourlyCount: " + e);
         }
     }
-    
+
     public void topCalidad(Principal winPrincipal) {
         ArrayList topCalidad = new ArrayList();
         try {
@@ -2025,14 +2073,14 @@ public class PrincipalMetodos {
 
             for (int i = 0; i < bitacoraActual.size(); i++) { //Recorremos la bitacora
                 registro = (Object[]) bitacoraActual.get(i); //Obtenemos el primer registro
-                
+
                 if (registro[6].equals("Calidad")) { //Evaluamos y creamos registroTopCalidad
                     registroTopCalidad = new Object[4];
                     registroTopCalidad[0] = registro[7];
                     registroTopCalidad[1] = registro[9];
                     registroTopCalidad[2] = registro[5];
                     registroTopCalidad[3] = 1;
-                    
+
                     if (topCalidad.isEmpty()) { //Creamos el primer registro para el top
                         topCalidad.add(registroTopCalidad);
                     } else { //Existe un registro en el top
@@ -2055,7 +2103,7 @@ public class PrincipalMetodos {
                     }
                 }
             }
-            
+
             if (!topCalidad.isEmpty()) { //Listamos el array
                 Object[] topCalidadReg;
                 System.out.println("<><><>CALIDAD<><><>");
@@ -2067,12 +2115,12 @@ public class PrincipalMetodos {
                 }
                 System.out.println("<><><><><><><><><><>");
             }
-            
+
         } catch (Exception e) {
             System.out.println("<><>topCalidad<><> " + e);
         }
     }
-    
+
     public void topTecnicas(Principal winPrincipal) {
         ArrayList topTecnicas = new ArrayList();
         try {
@@ -2088,14 +2136,14 @@ public class PrincipalMetodos {
 
             for (int i = 0; i < bitacoraActual.size(); i++) { //Recorremos la bitacora
                 registro = (Object[]) bitacoraActual.get(i); //Obtenemos el primer registro
-                
+
                 if (registro[6].equals("Tecnicas")) { //Evaluamos y creamos registroTopCalidad
                     registroTopTecnicas = new Object[4];
                     registroTopTecnicas[0] = registro[7];
                     registroTopTecnicas[1] = registro[9];
                     registroTopTecnicas[2] = registro[5];
                     registroTopTecnicas[3] = 1;
-                    
+
                     if (topTecnicas.isEmpty()) { //Creamos el primer registro para el top
                         topTecnicas.add(registroTopTecnicas);
                     } else { //Existe un registro en el top
@@ -2118,7 +2166,7 @@ public class PrincipalMetodos {
                     }
                 }
             }
-            
+
             if (!topTecnicas.isEmpty()) { //Listamos el array
                 Object[] topTecnicasReg;
                 System.out.println("<><><>TECNICAS<><><>");
@@ -2130,12 +2178,12 @@ public class PrincipalMetodos {
                 }
                 System.out.println("<><><><><><><><><><>");
             }
-            
+
         } catch (Exception e) {
             System.out.println("<><>topTecnicas<><> " + e);
         }
     }
-    
+
     public void topOrganizacionales(Principal winPrincipal) {
         ArrayList topOrganizacionales = new ArrayList();
         try {
@@ -2151,14 +2199,14 @@ public class PrincipalMetodos {
 
             for (int i = 0; i < bitacoraActual.size(); i++) { //Recorremos la bitacora
                 registro = (Object[]) bitacoraActual.get(i); //Obtenemos el primer registro
-                
+
                 if (registro[6].equals("Organizacionales")) { //Evaluamos y creamos registroTopCalidad
                     registroTopOrganizacionales = new Object[4];
                     registroTopOrganizacionales[0] = registro[7];
                     registroTopOrganizacionales[1] = registro[9];
                     registroTopOrganizacionales[2] = registro[5];
                     registroTopOrganizacionales[3] = 1;
-                    
+
                     if (topOrganizacionales.isEmpty()) { //Creamos el primer registro para el top
                         topOrganizacionales.add(registroTopOrganizacionales);
                     } else { //Existe un registro en el top
@@ -2181,7 +2229,7 @@ public class PrincipalMetodos {
                     }
                 }
             }
-            
+
             if (!topOrganizacionales.isEmpty()) { //Listamos el array
                 Object[] topOrganizacionalesReg;
                 System.out.println("<><><>ORGANIZACIONALES<><><>");
@@ -2193,12 +2241,12 @@ public class PrincipalMetodos {
                 }
                 System.out.println("<><><><><><><><><><><><><><>");
             }
-            
+
         } catch (Exception e) {
             System.out.println("<><>topTecnicas<><> " + e);
         }
     }
-    
+
     private int[] horarioTurno(JComboBox cmbHora) {
         int[] horario = new int[2];
         cmbHora.setSelectedIndex(1);

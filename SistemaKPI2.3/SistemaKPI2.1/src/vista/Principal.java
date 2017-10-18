@@ -66,6 +66,8 @@ public class Principal extends javax.swing.JFrame {
         cmbNoParteOrganizacional = new javax.swing.JComboBox();
         txtMatFaltante = new javax.swing.JTextField();
         lblMatFaltante = new javax.swing.JLabel();
+        lblFamiliaOrganizacional = new javax.swing.JLabel();
+        cmbFamiliaOrganizacional = new javax.swing.JComboBox<>();
         pnlCambios = new javax.swing.JPanel();
         lblAreaCambios = new javax.swing.JLabel();
         cmbAreaCambios = new javax.swing.JComboBox();
@@ -273,6 +275,7 @@ public class Principal extends javax.swing.JFrame {
 
         pnlOrganizacionales.setFocusable(false);
 
+        lblAreaOrganizacional.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAreaOrganizacional.setText("ÁREA");
 
         cmbAreaOrganizacional.setActionCommand("_cmbAreaOrganizacional");
@@ -294,6 +297,7 @@ public class Principal extends javax.swing.JFrame {
         cmbClienteOrganizacional.setFocusable(false);
         cmbClienteOrganizacional.setNextFocusableComponent(cmbNoParteOrganizacional);
 
+        lblNoParteOrganizacional.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoParteOrganizacional.setText("No. PARTE");
 
         cmbNoParteOrganizacional.setActionCommand("_cmbNoParteOrganizacional");
@@ -304,39 +308,49 @@ public class Principal extends javax.swing.JFrame {
         txtMatFaltante.setEnabled(false);
         txtMatFaltante.setNextFocusableComponent(cmbClienteOrganizacional);
 
+        lblMatFaltante.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblMatFaltante.setText("MATERIAL FALTANTE");
+
+        lblFamiliaOrganizacional.setText("FAMILIA");
+
+        cmbFamiliaOrganizacional.setActionCommand("_cmbFamiliaOrganizacional");
+        cmbFamiliaOrganizacional.setEnabled(false);
 
         javax.swing.GroupLayout pnlOrganizacionalesLayout = new javax.swing.GroupLayout(pnlOrganizacionales);
         pnlOrganizacionales.setLayout(pnlOrganizacionalesLayout);
         pnlOrganizacionalesLayout.setHorizontalGroup(
             pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblAreaOrganizacional)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbAreaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
                 .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(lblClienteOrganizacional)
+                        .addComponent(lblAreaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbClienteOrganizacional, 0, 252, Short.MAX_VALUE))
+                        .addComponent(cmbAreaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0))
                     .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
                         .addComponent(lblProblemaOrganizacional)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbProblemaOrganizacional, 0, 250, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cmbProblemaOrganizacional, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblClienteOrganizacional)
+                    .addComponent(lblFamiliaOrganizacional))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbFamiliaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOrganizacionalesLayout.createSequentialGroup()
-                        .addComponent(lblMatFaltante)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtMatFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlOrganizacionalesLayout.createSequentialGroup()
+                        .addComponent(lblMatFaltante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMatFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
                         .addComponent(lblNoParteOrganizacional)
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                .addGap(16, 16, 16))
         );
         pnlOrganizacionalesLayout.setVerticalGroup(
             pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,38 +358,30 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                                        .addComponent(cmbAreaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(lblAreaOrganizacional, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(42, 42, 42))
-                            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblProblemaOrganizacional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbProblemaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(lblClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbAreaOrganizacional)
+                            .addComponent(lblAreaOrganizacional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblProblemaOrganizacional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbProblemaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cmbNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbFamiliaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFamiliaOrganizacional)
+                            .addComponent(lblMatFaltante)
+                            .addComponent(txtMatFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                                .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtMatFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMatFaltante))
-                                .addGap(45, 45, 45)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(1, 1, 1)
+                                .addComponent(lblClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
 
         pnlCambios.setFocusable(false);
@@ -592,7 +598,6 @@ public class Principal extends javax.swing.JFrame {
         cmbNoParteTecnicas.setActionCommand("_cmbNoParteTecnicas");
         cmbNoParteTecnicas.setEnabled(false);
         cmbNoParteTecnicas.setNextFocusableComponent(txtScrapTecnicas);
-        cmbNoParteTecnicas.setOpaque(false);
 
         lblScrapTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblScrapTecnicas.setText("SCRAP");
@@ -666,19 +671,21 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(lblFamiliaTecnicas)
                             .addComponent(cmbFamiliaTecnicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlTecnicasLayout.createSequentialGroup()
-                        .addGroup(pnlTecnicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblProblemaTecnicas)
-                            .addComponent(cmbProblemaTecnicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlTecnicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlTecnicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(cmbClienteTecnicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblClienteTecnicas)))
+                                .addComponent(lblClienteTecnicas))
+                            .addGroup(pnlTecnicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblProblemaTecnicas)
+                                .addComponent(cmbProblemaTecnicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(pnlTecnicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblScrapTecnicas)
-                            .addComponent(txtScrapTecnicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlTecnicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlTecnicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblNoParteTecnicas)
-                                .addComponent(cmbNoParteTecnicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(cmbNoParteTecnicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlTecnicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblScrapTecnicas)
+                                .addComponent(txtScrapTecnicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
 
@@ -780,12 +787,13 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(cmbClienteCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblClienteCalidad))
                         .addGap(18, 18, 18)
-                        .addGroup(pnlCalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNoParteCalidad)
-                            .addComponent(cmbNoParteCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlCalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblScrapCalidad)
-                                .addComponent(txtScrapCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtScrapCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlCalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblNoParteCalidad)
+                                .addComponent(cmbNoParteCalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlCalidadLayout.createSequentialGroup()
                         .addGroup(pnlCalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblProblemaCalidad)
@@ -1481,6 +1489,14 @@ public class Principal extends javax.swing.JFrame {
     public JComboBox getCmbProblemaOrganizacional() {
         return cmbProblemaOrganizacional;
     }
+    
+    public JLabel getLblFamiliaOrganizacional() {
+        return lblFamiliaOrganizacional;
+    }
+    
+    public JComboBox getCmbFamiliaOrganizacional() {
+        return cmbFamiliaOrganizacional;
+    }
     //PANEL CAMBIOS
     public JComboBox getCmbAreaCambios() {
         return cmbAreaCambios;
@@ -1576,6 +1592,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbClientePzasProd;
     private javax.swing.JComboBox cmbClienteTecnicas;
     private javax.swing.JComboBox<String> cmbFamiliaCalidad;
+    private javax.swing.JComboBox<String> cmbFamiliaOrganizacional;
     private javax.swing.JComboBox<String> cmbFamiliaPzasProd;
     private javax.swing.JComboBox<String> cmbFamiliaTecnicas;
     private javax.swing.JComboBox cmbHora;
@@ -1619,6 +1636,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblClienteTecnicas;
     private javax.swing.JLabel lblDuracion;
     private javax.swing.JLabel lblFamiliaCalidad;
+    private javax.swing.JLabel lblFamiliaOrganizacional;
     private javax.swing.JLabel lblFamiliaPzasProd;
     private javax.swing.JLabel lblFamiliaTecnicas;
     private javax.swing.JLabel lblFecha;

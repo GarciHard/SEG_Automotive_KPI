@@ -112,6 +112,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbAreaOrganizacional().addActionListener(this);
         winPrincipal.getCmbProblemaOrganizacional().addActionListener(this);
         winPrincipal.getCmbClienteOrganizacional().addActionListener(this);
+        winPrincipal.getCmbFamiliaOrganizacional().addActionListener(this);
         winPrincipal.getCmbNoParteOrganizacional().addActionListener(this);
         winPrincipal.getTxtMatFaltante().addKeyListener(this);
         
@@ -308,6 +309,13 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelOrganizacionalesProblemas(winPrincipal);
                 break;
             case "_cmbProblemaOrganizacional":
+                if (PrincipalControl.tipoEnsambleLinea == 3) {
+                    principalMetodos.panelOrganizacionalesFamilias(winPrincipal);
+                } else {
+                    principalMetodos.panelOrganizacionalesClientes(winPrincipal);
+                }                
+                break;
+            case "_cmbFamiliaOrganizacional":
                 principalMetodos.panelOrganizacionalesClientes(winPrincipal);
                 break;
             case "_cmbClienteOrganizacional":
