@@ -395,42 +395,54 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblAreaCambios" min="-2" pref="80" max="-2" attributes="0"/>
+                  <Component id="lblAreaCambios" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cmbAreaCambios" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblNoParteCambios" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNoParteCambios" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="cmbNoParteCambios" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblClienteCambios" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblClienteCambios" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Component id="lblFamiliaCambios" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbClienteCambios" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cmbClienteCambios" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="cmbFamiliaCambios" min="-2" pref="200" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblParteCambioCambios" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblParteCambioCambios" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="cmbNoParteCambioCambios" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblClienteCambios1" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblClienteCambios1" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="lblFamiliaNuevaCambios" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbClienteNuevoCambios" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cmbClienteNuevoCambios" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="cmbFamiliaNuevaCambios" min="-2" pref="200" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="105" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Component id="lblScrapCambios" min="-2" pref="71" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtScrapCambios" pref="130" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  <Component id="txtScrapCambios" min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -438,38 +450,35 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cmbFamiliaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFamiliaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFamiliaNuevaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbFamiliaNuevaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblClienteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbClienteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblClienteCambios1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbClienteNuevoCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="lblScrapCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtScrapCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbNoParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAreaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="lblClienteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbClienteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cmbAreaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAreaCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="lblClienteCambios1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbClienteNuevoCambios" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbNoParteCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbNoParteCambioCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblScrapCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtScrapCambios" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -488,9 +497,8 @@
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="_cmbAreaCambios"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="cmbClienteCambios"/>
+              <ComponentRef name="cmbFamiliaCambios"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -499,7 +507,8 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblNoParteCambios">
           <Properties>
-            <Property name="text" type="java.lang.String" value="No. PARTE"/>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="No. PARTE ACTUAL"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbNoParteCambios">
@@ -509,9 +518,8 @@
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteCambios"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="cmbClienteNuevoCambios"/>
+              <ComponentRef name="cmbFamiliaNuevaCambios"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -531,7 +539,6 @@
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="_cmbClienteCambios"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="cmbNoParteCambios"/>
             </Property>
@@ -552,7 +559,6 @@
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="_cmbNoParteCambioCambios"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="txtScrapCambios"/>
             </Property>
@@ -582,7 +588,6 @@
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="_cmbClienteNuevoCambios"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="cmbNoParteCambioCambios"/>
             </Property>
@@ -596,6 +601,48 @@
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="NUEVO CLIENTE"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblFamiliaCambios">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="FAMILIA ACTUAL"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbFamiliaCambios">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbFamiliaCambios"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbClienteCambios"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblFamiliaNuevaCambios">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="NUEVA FAMILIA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbFamiliaNuevaCambios">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="actionCommand" type="java.lang.String" value="_cmbFamiliaNuevaCambios"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbClienteNuevoCambios"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

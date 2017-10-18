@@ -537,41 +537,134 @@ public class PrincipalMetodos {
 
     public void panelCambiosAreas(Principal winPrincipal) {
         PrincipalValidaciones.limpiarTiemposIncidencia(winPrincipal);
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getLblFamiliaCambios().setVisible(true);
+            winPrincipal.getCmbFamiliaCambios().setVisible(true);
+            winPrincipal.getLblFamiliaNuevaCambios().setVisible(true);
+            winPrincipal.getCmbFamiliaNuevaCambios().setVisible(true);
+        } else {
+            winPrincipal.getLblFamiliaCambios().setVisible(false);
+            winPrincipal.getCmbFamiliaCambios().setVisible(false);
+            winPrincipal.getLblFamiliaNuevaCambios().setVisible(false);
+            winPrincipal.getCmbFamiliaNuevaCambios().setVisible(false);
+        }
         winPrincipal.getCmbAreaCambios().setEnabled(true);
-        winPrincipal.getCmbAreaCambios().setModel(listaAreasOrganizacional(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbTema().getSelectedItem().toString()));
+        winPrincipal.getCmbAreaCambios().setModel(
+                listaAreasOrganizacional(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                        winPrincipal.getCmbTema().getSelectedItem().toString()
+                )
+        );
         winPrincipal.getPnlProduccionCollapsible().setContent(winPrincipal.getPnlCambios());
         winPrincipal.getPnlProduccionCollapsible().repaint();
         winPrincipal.getCmbAreaCambios().setSelectedIndex(0);
+        winPrincipal.getCmbFamiliaCambios().setEnabled(false);
         winPrincipal.getCmbClienteCambios().setEnabled(false);
     }
 
+    public void panelCambiosFamilias(Principal winPrincipal) {
+        winPrincipal.getCmbFamiliaCambios().setEnabled(true);
+        winPrincipal.getCmbFamiliaCambios().setModel(
+                listaFamilias(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString()
+                )
+        );
+        winPrincipal.getCmbFamiliaCambios().setSelectedIndex(0);
+        winPrincipal.getCmbClienteCambios().setEnabled(false);
+    }
+    
     public void panelCambiosClientes(Principal winPrincipal) {
         winPrincipal.getCmbClienteCambios().setEnabled(true);
-        winPrincipal.getCmbClienteCambios().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbClienteCambios().setModel(
+                    listaFamiliasClientes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaCambios().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbClienteCambios().setModel(
+                    listaClientes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString()
+                    )
+            );
+        }
         winPrincipal.getCmbClienteCambios().setSelectedIndex(0);
         winPrincipal.getCmbNoParteCambios().setEnabled(false);
     }
-
+    
     public void panelCambiosNoPartes(Principal winPrincipal) {
         winPrincipal.getCmbNoParteCambios().setEnabled(true);
-        winPrincipal.getCmbNoParteCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteCambios().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbNoParteCambios().setModel(
+                    listaNoPartesFamilia(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaCambios().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteCambios().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbNoParteCambios().setModel(
+                    listaNoPartes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteCambios().getSelectedItem().toString()
+                    )
+            );
+        }
         winPrincipal.getCmbNoParteCambios().setSelectedIndex(0);
+        winPrincipal.getCmbFamiliaNuevaCambios().setEnabled(false);
+        winPrincipal.getCmbClienteNuevoCambios().setEnabled(false);
+    }
+
+    public void panelCambiosFamiliaNueva(Principal winPrincipal) {
+        winPrincipal.getCmbFamiliaNuevaCambios().setEnabled(true);
+        winPrincipal.getCmbFamiliaNuevaCambios().setModel(
+                listaFamilias(
+                        winPrincipal.getCmbLinea().getSelectedItem().toString()
+                )
+        );
+        winPrincipal.getCmbFamiliaNuevaCambios().setSelectedIndex(0);
         winPrincipal.getCmbClienteNuevoCambios().setEnabled(false);
     }
 
     public void panelCambiosClienteNuevo(Principal winPrincipal) {
         winPrincipal.getCmbClienteNuevoCambios().setEnabled(true);
-        winPrincipal.getCmbClienteNuevoCambios().setModel(listaClientes(winPrincipal.getCmbLinea().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbClienteNuevoCambios().setModel(
+                    listaFamiliasClientes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaNuevaCambios().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbClienteNuevoCambios().setModel(
+                    listaClientes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString()
+                    )
+            );
+        }
         winPrincipal.getCmbClienteNuevoCambios().setSelectedIndex(0);
         winPrincipal.getCmbNoParteCambioCambios().setEnabled(false);
     }
 
     public void panelCambiosNoPartesCambios(Principal winPrincipal) {
         winPrincipal.getCmbNoParteCambioCambios().setEnabled(true);
-        winPrincipal.getCmbNoParteCambioCambios().setModel(listaNoPartes(winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                winPrincipal.getCmbClienteNuevoCambios().getSelectedItem().toString()));
+        if (PrincipalControl.tipoEnsambleLinea == 3) {
+            winPrincipal.getCmbNoParteCambioCambios().setModel(
+                    listaNoPartesFamilia(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbFamiliaNuevaCambios().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteNuevoCambios().getSelectedItem().toString()
+                    )
+            );
+        } else {
+            winPrincipal.getCmbNoParteCambioCambios().setModel(
+                    listaNoPartes(
+                            winPrincipal.getCmbLinea().getSelectedItem().toString(),
+                            winPrincipal.getCmbClienteNuevoCambios().getSelectedItem().toString()
+                    )
+            );
+        }
         winPrincipal.getCmbNoParteCambioCambios().setSelectedIndex(0);
         winPrincipal.getTxtScrapCambios().setEnabled(false);
     }

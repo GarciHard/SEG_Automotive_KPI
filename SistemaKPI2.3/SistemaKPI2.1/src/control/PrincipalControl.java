@@ -119,9 +119,11 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         //Panel Cambios
         winPrincipal.getCmbAreaCambios().addActionListener(this);
         winPrincipal.getCmbClienteCambios().addActionListener(this);
+        winPrincipal.getCmbFamiliaCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambioCambios().addActionListener(this);
         winPrincipal.getCmbClienteNuevoCambios().addActionListener(this);
+        winPrincipal.getCmbFamiliaNuevaCambios().addActionListener(this);
         winPrincipal.getCmbNoParteCambioCambios().addItemListener(this);
         winPrincipal.getTxtScrapCambios().addCaretListener(this);
         winPrincipal.getTxtScrapCambios().addKeyListener(this);
@@ -310,7 +312,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelOrganizacionalesProblemas(winPrincipal);
                 break;
             case "_cmbProblemaOrganizacional":
-                if (PrincipalControl.tipoEnsambleLinea == 3) {
+                if (tipoEnsambleLinea == 3) {
                     principalMetodos.panelOrganizacionalesFamilias(winPrincipal);
                 } else {
                     principalMetodos.panelOrganizacionalesClientes(winPrincipal);
@@ -328,22 +330,31 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             //***** Panel Cambios*****
             case "_cmbAreaCambios":
-                //principalMetodos.panelCambiosProblemas(winPrincipal);
-                principalMetodos.panelCambiosClientes(winPrincipal);
+                if (tipoEnsambleLinea == 3) {
+                    principalMetodos.panelCambiosFamilias(winPrincipal);
+                } else {
+                    principalMetodos.panelCambiosClientes(winPrincipal);
+                }
                 break;
-            case "_cmbProblemaCambios":
+            case "_cmbFamiliaCambios":
                 principalMetodos.panelCambiosClientes(winPrincipal);
                 break;
             case "_cmbClienteCambios":
                 principalMetodos.panelCambiosNoPartes(winPrincipal);
                 break;
             case "_cmbNoParteCambios":
-                //principalMetodos.panelCambiosNoPartesCambios(winPrincipal);
+                if (tipoEnsambleLinea == 3) {
+                    principalMetodos.panelCambiosFamiliaNueva(winPrincipal);
+                } else {
+                    principalMetodos.panelCambiosClienteNuevo(winPrincipal);
+                }
+                break;
+            case "_cmbFamiliaNuevaCambios":
                 principalMetodos.panelCambiosClienteNuevo(winPrincipal);
                 break;
             case "_cmbClienteNuevoCambios":
                 principalMetodos.panelCambiosNoPartesCambios(winPrincipal);
-                break;    
+                break;
             case "_cmbNoParteCambioCambios":
                 winPrincipal.getTxtScrapCambios().setText("");
                 winPrincipal.getTxtScrapCambios().setEnabled(true);
