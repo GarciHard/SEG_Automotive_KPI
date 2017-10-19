@@ -1653,7 +1653,7 @@ public class PrincipalMetodos {
 //        }
     }
 
-    public ArrayList generarReporteProduccionActual(Principal winPrincipal) {
+    private ArrayList generarReporteProduccionActual(Principal winPrincipal) {
         ArrayList produccion = new ArrayList();
         try {
             Object[] registro;
@@ -1702,13 +1702,14 @@ public class PrincipalMetodos {
                             System.out.println("productionArrSizeGetiMinus1> " + produccion.size());
                             if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                 //Agrega primer registro
+                                produccion.remove(produccion.size() - 1);
                                 System.out.println("productionArrSizeMinusOne> " + produccion.size());
                                 registro[12]
                                         = String.valueOf(
                                                 Integer.parseInt(registro[12].toString())
                                                 + Integer.parseInt(comparaRegistro[12].toString())
                                         );
-                                produccion.set(i - 1, registro);
+                                produccion.add(registro);
                                 System.out.println("productionArrSizePlusOne> " + produccion.size());
                             } else {
                                 //Nuevo noParte
@@ -1738,22 +1739,64 @@ public class PrincipalMetodos {
                 //}
             }
 
-            if (!produccion.isEmpty()) { //Listamos el array
-                Object[] produccionReg;
-                for (int i = 0; i < produccion.size(); i++) {
-                    produccionReg = (Object[]) produccion.get(i);
-                    for (int j = 0; j < produccionReg.length; j++) {
-                        System.out.println(j + "." + produccionReg[j].toString());
-                    }
-                }
-            }
+//            if (!produccion.isEmpty()) { //Listamos el array
+//                Object[] produccionReg;
+//                System.out.println("<><><><><>PRODUCCION<><><><><>");
+//                for (int i = 0; i < produccion.size(); i++) {
+//                    produccionReg = (Object[]) produccion.get(i);
+//                    for (int j = 0; j < produccionReg.length; j++) {
+//                        System.out.println(j + "." + produccionReg[j].toString());
+//                    }
+//                }
+//                System.out.println("<><><><><><><><><><><><><><><>");
+//            }
         } catch (Exception e) {
             System.out.println("<><>reporteProduccionActual<><> " + e);
         }
         return produccion;
     }
+    
+    private ArrayList hourlyProduccionActual(Principal winPrincipal) {
+        ArrayList produccionHourly = new ArrayList();
 
-    public ArrayList generarReporteCalidadActual(Principal winPrincipal) {
+        try {
+            Object[] registro;
+            Object[] registroHourly;
+
+            ArrayList produccionActualArr = generarReporteProduccionActual(winPrincipal);
+
+            if (!produccionActualArr.isEmpty()) {
+                for (int i = 0; i < produccionActualArr.size(); i++) {
+                    registro = (Object[]) produccionActualArr.get(i);
+
+                    registroHourly = new Object[3];
+                    registroHourly[0] = registro[2];//hora
+                    registroHourly[1] = registro[12];//cantidadProducida
+                    registroHourly[2] = registro[11].toString() + "/" + registro[16].toString();//noParte/TC
+
+                    produccionHourly.add(registroHourly);
+                }
+            }
+
+            if (!produccionHourly.isEmpty()) { //Listamos el array
+                Object[] produccionHourlyReg;
+                System.out.println("<><><><><>PRODUCCION<><><><><>");
+                for (int i = 0; i < produccionHourly.size(); i++) {
+                    produccionHourlyReg = (Object[]) produccionHourly.get(i);
+                    for (int j = 0; j < produccionHourlyReg.length; j++) {
+                        System.out.println(j + "." + produccionHourlyReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><><>");
+            }
+
+        } catch (Exception e) {
+            System.out.println("hourlyProduccionActual: " + e);
+        }
+        return produccionHourly;
+    }
+
+    private ArrayList generarReporteCalidadActual(Principal winPrincipal) {
         ArrayList calidad = new ArrayList();
         try {
             Object[] registro;
@@ -1783,13 +1826,14 @@ public class PrincipalMetodos {
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                             //Agrega registro igual
+                                            calidad.remove(calidad.size() - 1);
                                             registro[5]
                                                     = Integer.parseInt(registro[5].toString())
                                                     + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
-                                            calidad.set(i - 1, registro);
+                                            calidad.add(registro);
                                         } else {
                                             //Nuevo noParte
                                             for (int j = 0; j < calidad.size(); j++) {
@@ -1883,23 +1927,63 @@ public class PrincipalMetodos {
                 }
             }
 
-            if (!calidad.isEmpty()) { //Listamos el array
-                Object[] calidadReg;
-                for (int i = 0; i < calidad.size(); i++) {
-                    calidadReg = (Object[]) calidad.get(i);
-                    for (int j = 0; j < calidadReg.length; j++) {
-                        System.out.println(j + "." + calidadReg[j].toString());
-                    }
-                }
-            }
-
+//            if (!calidad.isEmpty()) { //Listamos el array
+//                Object[] calidadReg;
+//                System.out.println("<><><><><>CALIDAD<><><><><>");
+//                for (int i = 0; i < calidad.size(); i++) {
+//                    calidadReg = (Object[]) calidad.get(i);
+//                    for (int j = 0; j < calidadReg.length; j++) {
+//                        System.out.println(j + "." + calidadReg[j].toString());
+//                    }
+//                }
+//                System.out.println("<><><><><><><><><><><><><><>");
+//            }
         } catch (Exception e) {
             System.out.println("<><>reporteCalidadActual<><> " + e);
         }
         return calidad;
     }
 
-    public ArrayList generarReporteTecnicasActual(Principal winPrincipal) {
+    private ArrayList hourlyCalidadActual(Principal winPrincipal) {
+        ArrayList calidadHourly = new ArrayList();
+
+        try {
+            Object[] registro;
+            Object[] registroHourly;
+
+            ArrayList calidadActualArr = generarReporteCalidadActual(winPrincipal);
+
+            if (!calidadActualArr.isEmpty()) {
+                for (int i = 0; i < calidadActualArr.size(); i++) {
+                    registro = (Object[]) calidadActualArr.get(i);
+
+                    registroHourly = new Object[2];
+                    registroHourly[0] = registro[2];//hora
+                    registroHourly[1] = registro[14];//scrapProducido
+
+                    calidadHourly.add(registroHourly);
+                }
+            }
+
+            if (!calidadHourly.isEmpty()) { //Listamos el array
+                Object[] calidadHourlyReg;
+                System.out.println("<><><><><>CALIDAD<><><><><>");
+                for (int i = 0; i < calidadHourly.size(); i++) {
+                    calidadHourlyReg = (Object[]) calidadHourly.get(i);
+                    for (int j = 0; j < calidadHourlyReg.length; j++) {
+                        System.out.println(j + "." + calidadHourlyReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><>");
+            }
+
+        } catch (Exception e) {
+            System.out.println("hourlyProduccionActual: " + e);
+        }
+        return calidadHourly;
+    }
+
+    private ArrayList generarReporteTecnicasActual(Principal winPrincipal) {
         ArrayList tecnicas = new ArrayList();
         try {
             Object[] registro;
@@ -1929,13 +2013,14 @@ public class PrincipalMetodos {
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                             //Agrega registro igual
+                                            tecnicas.remove(tecnicas.size() - 1);
                                             registro[5]
                                                     = Integer.parseInt(registro[5].toString())
                                                     + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
-                                            tecnicas.set(i - 1, registro);
+                                            tecnicas.add(registro);
                                         } else {
                                             //Nuevo noParte
                                             for (int j = 0; j < tecnicas.size(); j++) {
@@ -2029,15 +2114,17 @@ public class PrincipalMetodos {
                 }
             }
 
-            if (!tecnicas.isEmpty()) { //Listamos el array
-                Object[] tecnicasReg;
-                for (int i = 0; i < tecnicas.size(); i++) {
-                    tecnicasReg = (Object[]) tecnicas.get(i);
-                    for (int j = 0; j < tecnicasReg.length; j++) {
-                        System.out.println(j + "." + tecnicasReg[j].toString());
-                    }
-                }
-            }
+//            if (!tecnicas.isEmpty()) { //Listamos el array
+//                Object[] tecnicasReg;
+//                System.out.println("<><><><><>TECNICAS<><><><><>");
+//                for (int i = 0; i < tecnicas.size(); i++) {
+//                    tecnicasReg = (Object[]) tecnicas.get(i);
+//                    for (int j = 0; j < tecnicasReg.length; j++) {
+//                        System.out.println(j + "." + tecnicasReg[j].toString());
+//                    }
+//                }
+//                System.out.println("<><><><><><><><><><><><><><>");
+//            }
 
         } catch (Exception e) {
             System.out.println("<><>reporteTecnicasActual<><> " + e);
@@ -2045,7 +2132,49 @@ public class PrincipalMetodos {
         return tecnicas;
     }
 
-    public ArrayList generarReporteOrganizacionalActual(Principal winPrincipal) {
+    private ArrayList hourlyTecnicasActual(Principal winPrincipal) {
+        ArrayList tecnicasHourly = new ArrayList();
+
+        try {
+            Object[] registro;
+            Object[] registroHourly;
+
+            ArrayList tecnicasActualArr = generarReporteTecnicasActual(winPrincipal);
+
+            if (!tecnicasActualArr.isEmpty()) {
+                for (int i = 0; i < tecnicasActualArr.size(); i++) {
+                    registro = (Object[]) tecnicasActualArr.get(i);
+
+                    registroHourly = new Object[5];
+                    registroHourly[0] = registro[2];//hora
+                    registroHourly[1] = registro[5];//duracion
+                    registroHourly[2] = registro[7];//operacion
+                    registroHourly[3] = registro[9];//problema
+                    registroHourly[4] = registro[14];//scrapProducido
+
+                    tecnicasHourly.add(registroHourly);
+                }
+            }
+
+            if (!tecnicasHourly.isEmpty()) { //Listamos el array
+                Object[] tecnicasHourlyReg;
+                System.out.println("<><><><><>TECNICAS<><><><><>");
+                for (int i = 0; i < tecnicasHourly.size(); i++) {
+                    tecnicasHourlyReg = (Object[]) tecnicasHourly.get(i);
+                    for (int j = 0; j < tecnicasHourlyReg.length; j++) {
+                        System.out.println(j + "." + tecnicasHourlyReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><>");
+            }
+
+        } catch (Exception e) {
+            System.out.println("hourlyTecnicasActual: " + e);
+        }
+        return tecnicasHourly;
+    }
+
+    private ArrayList generarReporteOrganizacionalActual(Principal winPrincipal) {
         ArrayList organizacional = new ArrayList();
         try {
             Object[] registro;
@@ -2074,6 +2203,7 @@ public class PrincipalMetodos {
                                 if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                     if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                         //Agrega registro igual
+                                        organizacional.remove(organizacional.size() - 1);
                                         registro[5]
                                                 = Integer.parseInt(registro[5].toString())
                                                 + Integer.parseInt(comparaRegistro[5].toString());
@@ -2082,7 +2212,7 @@ public class PrincipalMetodos {
                                                     = Integer.parseInt(registro[15].toString())
                                                     + Integer.parseInt(comparaRegistro[15].toString());
                                         }
-                                        organizacional.set(i - 1, registro);
+                                        organizacional.add(registro);
                                     } else {
                                         //Nuevo noParte
                                         for (int j = 0; j < organizacional.size(); j++) {
@@ -2161,15 +2291,17 @@ public class PrincipalMetodos {
                 }
             }
 
-            if (!organizacional.isEmpty()) { //Listamos el array
-                Object[] organizacionalReg;
-                for (int i = 0; i < organizacional.size(); i++) {
-                    organizacionalReg = (Object[]) organizacional.get(i);
-                    for (int j = 0; j < organizacionalReg.length; j++) {
-                        System.out.println(j + "." + organizacionalReg[j].toString());
-                    }
-                }
-            }
+//            if (!organizacional.isEmpty()) { //Listamos el array
+//                Object[] organizacionalReg;
+//                System.out.println("<><><><><>ORGANIZACIONAL<><><><><>");
+//                for (int i = 0; i < organizacional.size(); i++) {
+//                    organizacionalReg = (Object[]) organizacional.get(i);
+//                    for (int j = 0; j < organizacionalReg.length; j++) {
+//                        System.out.println(j + "." + organizacionalReg[j].toString());
+//                    }
+//                }
+//                System.out.println("<><><><><><><><><><><><><><><><><>");
+//            }
 
         } catch (Exception e) {
             System.out.println("<><>reporteOrganizacionalActual<><> " + e);
@@ -2177,6 +2309,54 @@ public class PrincipalMetodos {
         return organizacional;
     }
 
+    private ArrayList hourlyOrganizacionalActual(Principal winPrincipal) {
+        ArrayList organizacionalHourly = new ArrayList();
+
+        try {
+            Object[] registro;
+            Object[] registroHourly;
+
+            ArrayList organizacionalActualArr = generarReporteOrganizacionalActual(winPrincipal);
+
+            if (!organizacionalActualArr.isEmpty()) {
+                for (int i = 0; i < organizacionalActualArr.size(); i++) {
+                    registro = (Object[]) organizacionalActualArr.get(i);
+
+                    registroHourly = new Object[5];
+                    registroHourly[0] = registro[2];//hora
+                    registroHourly[1] = registro[5];//duracion
+                    registroHourly[2] = registro[7];//operacion
+                    registroHourly[3] = registro[9];//problema
+                    registroHourly[4] = registro[14];//scrapProducido
+
+                    organizacionalHourly.add(registroHourly);
+                }
+            }
+
+            if (!organizacionalHourly.isEmpty()) { //Listamos el array
+                Object[] organizacionalHourlyReg;
+                System.out.println("<><><><><>ORGANIZACIONAL<><><><><>");
+                for (int i = 0; i < organizacionalHourly.size(); i++) {
+                    organizacionalHourlyReg = (Object[]) organizacionalHourly.get(i);
+                    for (int j = 0; j < organizacionalHourlyReg.length; j++) {
+                        System.out.println(j + "." + organizacionalHourlyReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><><><><>");
+            }
+
+        } catch (Exception e) {
+            System.out.println("hourlyTecnicasActual: " + e);
+        }
+        return organizacionalHourly;
+    }
+
+    public void hourlyGeneral(Principal winPrincipal) {
+        
+        
+        
+    }
+    
     public void cargarHourlyCount() {
         try {
             Object[] registro = new Object[13];

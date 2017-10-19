@@ -29,7 +29,7 @@ public class ConexionBD {
     //private final String urlDB = "jdbc:ucanaccess://" + "/Users/garcihard/Desktop/SystemKPI.accdb";
     
     //URL PRUEBA GJA5TL
-    //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL/Desktop/SystemKPI.accdb";
+    private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL/Desktop/SystemKPI.accdb";
     
     //URL PRUEBA PRR1TL
     private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/PRR1TL/Desktop/SystemKPI.accdb";
