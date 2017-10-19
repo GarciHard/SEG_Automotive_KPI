@@ -1702,13 +1702,14 @@ public class PrincipalMetodos {
                             System.out.println("productionArrSizeGetiMinus1> " + produccion.size());
                             if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                 //Agrega primer registro
+                                produccion.remove(produccion.size() - 1);
                                 System.out.println("productionArrSizeMinusOne> " + produccion.size());
                                 registro[12]
                                         = String.valueOf(
                                                 Integer.parseInt(registro[12].toString())
                                                 + Integer.parseInt(comparaRegistro[12].toString())
                                         );
-                                produccion.set(i - 1, registro);
+                                produccion.add(registro);
                                 System.out.println("productionArrSizePlusOne> " + produccion.size());
                             } else {
                                 //Nuevo noParte
@@ -1740,12 +1741,14 @@ public class PrincipalMetodos {
 
             if (!produccion.isEmpty()) { //Listamos el array
                 Object[] produccionReg;
+                System.out.println("<><><><><>PRODUCCION<><><><><>");
                 for (int i = 0; i < produccion.size(); i++) {
                     produccionReg = (Object[]) produccion.get(i);
                     for (int j = 0; j < produccionReg.length; j++) {
                         System.out.println(j + "." + produccionReg[j].toString());
                     }
                 }
+                System.out.println("<><><><><><><><><><><><><><><>");
             }
         } catch (Exception e) {
             System.out.println("<><>reporteProduccionActual<><> " + e);
@@ -1783,13 +1786,14 @@ public class PrincipalMetodos {
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                             //Agrega registro igual
+                                            calidad.remove(calidad.size() - 1);
                                             registro[5]
                                                     = Integer.parseInt(registro[5].toString())
                                                     + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
-                                            calidad.set(i - 1, registro);
+                                            calidad.add(registro);
                                         } else {
                                             //Nuevo noParte
                                             for (int j = 0; j < calidad.size(); j++) {
@@ -1885,12 +1889,14 @@ public class PrincipalMetodos {
 
             if (!calidad.isEmpty()) { //Listamos el array
                 Object[] calidadReg;
+                System.out.println("<><><><><>CALIDAD<><><><><>");
                 for (int i = 0; i < calidad.size(); i++) {
                     calidadReg = (Object[]) calidad.get(i);
                     for (int j = 0; j < calidadReg.length; j++) {
                         System.out.println(j + "." + calidadReg[j].toString());
                     }
                 }
+                System.out.println("<><><><><><><><><><><><><><>");
             }
 
         } catch (Exception e) {
@@ -1929,13 +1935,14 @@ public class PrincipalMetodos {
                                     if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                         if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                             //Agrega registro igual
+                                            tecnicas.remove(tecnicas.size() - 1);
                                             registro[5]
                                                     = Integer.parseInt(registro[5].toString())
                                                     + Integer.parseInt(comparaRegistro[5].toString());
                                             registro[14]
                                                     = Integer.parseInt(registro[14].toString())
                                                     + Integer.parseInt(comparaRegistro[14].toString());
-                                            tecnicas.set(i - 1, registro);
+                                            tecnicas.add(registro);
                                         } else {
                                             //Nuevo noParte
                                             for (int j = 0; j < tecnicas.size(); j++) {
@@ -2031,12 +2038,14 @@ public class PrincipalMetodos {
 
             if (!tecnicas.isEmpty()) { //Listamos el array
                 Object[] tecnicasReg;
+                System.out.println("<><><><><>TECNICAS<><><><><>");
                 for (int i = 0; i < tecnicas.size(); i++) {
                     tecnicasReg = (Object[]) tecnicas.get(i);
                     for (int j = 0; j < tecnicasReg.length; j++) {
                         System.out.println(j + "." + tecnicasReg[j].toString());
                     }
                 }
+                System.out.println("<><><><><><><><><><><><><><>");
             }
 
         } catch (Exception e) {
@@ -2074,6 +2083,7 @@ public class PrincipalMetodos {
                                 if (registro[9].equals(comparaRegistro[9])) { //Compara problema
                                     if (registro[11].equals(comparaRegistro[11])) { //Compara noParte
                                         //Agrega registro igual
+                                        organizacional.remove(organizacional.size() - 1);
                                         registro[5]
                                                 = Integer.parseInt(registro[5].toString())
                                                 + Integer.parseInt(comparaRegistro[5].toString());
@@ -2082,7 +2092,7 @@ public class PrincipalMetodos {
                                                     = Integer.parseInt(registro[15].toString())
                                                     + Integer.parseInt(comparaRegistro[15].toString());
                                         }
-                                        organizacional.set(i - 1, registro);
+                                        organizacional.add(registro);
                                     } else {
                                         //Nuevo noParte
                                         for (int j = 0; j < organizacional.size(); j++) {
@@ -2163,12 +2173,14 @@ public class PrincipalMetodos {
 
             if (!organizacional.isEmpty()) { //Listamos el array
                 Object[] organizacionalReg;
+                System.out.println("<><><><><>ORGANIZACIONAL<><><><><>");
                 for (int i = 0; i < organizacional.size(); i++) {
                     organizacionalReg = (Object[]) organizacional.get(i);
                     for (int j = 0; j < organizacionalReg.length; j++) {
                         System.out.println(j + "." + organizacionalReg[j].toString());
                     }
                 }
+                System.out.println("<><><><><><><><><><><><><><><><><>");
             }
 
         } catch (Exception e) {
