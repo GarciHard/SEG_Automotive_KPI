@@ -1756,7 +1756,7 @@ public class PrincipalMetodos {
         return produccion;
     }
     
-    public void hourlyProduccionActual(Principal winPrincipal) {
+    private ArrayList hourlyProduccionActual(Principal winPrincipal) {
         ArrayList produccionHourly = new ArrayList();
 
         try {
@@ -1793,6 +1793,7 @@ public class PrincipalMetodos {
         } catch (Exception e) {
             System.out.println("hourlyProduccionActual: " + e);
         }
+        return produccionHourly;
     }
 
     private ArrayList generarReporteCalidadActual(Principal winPrincipal) {
@@ -1943,7 +1944,7 @@ public class PrincipalMetodos {
         return calidad;
     }
 
-    public void hourlyCalidadActual(Principal winPrincipal) {
+    private ArrayList hourlyCalidadActual(Principal winPrincipal) {
         ArrayList calidadHourly = new ArrayList();
 
         try {
@@ -1979,9 +1980,10 @@ public class PrincipalMetodos {
         } catch (Exception e) {
             System.out.println("hourlyProduccionActual: " + e);
         }
+        return calidadHourly;
     }
 
-    public ArrayList generarReporteTecnicasActual(Principal winPrincipal) {
+    private ArrayList generarReporteTecnicasActual(Principal winPrincipal) {
         ArrayList tecnicas = new ArrayList();
         try {
             Object[] registro;
@@ -2130,7 +2132,7 @@ public class PrincipalMetodos {
         return tecnicas;
     }
 
-    public void hourlyTecnicasActual(Principal winPrincipal) {
+    private ArrayList hourlyTecnicasActual(Principal winPrincipal) {
         ArrayList tecnicasHourly = new ArrayList();
 
         try {
@@ -2169,6 +2171,7 @@ public class PrincipalMetodos {
         } catch (Exception e) {
             System.out.println("hourlyTecnicasActual: " + e);
         }
+        return tecnicasHourly;
     }
 
     private ArrayList generarReporteOrganizacionalActual(Principal winPrincipal) {
@@ -2306,7 +2309,7 @@ public class PrincipalMetodos {
         return organizacional;
     }
 
-    public void hourlyOrganizacionalActual(Principal winPrincipal) {
+    private ArrayList hourlyOrganizacionalActual(Principal winPrincipal) {
         ArrayList organizacionalHourly = new ArrayList();
 
         try {
@@ -2345,8 +2348,15 @@ public class PrincipalMetodos {
         } catch (Exception e) {
             System.out.println("hourlyTecnicasActual: " + e);
         }
+        return organizacionalHourly;
     }
 
+    public void hourlyGeneral(Principal winPrincipal) {
+        
+        
+        
+    }
+    
     public void cargarHourlyCount() {
         try {
             Object[] registro = new Object[13];
