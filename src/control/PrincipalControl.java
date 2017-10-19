@@ -325,8 +325,17 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.panelOrganizacionalesNoPartes(winPrincipal);
                 break;
             case "_cmbNoParteOrganizacional":
-                winPrincipal.getCmbHora().setSelectedIndex(0);
-                winPrincipal.getCmbHora().setEnabled(true);
+                if(winPrincipal.getCmbNoParteOrganizacional().getSelectedIndex() != 0 ){
+                    winPrincipal.getTxtMatFaltante().setEnabled(true);
+                    winPrincipal.getTxtMatFaltante().setEditable(true);
+                } else {
+                    winPrincipal.getTxtMatFaltante().setEnabled(false);
+                    winPrincipal.getTxtMatFaltante().setEditable(false);
+                }
+                
+                //winPrincipal.getTxtMatFaltante().setEditable(true);
+                //winPrincipal.getCmbHora().setSelectedIndex(0);
+                //winPrincipal.getCmbHora().setEnabled(true);
                 break;
             //***** Panel Cambios*****
             case "_cmbAreaCambios":

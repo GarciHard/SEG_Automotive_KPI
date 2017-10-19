@@ -311,25 +311,30 @@ public class PrincipalValidaciones {
                         }
                         if (bn == 1 && dig > 10){
                             if (dig == 11){
-                                winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
-                                winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+                                winPrincipal.getCmbHora().setEnabled(true);
+                                
+                                //winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
+                                //winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
                             }else {
                                 ke.consume();
                             }
                         }
                     } else if(bn == 0 && dig > 8){
                         if (dig == 9){
-                            winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
-                            winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
+                            winPrincipal.getCmbHora().setEnabled(true);
+                            //winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
+                            //winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
                         }else {
                             ke.consume();
                         }
                     }
                 }
             }
-            if (winPrincipal.getTxtMatFaltante().getText().isEmpty()) {
-                winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
-                winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
+            if (winPrincipal.getTxtMatFaltante().getText().isEmpty() || dig < 9 ) {
+                winPrincipal.getCmbHora().setSelectedIndex(0);
+                winPrincipal.getCmbHora().setEnabled(false);
+                //winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
+                //winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
                 bn = 0;
             }
         }

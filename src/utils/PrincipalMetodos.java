@@ -463,29 +463,33 @@ public class PrincipalMetodos {
         winPrincipal.getCmbFamiliaOrganizacional().setModel(
                 listaFamilias(winPrincipal.getCmbLinea().getSelectedItem().toString())
         );
+        winPrincipal.getCmbClienteOrganizacional().setEnabled(true);                
+        winPrincipal.getTxtMatFaltante().setEditable(false);
+        winPrincipal.getTxtMatFaltante().setEnabled(false);
         winPrincipal.getCmbFamiliaOrganizacional().setSelectedIndex(0);
         winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
     }
 
     public void panelOrganizacionalesClientes(Principal winPrincipal) {
         if (winPrincipal.getCmbAreaOrganizacional().getSelectedIndex() == 1) {
-            if (winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() >= 2 && winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() <= 5) {
+            if (winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() >= 2 && 
+                    winPrincipal.getCmbProblemaOrganizacional().getSelectedIndex() <= 5) {
                 winPrincipal.getLblMatFaltante().setVisible(true);
                 winPrincipal.getTxtMatFaltante().setVisible(true);
                 winPrincipal.getTxtMatFaltante().setText("");
-                winPrincipal.getTxtMatFaltante().setEnabled(true);
+                winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
                 winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
-                winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
+                winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
             } else {
                 winPrincipal.getLblMatFaltante().setVisible(false);
-                winPrincipal.getTxtMatFaltante().setText("");
                 winPrincipal.getTxtMatFaltante().setVisible(false);
+                winPrincipal.getTxtMatFaltante().setText("");
                 winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
             }
         } else {
             winPrincipal.getLblMatFaltante().setVisible(false);
-            winPrincipal.getTxtMatFaltante().setText("");
             winPrincipal.getTxtMatFaltante().setVisible(false);
+            winPrincipal.getTxtMatFaltante().setText("");
             winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
         }
 
