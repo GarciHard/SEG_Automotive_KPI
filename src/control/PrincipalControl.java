@@ -54,7 +54,6 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getDteFecha().setDateFormat(fechaFormato);
         winPrincipal.getDteFecha().setDate(new Date(System.currentTimeMillis()));
         winPrincipal.getDteFecha().addActionListener(this);
-        //winPrincipal.getCmbLinea().setModel(principalMetodos.listaLineas());
         winPrincipal.getCmbLinea().addActionListener(this);
         winPrincipal.getCmbLinea().addItemListener(this);
         winPrincipal.getCmbTema().setModel(TemasDAOImpl.listaTema());

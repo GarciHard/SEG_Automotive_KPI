@@ -11,6 +11,7 @@ import vista.Principal;
  * @author GarciHard
  * @boschUsr GJA5TL
  */
+
 public class PrincipalValidaciones {
     private static int bn = 0;
     public static void validarCaretUpdate(Principal winPrincipal, CaretEvent e) {
@@ -312,9 +313,6 @@ public class PrincipalValidaciones {
                         if (bn == 1 && dig > 10){
                             if (dig == 11){
                                 winPrincipal.getCmbHora().setEnabled(true);
-                                
-                                //winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
-                                //winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
                             }else {
                                 ke.consume();
                             }
@@ -322,8 +320,6 @@ public class PrincipalValidaciones {
                     } else if(bn == 0 && dig > 8){
                         if (dig == 9){
                             winPrincipal.getCmbHora().setEnabled(true);
-                            //winPrincipal.getCmbClienteOrganizacional().setEnabled(true);
-                            //winPrincipal.getCmbNoParteOrganizacional().setEnabled(false);
                         }else {
                             ke.consume();
                         }
@@ -333,8 +329,6 @@ public class PrincipalValidaciones {
             if (winPrincipal.getTxtMatFaltante().getText().isEmpty() || dig < 9 ) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
-                //winPrincipal.getCmbClienteOrganizacional().setSelectedIndex(0);
-                //winPrincipal.getCmbClienteOrganizacional().setEnabled(false);
                 bn = 0;
             }
         }

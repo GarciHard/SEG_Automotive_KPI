@@ -203,7 +203,7 @@ public class Principal extends javax.swing.JFrame {
 
         cmbClientePzasProd.setActionCommand("_cmbClientePzasProd");
         cmbClientePzasProd.setEnabled(false);
-        cmbClientePzasProd.setNextFocusableComponent(cmbClientePzasProd);
+        cmbClientePzasProd.setNextFocusableComponent(cmbFamiliaPzasProd);
         cmbClientePzasProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbClientePzasProdActionPerformed(evt);
@@ -526,7 +526,7 @@ public class Principal extends javax.swing.JFrame {
 
         cmbAreaPlaneados.setActionCommand("_cmbAreaPlaneados");
         cmbAreaPlaneados.setFocusable(false);
-        cmbAreaPlaneados.setNextFocusableComponent(cmbClientePlaneados);
+        cmbAreaPlaneados.setNextFocusableComponent(cmbFamiliaPlaneados);
 
         lblClientePlaneados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClientePlaneados.setText("CLIENTE");
@@ -545,6 +545,7 @@ public class Principal extends javax.swing.JFrame {
         lblFamiliaPlaneados.setText("FAMILIA");
 
         cmbFamiliaPlaneados.setActionCommand("_cmbFamiliaPlaneados");
+        cmbFamiliaPlaneados.setNextFocusableComponent(cmbClientePlaneados);
 
         javax.swing.GroupLayout pnlPlaneadosLayout = new javax.swing.GroupLayout(pnlPlaneados);
         pnlPlaneados.setLayout(pnlPlaneadosLayout);
@@ -624,7 +625,7 @@ public class Principal extends javax.swing.JFrame {
 
         cmbClienteTecnicas.setActionCommand("_cmbClienteTecnicas");
         cmbClienteTecnicas.setEnabled(false);
-        cmbClienteTecnicas.setNextFocusableComponent(btnParoPeriodo);
+        cmbClienteTecnicas.setNextFocusableComponent(cmbNoParteTecnicas);
 
         lblNoParteTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoParteTecnicas.setText("No. PARTE");
@@ -649,7 +650,7 @@ public class Principal extends javax.swing.JFrame {
 
         cmbFamiliaTecnicas.setActionCommand("_cmbFamiliaTecnicas");
         cmbFamiliaTecnicas.setEnabled(false);
-        cmbFamiliaTecnicas.setNextFocusableComponent(btnParoPeriodo);
+        cmbFamiliaTecnicas.setNextFocusableComponent(cmbClienteTecnicas);
 
         javax.swing.GroupLayout pnlTecnicasLayout = new javax.swing.GroupLayout(pnlTecnicas);
         pnlTecnicas.setLayout(pnlTecnicasLayout);

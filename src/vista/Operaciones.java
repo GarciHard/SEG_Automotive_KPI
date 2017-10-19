@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.*;
+import org.apache.poi.ss.formula.eval.ErrorEval;
 
 /**
  *
@@ -134,6 +135,16 @@ public class Operaciones extends javax.swing.JDialog {
 
         txtDescProblema.setEnabled(false);
         txtDescProblema.setNextFocusableComponent(btnGuardar);
+        txtDescProblema.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtDescProblemaCaretUpdate(evt);
+            }
+        });
+        txtDescProblema.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescProblemaKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Area:");
 
@@ -526,6 +537,22 @@ public class Operaciones extends javax.swing.JDialog {
             txtDescProblema.setEnabled(false);
         }
     }//GEN-LAST:event_cmbAreaItemStateChanged
+
+    private void txtDescProblemaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescProblemaKeyTyped
+        
+    }//GEN-LAST:event_txtDescProblemaKeyTyped
+
+    private void txtDescProblemaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDescProblemaCaretUpdate
+        if(txtDescProblema.getText().equals("Falta de estator") || txtDescProblema.getText().equals("Falta de rotor") || 
+           txtDescProblema.getText().equals("Falta de tapa") ||  txtDescProblema.getText().equals("Falta de rectificador") ||
+           txtDescProblema.getText().equals("Falta estator") || txtDescProblema.getText().equals("Falta rotor") || 
+           txtDescProblema.getText().equals("Falta tapa") ||  txtDescProblema.getText().equals("Falta rectificador")){
+            JOptionPane.showMessageDialog(null, "No aplica problema");
+            btnGuardar.setEnabled(false);
+        }else{
+            btnGuardar.setEnabled(true);                    
+        }
+    }//GEN-LAST:event_txtDescProblemaCaretUpdate
  
     public void limpiar() {
         btnGuardar.setText("Guardar");
