@@ -158,12 +158,12 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         //Tabla Bitacora
         winPrincipal.getTblBitacora().getModel().addTableModelListener(this);
         winPrincipal.getTblBitacora().setRowHeight(35);
-        
-        winPrincipal.setVisible(true);
-        
+                
         //Boton Paro por Rangos 
         winPrincipal.getBtnParoPeriodo().addActionListener(this);
         winPrincipal.getBtnParoPeriodo().setVisible(false);
+        
+        winPrincipal.setVisible(true);
     }   
     
     @Override
@@ -324,18 +324,17 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             case "_cmbClienteOrganizacional":
                 principalMetodos.panelOrganizacionalesNoPartes(winPrincipal);
                 break;
-            case "_cmbNoParteOrganizacional":
-                if(winPrincipal.getCmbNoParteOrganizacional().getSelectedIndex() != 0 ){
+            case "_cmbNoParteOrganizacional":              
+                if (!winPrincipal.getTxtMatFaltante().isVisible()) {
+                    winPrincipal.getCmbHora().setSelectedIndex(0);
+                    winPrincipal.getCmbHora().setEnabled(true);
+                } else if (winPrincipal.getCmbNoParteOrganizacional().getSelectedIndex() != 0) {
                     winPrincipal.getTxtMatFaltante().setEnabled(true);
                     winPrincipal.getTxtMatFaltante().setEditable(true);
                 } else {
                     winPrincipal.getTxtMatFaltante().setEnabled(false);
                     winPrincipal.getTxtMatFaltante().setEditable(false);
                 }
-                
-                //winPrincipal.getTxtMatFaltante().setEditable(true);
-                //winPrincipal.getCmbHora().setSelectedIndex(0);
-                //winPrincipal.getCmbHora().setEnabled(true);
                 break;
             //***** Panel Cambios*****
             case "_cmbAreaCambios":
