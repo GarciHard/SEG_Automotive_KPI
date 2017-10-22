@@ -2352,31 +2352,175 @@ public class PrincipalMetodos {
         return organizacionalHourly;
     }
 
+    private ArrayList generarReporteCambiosActual(Principal winPrincipal) {
+        ArrayList cambios = new ArrayList();
+        try {
+            Object[] registro;
+            Object[] comparaRegistro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
+            int indicadorHora = 0;
+
+            for (int i = 0; i < bitacoraActual.size(); i++) {
+                registro = (Object[]) bitacoraActual.get(i);
+
+                if (registro[6].equals("Cambio de Modelo")) {
+                    if (cambios.isEmpty()) { //Agrega primer registro
+                        indicadorHora = Integer.parseInt(registro[2].toString());
+                        cambios.add(registro);
+                    } else {
+                        if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
+                            comparaRegistro = (Object[]) bitacoraActual.get(i - 1);
+
+                            if (registro[8].equals(comparaRegistro[8])) { //Compara area
+                                if (registro[9].equals(comparaRegistro[9])) { //Compara problema
+                                    //Agrega registro igual
+                                    cambios.remove(cambios.size() - 1);
+                                    registro[5]
+                                            = Integer.parseInt(registro[5].toString())
+                                            + Integer.parseInt(comparaRegistro[5].toString());
+                                    registro[14]
+                                            = Integer.parseInt(registro[14].toString())
+                                            + Integer.parseInt(comparaRegistro[14].toString());
+                                    cambios.add(registro);
+                                } else {
+                                    //Nuevo problema
+                                    for (int j = 0; j < cambios.size(); j++) {
+                                        comparaRegistro = (Object[]) cambios.get(j);
+                                        if (registro[2].equals(comparaRegistro[2])
+                                                && registro[7].equals(comparaRegistro[7])
+                                                && registro[8].equals(comparaRegistro[8])
+                                                && registro[9].equals(comparaRegistro[9])
+                                                && registro[11].equals(comparaRegistro[11])) {
+                                            cambios.remove(j);
+                                            registro[5]
+                                                    = Integer.parseInt(registro[5].toString())
+                                                    + Integer.parseInt(comparaRegistro[5].toString());
+                                            registro[14]
+                                                    = Integer.parseInt(registro[14].toString())
+                                                    + Integer.parseInt(comparaRegistro[14].toString());
+                                            break;
+                                        }
+                                    }
+                                    cambios.add(registro);
+                                }
+                            } else {
+                                //Nueva area
+                                for (int j = 0; j < cambios.size(); j++) {
+                                    comparaRegistro = (Object[]) cambios.get(j);
+                                    if (registro[2].equals(comparaRegistro[2])
+                                            && registro[7].equals(comparaRegistro[7])
+                                            && registro[8].equals(comparaRegistro[8])
+                                            && registro[9].equals(comparaRegistro[9])
+                                            && registro[11].equals(comparaRegistro[11])) {
+                                        cambios.remove(j);
+                                        registro[5]
+                                                = Integer.parseInt(registro[5].toString())
+                                                + Integer.parseInt(comparaRegistro[5].toString());
+                                        registro[14]
+                                                = Integer.parseInt(registro[14].toString())
+                                                + Integer.parseInt(comparaRegistro[14].toString());
+                                        break;
+                                    }
+                                }
+                                cambios.add(registro);
+                            }
+                        } else {
+                            //Nueva hora
+                            indicadorHora = Integer.parseInt(registro[2].toString());
+                            cambios.add(registro);
+                        }
+                    }
+                }
+            }
+
+//            if (!cambios.isEmpty()) { //Listamos el array
+//                Object[] cambiosReg;
+//                System.out.println("<><><><><>TECNICAS<><><><><>");
+//                for (int i = 0; i < cambios.size(); i++) {
+//                    cambiosReg = (Object[]) cambios.get(i);
+//                    for (int j = 0; j < cambiosReg.length; j++) {
+//                        System.out.println(j + "." + cambiosReg[j].toString());
+//                    }
+//                }
+//                System.out.println("<><><><><><><><><><><><><><>");
+//            }
+        } catch (Exception e) {
+            System.out.println("<><>reporteCambiosActual<><> " + e);
+        }
+        return cambios;
+    }
+
+    private ArrayList hourlyCambiosActual(Principal winPrincipal) {
+        ArrayList cambiosHourly = new ArrayList();
+
+        try {
+            Object[] registro;
+            Object[] registroHourly;
+
+            ArrayList cambiosArr = generarReporteCambiosActual(winPrincipal);
+
+            if (!cambiosArr.isEmpty()) {
+                for (int i = 0; i < cambiosArr.size(); i++) {
+                    registro = (Object[]) cambiosArr.get(i);
+
+                    registroHourly = new Object[4];
+                    registroHourly[0] = registro[2];//hora
+                    registroHourly[1] = registro[5];//duracion
+                    registroHourly[2] = registro[9];//problema
+                    registroHourly[3] = registro[14];//scrapProducido
+
+                    cambiosHourly.add(registroHourly);
+                }
+            }
+
+            if (!cambiosHourly.isEmpty()) { //Listamos el array
+                Object[] cambiosHourlyReg;
+                System.out.println("<><><><><>CAMBIOS<><><><><>");
+                for (int i = 0; i < cambiosHourly.size(); i++) {
+                    cambiosHourlyReg = (Object[]) cambiosHourly.get(i);
+                    for (int j = 0; j < cambiosHourlyReg.length; j++) {
+                        System.out.println(j + "." + cambiosHourlyReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><>");
+            }
+
+        } catch (Exception e) {
+            System.out.println("hourlyCambiosActual: " + e);
+        }
+        return cambiosHourly;
+    }
+
     public void hourlyGeneral(Principal winPrincipal) {
         /**
-         * Elementos en cada arrray
-         * produccion > 3, hora, cantidadProducida, noParte/TC
-         * calidad > 2, hora, scrapProducido
-         * tecnicas > 5, hora, duracion, operacion, problema, scrapProducido
-         * organizacional > 5, hora, duracion, operacion, problema, scrapProducido
-        */
-        
+         * Elementos en cada arrray produccion > 3, hora, cantidadProducida,
+         * noParte/TC calidad > 2, hora, scrapProducido tecnicas > 5, hora,
+         * duracion, operacion, problema, scrapProducido organizacional > 5,
+         * hora, duracion, operacion, problema, scrapProducido
+         */
+
         ArrayList hourlyGral = new ArrayList();
         try {
             ArrayList produccion = hourlyProduccionActual(winPrincipal);
             ArrayList calidad = hourlyCalidadActual(winPrincipal);
             ArrayList tecnicas = hourlyTecnicasActual(winPrincipal);
             ArrayList organizacional = hourlyOrganizacionalActual(winPrincipal);
-            
-            
+            ArrayList cambios = hourlyCambiosActual(winPrincipal);
+
             Object[] registroAux;
             Object[] registroProduccion;
             Object[] registroCalidad;
             Object[] registroTecnicas;
             Object[] registroOrganizacional;
-            
+
             for (int i = 0; i < 24; i++) {
-                
+
                 if (!produccion.isEmpty()) {
                     for (int p = 0; p < produccion.size(); p++) {
                         registroProduccion = (Object[]) produccion.get(p);
@@ -2404,7 +2548,7 @@ public class PrincipalMetodos {
                         }
                     }
                 }
-            
+
             }
 
             if (!hourlyGral.isEmpty()) { //Listamos el array
@@ -2419,12 +2563,11 @@ public class PrincipalMetodos {
                 System.out.println("<><><><><><><><><><><><><><><><><>");
             }
 
-            
         } catch (Exception e) {
             System.out.println("hourlyGeneral: " + e);
         }
     }
-    
+
     public void cargarHourlyCount() {
         try {
             Object[] registro = new Object[13];
