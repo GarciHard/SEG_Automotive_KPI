@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -2352,9 +2353,76 @@ public class PrincipalMetodos {
     }
 
     public void hourlyGeneral(Principal winPrincipal) {
+        /**
+         * Elementos en cada arrray
+         * produccion > 3, hora, cantidadProducida, noParte/TC
+         * calidad > 2, hora, scrapProducido
+         * tecnicas > 5, hora, duracion, operacion, problema, scrapProducido
+         * organizacional > 5, hora, duracion, operacion, problema, scrapProducido
+        */
         
-        
-        
+        ArrayList hourlyGral = new ArrayList();
+        try {
+            ArrayList produccion = hourlyProduccionActual(winPrincipal);
+            ArrayList calidad = hourlyCalidadActual(winPrincipal);
+            ArrayList tecnicas = hourlyTecnicasActual(winPrincipal);
+            ArrayList organizacional = hourlyOrganizacionalActual(winPrincipal);
+            
+            
+            Object[] registroAux;
+            Object[] registroProduccion;
+            Object[] registroCalidad;
+            Object[] registroTecnicas;
+            Object[] registroOrganizacional;
+            
+            for (int i = 0; i < 24; i++) {
+                
+                if (!produccion.isEmpty()) {
+                    for (int p = 0; p < produccion.size(); p++) {
+                        registroProduccion = (Object[]) produccion.get(p);
+                        if (registroProduccion[0].equals(i)) {
+                            if (!calidad.isEmpty()) {
+                                for (int c = 0; c < calidad.size(); c++) {
+                                    registroCalidad = (Object[]) calidad.get(c);
+                                    if (registroCalidad[0].equals(i)) {
+                                        registroAux = new Object[registroProduccion.length + registroCalidad.length - 1];
+                                        System.arraycopy(registroProduccion, 0, registroAux, 0, registroProduccion.length);
+                                        System.arraycopy(registroCalidad, 1, registroAux, registroProduccion.length, registroCalidad.length - 1);
+                                        if (!tecnicas.isEmpty()) {
+                                            for (int t = 0; t < tecnicas.size(); t++) {
+                                                registroTecnicas = (Object[]) tecnicas.get(t);
+                                                if (registroTecnicas[0].equals(i)) {
+                                                    registroAux = Arrays.copyOf(registroAux, registroAux.length + registroTecnicas.length - 1);
+                                                    System.arraycopy(registroTecnicas, 1, registroAux, (registroProduccion.length + registroCalidad.length - 1), registroTecnicas.length - 1);
+                                                    hourlyGral.add(registroAux);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            
+            }
+
+            if (!hourlyGral.isEmpty()) { //Listamos el array
+                Object[] organizacionalHourlyReg;
+                System.out.println("<><><><><>HOURLYGENERAL<><><><><>");
+                for (int i = 0; i < hourlyGral.size(); i++) {
+                    organizacionalHourlyReg = (Object[]) hourlyGral.get(i);
+                    for (int j = 0; j < organizacionalHourlyReg.length; j++) {
+                        System.out.println(j + "." + organizacionalHourlyReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><><><><>");
+            }
+
+            
+        } catch (Exception e) {
+            System.out.println("hourlyGeneral: " + e);
+        }
     }
     
     public void cargarHourlyCount() {

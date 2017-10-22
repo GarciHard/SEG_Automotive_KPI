@@ -205,6 +205,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
 //                principalMetodos.hourlyCalidadActual(winPrincipal);
 //                principalMetodos.hourlyTecnicasActual(winPrincipal);
 //                principalMetodos.hourlyOrganizacionalActual(winPrincipal);
+                principalMetodos.hourlyGeneral(winPrincipal);
 //                principalMetodos.topCalidad(winPrincipal);
 //                principalMetodos.topTecnicas(winPrincipal);
 //                principalMetodos.topOrganizacionales(winPrincipal);
