@@ -1756,7 +1756,7 @@ public class PrincipalMetodos {
         }
         return produccion;
     }
-    
+
     private ArrayList hourlyProduccionActual(Principal winPrincipal) {
         ArrayList produccionHourly = new ArrayList();
 
@@ -1795,6 +1795,42 @@ public class PrincipalMetodos {
             System.out.println("hourlyProduccionActual: " + e);
         }
         return produccionHourly;
+    }
+
+    private ArrayList returnHourlyProduccionArray(ArrayList hourlyProduccionActual) {
+        ArrayList produccionArr = new ArrayList();
+        ArrayList produccionAux = hourlyProduccionActual;
+
+        if (hourlyProduccionActual.isEmpty()) {
+            for (int i = 0; i < 24; i++) {
+                Object[] produccionReg = new Object[3];
+                produccionReg[0] = i;//hora
+                produccionReg[1] = "0";//produccion
+                produccionReg[2] = "-";//noParte/TC
+                produccionArr.add(produccionReg);
+            }
+        } else {
+            Object[] prodAux;
+            Object[] prod;
+            for (int j = 0; j < 24; j++) {
+                Object[] produccionReg = new Object[3];
+                produccionReg[0] = j;//hora
+                produccionReg[1] = "0";//produccion
+                produccionReg[2] = "-";//noParte/TC
+                produccionArr.add(produccionReg);
+            }
+            for (int i = 0; i < produccionArr.size(); i++) {
+                prod = (Object[]) produccionArr.get(i);
+                for (int j = 0; j < produccionAux.size(); j++) {
+                    prodAux = (Object[]) produccionAux.get(j);
+                    if (prodAux[0].equals(prod[0])) {
+                        prod = prodAux;
+                        produccionArr.set(i, prod);
+                    }
+                }
+            }
+        }
+        return produccionArr;
     }
 
     private ArrayList generarReporteCalidadActual(Principal winPrincipal) {
@@ -1984,6 +2020,40 @@ public class PrincipalMetodos {
         return calidadHourly;
     }
 
+    private ArrayList returnHourlyCalidadArray(ArrayList hourlyCalidadActual) {
+        ArrayList calidadArr = new ArrayList();
+        ArrayList calidadArrAux = hourlyCalidadActual;
+
+        if (hourlyCalidadActual.isEmpty()) {
+            for (int i = 0; i < 24; i++) {
+                Object[] calidadReg = new Object[2];
+                calidadReg[0] = i;//hora
+                calidadReg[1] = 0;//scrap
+                calidadArr.add(calidadReg);
+            }
+        } else {
+            Object[] calidadRegAux;
+            Object[] calidad;
+            for (int j = 0; j < 24; j++) {
+                Object[] calidadReg = new Object[2];
+                calidadReg[0] = j;//hora
+                calidadReg[1] = 0;//scrap
+                calidadArr.add(calidadReg);
+            }
+            for (int k = 0; k < calidadArr.size(); k++) {
+                calidad = (Object[]) calidadArr.get(k);
+                for (int l = 0; l < calidadArrAux.size(); l++) {
+                    calidadRegAux = (Object[]) calidadArrAux.get(l);
+                    if (calidadRegAux[0].equals(calidad[0])) {
+                        calidad = calidadRegAux;
+                        calidadArr.set(k, calidad);
+                    }
+                }
+            }
+        }
+        return calidadArr;
+    }
+
     private ArrayList generarReporteTecnicasActual(Principal winPrincipal) {
         ArrayList tecnicas = new ArrayList();
         try {
@@ -2126,7 +2196,6 @@ public class PrincipalMetodos {
 //                }
 //                System.out.println("<><><><><><><><><><><><><><>");
 //            }
-
         } catch (Exception e) {
             System.out.println("<><>reporteTecnicasActual<><> " + e);
         }
@@ -2173,6 +2242,46 @@ public class PrincipalMetodos {
             System.out.println("hourlyTecnicasActual: " + e);
         }
         return tecnicasHourly;
+    }
+
+    private ArrayList returnHourlyTecnicasArray(ArrayList hourlyTecnicasActual) {
+        ArrayList tecnicasArr = new ArrayList();
+        ArrayList tecnicasArrAux = hourlyTecnicasActual;
+
+        if (hourlyTecnicasActual.isEmpty()) {
+            for (int i = 0; i < 24; i++) {
+                Object[] tecnicasReg = new Object[5];
+                tecnicasReg[0] = i;//hora
+                tecnicasReg[1] = 0;//duracion
+                tecnicasReg[2] = "";//operacion
+                tecnicasReg[3] = "";//problema
+                tecnicasReg[4] = 0;//scrap
+                tecnicasArr.add(tecnicasReg);
+            }
+        } else {
+            Object[] tecnicasRegAux;
+            Object[] tecnicas;
+            for (int j = 0; j < 24; j++) {
+                Object[] tecnicasReg = new Object[5];
+                tecnicasReg[0] = j;//hora
+                tecnicasReg[1] = 0;//duracion
+                tecnicasReg[2] = "";//operacion
+                tecnicasReg[3] = "";//problema
+                tecnicasReg[4] = 0;//scrap
+                tecnicasArr.add(tecnicasReg);
+            }
+            for (int k = 0; k < tecnicasArr.size(); k++) {
+                tecnicas = (Object[]) tecnicasArr.get(k);
+                for (int l = 0; l < tecnicasArrAux.size(); l++) {
+                    tecnicasRegAux = (Object[]) tecnicasArrAux.get(l);
+                    if (tecnicasRegAux[0].equals(tecnicas[0])) {
+                        tecnicas = tecnicasRegAux;
+                        tecnicasArr.set(k, tecnicas);
+                    }
+                }
+            }
+        }
+        return tecnicasArr;
     }
 
     private ArrayList generarReporteOrganizacionalActual(Principal winPrincipal) {
@@ -2303,7 +2412,6 @@ public class PrincipalMetodos {
 //                }
 //                System.out.println("<><><><><><><><><><><><><><><><><>");
 //            }
-
         } catch (Exception e) {
             System.out.println("<><>reporteOrganizacionalActual<><> " + e);
         }
@@ -2350,6 +2458,46 @@ public class PrincipalMetodos {
             System.out.println("hourlyTecnicasActual: " + e);
         }
         return organizacionalHourly;
+    }
+
+    private ArrayList returnHourlyOrganizacionalArray(ArrayList hourlyOrganizacionalActual) {
+        ArrayList organizacionalArr = new ArrayList();
+        ArrayList organizacionalArrAux = hourlyOrganizacionalActual;
+
+        if (hourlyOrganizacionalActual.isEmpty()) {
+            for (int i = 0; i < 24; i++) {
+                Object[] organizacionalReg = new Object[5];
+                organizacionalReg[0] = i;//hora
+                organizacionalReg[1] = 0;//duracion
+                organizacionalReg[2] = "";//operacion
+                organizacionalReg[3] = "";//problema
+                organizacionalReg[4] = 0;//scrap
+                organizacionalArr.add(organizacionalReg);
+            }
+        } else {
+            Object[] organizacionalRegAux;
+            Object[] organizacional;
+            for (int j = 0; j < 24; j++) {
+                Object[] organizacionalReg = new Object[5];
+                organizacionalReg[0] = j;//hora
+                organizacionalReg[1] = 0;//duracion
+                organizacionalReg[2] = "";//operacion
+                organizacionalReg[3] = "";//problema
+                organizacionalReg[4] = 0;//scrap
+                organizacionalArr.add(organizacionalReg);
+            }
+            for (int k = 0; k < organizacionalArr.size(); k++) {
+                organizacional = (Object[]) organizacionalArr.get(k);
+                for (int l = 0; l < organizacionalArrAux.size(); l++) {
+                    organizacionalRegAux = (Object[]) organizacionalArrAux.get(l);
+                    if (organizacionalRegAux[0].equals(organizacional[0])) {
+                        organizacional = organizacionalRegAux;
+                        organizacionalArr.set(k, organizacional);
+                    }
+                }
+            }
+        }
+        return organizacionalArr;
     }
 
     private ArrayList generarReporteCambiosActual(Principal winPrincipal) {
@@ -2520,156 +2668,6 @@ public class PrincipalMetodos {
         return cambiosHourly;
     }
 
-    private ArrayList returnHourlyProduccionArray(ArrayList hourlyProduccionActual) {
-        ArrayList produccionArr = new ArrayList();
-        ArrayList produccionAux = hourlyProduccionActual;
-
-        if (hourlyProduccionActual.isEmpty()) {
-            for (int i = 0; i < 24; i++) {
-                Object[] produccionReg = new Object[3];
-                produccionReg[0] = i;//hora
-                produccionReg[1] = "0";//produccion
-                produccionReg[2] = "-";//noParte/TC
-                produccionArr.add(produccionReg);
-            }
-        } else {
-            Object[] prodAux;
-            Object[] prod;
-            for (int j = 0; j < 24; j++) {
-                Object[] produccionReg = new Object[3];
-                produccionReg[0] = j;//hora
-                produccionReg[1] = "0";//produccion
-                produccionReg[2] = "-";//noParte/TC
-                produccionArr.add(produccionReg);
-            }
-            for (int i = 0; i < produccionArr.size(); i++) {
-                prod = (Object[]) produccionArr.get(i);
-                for (int j = 0; j < produccionAux.size(); j++) {
-                    prodAux = (Object[]) produccionAux.get(j);
-                    if (prodAux[0].equals(prod[0])) {
-                        prod = prodAux;
-                        produccionArr.set(i, prod);
-                    }
-                }
-            }
-        }
-        return produccionArr;
-    }
-
-    private ArrayList returnHourlyCalidadArray(ArrayList hourlyCalidadActual) {
-        ArrayList calidadArr = new ArrayList();
-        ArrayList calidadArrAux = hourlyCalidadActual;
-
-        if (hourlyCalidadActual.isEmpty()) {
-            for (int i = 0; i < 24; i++) {
-                Object[] calidadReg = new Object[2];
-                calidadReg[0] = i;//hora
-                calidadReg[1] = 0;//scrap
-                calidadArr.add(calidadReg);
-            }
-        } else {
-            Object[] calidadRegAux;
-            Object[] calidad;
-            for (int j = 0; j < 24; j++) {
-                Object[] calidadReg = new Object[2];
-                calidadReg[0] = j;//hora
-                calidadReg[1] = 0;//scrap
-                calidadArr.add(calidadReg);
-            }
-            for (int k = 0; k < calidadArr.size(); k++) {
-                calidad = (Object[]) calidadArr.get(k);
-                for (int l = 0; l < calidadArrAux.size(); l++) {
-                    calidadRegAux = (Object[]) calidadArrAux.get(l);
-                    if (calidadRegAux[0].equals(calidad[0])) {
-                        calidad = calidadRegAux;
-                        calidadArr.set(k, calidad);
-                    }
-                }
-            }
-        }
-        return calidadArr;
-    }
-
-    private ArrayList returnHourlyTecnicasArray(ArrayList hourlyTecnicasActual) {
-        ArrayList tecnicasArr = new ArrayList();
-        ArrayList tecnicasArrAux = hourlyTecnicasActual;
-
-        if (hourlyTecnicasActual.isEmpty()) {
-            for (int i = 0; i < 24; i++) {
-                Object[] tecnicasReg = new Object[5];
-                tecnicasReg[0] = i;//hora
-                tecnicasReg[1] = 0;//duracion
-                tecnicasReg[2] = "";//operacion
-                tecnicasReg[3] = "";//problema
-                tecnicasReg[4] = 0;//scrap
-                tecnicasArr.add(tecnicasReg);
-            }
-        } else {
-            Object[] tecnicasRegAux;
-            Object[] tecnicas;
-            for (int j = 0; j < 24; j++) {
-                Object[] tecnicasReg = new Object[5];
-                tecnicasReg[0] = j;//hora
-                tecnicasReg[1] = 0;//duracion
-                tecnicasReg[2] = "";//operacion
-                tecnicasReg[3] = "";//problema
-                tecnicasReg[4] = 0;//scrap
-                tecnicasArr.add(tecnicasReg);
-            }
-            for (int k = 0; k < tecnicasArr.size(); k++) {
-                tecnicas = (Object[]) tecnicasArr.get(k);
-                for (int l = 0; l < tecnicasArrAux.size(); l++) {
-                    tecnicasRegAux = (Object[]) tecnicasArrAux.get(l);
-                    if (tecnicasRegAux[0].equals(tecnicas[0])) {
-                        tecnicas = tecnicasRegAux;
-                        tecnicasArr.set(k, tecnicas);
-                    }
-                }
-            }
-        }
-        return tecnicasArr;
-    }
-
-    private ArrayList returnHourlyOrganizacionalArray(ArrayList hourlyOrganizacionalActual) {
-        ArrayList organizacionalArr = new ArrayList();
-        ArrayList organizacionalArrAux = hourlyOrganizacionalActual;
-
-        if (hourlyOrganizacionalActual.isEmpty()) {
-            for (int i = 0; i < 24; i++) {
-                Object[] organizacionalReg = new Object[5];
-                organizacionalReg[0] = i;//hora
-                organizacionalReg[1] = 0;//duracion
-                organizacionalReg[2] = "";//operacion
-                organizacionalReg[3] = "";//problema
-                organizacionalReg[4] = 0;//scrap
-                organizacionalArr.add(organizacionalReg);
-            }
-        } else {
-            Object[] organizacionalRegAux;
-            Object[] organizacional;
-            for (int j = 0; j < 24; j++) {
-                Object[] organizacionalReg = new Object[5];
-                organizacionalReg[0] = j;//hora
-                organizacionalReg[1] = 0;//duracion
-                organizacionalReg[2] = "";//operacion
-                organizacionalReg[3] = "";//problema
-                organizacionalReg[4] = 0;//scrap
-                organizacionalArr.add(organizacionalReg);
-            }
-            for (int k = 0; k < organizacionalArr.size(); k++) {
-                organizacional = (Object[]) organizacionalArr.get(k);
-                for (int l = 0; l < organizacionalArrAux.size(); l++) {
-                    organizacionalRegAux = (Object[]) organizacionalArrAux.get(l);
-                    if (organizacionalRegAux[0].equals(organizacional[0])) {
-                        organizacional = organizacionalRegAux;
-                        organizacionalArr.set(k, organizacional);
-                    }
-                }
-            }
-        }
-        return organizacionalArr;
-    }
-
     private ArrayList returnHourlyCambiosArray(ArrayList hourlyCambiosActual) {
         ArrayList cambiosArr = new ArrayList();
         ArrayList cambiosArrAux = hourlyCambiosActual;
@@ -2710,6 +2708,123 @@ public class PrincipalMetodos {
         return cambiosArr;
     }
 
+    private ArrayList generarReporteTiempoFaltanteActual(Principal winPrincipal) {
+        ArrayList tiempoFaltante = new ArrayList();
+        try {
+            Object[] registro;
+
+            ArrayList bitacoraActual
+                    = getBitacoraActual(
+                            horarioTurno(winPrincipal.getCmbHora()),
+                            winPrincipal
+                    );
+
+            int indicadorHora = 0;
+
+            for (int i = 0; i < bitacoraActual.size(); i++) {
+                registro = (Object[]) bitacoraActual.get(i);
+                if (registro[6].equals("Tiempo Faltante")) {
+                    if (tiempoFaltante.isEmpty()) {
+                        indicadorHora = Integer.parseInt(registro[2].toString());
+                        tiempoFaltante.add(registro);
+                    } else {
+                        if (!(Integer.parseInt(registro[2].toString()) == indicadorHora)) {
+                            indicadorHora = Integer.parseInt(registro[2].toString());
+                            tiempoFaltante.add(registro);
+                        }
+                    }
+                }
+            }
+
+            if (!tiempoFaltante.isEmpty()) { //Listamos el array
+                Object[] tiempoFaltanteReg;
+                System.out.println("<><><><><>TIEMPOFALTANTE<><><><><>");
+                for (int i = 0; i < tiempoFaltante.size(); i++) {
+                    tiempoFaltanteReg = (Object[]) tiempoFaltante.get(i);
+                    for (int j = 0; j < tiempoFaltanteReg.length; j++) {
+                        System.out.println(j + "." + tiempoFaltanteReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><><>");
+            }
+        } catch (Exception e) {
+            System.out.println("<><>reporteTiempoFaltanteActual<><> " + e);
+        }
+        return tiempoFaltante;
+    }
+
+    private ArrayList hourlyTiempoFaltanteActual(Principal winPrincipal) {
+        ArrayList tiempoFaltanteHourly = new ArrayList();
+
+        try {
+            Object[] registro;
+            Object[] registroHourly;
+
+            ArrayList tiempoFaltanteArr = generarReporteTiempoFaltanteActual(winPrincipal);
+
+            if (!tiempoFaltanteArr.isEmpty()) {
+                for (int i = 0; i < tiempoFaltanteArr.size(); i++) {
+                    registro = (Object[]) tiempoFaltanteArr.get(i);
+
+                    registroHourly = new Object[2];
+                    registroHourly[0] = registro[2];//hora
+                    registroHourly[1] = registro[5];//duracion
+                    tiempoFaltanteHourly.add(registroHourly);
+                }
+            }
+
+            if (!tiempoFaltanteHourly.isEmpty()) { //Listamos el array
+                Object[] tiempoFaltanteHourlyReg;
+                System.out.println("<><><><><>TIEMPOFALTANTE<><><><><>");
+                for (int i = 0; i < tiempoFaltanteHourly.size(); i++) {
+                    tiempoFaltanteHourlyReg = (Object[]) tiempoFaltanteHourly.get(i);
+                    for (int j = 0; j < tiempoFaltanteHourlyReg.length; j++) {
+                        System.out.println(j + "." + tiempoFaltanteHourlyReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><><>");
+            }
+
+        } catch (Exception e) {
+            System.out.println("hourlyTiempoFaltanteActual: " + e);
+        }
+        return tiempoFaltanteHourly;
+    }
+
+    private ArrayList returnHourlyTiempoFaltanteArray(ArrayList hourlyTiempoFaltanteActual) {
+        ArrayList tiempoFaltanteArr = new ArrayList();
+        ArrayList tiempoFaltanteArrAx = hourlyTiempoFaltanteActual;
+
+        if (hourlyTiempoFaltanteActual.isEmpty()) {
+            for (int i = 0; i < 24; i++) {
+                Object[] tiempoFaltanteReg = new Object[2];
+                tiempoFaltanteReg[0] = i;//hora
+                tiempoFaltanteReg[1] = 0;//duracion
+                tiempoFaltanteArr.add(tiempoFaltanteReg);
+            }
+        } else {
+            Object[] tiempoFaltanteRegAux;
+            Object[] tiempoFaltante;
+            for (int j = 0; j < 24; j++) {
+                Object[] tiempoFaltanteReg = new Object[2];
+                tiempoFaltanteReg[0] = j;//hora
+                tiempoFaltanteReg[1] = 0;//duracion
+                tiempoFaltanteArr.add(tiempoFaltanteReg);
+            }
+            for (int k = 0; k < tiempoFaltanteArr.size(); k++) {
+                tiempoFaltante = (Object[]) tiempoFaltanteArr.get(k);
+                for (int l = 0; l < tiempoFaltanteArrAx.size(); l++) {
+                    tiempoFaltanteRegAux = (Object[]) tiempoFaltanteArrAx.get(l);
+                    if (tiempoFaltanteRegAux[0].equals(tiempoFaltante[0])) {
+                        tiempoFaltante = tiempoFaltanteRegAux;
+                        tiempoFaltanteArr.set(k, tiempoFaltante);
+                    }
+                }
+            }
+        }
+        return tiempoFaltanteArr;
+    }
+
     public void hourlyGeneral(Principal winPrincipal) {
         ArrayList hourlyGral = new ArrayList();
         try {
@@ -2718,6 +2833,7 @@ public class PrincipalMetodos {
             ArrayList tecnicas = returnHourlyTecnicasArray(hourlyTecnicasActual(winPrincipal));
             ArrayList organizacional = returnHourlyOrganizacionalArray(hourlyOrganizacionalActual(winPrincipal));
             ArrayList cambios = returnHourlyCambiosArray(hourlyCambiosActual(winPrincipal));
+            ArrayList tiempoFaltante = returnHourlyTiempoFaltanteArray(hourlyTiempoFaltanteActual(winPrincipal));
 
             Object[] registroHourlyGral;
             Object[] registroProduccion;
@@ -2725,6 +2841,7 @@ public class PrincipalMetodos {
             Object[] registroTecnicas;
             Object[] registroOrganizacional;
             Object[] registroCambios;
+            Object[] registroTiempoFaltante;
 
             for (int i = 0; i < 24; i++) {
 
@@ -2789,10 +2906,15 @@ public class PrincipalMetodos {
                                             Integer.parseInt(registroHourlyGral[3].toString())
                                             + Integer.parseInt(registroCambios[4].toString())
                                     );//realizamos la suma de scrap
-                                    registroHourlyGral[7] = 0;
-                                    registroHourlyGral[12] = winPrincipal.getDteFecha().getText();
-                                    registroHourlyGral[13] = winPrincipal.getCmbLinea().getSelectedItem().toString();
-                                    hourlyGral.add(registroHourlyGral);
+
+                                    registroTiempoFaltante = (Object[]) tiempoFaltante.get(i);
+                                    if (registroTiempoFaltante[0].equals(i)) {
+                                        registroHourlyGral[7] = registroTiempoFaltante[1];
+                                        registroHourlyGral[12] = winPrincipal.getDteFecha().getText();
+                                        registroHourlyGral[13] = winPrincipal.getCmbLinea().getSelectedItem().toString();
+                                        hourlyGral.add(registroHourlyGral);
+                                    }
+
                                 }
 
                             }
