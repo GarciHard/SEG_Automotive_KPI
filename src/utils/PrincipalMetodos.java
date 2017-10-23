@@ -2377,19 +2377,41 @@ public class PrincipalMetodos {
                         if (Integer.parseInt(registro[2].toString()) == indicadorHora) {
                             comparaRegistro = (Object[]) bitacoraActual.get(i - 1);
 
-                            if (registro[8].equals(comparaRegistro[8])) { //Compara area
-                                if (registro[9].equals(comparaRegistro[9])) { //Compara problema
-                                    //Agrega registro igual
-                                    cambios.remove(cambios.size() - 1);
-                                    registro[5]
-                                            = Integer.parseInt(registro[5].toString())
-                                            + Integer.parseInt(comparaRegistro[5].toString());
-                                    registro[14]
-                                            = Integer.parseInt(registro[14].toString())
-                                            + Integer.parseInt(comparaRegistro[14].toString());
-                                    cambios.add(registro);
+                            if (registro[7].equals(comparaRegistro[7])) { //Compara operacion
+                                if (registro[8].equals(comparaRegistro[8])) { //Compara area
+                                    if (registro[9].equals(comparaRegistro[9])) { //Compara problema
+                                        //Agrega registro igual
+                                        cambios.remove(cambios.size() - 1);
+                                        registro[5]
+                                                = Integer.parseInt(registro[5].toString())
+                                                + Integer.parseInt(comparaRegistro[5].toString());
+                                        registro[14]
+                                                = Integer.parseInt(registro[14].toString())
+                                                + Integer.parseInt(comparaRegistro[14].toString());
+                                        cambios.add(registro);
+                                    } else {
+                                        //Nuevo problema
+                                        for (int j = 0; j < cambios.size(); j++) {
+                                            comparaRegistro = (Object[]) cambios.get(j);
+                                            if (registro[2].equals(comparaRegistro[2])
+                                                    && registro[7].equals(comparaRegistro[7])
+                                                    && registro[8].equals(comparaRegistro[8])
+                                                    && registro[9].equals(comparaRegistro[9])
+                                                    && registro[11].equals(comparaRegistro[11])) {
+                                                cambios.remove(j);
+                                                registro[5]
+                                                        = Integer.parseInt(registro[5].toString())
+                                                        + Integer.parseInt(comparaRegistro[5].toString());
+                                                registro[14]
+                                                        = Integer.parseInt(registro[14].toString())
+                                                        + Integer.parseInt(comparaRegistro[14].toString());
+                                                break;
+                                            }
+                                        }
+                                        cambios.add(registro);
+                                    }
                                 } else {
-                                    //Nuevo problema
+                                    //Nueva area
                                     for (int j = 0; j < cambios.size(); j++) {
                                         comparaRegistro = (Object[]) cambios.get(j);
                                         if (registro[2].equals(comparaRegistro[2])
@@ -2410,7 +2432,7 @@ public class PrincipalMetodos {
                                     cambios.add(registro);
                                 }
                             } else {
-                                //Nueva area
+                                //Nueva operacion
                                 for (int j = 0; j < cambios.size(); j++) {
                                     comparaRegistro = (Object[]) cambios.get(j);
                                     if (registro[2].equals(comparaRegistro[2])
@@ -2469,11 +2491,12 @@ public class PrincipalMetodos {
                 for (int i = 0; i < cambiosArr.size(); i++) {
                     registro = (Object[]) cambiosArr.get(i);
 
-                    registroHourly = new Object[4];
+                    registroHourly = new Object[5];
                     registroHourly[0] = registro[2];//hora
                     registroHourly[1] = registro[5];//duracion
-                    registroHourly[2] = registro[9];//problema
-                    registroHourly[3] = registro[14];//scrapProducido
+                    registroHourly[2] = registro[7];//operacion
+                    registroHourly[3] = registro[9];//problema
+                    registroHourly[4] = registro[14];//scrapProducido
 
                     cambiosHourly.add(registroHourly);
                 }
@@ -2499,10 +2522,11 @@ public class PrincipalMetodos {
 
     public void hourlyGeneral(Principal winPrincipal) {
         /**
-         * Elementos en cada arrray produccion > 3, hora, cantidadProducida,
-         * noParte/TC calidad > 2, hora, scrapProducido tecnicas > 5, hora,
-         * duracion, operacion, problema, scrapProducido organizacional > 5,
-         * hora, duracion, operacion, problema, scrapProducido
+         * Elementos en cada arrray
+         * produccion > 3, hora, cantidadProducida, noParte/TC
+         * calidad > 2, hora, scrapProducido
+         * tecnicas > 5, hora, duracion, operacion, problema, scrapProducido
+         * organizacional > 5, hora, duracion, operacion, problema, scrapProducido
          */
 
         ArrayList hourlyGral = new ArrayList();
@@ -2512,41 +2536,109 @@ public class PrincipalMetodos {
             ArrayList tecnicas = hourlyTecnicasActual(winPrincipal);
             ArrayList organizacional = hourlyOrganizacionalActual(winPrincipal);
             ArrayList cambios = hourlyCambiosActual(winPrincipal);
-
+            
+            Object[] registroHourlyGral;
             Object[] registroAux;
             Object[] registroProduccion;
             Object[] registroCalidad;
             Object[] registroTecnicas;
             Object[] registroOrganizacional;
-
+            Object[] registroCambios;
+            
             for (int i = 0; i < 24; i++) {
-
-                if (!produccion.isEmpty()) {
-                    for (int p = 0; p < produccion.size(); p++) {
-                        registroProduccion = (Object[]) produccion.get(p);
+                
+                registroHourlyGral = new Object[12];
+                if (!produccion.isEmpty()) {/*Arreglo produccion*/
+                    for (int prodCont = 0; prodCont < produccion.size(); prodCont++) {//Recorremos el array produccion
+                        registroProduccion = (Object[]) produccion.get(prodCont);
                         if (registroProduccion[0].equals(i)) {
-                            if (!calidad.isEmpty()) {
-                                for (int c = 0; c < calidad.size(); c++) {
-                                    registroCalidad = (Object[]) calidad.get(c);
+                            registroHourlyGral[0] = registroProduccion[0];//hora
+                            registroHourlyGral[1] = registroProduccion[1];//cantidadProducida
+                            registroHourlyGral[2] = registroProduccion[2];//noParte/TC
+                            if (!calidad.isEmpty()) {/*Arreglo calidad*/
+                                for (int calCont = 0; calCont < calidad.size(); calCont++) {//Recorremos el array calidad
+                                    registroCalidad = (Object[]) calidad.get(calCont);
                                     if (registroCalidad[0].equals(i)) {
-                                        registroAux = new Object[registroProduccion.length + registroCalidad.length - 1];
-                                        System.arraycopy(registroProduccion, 0, registroAux, 0, registroProduccion.length);
-                                        System.arraycopy(registroCalidad, 1, registroAux, registroProduccion.length, registroCalidad.length - 1);
-                                        if (!tecnicas.isEmpty()) {
-                                            for (int t = 0; t < tecnicas.size(); t++) {
-                                                registroTecnicas = (Object[]) tecnicas.get(t);
+                                        registroHourlyGral[3] = registroCalidad[1];//scrapCalidad
+                                        if (!tecnicas.isEmpty()) {/*Arreglo tecnicas*/
+                                            for (int tecCont = 0; tecCont < tecnicas.size(); tecCont++) {//Recorremos el array tecnicas
+                                                registroTecnicas = (Object[]) tecnicas.get(tecCont);
                                                 if (registroTecnicas[0].equals(i)) {
-                                                    registroAux = Arrays.copyOf(registroAux, registroAux.length + registroTecnicas.length - 1);
-                                                    System.arraycopy(registroTecnicas, 1, registroAux, (registroProduccion.length + registroCalidad.length - 1), registroTecnicas.length - 1);
-                                                    hourlyGral.add(registroAux);
+                                                    registroHourlyGral[5] = registroTecnicas[1];//duracion
+                                                    if (!(registroHourlyGral[8] == null)) { //Operacion no esta vacia
+                                                        registroHourlyGral[8]
+                                                                = registroHourlyGral[8].toString() + "\n" + registroTecnicas[2].toString();
+                                                    } else {
+                                                        registroHourlyGral[8] = registroTecnicas[2];
+                                                    }
+                                                    if (!(registroHourlyGral[9] == null)) { //Problema no esta vacio
+                                                        registroHourlyGral[9]
+                                                                = registroHourlyGral[9].toString() + "\n" + registroTecnicas[3].toString();
+                                                    } else {
+                                                        registroHourlyGral[9] = registroTecnicas[3];
+                                                    }
+                                                    registroHourlyGral[3] = String.valueOf(
+                                                            Integer.parseInt(registroHourlyGral[3].toString())
+                                                            + Integer.parseInt(registroTecnicas[4].toString())
+                                                    );//realizamos la suma de scrap
+                                                    if (!organizacional.isEmpty()) {/*Arreglo organizacional*/
+                                                        for (int orgCont = 0; orgCont < organizacional.size(); orgCont++) {
+                                                            registroOrganizacional = (Object[]) organizacional.get(orgCont);
+                                                            if (registroOrganizacional[0].equals(i)) {
+                                                                registroHourlyGral[6] = registroOrganizacional[1];//duracion
+                                                                registroHourlyGral[10] = registroOrganizacional[2];//operacion
+                                                                registroHourlyGral[11] = registroOrganizacional[3];//problema
+                                                                registroHourlyGral[3] = String.valueOf(
+                                                                        Integer.parseInt(registroHourlyGral[3].toString())
+                                                                        + Integer.parseInt(registroOrganizacional[4].toString())
+                                                                );//realizamos la suma de scrap
+                                                                if (!cambios.isEmpty()) {/*Arreglo cambios*/
+                                                                    for (int camCont = 0; camCont < cambios.size(); camCont++) {
+                                                                        registroCambios = (Object[]) cambios.get(camCont);
+                                                                        if (registroCambios[0].equals(i)) {
+                                                                            registroHourlyGral[4] = registroCambios[1];//duracion
+                                                                            if (!(registroHourlyGral[8] == null)) { //Operacion no esta vacia
+                                                                                registroHourlyGral[8]
+                                                                                        = registroHourlyGral[8].toString() + "\n" + registroCambios[2].toString();
+                                                                            } else {
+                                                                                registroHourlyGral[8] = registroCambios[2];
+                                                                            }
+                                                                            if (!(registroHourlyGral[9] == null)) { //Problema no esta vacio
+                                                                                registroHourlyGral[9]
+                                                                                        = registroHourlyGral[9].toString() + "\n" + registroCambios[3].toString();
+                                                                            } else {
+                                                                                registroHourlyGral[9] = registroCambios[3];
+                                                                            }
+                                                                            registroHourlyGral[3] = String.valueOf(
+                                                                                    Integer.parseInt(registroHourlyGral[3].toString())
+                                                                                    + Integer.parseInt(registroCambios[4].toString())
+                                                                            );//realizamos la suma de scrap
+                                                                            registroHourlyGral[7] = 0;
+                                                                            hourlyGral.add(registroHourlyGral);
+                                                                        }
+                                                                    }
+                                                                } else {
+                                                                    //ARREGLO CAMBIOS VACIO
+                                                                }
+                                                            }
+                                                        }
+                                                    } else {
+                                                        //ARREGLO ORGANIZACIONAL VACIO
+                                                    }
                                                 }
                                             }
+                                        } else {
+                                            //ARREGLO TECNICAS VACIO
                                         }
                                     }
                                 }
+                            } else {
+                                //ARREGLO CALIDAD VACIO
                             }
                         }
                     }
+                } else {
+                    //ARREGLO PRODUCCION VACIO
                 }
 
             }
