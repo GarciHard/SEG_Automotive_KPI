@@ -18,6 +18,9 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     
+    private final String INSERTA_REGISTRO_HOURLY = "INSERT INTO HourlyCount (Fecha, NombreLinea, Hora, CantProducida, NoParteTC, Scrap, CambioDuracion, TecnicaDuracion, OrganizacionalDuracion, TiempoPDuracion, OperacionX, ProblemaX, OperacionY, ProblemaY) "
+            + "VALUES(TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String BORRA_REGISTRO_HOURLY = "DELETE FROM HourlyCount WHERE NombreLinea LIKE ?";
     private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo) "
             + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String BORRA_REGISTRO_TIEMPO = "DELETE FROM Bitacora WHERE hora BETWEEN ? AND ? AND linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY')";
@@ -281,5 +284,54 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             this.cerrar();
         }
         return listaRegistros;
+    }
+
+    @Override
+    public void insertarRegistroHourly(ArrayList registroHourly) throws Exception {
+        Object[] hourlyReg;
+        try {
+            this.conectar();
+            for (int i = 0; i < registroHourly.size(); i++) {
+                
+            hourlyReg = (Object[]) registroHourly.get(i);
+            ps = this.conexion.prepareStatement(INSERTA_REGISTRO_HOURLY);
+            ps.setString(1, hourlyReg[12].toString());//fecha
+            ps.setString(2, hourlyReg[13].toString());//linea
+            ps.setInt(3, Integer.parseInt(hourlyReg[0].toString()));//hora
+            ps.setString(4, hourlyReg[1].toString());//cantProd
+            ps.setString(5, hourlyReg[2].toString());//noParteTC
+            ps.setString(6, hourlyReg[3].toString());//scrap
+            ps.setInt(7, Integer.parseInt(hourlyReg[4].toString()));//cambioDuracion
+            ps.setInt(8, Integer.parseInt(hourlyReg[5].toString()));//tecnicaDuracion
+            ps.setInt(9, Integer.parseInt(hourlyReg[6].toString()));//organizacionalDuracion
+            ps.setInt(10, Integer.parseInt(hourlyReg[7].toString()));//tiempoPDuracion
+            ps.setString(11, hourlyReg[8].toString());//operacion
+            ps.setString(12, hourlyReg[9].toString());//problema
+            ps.setString(13, hourlyReg[10].toString());//operacion
+            ps.setString(14, hourlyReg[11].toString());//problema
+
+            ps.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ps.close();
+            this.cerrar();
+        }
+    }
+
+    @Override
+    public void borrarRegistroHourly(String linea) throws Exception {
+        try {
+            this.conectar();
+            ps = this.conexion.prepareStatement(BORRA_REGISTRO_HOURLY);
+            ps.setString(1, linea);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.cerrar();
+            ps.close();
+        }
     }
 }

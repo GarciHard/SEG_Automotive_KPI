@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public interface BitacoraDAO {
     
+    public void insertarRegistroHourly(ArrayList registroHourly) throws Exception;
+    public void borrarRegistroHourly(String linea) throws Exception;
     public void insertarFilaRegistro(ArrayList registroFila) throws Exception;
     public void insertarRegistroAccess(ArrayList registro) throws Exception;
     public void borrarRegistroTiempo(int horaInicio, int horaFin, String linea, String fecha) throws Exception;
