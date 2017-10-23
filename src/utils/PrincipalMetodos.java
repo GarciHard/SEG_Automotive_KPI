@@ -2816,6 +2816,9 @@ public class PrincipalMetodos {
                 System.out.println("<><><><><><><><><><><><><><><><><>");
                 new BitacoraDAOImpl().borrarRegistroHourly(winPrincipal.getCmbLinea().getSelectedItem().toString());
                 new BitacoraDAOImpl().insertarRegistroHourly(hourlyGral);
+
+                String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
+                Process p = Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE " + EXCEL_LOCATION);
             }
 
         } catch (Exception e) {
