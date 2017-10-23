@@ -199,16 +199,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 new RegistroUsuariosControl(new RegistroUsuarios(winPrincipal, true));
                 break;
             case "_mniHourlyCount":
-//                System.out.println("Presionado");
-//                principalMetodos.hourlyCounGraph(winPrincipal);
-//                principalMetodos.hourlyProduccionActual(winPrincipal);
-//                principalMetodos.hourlyCalidadActual(winPrincipal);
-//                principalMetodos.hourlyTecnicasActual(winPrincipal);
-//                principalMetodos.hourlyOrganizacionalActual(winPrincipal);
                 principalMetodos.hourlyGeneral(winPrincipal);
-//                principalMetodos.topCalidad(winPrincipal);
-//                principalMetodos.topTecnicas(winPrincipal);
-//                principalMetodos.topOrganizacionales(winPrincipal);
                 break;
             //***** Panel Superior *****
             case "_btnCambiarLinea":
