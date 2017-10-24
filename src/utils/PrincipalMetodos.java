@@ -974,7 +974,7 @@ public class PrincipalMetodos {
                 reg[7] = winPrincipal.getCmbLinea().getSelectedItem();//cmbOperacion.getSelectedItem();
                 reg[8] = "";
                 reg[9] = "";
-                reg[10] = winPrincipal.getCmbClientePzasProd().getSelectedItem();
+                reg[10] = winPrincipal.getCmbFamiliaPzasProd().getSelectedItem();
                 reg[11] = winPrincipal.getCmbNoPartePzasProd().getSelectedItem();
                 reg[12] = winPrincipal.getTxtCantidadProducidaPzasProd().getText();
                 reg[13] = "";
