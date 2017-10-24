@@ -94,9 +94,6 @@
               <ComponentRef name="cmbFamiliaPzasProd"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbClientePzasProdActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Principal_cmbCliente"/>
           </AuxValues>
@@ -234,12 +231,14 @@
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cmbFamiliaOrganizacional" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblFamiliaOrganizacional" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="cmbNoParteOrganizacional" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblNoParteOrganizacional" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="cmbFamiliaOrganizacional" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFamiliaOrganizacional" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -907,9 +906,6 @@
               <ComponentRef name="cmbFamiliaTecnicas"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbProblemaTecnicasActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblClienteTecnicas">
           <Properties>
@@ -957,9 +953,6 @@
               <ComponentRef name="cmbHora"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtScrapTecnicasActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblFamiliaTecnicas">
           <Properties>

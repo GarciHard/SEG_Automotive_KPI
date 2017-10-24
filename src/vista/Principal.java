@@ -3,6 +3,7 @@ package vista;
 import com.alee.extended.date.WebDateField;
 import com.alee.extended.panel.WebCollapsiblePane;
 import control.PrincipalControl;
+import dao.BitacoraDAOImpl;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
@@ -204,11 +205,6 @@ public class Principal extends javax.swing.JFrame {
         cmbClientePzasProd.setActionCommand("_cmbClientePzasProd");
         cmbClientePzasProd.setEnabled(false);
         cmbClientePzasProd.setNextFocusableComponent(cmbFamiliaPzasProd);
-        cmbClientePzasProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbClientePzasProdActionPerformed(evt);
-            }
-        });
 
         lblNoPartePzasProd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoPartePzasProd.setText("No. PARTE");
@@ -375,12 +371,13 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(cmbProblemaOrganizacional)
                             .addComponent(lblProblemaOrganizacional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pnlOrganizacionalesLayout.createSequentialGroup()
-                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbFamiliaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFamiliaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(cmbNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblNoParteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cmbFamiliaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFamiliaOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlOrganizacionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbClienteOrganizacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -614,11 +611,6 @@ public class Principal extends javax.swing.JFrame {
         cmbProblemaTecnicas.setActionCommand("_cmbProblemaTecnicas");
         cmbProblemaTecnicas.setEnabled(false);
         cmbProblemaTecnicas.setNextFocusableComponent(cmbFamiliaTecnicas);
-        cmbProblemaTecnicas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbProblemaTecnicasActionPerformed(evt);
-            }
-        });
 
         lblClienteTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClienteTecnicas.setText("CLIENTE");
@@ -639,11 +631,6 @@ public class Principal extends javax.swing.JFrame {
 
         txtScrapTecnicas.setEnabled(false);
         txtScrapTecnicas.setNextFocusableComponent(cmbHora);
-        txtScrapTecnicas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtScrapTecnicasActionPerformed(evt);
-            }
-        });
 
         lblFamiliaTecnicas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFamiliaTecnicas.setText("FAMILIA");
@@ -1261,18 +1248,25 @@ public class Principal extends javax.swing.JFrame {
                 try {
                     new PrincipalMetodos().eliminarTurnoVacio(this);
                     new PrincipalMetodos().eliminarRegistroTiempo(this);
+                    new BitacoraDAOImpl().borrarRegistroHourly(this.getCmbLinea().getSelectedItem().toString());
                 } catch (Exception ex) {
                     System.out.println("Problema closing " + ex);
                 }
                 System.exit(0);
             }
         } else if (lblTurno.getText().isEmpty()) {
+            try {
+                new BitacoraDAOImpl().borrarRegistroHourly(this.getCmbLinea().getSelectedItem().toString());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Principal.eliminarHourlyCount()\n" + e,"Error", JOptionPane.ERROR_MESSAGE);
+            }
             System.exit(0);
         } else {
             if (PrincipalControl.insercionesAccess == 0) {
                 try {
                     new PrincipalMetodos().eliminarTurnoVacio(this);
                     new PrincipalMetodos().eliminarRegistroTiempo(this);
+                    new BitacoraDAOImpl().borrarRegistroHourly(this.getCmbLinea().getSelectedItem().toString());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "PrincipalMetodos.eliminarTurnoVacio()\n" + e,"Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -1280,18 +1274,6 @@ public class Principal extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_formWindowClosing
-
-    private void txtScrapTecnicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtScrapTecnicasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtScrapTecnicasActionPerformed
-
-    private void cmbClientePzasProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientePzasProdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbClientePzasProdActionPerformed
-
-    private void cmbProblemaTecnicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProblemaTecnicasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbProblemaTecnicasActionPerformed
 
     public JMenuItem getMniHourlyCount() {
         return mniHourlyCount;
