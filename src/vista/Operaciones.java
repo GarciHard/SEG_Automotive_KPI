@@ -543,10 +543,10 @@ public class Operaciones extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDescProblemaKeyTyped
 
     private void txtDescProblemaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtDescProblemaCaretUpdate
-        if(txtDescProblema.getText().equals("Falta de estator") || txtDescProblema.getText().equals("Falta de rotor") || 
-           txtDescProblema.getText().equals("Falta de tapa") ||  txtDescProblema.getText().equals("Falta de rectificador") ||
-           txtDescProblema.getText().equals("Falta estator") || txtDescProblema.getText().equals("Falta rotor") || 
-           txtDescProblema.getText().equals("Falta tapa") ||  txtDescProblema.getText().equals("Falta rectificador")){
+        if(txtDescProblema.getText().toUpperCase().equals("Falta de estator")|| txtDescProblema.getText().toUpperCase().equals("Falta de rotor") || 
+           txtDescProblema.getText().toUpperCase().equals("Falta de tapa") ||  txtDescProblema.getText().toUpperCase().equals("Falta de rectificador") ||
+           txtDescProblema.getText().toUpperCase().equals("Falta estator") || txtDescProblema.getText().toUpperCase().equals("Falta rotor") || 
+           txtDescProblema.getText().toUpperCase().equals("Falta tapa") ||  txtDescProblema.getText().toUpperCase().equals("Falta rectificador")){
             JOptionPane.showMessageDialog(null, "No aplica problema");
             btnGuardar.setEnabled(false);
         }else{

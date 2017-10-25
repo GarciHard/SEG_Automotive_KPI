@@ -294,7 +294,9 @@ public class PrincipalValidaciones {
             }
         } else if (winPrincipal.getTxtMatFaltante().equals(ke.getSource())){ /**** aqui me quede ***/
             int dig = winPrincipal.getTxtMatFaltante().getText().length();
-            if(((ke.getKeyChar() < '0' || ke.getKeyChar() > '9') && (ke.getKeyChar() < 'F' || ke.getKeyChar() > 'M')  && (ke.getKeyChar() != '.'))) {
+            System.out.println(dig+" - "+ke.getKeyChar()+" , "+bn);
+            if(((ke.getKeyChar() < '0' || ke.getKeyChar() > '9') && (ke.getKeyChar() != 'F' && ke.getKeyChar() != 'M' && ke.getKeyChar() != 'B' && ke.getKeyChar() != 'A' && 
+                 ke.getKeyChar() != 'C' && ke.getKeyChar() != 'E' && ke.getKeyChar() != 'L')  && (ke.getKeyChar() != '.'))) {
                 ke.consume();
             } else {
                 if (ke.getKeyChar() == '.'){
@@ -303,10 +305,11 @@ public class PrincipalValidaciones {
                         bn = 0;
                     }else {
                         bn = 1;
+                        System.out.println(bn);
                     }
                 }else {
                     if ( bn == 1){
-                        if (dig == 4 || dig == 8 && ke.getKeyChar() != '.' ){
+                        if (dig == 4 || dig == 8 && bn == 0){
                             ke.consume();
                             bn = 0;
                         }
@@ -329,7 +332,7 @@ public class PrincipalValidaciones {
             if (winPrincipal.getTxtMatFaltante().getText().isEmpty() || dig < 9 ) {
                 winPrincipal.getCmbHora().setSelectedIndex(0);
                 winPrincipal.getCmbHora().setEnabled(false);
-                bn = 0;
+                //bn = 0;
             }
         }
     }

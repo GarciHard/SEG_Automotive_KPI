@@ -114,6 +114,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getCmbFamiliaOrganizacional().addActionListener(this);
         winPrincipal.getCmbNoParteOrganizacional().addActionListener(this);
         winPrincipal.getTxtMatFaltante().addKeyListener(this);
+        winPrincipal.getTxtMatFaltante().addCaretListener(this);
         
         //Panel Cambios
         winPrincipal.getCmbAreaCambios().addActionListener(this);

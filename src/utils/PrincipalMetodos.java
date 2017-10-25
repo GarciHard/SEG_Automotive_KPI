@@ -223,6 +223,10 @@ public class PrincipalMetodos {
     }
 
     public void panelPiezasProducidasNoPartes(Principal winPrincipal) {
+        if (!winPrincipal.getTxtTC().getText().isEmpty()) {
+            winPrincipal.getTxtTC().setText("");
+            winPrincipal.getTxtTC().setEnabled(false);
+        }
         if (PrincipalControl.tipoEnsambleLinea == 3) {
             winPrincipal.getCmbNoPartePzasProd().setModel(listaNoPartesFamilia(winPrincipal.getCmbLinea().getSelectedItem().toString(),
                     winPrincipal.getCmbClientePzasProd().getSelectedItem().toString(),
