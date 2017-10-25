@@ -1963,17 +1963,17 @@ public class PrincipalMetodos {
                 }
             }
 
-//            if (!calidad.isEmpty()) { //Listamos el array
-//                Object[] calidadReg;
-//                System.out.println("<><><><><>CALIDAD<><><><><>");
-//                for (int i = 0; i < calidad.size(); i++) {
-//                    calidadReg = (Object[]) calidad.get(i);
-//                    for (int j = 0; j < calidadReg.length; j++) {
-//                        System.out.println(j + "." + calidadReg[j].toString());
-//                    }
-//                }
-//                System.out.println("<><><><><><><><><><><><><><>");
-//            }
+            if (!calidad.isEmpty()) { //Listamos el array
+                Object[] calidadReg;
+                System.out.println("<><><><><>CALIDAD<><><><><>");
+                for (int i = 0; i < calidad.size(); i++) {
+                    calidadReg = (Object[]) calidad.get(i);
+                    for (int j = 0; j < calidadReg.length; j++) {
+                        System.out.println(j + "." + calidadReg[j].toString());
+                    }
+                }
+                System.out.println("<><><><><><><><><><><><><><>");
+            }
         } catch (Exception e) {
             System.out.println("<><>reporteCalidadActual<><> " + e);
         }
@@ -1993,9 +1993,11 @@ public class PrincipalMetodos {
                 for (int i = 0; i < calidadActualArr.size(); i++) {
                     registro = (Object[]) calidadActualArr.get(i);
 
-                    registroHourly = new Object[2];
+                    registroHourly = new Object[4];
                     registroHourly[0] = registro[2];//hora
-                    registroHourly[1] = registro[14];//scrapProducido
+                    registroHourly[1] = registro[7];//operacion
+                    registroHourly[2] = registro[9];//problema
+                    registroHourly[3] = registro[14];//scrapProducido
 
                     calidadHourly.add(registroHourly);
                 }
@@ -2025,18 +2027,22 @@ public class PrincipalMetodos {
 
         if (hourlyCalidadActual.isEmpty()) {
             for (int i = 0; i < 24; i++) {
-                Object[] calidadReg = new Object[2];
+                Object[] calidadReg = new Object[4];
                 calidadReg[0] = i;//hora
-                calidadReg[1] = 0;//scrap
+                calidadReg[1] = "";//operacion
+                calidadReg[2] = "";//problema
+                calidadReg[3] = 0;//scrap
                 calidadArr.add(calidadReg);
             }
         } else {
             Object[] calidadRegAux;
             Object[] calidad;
             for (int j = 0; j < 24; j++) {
-                Object[] calidadReg = new Object[2];
+                Object[] calidadReg = new Object[4];
                 calidadReg[0] = j;//hora
-                calidadReg[1] = 0;//scrap
+                calidadReg[1] = "";//operacion
+                calidadReg[2] = "";//problema
+                calidadReg[3] = 0;//scrap
                 calidadArr.add(calidadReg);
             }
             for (int k = 0; k < calidadArr.size(); k++) {
@@ -2854,22 +2860,34 @@ public class PrincipalMetodos {
 
                     registroCalidad = (Object[]) calidad.get(i);
                     if (registroCalidad[0].equals(i)) {
-                        registroHourlyGral[3] = registroCalidad[1];//scrapCalidad
-
+                        registroHourlyGral[3] = registroCalidad[3];//scrapCalidad
+                        if (!(registroHourlyGral[8] == null)) { //Operacion no esta vacia
+                            registroHourlyGral[8]
+                                    = registroHourlyGral[8].toString() + "\n" + registroCalidad[1].toString();
+                        } else {
+                            registroHourlyGral[8] = registroCalidad[1];
+                        }
+                        if (!(registroHourlyGral[9] == null)) { //Problema no esta vacio
+                            registroHourlyGral[9]
+                                    = registroHourlyGral[9].toString() + "\n" + registroCalidad[2].toString();
+                        } else {
+                            registroHourlyGral[9] = registroCalidad[2];
+                        }
+                        
                         registroTecnicas = (Object[]) tecnicas.get(i);
                         if (registroTecnicas[0].equals(i)) {
                             registroHourlyGral[5] = registroTecnicas[1];//duracion
-                            if (!(registroHourlyGral[8] == null)) { //Operacion no esta vacia
-                                registroHourlyGral[8]
-                                        = registroHourlyGral[8].toString() + "\n" + registroTecnicas[2].toString();
+                            if (!(registroHourlyGral[10] == null)) { //Operacion no esta vacia
+                                registroHourlyGral[10]
+                                        = registroHourlyGral[10].toString() + "\n" + registroTecnicas[2].toString();
                             } else {
-                                registroHourlyGral[8] = registroTecnicas[2];
+                                registroHourlyGral[10] = registroTecnicas[2];
                             }
-                            if (!(registroHourlyGral[9] == null)) { //Problema no esta vacio
-                                registroHourlyGral[9]
-                                        = registroHourlyGral[9].toString() + "\n" + registroTecnicas[3].toString();
+                            if (!(registroHourlyGral[11] == null)) { //Problema no esta vacio
+                                registroHourlyGral[11]
+                                        = registroHourlyGral[11].toString() + "\n" + registroTecnicas[3].toString();
                             } else {
-                                registroHourlyGral[9] = registroTecnicas[3];
+                                registroHourlyGral[11] = registroTecnicas[3];
                             }
                             registroHourlyGral[3] = String.valueOf(
                                     Integer.parseInt(registroHourlyGral[3].toString())
@@ -2879,8 +2897,18 @@ public class PrincipalMetodos {
                             registroOrganizacional = (Object[]) organizacional.get(i);
                             if (registroOrganizacional[0].equals(i)) {
                                 registroHourlyGral[6] = registroOrganizacional[1];//duracion
-                                registroHourlyGral[10] = registroOrganizacional[2];//operacion
-                                registroHourlyGral[11] = registroOrganizacional[3];//problema
+                                if (!(registroHourlyGral[10] == null)) { //Operacion no esta vacia
+                                    registroHourlyGral[10]
+                                            = registroHourlyGral[10].toString() + "\n" + registroOrganizacional[2].toString();
+                                } else {
+                                    registroHourlyGral[10] = registroOrganizacional[2];
+                                }
+                                if (!(registroHourlyGral[11] == null)) { //Problema no esta vacio
+                                    registroHourlyGral[11]
+                                            = registroHourlyGral[11].toString() + "\n" + registroOrganizacional[3].toString();
+                                } else {
+                                    registroHourlyGral[11] = registroOrganizacional[3];
+                                }
                                 registroHourlyGral[3] = String.valueOf(
                                         Integer.parseInt(registroHourlyGral[3].toString())
                                         + Integer.parseInt(registroOrganizacional[4].toString())
