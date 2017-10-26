@@ -2069,7 +2069,7 @@ public class PrincipalMetodos {
                         }
                         calidad[3] = String.valueOf(
                             Integer.parseInt(calidad[3].toString())
-                            + Integer.parseInt(calidadRegAux[3].toString()); 
+                            + Integer.parseInt(calidadRegAux[3].toString()) 
                         ); //realizamos la suma del scrap
                         //calidad = calidadRegAux;
                         calidadArr.set(k, calidad);
@@ -2894,10 +2894,14 @@ public class PrincipalMetodos {
                         } else {
                             registroHourlyGral[9] = registroCalidad[2];
                         }
-                        registroHourlyGral[3] = String.valueOf(
+                        if (!(registroHourlyGral[3] == null)) { //scrap no esta vacio
+                            registroHourlyGral[3] = String.valueOf(
                                     Integer.parseInt(registroHourlyGral[3].toString())
                                     + Integer.parseInt(registroCalidad[3].toString())
-                        );//realizamos la suma de scrap
+                            );
+                        } else {
+                            registroHourlyGral[3] = registroCalidad[3];
+                        }
                         
                         registroTecnicas = (Object[]) tecnicas.get(i);
                         if (registroTecnicas[0].equals(i)) {
