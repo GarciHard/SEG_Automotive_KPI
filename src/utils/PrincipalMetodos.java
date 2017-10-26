@@ -1391,10 +1391,14 @@ public class PrincipalMetodos {
     public void cancelarEdicion(Principal winPrincipal) {
         winPrincipal.getDteFecha().setEnabled(false);
         winPrincipal.getDteFecha().setDate(new java.util.Date(System.currentTimeMillis()));
+        winPrincipal.getLblTurno().setText("");
+        winPrincipal.getCmbTema().setSelectedIndex(0);
+        winPrincipal.getCmbTema().setEnabled(false);
         limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
         winPrincipal.getBtnGuardar().setText("Guardar Bitacora");
         winPrincipal.getBtnGuardar().setVisible(false);
         winPrincipal.getBtnCancelar().setVisible(false);
+        winPrincipal.getBtnCambiarLinea().setEnabled(true);
     }
 
     public void actualizarRegistroFechaAccess(Principal winPrincipal) {
