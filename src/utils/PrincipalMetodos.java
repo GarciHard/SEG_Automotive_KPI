@@ -2067,10 +2067,14 @@ public class PrincipalMetodos {
                         } else {
                             calidad[2] = calidadRegAux[2];
                         }
-                        calidad[3] = String.valueOf(
-                            Integer.parseInt(calidad[3].toString())
-                            + Integer.parseInt(calidadRegAux[3].toString()) 
-                        ); //realizamos la suma del scrap
+                        if (!(calidad[3] == null)) {
+                            calidad[3] = String.valueOf(
+                                    Integer.parseInt(calidad[3].toString())
+                                    + Integer.parseInt(calidadRegAux[3].toString())
+                            );
+                        } else {
+                            calidad[3] = calidadRegAux[3];
+                        }//realizamos la suma de scrap
                         //calidad = calidadRegAux;
                         calidadArr.set(k, calidad);
                     }
