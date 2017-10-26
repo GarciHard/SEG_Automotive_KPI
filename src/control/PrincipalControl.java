@@ -1,5 +1,6 @@
 package control;
 
+import dao.BitacoraDAOImpl;
 import dao.TemasDAOImpl;
 import vista.Principal;
 import java.awt.event.ActionEvent;
@@ -407,7 +408,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 principalMetodos.cancelarEdicion(winPrincipal);
                 break;
                 
-            case "_mniOperaciones"://ARELI
+            case "_mniOperaciones":
                 linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
                 System.err.println("linea Prin: "+linea);
                 Operaciones op = new Operaciones(winOperaciones, true);
@@ -421,10 +422,23 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         if (evt.getSource().equals(winPrincipal.getDteFecha())) {
             linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
             fecha = winPrincipal.getDteFecha().getText();
+            
             if (bnEdicion ==2 ){
                 new SelecTurno(winPrincipal, true).setVisible(true);
             } else{
-                principalMetodos.consultarBitacoraPorDia(winPrincipal);
+                try {
+                    int registros = new BitacoraDAOImpl().edicionPorDia(fecha, linea);
+                    if(registros == 0 ){
+                        new TiempoTurno(winPrincipal, true).setVisible(true);
+                    } else {
+                        new SelecTurno(winPrincipal, true).setVisible(true);
+                        winPrincipal.getDteFecha().setEditable(false);
+                        winPrincipal.getDteFecha().setEnabled(false);
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(PrincipalControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //principalMetodos.consultarBitacoraPorDia(winPrincipal);
             }
         }
     }

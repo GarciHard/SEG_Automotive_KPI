@@ -32,7 +32,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private final String LISTAR_REGISTROS_TURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
             //+ " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND linea like ? AND hora < ? ORDER BY hora ASC";
               + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora <= ? ORDER BY hora,tiempoIni ASC ";
-    
+    private final String EXISTEN_TURNOS_DIA = "SELECT COUNT(turno) FROM TiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
+        
     @Override
     public void insertarRegistroAccess(ArrayList registro) throws Exception {
         Object[] reg = new Object[registro.size()];
@@ -333,5 +334,26 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             this.cerrar();
             ps.close();
         }
+    }
+    
+    public int edicionPorDia (String fecha, String linea) throws Exception {
+        int registros = 0 ;
+        try {
+            this.conectar();
+            ps = this.conexion.prepareStatement(EXISTEN_TURNOS_DIA);
+            ps.setString(1, fecha);
+            ps.setString(2, linea);
+            rs = ps.executeQuery();
+            
+            if (rs.next()){
+                registros = rs.getInt(1);
+            }            
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ps.close();
+            this.cerrar();
+        }
+        return registros;
     }
 }

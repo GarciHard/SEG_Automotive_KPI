@@ -280,7 +280,12 @@ public class TiempoTurno extends javax.swing.JDialog {
                     winPrincipal.getMniCargaMasiva().setEnabled(true);
                     cerrarVentana = true;
                     
+                    winPrincipal.getDteFecha().setEditable(false);
+                    winPrincipal.getDteFecha().setEnabled(false);
                     this.dispose();
+                    winPrincipal.getDteFecha().setEditable(false);
+                    winPrincipal.getDteFecha().setEnabled(false);
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, "TiempoTurno.btnIniciarActionPerformed()\n"
                             + "Turno ya registrado en la bitacora", "Advertencia", JOptionPane.WARNING_MESSAGE);
