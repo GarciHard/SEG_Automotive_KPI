@@ -20,6 +20,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.xssf.usermodel.XSSFPivotTable;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -1310,6 +1311,8 @@ public class PrincipalMetodos {
         int fin = SelecTurno.finTurno;
         String fecha = SelecTurno.fecha;
         String linea = SelecTurno.seleccionTurnoLinea;
+        
+        System.out.println("i: "+inicio+" f: "+fin);
         if (winPrincipal.getTblBitacora().getRowCount() != 0) {
             switch (JOptionPane.showConfirmDialog(winPrincipal, "En caso de tener registros sin guardar, estos se perderán.\n¿Seguro que desea continuar?", "Mensaje",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
@@ -1320,14 +1323,23 @@ public class PrincipalMetodos {
                     winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
                     Object[] bitacoraObj;
                     try {
-                        ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha, linea, inicio, fin);
-                        //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                        //      winPrincipal.getCmbLinea().getSelectedItem().toString());
-                        if (!bitacoraArr.isEmpty()) {
-                            modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
-                            for (int i = 0; i < bitacoraArr.size(); i++) {
-                                bitacoraObj = (Object[]) bitacoraArr.get(i);
-                                modeloTabla.addRow(bitacoraObj);
+                        if (inicio > fin){
+                            ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurnoNocturno(fecha, linea, inicio, fecha, linea, fin);
+                            if (!bitacoraArr.isEmpty()) {
+                                modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+                                for (int i = 0; i < bitacoraArr.size(); i++) {
+                                    bitacoraObj = (Object[]) bitacoraArr.get(i);
+                                    modeloTabla.addRow(bitacoraObj);
+                                }
+                            }
+                        }else{
+                            ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha, linea, inicio, fin);
+                            if (!bitacoraArr.isEmpty()) {
+                                modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+                                for (int i = 0; i < bitacoraArr.size(); i++) {
+                                    bitacoraObj = (Object[]) bitacoraArr.get(i);
+                                    modeloTabla.addRow(bitacoraObj);
+                                }
                             }
                         }
                     } catch (Exception e) {
@@ -1346,14 +1358,25 @@ public class PrincipalMetodos {
             winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
             Object[] bitacoraObj;
             try {
-                ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha, linea, inicio, fin);
-                //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                //winPrincipal.getCmbLinea().getSelectedItem().toString());
-                if (!bitacoraArr.isEmpty()) {
-                    modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
-                    for (int i = 0; i < bitacoraArr.size(); i++) {
-                        bitacoraObj = (Object[]) bitacoraArr.get(i);
-                        modeloTabla.addRow(bitacoraObj);
+                if (inicio > fin){
+                    System.out.println("inicio > fin");
+                    ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurnoNocturno(fecha, linea, inicio, fecha, linea, fin);
+                    System.out.println(fecha+","+ linea+","+ inicio+","+fecha+","+ linea+","+ fin);
+                    if (!bitacoraArr.isEmpty()) {
+                        modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+                        for (int i = 0; i < bitacoraArr.size(); i++) {
+                            bitacoraObj = (Object[]) bitacoraArr.get(i);
+                            modeloTabla.addRow(bitacoraObj);
+                        }
+                    }
+                }else{
+                    ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasTurno(fecha, linea, inicio, fin);
+                    if (!bitacoraArr.isEmpty()) {
+                        modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
+                        for (int i = 0; i < bitacoraArr.size(); i++) {
+                            bitacoraObj = (Object[]) bitacoraArr.get(i);
+                            modeloTabla.addRow(bitacoraObj);
+                        }
                     }
                 }
             } catch (Exception e) {

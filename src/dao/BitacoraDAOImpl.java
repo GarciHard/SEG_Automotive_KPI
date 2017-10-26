@@ -28,10 +28,11 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea LIKE ?";
     private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ? ORDER BY hora";
     private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
-            + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? ORDER BY hora";
+            +" FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? ORDER BY hora";
     private final String LISTAR_REGISTROS_TURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
-            //+ " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND linea like ? AND hora < ? ORDER BY hora ASC";
-              + " FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora <= ? ORDER BY hora,tiempoIni ASC ";
+            +" FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora <= ? ORDER BY hora,tiempoIni ASC";
+    private final String LISTAR_TURNO_NOCTURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
+            +" FROM Bitacora WHERE (fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ?) OR (fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora <= ?) ORDER BY hora,tiempoIni ASC";   
     private final String EXISTEN_TURNOS_DIA = "SELECT COUNT(turno) FROM TiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
         
     @Override
@@ -113,6 +114,53 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             ps.setString(2, linea);
             ps.setInt(3, horaInicia);
             ps.setInt(4, horaFin);
+            
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                bitacoraObj = new Object[17];
+                bitacoraObj[0] = rs.getString(1);
+                bitacoraObj[1] = rs.getString(2);
+                bitacoraObj[2] = rs.getInt(3);
+                bitacoraObj[3] = rs.getInt(4);
+                bitacoraObj[4] = rs.getInt(5);
+                bitacoraObj[5] = rs.getInt(6);
+                bitacoraObj[6] = rs.getString(7);
+                bitacoraObj[7] = rs.getString(8);
+                bitacoraObj[8] = rs.getString(9);
+                bitacoraObj[9] = rs.getString(10);
+                bitacoraObj[10] = rs.getString(11);
+                bitacoraObj[11] = rs.getString(12);
+                bitacoraObj[12] = rs.getInt(13);
+                bitacoraObj[13] = rs.getString(14);
+                bitacoraObj[14] = rs.getString(15);
+                bitacoraObj[15] = rs.getString(16);
+                bitacoraObj[16] = rs.getString(17);
+                
+                listaRegistros.add(bitacoraObj);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ps.close();
+            rs.close();
+            this.cerrar();
+        }
+        return listaRegistros;
+    }
+    
+    public ArrayList listarBitacorasTurnoNocturno(String fecha, String linea, int horaInicia, String fecha2, String linea2, int horaFin) throws Exception {
+        Object[] bitacoraObj;
+        listaRegistros = new ArrayList();
+        try {
+            this.conectar();
+            ps = this.conexion.prepareStatement(LISTAR_TURNO_NOCTURNO);
+            ps.setString(1, fecha);
+            ps.setString(2, linea);
+            ps.setInt(3, horaInicia);
+            ps.setString(4, fecha2);
+            ps.setString(5, linea2);
+            ps.setInt(6, horaFin);
             
             rs = ps.executeQuery();
             

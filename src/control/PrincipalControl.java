@@ -26,6 +26,9 @@ import vista.Operaciones;
 import vista.ParoRango;
 import vista.RegistroUsuarios;
 import vista.SelecTurno;
+import static vista.SelecTurno.finTurno;
+import static vista.SelecTurno.inicioTurno;
+import static vista.SelecTurno.turno;
 import vista.TiempoTurno;
 
 /**
@@ -429,8 +432,10 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 try {
                     int registros = new BitacoraDAOImpl().edicionPorDia(fecha, linea);
                     if(registros == 0 ){
+                        winPrincipal.getLblTurno().setText("  ");
                         new TiempoTurno(winPrincipal, true).setVisible(true);
                     } else {
+                        winPrincipal.getLblTurno().setText("  ");
                         new SelecTurno(winPrincipal, true).setVisible(true);
                         winPrincipal.getDteFecha().setEditable(false);
                         winPrincipal.getDteFecha().setEnabled(false);

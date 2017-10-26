@@ -144,7 +144,6 @@ public class SelecTurno extends javax.swing.JDialog {
                     
                     winPrincipal.getLblTurno().setText(turno + " <> " + inicioTurno + " - " + finTurno);
                     
-                    
                     if (inicioTurno > finTurno) {
                         //winPrincipal.getCmbHora().removeAllItems();
                         cmbTiempoModel.clear();
@@ -193,6 +192,7 @@ public class SelecTurno extends javax.swing.JDialog {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cmbTurno.setSelectedIndex(0);
+        winPrincipal.getLblTurno().setText(" ");
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
