@@ -2925,10 +2925,10 @@ public class PrincipalMetodos {
                             if (!(registroHourlyGral[3] == null)) { //scrap no esta vacio
                                 registroHourlyGral[3] = String.valueOf(
                                         Integer.parseInt(registroHourlyGral[3].toString())
-                                        + Integer.parseInt(registroTecnicas[3].toString())
+                                        + Integer.parseInt(registroTecnicas[4].toString())
                                 );
                             } else {
-                                registroHourlyGral[3] = registroTecnicas[3];
+                                registroHourlyGral[3] = registroTecnicas[4];
                             }
 
                             registroOrganizacional = (Object[]) organizacional.get(i);
@@ -2949,10 +2949,10 @@ public class PrincipalMetodos {
                                 if (!(registroHourlyGral[3] == null)) { //scrap no esta vacio
                                     registroHourlyGral[3] = String.valueOf(
                                             Integer.parseInt(registroHourlyGral[3].toString())
-                                            + Integer.parseInt(registroOrganizacional[3].toString())
+                                            + Integer.parseInt(registroOrganizacional[4].toString())
                                     );
                                 } else {
-                                    registroHourlyGral[3] = registroOrganizacional[3];
+                                    registroHourlyGral[3] = registroOrganizacional[4];
                                 }
 
                                 registroCambios = (Object[]) cambios.get(i);
@@ -2973,10 +2973,10 @@ public class PrincipalMetodos {
                                     if (!(registroHourlyGral[3] == null)) { //scrap no esta vacio
                                         registroHourlyGral[3] = String.valueOf(
                                                 Integer.parseInt(registroHourlyGral[3].toString())
-                                                + Integer.parseInt(registroCambios[3].toString())
+                                                + Integer.parseInt(registroCambios[4].toString())
                                         );
                                     } else {
-                                        registroHourlyGral[3] = registroCambios[3];
+                                        registroHourlyGral[3] = registroCambios[4];
                                     }
 
                                     registroTiempoFaltante = (Object[]) tiempoFaltante.get(i);
