@@ -2054,7 +2054,24 @@ public class PrincipalMetodos {
                 for (int l = 0; l < calidadArrAux.size(); l++) {
                     calidadRegAux = (Object[]) calidadArrAux.get(l);
                     if (calidadRegAux[0].equals(calidad[0])) {
-                        calidad = calidadRegAux;
+                        calidad[0] = calidadRegAux[0];
+                        if (!(calidad[1] == null)) { //Operacion no esta vacia
+                            calidad[1]
+                                = calidad[1].toString() + "\n" + calidadRegAux[1].toString();
+                        } else {
+                            calidad[1] = calidadRegAux[1];
+                        }
+                        if (!(calidad[2] == null)) { //Problema no esta vacio
+                            calidad[2]
+                                = calidad[2].toString() + "\n" + calidadRegAux[2].toString();
+                        } else {
+                            calidad[2] = calidadRegAux[2];
+                        }
+                        calidad[3] = String.valueOf(
+                            Integer.parseInt(calidad[3].toString())
+                            + Integer.parseInt(calidadRegAux[3].toString()); 
+                        ); //realizamos la suma del scrap
+                        //calidad = calidadRegAux;
                         calidadArr.set(k, calidad);
                     }
                 }
@@ -2864,7 +2881,7 @@ public class PrincipalMetodos {
 
                     registroCalidad = (Object[]) calidad.get(i);
                     if (registroCalidad[0].equals(i)) {
-                        registroHourlyGral[3] = registroCalidad[3];//scrapCalidad
+                        //registroHourlyGral[3] = registroCalidad[3];//scrapCalidad
                         if (!(registroHourlyGral[8] == null)) { //Operacion no esta vacia
                             registroHourlyGral[8]
                                     = registroHourlyGral[8].toString() + "\n" + registroCalidad[1].toString();
@@ -2877,6 +2894,10 @@ public class PrincipalMetodos {
                         } else {
                             registroHourlyGral[9] = registroCalidad[2];
                         }
+                        registroHourlyGral[3] = String.valueOf(
+                                    Integer.parseInt(registroHourlyGral[3].toString())
+                                    + Integer.parseInt(registroCalidad[3].toString())
+                        );//realizamos la suma de scrap
                         
                         registroTecnicas = (Object[]) tecnicas.get(i);
                         if (registroTecnicas[0].equals(i)) {
