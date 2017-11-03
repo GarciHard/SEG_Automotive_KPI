@@ -3130,6 +3130,78 @@ public class PrincipalMetodos {
             System.out.println("hourlyGeneral: " + e);
         }
     }
+    
+    private ArrayList hourlyDiario(Principal winPrincipal) {
+        System.out.println("fecha: " + winPrincipal.getDteFecha().getText());
+        int mes = winPrincipal.getDteFecha().getDate().getMonth() + 1;
+        System.out.println("mes: " + mes);
+
+        ArrayList registrosDiariosAux = new ArrayList();      
+        
+        try {
+            for (int i = 1; i < 32; i++) {
+                String fecha = i + "/" + mes + "/" + 2017;
+                registrosDiariosAux.add(
+                        new BitacoraDAOImpl().listarBitacorasPorFecha(
+                                fecha, winPrincipal.getCmbLinea().getSelectedItem().toString()
+                        )
+                );
+            }                      
+            System.out.println("arrayRegistrosDiariosSize: " + registrosDiariosAux.size());
+            
+        } catch (Exception e) {
+            System.out.println("hourlyDiario: " + e);
+        }
+        return registrosDiariosAux;
+    }
+    
+    public ArrayList generarReporteProduccionActualOEE(Principal winPrincipal) {
+        ArrayList produccion = new ArrayList();
+        try {
+            Object[] registro;
+            Object[] comparaRegistro;
+
+            ArrayList hourlyMes = hourlyDiario(winPrincipal);
+
+            int indicadorHora = 0;
+            int indicadorDia = 0;
+            
+            for (int contDia = 0; contDia < 31; contDia++) {
+                ArrayList hourlyDia = (ArrayList) hourlyMes.get(contDia);
+                
+                for (int noRegistroDia = 0; noRegistroDia < hourlyDia.size(); noRegistroDia++) {
+                    registro = (Object[]) hourlyDia.get(noRegistroDia);
+
+                    if (registro[6].equals("Piezas Producidas")) {
+//                        for (int x = 0; x < registro.length; x++) {
+//                            System.out.println("OCTUBRE, DIA: " + a + "; CONTENIDO[" + x + "]: " + registro[x]);
+//                        }
+                        if (produccion.isEmpty()) { //arrayProduccion está vacio
+                            indicadorDia = contDia + 1;
+                            indicadorHora = Integer.parseInt(registro[2].toString());
+                            produccion.add(registro);
+                        } else { //arrayProduccion tiene registros
+                            
+                        }
+                    }
+                }
+            }
+//            if (!produccion.isEmpty()) { //Listamos el array
+//                Object[] produccionReg;
+//                System.out.println("<><><><><>PRODUCCION<><><><><>");
+//                for (int i = 0; i < produccion.size(); i++) {
+//                    produccionReg = (Object[]) produccion.get(i);
+//                    for (int j = 0; j < produccionReg.length; j++) {
+//                        System.out.println(j + "." + produccionReg[j].toString());
+//                    }
+//                }
+//                System.out.println("<><><><><><><><><><><><><><><>");
+//            }
+        } catch (Exception e) {
+            System.out.println("<><>reporteProduccionActual<><> " + e);
+        }
+        return produccion;
+    }
 
     public void topCalidad(Principal winPrincipal) {
         ArrayList topCalidad = new ArrayList();

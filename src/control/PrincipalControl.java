@@ -205,6 +205,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             case "_mniHourlyCount":
                 principalMetodos.hourlyGeneral(winPrincipal);
+                principalMetodos.generarReporteProduccionActualOEE(winPrincipal);
                 break;
             //***** Panel Superior *****
             case "_btnCambiarLinea":

@@ -34,7 +34,8 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private final String LISTAR_TURNO_NOCTURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
             +" FROM Bitacora WHERE (fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ?) OR (fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora <= ?) ORDER BY hora,tiempoIni ASC";   
     private final String EXISTEN_TURNOS_DIA = "SELECT COUNT(turno) FROM TiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
-        
+    private final String LISTAR_REGISTROS_OEE_DIARIO = "SELECT * FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";    
+    
     @Override
     public void insertarRegistroAccess(ArrayList registro) throws Exception {
         Object[] reg = new Object[registro.size()];
