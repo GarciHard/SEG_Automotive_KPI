@@ -195,6 +195,7 @@ public class SelecTurno extends javax.swing.JDialog {
         try {
             if(consultaTurno.consultaHorasTurnoDia(fecha, linea) == 0 ){
                 this.dispose();
+                
                 int nuevoTurno = JOptionPane.showConfirmDialog(null, "¿Desea Agregar otro turno?\n\t","Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (nuevoTurno == 0) {
                     new TiempoTurno(winPrincipal, true).setVisible(true); 

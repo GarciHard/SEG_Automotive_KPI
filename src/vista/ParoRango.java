@@ -29,7 +29,7 @@ public class ParoRango extends javax.swing.JDialog {
     private static Object[] registroBitacoraAux;
     private static Object[] registroBitacoraTmp;
     private static Object[] registroBitacoraTmpAux;
-    private static List tablaObj = new ArrayList();
+    private static List tablaObj = new ArrayList();    
     
     private final PrincipalMetodos principalMetodos = new PrincipalMetodos();
     public static int auxParoRango = 0;

@@ -104,6 +104,7 @@ public class ConsultaPorTurnoDAOImpl extends ConexionBD implements ConsultaPorTu
     
     public int consultaHorasTurnoDia(String fecha, String linea) throws Exception {
         int horaFin = 0;
+        
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(FALTA_HORAS_TURNO);

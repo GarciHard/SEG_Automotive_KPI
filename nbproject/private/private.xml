@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/GJA5TL/Documents/SEG_Automotive_KPI/src/dao/BitacoraDAOImpl.java</file>
-            <file>file:/C:/Users/GJA5TL/Documents/SEG_Automotive_KPI/src/modelo/ConexionBD.java</file>
-            <file>file:/C:/Users/GJA5TL/Documents/SEG_Automotive_KPI/src/control/PrincipalControl.java</file>
-            <file>file:/C:/Users/GJA5TL/Documents/SEG_Automotive_KPI/src/utils/PrincipalMetodos.java</file>
-            <file>file:/C:/Users/GJA5TL/Documents/SEG_Automotive_KPI/src/modelo/BitacoraDAO.java</file>
+            <file>file:/C:/Users/PRR1TL.SG/Documents/NetBeansProjects/SEG_Automotive_KPI/src/vista/SelecTurno.java</file>
+            <file>file:/C:/Users/PRR1TL.SG/Documents/NetBeansProjects/SEG_Automotive_KPI/src/utils/PrincipalValidaciones.java</file>
+            <file>file:/C:/Users/PRR1TL.SG/Documents/NetBeansProjects/SEG_Automotive_KPI/src/modelo/ConexionBD.java</file>
+            <file>file:/C:/Users/PRR1TL.SG/Documents/NetBeansProjects/SEG_Automotive_KPI/src/vista/TiempoTurno.java</file>
+            <file>file:/C:/Users/PRR1TL.SG/Documents/NetBeansProjects/SEG_Automotive_KPI/src/vista/ParoRango.java</file>
+            <file>file:/C:/Users/PRR1TL.SG/Documents/NetBeansProjects/SEG_Automotive_KPI/src/dao/ConsultaPorTurnoDAOImpl.java</file>
+            <file>file:/C:/Users/PRR1TL.SG/Documents/NetBeansProjects/SEG_Automotive_KPI/src/control/PrincipalControl.java</file>
         </group>
     </open-files>
 </project-private>

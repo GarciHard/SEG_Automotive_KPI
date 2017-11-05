@@ -159,14 +159,16 @@ public class PrincipalValidaciones {
                 }
                 if (!winPrincipal.getTxtTiempoFin().getText().isEmpty() && 
                     Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) <= Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())){
+                    //Actualiza cuando se hace un cambio en el minuto inicial
                     duracion = duracion = Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())
-                                - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText());
+                                - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText());                    
                     winPrincipal.getTxtDuracion().setText(String.valueOf(duracion + 1));                    
                 }else {
                     winPrincipal.getTxtTiempoFin().setText("");
                 }                
             }
-        } else if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) { //JTextField Tiempo Fin 
+        } else if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) { //AQUI VALIDACION DE FIN PARA 2 DIGITOS
+            
             if (!winPrincipal.getTxtTiempoFin().getText().isEmpty()) {
                     if (Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) > 59
                             || Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) < 0) {
