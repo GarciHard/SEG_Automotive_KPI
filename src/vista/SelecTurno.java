@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import utils.PrincipalMetodos;
+import static vista.Cargas.linea;
 import static vista.TiempoTurno.cmbTiempoModel;
 
 /**
@@ -27,6 +28,7 @@ public class SelecTurno extends javax.swing.JDialog {
     public static String fecha = "";
     
     private static ConsultaPorTurnoDAOImpl consultaTurno = new ConsultaPorTurnoDAOImpl();
+    //private static db.RegistrosDAOImpl registro = new db.RegistrosDAOImpl();
     
     public static String turno = "";
     public static int inicioTurno = 0;
@@ -157,7 +159,6 @@ public class SelecTurno extends javax.swing.JDialog {
                             cmbTiempoModel.add(i);
                         }
                     } else {
-                        //winPrincipal.getCmbHora().removeAllItems();
                         cmbTiempoModel.clear();
                         int duracionTurno = finTurno - inicioTurno;
                         cmbTiempoModel.add("Selecciona Hora");
@@ -191,6 +192,17 @@ public class SelecTurno extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        try {
+            if(consultaTurno.consultaHorasTurnoDia(fecha, linea) == 0 ){
+                this.dispose();
+                int nuevoTurno = JOptionPane.showConfirmDialog(null, "¿Desea Agregar otro turno?\n\t","Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (nuevoTurno == 0) {
+                    new TiempoTurno(winPrincipal, true).setVisible(true); 
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(SelecTurno.class.getName()).log(Level.SEVERE, null, ex);
+        }
         cmbTurno.setSelectedIndex(0);
         winPrincipal.getLblTurno().setText(" ");
         this.dispose();

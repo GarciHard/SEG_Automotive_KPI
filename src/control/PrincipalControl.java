@@ -427,7 +427,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
             fecha = winPrincipal.getDteFecha().getText();
             
-            if (bnEdicion ==2 ){
+            if (bnEdicion == 2 ){
                 new SelecTurno(winPrincipal, true).setVisible(true);
             } else{
                 try {

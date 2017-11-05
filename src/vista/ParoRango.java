@@ -73,15 +73,16 @@ public class ParoRango extends javax.swing.JDialog {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.setNextFocusableComponent(btnCancelar);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
 
-        cmbHInicio.setNextFocusableComponent(cmbHInicio);
+        cmbHInicio.setNextFocusableComponent(cmbHFin);
 
-        cmbHFin.setNextFocusableComponent(cmbHFin);
+        cmbHFin.setNextFocusableComponent(btnAceptar);
 
         jLabel1.setText("Hora Fin");
 

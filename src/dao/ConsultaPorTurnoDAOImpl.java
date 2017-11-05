@@ -25,6 +25,7 @@ public class ConsultaPorTurnoDAOImpl extends ConexionBD implements ConsultaPorTu
     private final String LISTA_TURNOS = "SELECT Turno FROM tiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
     private final String CONSULTA_INICIO_TURNO = "SELECT horaInicio FROM tiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea LIKE ? AND turno LIKE ?";
     private final String CONSULTA_FIN_TURNO = "SELECT horaFin FROM tiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea LIKE ? AND turno LIKE ?";
+    private final String FALTA_HORAS_TURNO = "SELECT COUNT (HoraFin) FROM TiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND HORAFIN = 6";
     
     @Override
     public DefaultComboBoxModel listaTurnos(String fecha, String linea) throws Exception {
@@ -99,5 +100,24 @@ public class ConsultaPorTurnoDAOImpl extends ConexionBD implements ConsultaPorTu
             this.cerrar();
         }
         return fin;
+    }
+    
+    public int consultaHorasTurnoDia(String fecha, String linea) throws Exception {
+        int horaFin = 0;
+        try {
+            this.conectar();
+            ps = this.conexion.prepareStatement(FALTA_HORAS_TURNO);
+            ps.setString(1, fecha);
+            ps.setString(2, linea);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                horaFin = rs.getInt(1);
+            }else {
+                horaFin = 0;
+            } 
+        } catch (Exception e) {
+            throw e;
+        }
+        return horaFin;
     }
 }

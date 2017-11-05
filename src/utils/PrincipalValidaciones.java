@@ -73,14 +73,14 @@ public class PrincipalValidaciones {
                 winPrincipal.getBtnParoPeriodo().setVisible(false);
             }
         } else if (winPrincipal.getTxtTiempoInicio().equals(e.getSource())) { //JTextField TiempoInicio
-            if ((e.getDot() + e.getMark()) == 0 || winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
+            if ((e.getDot() + e.getMark()) == 0 || winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {                
                 winPrincipal.getTxtTiempoFin().setText("");
                 winPrincipal.getTxtTiempoFin().setEnabled(false);                
             }
             if (e.getDot() == 1 && e.getMark() == 1) {
                 winPrincipal.getTxtTiempoFin().setEnabled(true);
             }
-        } else if (winPrincipal.getTxtTiempoFin().equals(e.getSource())) { //JTextField TiempoFin
+        } else if (winPrincipal.getTxtTiempoFin().equals(e.getSource())) { //JTextField TiempoFin            
             if ((e.getDot() + e.getMark()) == 0) {
                 winPrincipal.getTxtDuracion().setText("");
             }
@@ -150,31 +150,40 @@ public class PrincipalValidaciones {
 
     public static void validarKeyReleased(Principal winPrincipal, KeyEvent ke) {
         //JTextField Tiempo Inicio
+        int duracion = 0;
         if (winPrincipal.getTxtTiempoInicio().equals(ke.getSource())) {
             if (!winPrincipal.getTxtTiempoInicio().getText().isEmpty()) {
                 if (Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > 58
                         || Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) < 0) {
                     winPrincipal.getTxtTiempoInicio().setText("");
                 }
-            }
-        } else if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) { //JTextField Tiempo Fin
-            if (!winPrincipal.getTxtTiempoFin().getText().isEmpty()) {
-                if (Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) > 59
-                        || Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) < 0) {
-                    winPrincipal.getTxtTiempoFin().setText("");
-                } else {
-                    if (winPrincipal.getTxtTiempoFin().getText().length() == winPrincipal.getTxtTiempoInicio().getText().length()
-                            && Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())) {
-                        winPrincipal.getTxtTiempoFin().setText("");
-                    } else {
-                        int duracion = Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())
+                if (!winPrincipal.getTxtTiempoFin().getText().isEmpty() && 
+                    Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) <= Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())){
+                    duracion = duracion = Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())
                                 - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText());
-                        if (!(duracion < 0)) {
-                            winPrincipal.getTxtDuracion().setText(String.valueOf(duracion + 1));
+                    winPrincipal.getTxtDuracion().setText(String.valueOf(duracion + 1));                    
+                }else {
+                    winPrincipal.getTxtTiempoFin().setText("");
+                }                
+            }
+        } else if (winPrincipal.getTxtTiempoFin().equals(ke.getSource())) { //JTextField Tiempo Fin 
+            if (!winPrincipal.getTxtTiempoFin().getText().isEmpty()) {
+                    if (Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) > 59
+                            || Integer.parseInt(winPrincipal.getTxtTiempoFin().getText()) < 0) {
+                        winPrincipal.getTxtTiempoFin().setText("");
+                    } else {                    
+                        if (winPrincipal.getTxtTiempoFin().getText().length() == winPrincipal.getTxtTiempoInicio().getText().length()
+                                && Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText()) > Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())) {
+                            winPrincipal.getTxtTiempoFin().setText("");
+                        } else{
+                            duracion = Integer.parseInt(winPrincipal.getTxtTiempoFin().getText())
+                                    - Integer.parseInt(winPrincipal.getTxtTiempoInicio().getText());
+                            if (!(duracion < 0)) {
+                                winPrincipal.getTxtDuracion().setText(String.valueOf(duracion + 1));
+                            }
                         }
                     }
                 }
-            }
         }
     }
 
