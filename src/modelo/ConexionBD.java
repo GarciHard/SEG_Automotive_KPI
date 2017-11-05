@@ -28,9 +28,12 @@ public class ConexionBD {
     //URL PRUEBA MAC
     //private final String urlDB = "jdbc:ucanaccess://" + "/Users/garcihard/Desktop/SystemKPI.accdb";
     
-    //URL PRUEBA GJA5TL
-    private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL/Desktop/SystemKPI.accdb";
+    //URL PRUEBA GJA5TL - BOSCH SERVER
+    //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL/Desktop/SystemKPI.accdb";
     
+    //URL PRUEBA GJASTL - SEG SERVER
+    private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL.SG/Desktop/SystemKPI.accdb";
+
     //URL PRUEBA PRR1TL
     //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/PRR1TL/Desktop/SystemKPI.accdb";
     
