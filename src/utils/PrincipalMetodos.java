@@ -1251,13 +1251,14 @@ public class PrincipalMetodos {
                 case 0:
                     limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
 
+                    winPrincipal.getLblTurno().setText("Visualización día / No edición");
                     winPrincipal.getDteFecha().setEnabled(false);
-                    winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
+                    winPrincipal.getBtnGuardar().setEnabled(false);
+                    winPrincipal.getBtnCambiarLinea().setEnabled(false);
                     Object[] bitacoraObj;
                     try {
                         ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha, linea);
-                        //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                        //      winPrincipal.getCmbLinea().getSelectedItem().toString());
+
                         if (!bitacoraArr.isEmpty()) {
                             modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
                             for (int i = 0; i < bitacoraArr.size(); i++) {
@@ -1277,13 +1278,14 @@ public class PrincipalMetodos {
                     break;
             }
         } else {
+            winPrincipal.getLblTurno().setText("Visualización día / No edición");
             winPrincipal.getDteFecha().setEnabled(false);
-            winPrincipal.getBtnGuardar().setText("Actualizar Bitacora");
+            winPrincipal.getBtnGuardar().setEnabled(false);
+            winPrincipal.getBtnCambiarLinea().setEnabled(false);
             Object[] bitacoraObj;
             try {
                 ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacorasPorFecha(fecha, linea);
-                //ArrayList bitacoraArr = new BitacoraDAOImpl().listarBitacoras(winPrincipal.getDteFecha().getText(),
-                //winPrincipal.getCmbLinea().getSelectedItem().toString());
+
                 if (!bitacoraArr.isEmpty()) {
                     modeloTabla = (DefaultTableModel) winPrincipal.getTblBitacora().getModel();
                     for (int i = 0; i < bitacoraArr.size(); i++) {

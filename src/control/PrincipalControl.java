@@ -142,6 +142,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getMniLineas().addActionListener(this);
         
         //Menu EditarBitacora
+        winPrincipal.getMniListarDia().addActionListener(this);
         winPrincipal.getMniEditarPorDia().addActionListener(this);
         winPrincipal.getMniEditarPorTurno().addActionListener(this);
         
@@ -185,6 +186,11 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
                 break;
             case "_mniLineas":
                 new Lineas(winPrincipal, true).setVisible(true);
+                break;
+            case "_mniListarDia":
+                bnEdicion = 0;
+                winPrincipal.getDteFecha().setEnabled(true);
+                winPrincipal.getBtnCancelar().setVisible(true);
                 break;
             case "_mniEditarPorDia":
                 bnEdicion = 1;
@@ -427,24 +433,29 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
             linea = winPrincipal.getCmbLinea().getSelectedItem().toString();
             fecha = winPrincipal.getDteFecha().getText();
             
-            if (bnEdicion == 2 ){
-                new SelecTurno(winPrincipal, true).setVisible(true);
-            } else{
-                try {
-                    int registros = new BitacoraDAOImpl().edicionPorDia(fecha, linea);
-                    if(registros == 0 ){
-                        winPrincipal.getLblTurno().setText("  ");
-                        new TiempoTurno(winPrincipal, true).setVisible(true);
-                    } else {
-                        winPrincipal.getLblTurno().setText("  ");
-                        new SelecTurno(winPrincipal, true).setVisible(true);
-                        winPrincipal.getDteFecha().setEditable(false);
-                        winPrincipal.getDteFecha().setEnabled(false);
+            switch (bnEdicion) {
+                case 0:
+                    principalMetodos.consultarBitacoraPorDia(winPrincipal);
+                    break;
+                case 2:
+                    new SelecTurno(winPrincipal, true).setVisible(true);
+                    break;
+                default:
+                    try {
+                        int registros = new BitacoraDAOImpl().edicionPorDia(fecha, linea);
+                        if(registros == 0 ){
+                            winPrincipal.getLblTurno().setText("  ");
+                            new TiempoTurno(winPrincipal, true).setVisible(true);
+                        } else {
+                            winPrincipal.getLblTurno().setText("  ");
+                            new SelecTurno(winPrincipal, true).setVisible(true);
+                            winPrincipal.getDteFecha().setEditable(false);
+                            winPrincipal.getDteFecha().setEnabled(false);
+                        }
+                    } catch (Exception ex) {
+                        Logger.getLogger(PrincipalControl.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (Exception ex) {
-                    Logger.getLogger(PrincipalControl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                //principalMetodos.consultarBitacoraPorDia(winPrincipal);
+                    break;
             }
         }
     }

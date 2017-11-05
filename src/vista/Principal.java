@@ -183,6 +183,8 @@ public class Principal extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         mniCargaMasiva = new javax.swing.JMenuItem();
         mnuEditar = new javax.swing.JMenu();
+        mniListarDia = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
         mniEditarPorDia = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         mniEditarPorTurno = new javax.swing.JMenuItem();
@@ -1194,13 +1196,18 @@ public class Principal extends javax.swing.JFrame {
     mnuEditar.setText("Editar");
     mnuEditar.setFocusable(false);
 
-    mniEditarPorDia.setText("Bítacora por día");
+    mniListarDia.setText("Ver Bitácora Día");
+    mniListarDia.setActionCommand("_mniListarDia");
+    mnuEditar.add(mniListarDia);
+    mnuEditar.add(jSeparator9);
+
+    mniEditarPorDia.setText("Bitácora por día");
     mniEditarPorDia.setActionCommand("_mniEditarPorDia");
     mniEditarPorDia.setFocusable(true);
     mnuEditar.add(mniEditarPorDia);
     mnuEditar.add(jSeparator8);
 
-    mniEditarPorTurno.setText("Bítacora por turno");
+    mniEditarPorTurno.setText("Bitácora por turno");
     mniEditarPorTurno.setActionCommand("_mniEditarPorTurno");
     mnuEditar.add(mniEditarPorTurno);
 
@@ -1277,6 +1284,10 @@ public class Principal extends javax.swing.JFrame {
 
     public JMenuItem getMniHourlyCount() {
         return mniHourlyCount;
+    }
+    
+    public JMenuItem getMniListarDia() {
+        return mniListarDia;
     }
     
     public JMenuItem getMniEditarPorTurno() {
@@ -1651,6 +1662,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAreaCalidad;
     private javax.swing.JLabel lblAreaCambios;
@@ -1707,6 +1719,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniHourlyCount;
     private javax.swing.JMenuItem mniLineas;
     private javax.swing.JMenuItem mniListarBitacoras;
+    private javax.swing.JMenuItem mniListarDia;
     private javax.swing.JMenuItem mniOperaciones;
     private javax.swing.JMenuItem mniTiemposCiclo;
     private javax.swing.JMenu mnuAdministrar;

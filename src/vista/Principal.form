@@ -1321,9 +1321,17 @@
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mniListarDia">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ver Bit&#xe1;cora D&#xed;a"/>
+                <Property name="actionCommand" type="java.lang.String" value="_mniListarDia"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator9">
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniEditarPorDia">
               <Properties>
-                <Property name="text" type="java.lang.String" value="B&#xed;tacora por d&#xed;a"/>
+                <Property name="text" type="java.lang.String" value="Bit&#xe1;cora por d&#xed;a"/>
                 <Property name="actionCommand" type="java.lang.String" value="_mniEditarPorDia"/>
                 <Property name="focusable" type="boolean" value="true"/>
               </Properties>
@@ -1332,7 +1340,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniEditarPorTurno">
               <Properties>
-                <Property name="text" type="java.lang.String" value="B&#xed;tacora por turno"/>
+                <Property name="text" type="java.lang.String" value="Bit&#xe1;cora por turno"/>
                 <Property name="actionCommand" type="java.lang.String" value="_mniEditarPorTurno"/>
               </Properties>
             </MenuItem>
