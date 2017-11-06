@@ -3128,7 +3128,7 @@ public class PrincipalMetodos {
                 //String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
                 
                 //SEG SERVER
-                String EXCEL_LOCATION = "C:\\Users\\GJA5TL.SG\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
+                String EXCEL_LOCATION = "C:\\Users\\GJA5TL.SG\\Desktop\\Hourly_Count_12hr_Shifts_v1.xlsm";
                 Process p = Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE " + EXCEL_LOCATION);
             }
 
