@@ -8,6 +8,7 @@ import dao.LineasDAOImpl;
 import dao.OrganizacionalesDAOImpl;
 import dao.PiezasProducidasDAOImpl;
 import dao.TiempoTurnoDAOImpl;
+import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -1250,7 +1251,8 @@ public class PrincipalMetodos {
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
                 case 0:
                     limpiarTabla((DefaultTableModel) winPrincipal.getTblBitacora().getModel());
-
+                    
+                    winPrincipal.getLblTurno().setForeground(Color.red);
                     winPrincipal.getLblTurno().setText("Visualización día / No edición");
                     winPrincipal.getDteFecha().setEnabled(false);
                     winPrincipal.getBtnGuardar().setEnabled(false);
@@ -1278,6 +1280,7 @@ public class PrincipalMetodos {
                     break;
             }
         } else {
+            winPrincipal.getLblTurno().setForeground(Color.red);
             winPrincipal.getLblTurno().setText("Visualización día / No edición");
             winPrincipal.getDteFecha().setEnabled(false);
             winPrincipal.getBtnGuardar().setEnabled(false);

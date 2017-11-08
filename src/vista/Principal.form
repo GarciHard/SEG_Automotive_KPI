@@ -1321,12 +1321,6 @@
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mniListarDia">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ver Bit&#xe1;cora D&#xed;a"/>
-                <Property name="actionCommand" type="java.lang.String" value="_mniListarDia"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator9">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniEditarPorDia">
@@ -1351,6 +1345,12 @@
             <Property name="text" type="java.lang.String" value="Gr&#xe1;ficas"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mniListarDia">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ver Bit&#xe1;cora D&#xed;a"/>
+                <Property name="actionCommand" type="java.lang.String" value="_mniListarDia"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniHourlyCount">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Hourly Count"/>

@@ -183,12 +183,12 @@ public class Principal extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         mniCargaMasiva = new javax.swing.JMenuItem();
         mnuEditar = new javax.swing.JMenu();
-        mniListarDia = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
         mniEditarPorDia = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         mniEditarPorTurno = new javax.swing.JMenuItem();
         mnuGraficas = new javax.swing.JMenu();
+        mniListarDia = new javax.swing.JMenuItem();
         mniHourlyCount = new javax.swing.JMenuItem();
 
         mniEliminar.setText("Eliminar");
@@ -1195,10 +1195,6 @@ public class Principal extends javax.swing.JFrame {
 
     mnuEditar.setText("Editar");
     mnuEditar.setFocusable(false);
-
-    mniListarDia.setText("Ver Bitácora Día");
-    mniListarDia.setActionCommand("_mniListarDia");
-    mnuEditar.add(mniListarDia);
     mnuEditar.add(jSeparator9);
 
     mniEditarPorDia.setText("Bitácora por día");
@@ -1214,6 +1210,10 @@ public class Principal extends javax.swing.JFrame {
     mnuBarra.add(mnuEditar);
 
     mnuGraficas.setText("Gráficas");
+
+    mniListarDia.setText("Ver Bitácora Día");
+    mniListarDia.setActionCommand("_mniListarDia");
+    mnuGraficas.add(mniListarDia);
 
     mniHourlyCount.setText("Hourly Count");
     mniHourlyCount.setActionCommand("_mniHourlyCount");
