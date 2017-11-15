@@ -3099,7 +3099,7 @@ public class PrincipalMetodos {
                                     if (registroTiempoFaltante[0].equals(i)) {
                                         registroHourlyGral[7] = registroTiempoFaltante[1];
                                         registroHourlyGral[12] = winPrincipal.getDteFecha().getText();
-                                        registroHourlyGral[13] = winPrincipal.getCmbLinea().getSelectedItem().toString();
+                                        registroHourlyGral[13] = winPrincipal.getCmbLinea().getSelectedItem().toString();                                       
                                         hourlyGral.add(registroHourlyGral);
                                     }
 

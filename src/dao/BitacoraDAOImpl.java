@@ -404,5 +404,5 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             this.cerrar();
         }
         return registros;
-    }
+    }   
 }
