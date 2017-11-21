@@ -385,18 +385,18 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
         }
     }
     
-    public int edicionPorDia (String fecha, String linea) throws Exception {
-        int registros = 0 ;
+    public int edicionPorDia(String fecha, String linea) throws Exception {
+        int registros = 0;
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(EXISTEN_TURNOS_DIA);
             ps.setString(1, fecha);
             ps.setString(2, linea);
             rs = ps.executeQuery();
-            
-            if (rs.next()){
+
+            if (rs.next()) {
                 registros = rs.getInt(1);
-            }            
+            }
         } catch (Exception e) {
             throw e;
         } finally {
@@ -404,5 +404,25 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             this.cerrar();
         }
         return registros;
-    }   
+    }
+
+    @Override
+    public void numeroTurnoLinea(String fecha, String linea) throws Exception {
+        try {
+            this.conectar();
+            ps = this.conexion.prepareStatement(EXISTEN_TURNOS_DIA);
+            ps.setString(1, fecha);
+            ps.setString(2, linea);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                ps = this.conexion.prepareStatement("SELECT numTurno FROM turnoLinea WHERE ");
+            }
+
+            int numero = Integer.parseInt(rs.getString(1));
+            ps = this.conexion.prepareStatement("INSERT INTO turnoLinea");
+
+        } catch (Exception e) {
+        }
+    }
 }

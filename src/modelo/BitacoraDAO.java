@@ -20,4 +20,5 @@ public interface BitacoraDAO {
     public ArrayList existeFechaBitacora(String fecha, DefaultTableModel bitacora) throws Exception;
     public ArrayList listarBitacorasPorFecha(String fecha, String linea) throws Exception;
     public ArrayList listarBitacorasTurno(String fecha, String linea, int horaInicio, int horaFin) throws Exception;
+    public void numeroTurnoLinea(String fecha, String linea) throws Exception;
 }
