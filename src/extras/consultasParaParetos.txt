@@ -16,7 +16,7 @@ SELECT dia, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L0
 //Lista de Desgloce
 SELECT area, problema, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 AND mes = 11 GROUP BY problema
 
-//ParoS ORGANIZACIONALES Anuales
+//Paros ORGANIZACIONALES Anuales
 SELECT anio, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 GROUP BY anio
 //Paros Tecnicos Mes
 SELECT mes, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 AND mes <= 11 GROUP BY mes
