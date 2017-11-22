@@ -32,10 +32,10 @@ public class ConexionBD {
     //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL/Desktop/SystemKPI.accdb";
     
     //URL PRUEBA GJASTL - SEG SERVER
-    private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL.SG/Desktop/SystemKPI.accdb";
+    //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL.SG/Desktop/SystemKPI.accdb";
 
     //URL PRUEBA PRR1TL
-    //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/PRR1TL/Desktop/SystemKPI.accdb";
+    private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/PRR1TL.SG/Desktop/SystemKPI.accdb";
     
     public void conectar() throws Exception {
         try {

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>    
+    <script type="text/javascript">
+        function conexion() {  
+            document.write("a0");
+            var objConnection = new ActiveXObject("adodb.connection");
+            document.write("a1");
+            var strConn = "driver={sql server};server=SGLERSQL01;database=DB_SystemKPI_SQL;uid=USRKPI;password=nZQI5NZZN8smsSsc";
+            document.write("a2");
+            objConnection.Open(strConn);
+            var rs = new ActiveXObject("ADODB.Recordset");
+            var strQuery = "SELECT * FROM  Person.Address";
+            rs.Open(strQuery, objConnection);
+            rs.MoveFirst();
+            while (!rs.EOF) {
+                document.write(rs.fields(0) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                document.write(rs.fields(1) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                document.write(rs.fields(2) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ");
+                document.write(rs.fields(3) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ");
+                document.write(rs.fields(4) + "<br/>");
+                rs.movenext();
+            }
+        }
+    </script>
+</head>
+<body>    
+     <script type="text/javascript">  
+        conexion();
+    </script>
+    <!--h1 ALIGN=center > Piezas Producidas</h1>
+    <div  ALIGN=center  id="anio" style="height: 30vh; width: 85vh; float: left;  margin: 0% 3%; "></div>
+    <div ALIGN=center  id="mes" style="height: 30vh; width: 85vh; float: left ; margin: 0% 4%; "></div>
+    <div ALIGN=center  id="diaMes" style="height: 50vh; width: 92.25%; float: left ; margin: 3% 2%; "></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script-->
+</body>
+</html>
