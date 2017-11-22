@@ -1,0 +1,27 @@
+// Piezas Producidas Anuales
+SELECT Anio, SUM(cantPzas) FROM Bitacora WHERE linea = 'L003' AND anio = 2017 GROUP BY anio
+// Piezas Producidas Mes
+SELECT mes, SUM (cantPzas) FROM Bitacora WHERE linea = 'L003' AND anio = 2017 AND Mes <= 11 GROUP BY mes
+// Piezas Producidad DiaMes
+SELECT dia, SUM (cantPzas) FROM Bitacora WHERE linea = 'L003' AND anio = 2017 AND mes = 11 GROUP BY dia
+// Lista de desgloce 
+SELECT dia, cliente, noParte, SUM (cantPzas) FROM Bitacora WHERE linea = 'L003' AND anio = 2017 AND mes = 11 GROUP BY dia, cliente
+
+//Paros TECNICOS Anuales
+SELECT anio, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 GROUP BY anio
+//Paros Tecnicos Mes
+SELECT mes, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 AND mes <= 11 GROUP BY mes
+//Paros Tecnicos Dia
+SELECT dia, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 AND mes = 11 GROUP BY dia
+//Lista de Desgloce
+SELECT area, problema, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 AND mes = 11 GROUP BY problema
+
+//ParoS ORGANIZACIONALES Anuales
+SELECT anio, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 GROUP BY anio
+//Paros Tecnicos Mes
+SELECT mes, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 AND mes <= 11 GROUP BY mes
+//Paros Tecnicos Dia
+SELECT dia, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 AND mes = 11 GROUP BY dia
+//Lista de Desgloce
+SELECT area, problema, SUM (duracion) FROM Bitacora WHERE tema = 'Tecnizas' AND linea = 'L003' AND anio = 2017 AND mes = 11 GROUP BY problema
+
