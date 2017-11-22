@@ -12,6 +12,7 @@ import vista.Reportes;
  * @author PRR1TL
  */
 public class ConsultasParetos extends ConexionBD {
+    
     private ArrayList lisPzasAnio;
     private ArrayList lisPzasMes;
     private ArrayList lisPzasDia;
@@ -21,8 +22,8 @@ public class ConsultasParetos extends ConexionBD {
     private ResultSet rs;
     
     //CONSULTAS PARA PIEZAS PRODUCIDAS
-    private final String PZAS_ANIO = "SELECT Anio, SUM(cantPzas) FROM Bitacora WHERE linea LIKE ?  AND anio LIKE ? GROUP BY anio";
-    private final String PZAS_MES = "SELECT mes, SUM (cantPzas) FROM Bitacora WHERE linea LIKE ? AND anio LIKE ? AND Mes <= ? GROUP BY mes";
+    private final String PZAS_ANIO = "SELECT Anio FROM Bitacora WHERE linea LIKE ?  AND anio LIKE ? GROUP BY anio";
+    private final String PZAS_MES = "SELECT mes, SUM (cantPzas) FROM Bitacora WHERE linea LIKE ? AND anio LIKE ? GROUP BY mes";
     private final String PZAS_DIA = "SELECT dia, SUM (cantPzas) FROM Bitacora WHERE linea LIKE ? AND anio LIKE ? AND mes LIKE ? GROUP BY dia";
     private final String PZAS_DESGLOS = "SELECT dia, cliente, noParte, SUM (cantPzas) FROM Bitacora WHERE linea LIKE ? AND anio LIKE ? AND mes LIKE ? GROUP BY dia, cliente";
     
@@ -43,7 +44,7 @@ public class ConsultasParetos extends ConexionBD {
         lisPzasAnio = new ArrayList();  
         try {
             this.conectar();
-            ps = this.conexion.prepareStatement(PZAS_ANIO);
+            ps = this.conexion.prepareStatement(PZAS_MES);
             ps.setString(1, linea);
             ps.setString(2, anio);
             
@@ -54,9 +55,8 @@ public class ConsultasParetos extends ConexionBD {
                 bitacoraObj[0] = rs.getString(1);
                 bitacoraObj[1] = rs.getString(2);
                 
-                lisPzasAnio.add(bitacoraObj);
             }
-            System.out.println(lisPzasAnio);
+            
         } catch (Exception e) {
             throw e;
         } finally {
