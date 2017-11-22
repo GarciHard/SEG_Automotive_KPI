@@ -15,7 +15,7 @@ import modelo.ConexionBD;
 public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
 
     private ArrayList listaRegistros;
-    private PreparedStatement ps;
+    private PreparedStatement ps, ps2, ps3, ps4;
     private ResultSet rs;
     
     private final String INSERTA_REGISTRO_HOURLY = "INSERT INTO HourlyCount (Fecha, NombreLinea, Hora, CantProducida, NoParteTC, Scrap, CambioDuracion, TecnicaDuracion, OrganizacionalDuracion, TiempoPDuracion, OperacionX, ProblemaX, OperacionY, ProblemaY) "
@@ -385,18 +385,18 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
         }
     }
     
-    public int edicionPorDia (String fecha, String linea) throws Exception {
-        int registros = 0 ;
+    public int edicionPorDia(String fecha, String linea) throws Exception {
+        int registros = 0;
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(EXISTEN_TURNOS_DIA);
             ps.setString(1, fecha);
             ps.setString(2, linea);
             rs = ps.executeQuery();
-            
-            if (rs.next()){
+
+            if (rs.next()) {
                 registros = rs.getInt(1);
-            }            
+            }
         } catch (Exception e) {
             throw e;
         } finally {
@@ -404,5 +404,51 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
             this.cerrar();
         }
         return registros;
-    }   
+    }
+
+    @Override
+    public void numeroTurnoLinea(String fecha, String linea) throws Exception {
+        int numTurno = 0;
+        try {
+            this.conectar();
+            ps = this.conexion.prepareStatement(EXISTEN_TURNOS_DIA);
+            ps.setString(1, fecha);
+            ps.setString(2, linea);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                numTurno = Integer.parseInt(rs.getString(1));
+                System.out.println("NUMERO DE TURNO: " + numTurno);
+                
+                ps2 = this.conexion.prepareStatement("SELECT NumTurnoLinea FROM TurnoLinea WHERE Linea LIKE ? AND Fecha = TO_DATE(?, 'DD/MM/YYYY')");
+                ps2.setString(1, linea);
+                ps2.setString(2, fecha);
+                rs = ps2.executeQuery();
+                ps2.close();
+                
+                if (rs.next()) {
+                    
+                    ps3 = this.conexion.prepareStatement("UPDATE TurnoLinea SET NumTurnoLinea = ? WHERE Linea like ? AND Fecha = TO_DATE(?, 'DD/MM/YYYY')");
+                    ps3.setInt(1, numTurno);
+                    ps3.setString(2, linea);
+                    ps3.setString(3, fecha);
+                    ps3.executeUpdate();
+                    ps3.close();
+                } else {
+                    ps4 = this.conexion.prepareStatement("INSERT INTO TurnoLinea VALUES(?, ?, TO_DATE(?, 'DD/MM/YYYY'))");
+                    ps4.setInt(1, numTurno);
+                    ps4.setString(2, linea);
+                    ps4.setString(3, fecha);
+                    ps4.executeUpdate();
+                    ps4.close();
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            ps.close();
+            rs.close();
+            this.cerrar();
+        }
+    }
 }

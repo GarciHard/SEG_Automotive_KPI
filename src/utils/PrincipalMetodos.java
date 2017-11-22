@@ -3127,6 +3127,8 @@ public class PrincipalMetodos {
                 new BitacoraDAOImpl().borrarRegistroHourly(winPrincipal.getCmbLinea().getSelectedItem().toString());
                 new BitacoraDAOImpl().insertarRegistroHourly(hourlyGral);
 
+                new BitacoraDAOImpl().numeroTurnoLinea(winPrincipal.getDteFecha().getText(), winPrincipal.getCmbLinea().getSelectedItem().toString());
+                                
                 //BOSCH SERVER
                 //String EXCEL_LOCATION = "C:\\Users\\GJA5TL\\Desktop\\Hourly_Count_12hr_Shifts_v1.0.xlsx";
                 
