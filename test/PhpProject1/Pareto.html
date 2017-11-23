@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>    
+    <script id="Anual" type="text/javascript">
+        window.onload = function () {
+        var chart = new CanvasJS.Chart("anio", {            
+            var dataLength = 0;
+                var data = [];
+                $.getJSON("conexion.php", function (result) {
+                    dataLength = result.length;
+                    for (var i = 0; i < dataLength; i++) {
+                        data.push({
+                            x: parseInt(result[i].linea),
+                            y: parseInt(result[i].tipo)
+                        });
+                    };
+                    chart.render();
+                });
+            
+            title:{ title: "Anual"},
+            axisY: {
+                title: "Cantidad Piezas",
+                lineColor: "#4F81BC",
+                tickColor: "#4F81BC",
+                labelFontColor: "#4F81BC"                
+            },
+            data: [{
+                type: "column",
+                dataPoints: [
+                    { label: "Subways", y: 44853 },
+                    { label: "McDonald", y: 36525 },
+                    { label: "Starbucks", y: 23768 },
+                    { label: "KFC", y: 19420 },
+                    { label: "Pizza Hut", y: 13528 },
+                    { label: "Dunkin Donuts", y: 11906 }
+                ]
+            }]
+        });
+        chart.render();
+        createParetoAnual(); 	
+            
+
+        function createParetoAnual(){
+            var dps = [];
+            var yValue, yTotal = 0, yPercent = 0;
+
+            for(var i = 0; i < chart.data[0].dataPoints.length; i++)
+                yTotal += chart.data[0].dataPoints[i].y;            
+                for(var i = 0; i < chart.data[0].dataPoints.length; i++){
+                    yValue = chart.data[0].dataPoints[i].y;                    yPercent = (50);
+                    dps.push({label: chart.data[0].dataPoints[i].label, y: yPercent});
+                }
+                chart.addTo("data",{type:"line", yValueFormatString: "0.##\"%\"", dataPoints: dps});
+                chart.data[1].set("axisYType", "secondary", false);
+                chart.axisY[0].set("maximum", yTotal);
+                chart.axisY2[0].set("maximum", 100);
+        }
+            
+        //////mes
+        
+        var chart = new CanvasJS.Chart("mes", {
+            title:{ text: "MES" },
+            axisY: {
+                title: "Cantidad Piezas/Dia Mes",
+                lineColor: "#4F81BC",
+                tickColor: "#4F81BC",
+                labelFontColor: "#4F81BC"                
+            },
+            data: [{
+                type: "column",
+                dataPoints: [
+                    { label: "Subways", y: 44853 },
+                    { label: "McDonald", y: 36525 },
+                    { label: "Starbucks", y: 23768 },
+                    { label: "KFC", y: 19420 },
+                    { label: "Pizza Hut", y: 13528 },
+                    { label: "Dunkin Donuts", y: 11906 }
+                ]
+            }]
+        });
+        chart.render();
+        createParetoMes(); 	
+            
+
+        function createParetoMes(){
+            var dps = [];
+            var yValue, yTotal = 0, yPercent = 0;
+
+            for(var i = 0; i < chart.data[0].dataPoints.length; i++)
+                yTotal += chart.data[0].dataPoints[i].y;            
+                for(var i = 0; i < chart.data[0].dataPoints.length; i++){
+                    yValue = chart.data[0].dataPoints[i].y;
+                    yPercent = (50);
+                    dps.push({label: chart.data[0].dataPoints[i].label, y: yPercent});
+                }
+                chart.addTo("data",{type:"line", yValueFormatString: "0.##\"%\"", dataPoints: dps});
+                chart.data[1].set("axisYType", "secondary", false);
+                chart.axisY[0].set("maximum", yTotal);
+                chart.axisY2[0].set("maximum", 100);
+        } 
+            
+        //DESGLOCE DIA    
+        
+        var chart = new CanvasJS.Chart("diaMes", {
+            title:{ text: "Piezas Producidas por Dia" },
+            axisY: {
+                title: "Cantidad Piezas/Dia Mes",
+                lineColor: "#4F81BC",
+                tickColor: "#4F81BC",
+                labelFontColor: "#4F81BC"                
+            },
+            data: [{
+                type: "column",
+                dataPoints: [
+                    { label: "Subways", y: 44853 },
+                    { label: "McDonald", y: 36525 },
+                    { label: "Starbucks", y: 23768 },
+                    { label: "KFC", y: 19420 },
+                    { label: "Pizza Hut", y: 13528 },
+                    { label: "Dunkin Donuts", y: 11906 }
+                ]
+            }]
+        });
+        chart.render();
+        createParetoMes(); 	            
+
+        function createParetoDia(){
+            var dps = [];
+            var yValue, yTotal = 0, yPercent = 0;
+            for(var i = 0; i < chart.data[0].dataPoints.length; i++)
+                yTotal += chart.data[0].dataPoints[i].y;            
+                for(var i = 0; i < chart.data[0].dataPoints.length; i++){
+                    yValue = chart.data[0].dataPoints[i].y;
+                    yPercent = (50);
+                    dps.push({label: chart.data[0].dataPoints[i].label, y: yPercent});
+                }
+                chart.addTo("data",{type:"line", yValueFormatString: "0.##\"%\"", dataPoints: dps});
+                chart.data[1].set("axisYType", "secondary", false);
+                chart.axisY[0].set("maximum", yTotal);
+                chart.axisY2[0].set("maximum", 100);
+        }            
+    }
+    </script>  
+        
+</head>
+<body>
+    <h1 ALIGN=center > Piezas Producidas</h1>
+    <div  ALIGN=center  id="anio" style="height: 30vh; width: 85vh; float: left;  margin: 0% 3%; "></div>
+    <div ALIGN=center  id="mes" style="height: 30vh; width: 85vh; float: left ; margin: 0% 4%; "></div>
+    <div ALIGN=center  id="diaMes" style="height: 50vh; width: 92%; float: left ; margin: 3% 2%; "></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

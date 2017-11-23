@@ -20,9 +20,16 @@
     $conn = sqlsrv_connect( $serverName, $connectionInfo);
 
     if( $conn ) {
-         echo "Conexión exitosa WIN :) .<br />";
+        echo "Conexión exitosa WIN :) .<br />";
+        $data_points = array();
+        $result = mysqli_query($con, "SELECT * FROM lineas"); 
+        while ($row = mysqli_fetch_array($result)) {
+            $point = array("valorx" => $row['x'], "valory" => $row['y']);
+            array_push($data_points, $point);
+        }
+        echo json_encode($data_points);
     }else{
-         echo "Conexión no se pudo establecer.<br />";
+        echo "Conexión no se pudo establecer.<br />";
         die( print_r( sqlsrv_errors(), true));
     }
     
