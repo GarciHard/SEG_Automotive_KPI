@@ -2,26 +2,7 @@
 <html>
 <head>    
     <script type="text/javascript">
-        function conexion() {  
-            document.write("a0");
-            var objConnection = new ActiveXObject("adodb.connection");
-            document.write("a1");
-            var strConn = "driver={sql server};server=SGLERSQL01;database=DB_SystemKPI_SQL;uid=USRKPI;password=nZQI5NZZN8smsSsc";
-            document.write("a2");
-            objConnection.Open(strConn);
-            var rs = new ActiveXObject("ADODB.Recordset");
-            var strQuery = "SELECT * FROM  Person.Address";
-            rs.Open(strQuery, objConnection);
-            rs.MoveFirst();
-            while (!rs.EOF) {
-                document.write(rs.fields(0) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-                document.write(rs.fields(1) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-                document.write(rs.fields(2) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ");
-                document.write(rs.fields(3) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ");
-                document.write(rs.fields(4) + "<br/>");
-                rs.movenext();
-            }
-        }
+        
     </script>
 </head>
 <body>    

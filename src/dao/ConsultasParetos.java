@@ -54,7 +54,6 @@ public class ConsultasParetos extends ConexionBD {
                 bitacoraObj = new Object[3];
                 bitacoraObj[0] = rs.getString(1);
                 bitacoraObj[1] = rs.getString(2);
-                
             }
             
         } catch (Exception e) {
