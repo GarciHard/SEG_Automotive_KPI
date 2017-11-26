@@ -19,4 +19,6 @@ class ServerConfig {
     function serverDisconnect() {
         sqlsrv_close( $this->connection );
     }
+    
+    
 }
