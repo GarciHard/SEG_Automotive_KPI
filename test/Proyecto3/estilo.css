@@ -1,11 +1,16 @@
-#anual {
-    max-width: 450px;
-    height: 310px;
-    margin: 1em ;
+.contenedor{
+  height: 30vh; 
+  width: 48%; 
+  float: left ; 
+  margin: 0% 1%;
 }
-
-#mensual {
-    max-width: 450px;
-    height: 310px;
-    margin: 1em ;
+.contenedor2{
+  height: 60%; 
+  width: 98%; 
+  float: left ; 
+  margin: 0% 1%
+}
+#titulo {
+    color: #FFFFFF;
+    background: #08088A;
 }
