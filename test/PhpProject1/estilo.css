@@ -1,0 +1,102 @@
+.contenedor{
+    height: 40vh; 
+    width: 49%; 
+    float: left ; 
+    margin: 0% 0%;
+}
+
+.contenedor2{
+    height: 50vh; 
+    width: 98%; 
+    float: left ; 
+    margin: 0% 0%
+}
+
+.arribaMes{
+    height: 40vh; 
+    width: 35%; 
+    float: left ; 
+    margin: 0% 1%
+}
+
+.arribaDiaMes{
+    height: 40vh; 
+    width: 60%; 
+    float: left ; 
+    margin: 0% 1%
+}
+
+#izquierda .pizquierda{
+    height: 200vh; 
+    width: 100%; 
+    float: left; 
+    margin: 0% 0%;
+}
+
+#derecha .pderecha{
+    height: 200vh; 
+    width: 100%; 
+    float: left ; 
+    margin: 0% 0%;
+}
+
+#titulo {
+    color: #FFFFFF;
+    background: #08088A;
+}
+
+#table-wrapper {
+    height: 40vh; 
+    width: 98%; 
+    float: left ; 
+    margin: 0% 1%
+}
+
+#table-scroll {
+    height:250px;
+    overflow:auto;  
+    margin-top:20px;
+}
+
+#table-wrapper table {
+    width:100%;
+}
+
+#table-wrapper table thead th .text {
+    display: block;
+    position:absolute; 
+    margin: 0% -1.3%;
+    top: 342px;
+    z-index: 200;
+    height: 20px;
+    width: 35%;
+    background: #D8D8D8;         
+}
+
+#table-wrapperP {
+    height: 40vh; 
+    width: 98%; 
+    float: left ; 
+    margin: 0% 1%
+}
+
+#table-scrollP {
+    height:20px;
+    overflow:auto;  
+    margin-top:20px;
+}
+
+#table-wrapperP tableP {
+    width:100%;
+}
+
+#table-wrapperP tableP theadP thP .textP {
+    display: block;
+    position:absolute; 
+    margin: 0% -1.3%;
+    top: 342px;
+    z-index:2;
+    height:20px;
+    width:35%;
+    background: #D8D8D8;         
+}
