@@ -1,0 +1,16 @@
+.contenedor{
+  height: 30vh; 
+  width: 48%; 
+  float: left ; 
+  margin: 0% 1%;
+}
+.contenedor2{
+  height: 60%; 
+  width: 98%; 
+  float: left ; 
+  margin: 0% 1%
+}
+#titulo {
+    color: #FFFFFF;
+    background: #08088A;
+}
