@@ -2,6 +2,7 @@ package vista;
 
 import control.LoginControl;
 import dao.TiempoTurnoDAOImpl;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -242,7 +243,7 @@ public class TiempoTurno extends javax.swing.JDialog {
 
                     new TiempoTurnoDAOImpl().registrarHorarioBitacora(
                             winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                            winPrincipal.getDteFecha().getText(),
+                            Date.valueOf(winPrincipal.getDteFecha().getText()),
                             String.valueOf(jComboBox1.getSelectedItem()),
                             Integer.parseInt(txtHoraInicial.getText()),
                             Integer.parseInt(txtHoraFinal.getText()),

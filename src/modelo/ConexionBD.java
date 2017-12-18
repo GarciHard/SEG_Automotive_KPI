@@ -12,12 +12,21 @@ import java.sql.SQLException;
 public class ConexionBD {
     
     protected Connection conexion;
+    private String dbName = "DB_SystemKPI_SQL";
+    private String serverName = "SGLERSQL01";
+    private String serverPort = "1433";
+    private String userName = "USRKPI";
+    private String password = "nZQI5NZZN8smsSsc";
 
     public Connection getConexion() {
         return conexion;
     }
     
-    private final String driverJDBC = "net.ucanaccess.jdbc.UcanaccessDriver";
+    //DRIVER JDBC ACCESS
+    //private final String driverJDBC = "net.ucanaccess.jdbc.UcanaccessDriver";
+    
+    //DRIVER JDBC SQLSERVER
+    private final String driverJDBCSQLServer = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     
     //URL PRODUCCION
     //private final String urlDB = "jdbc:ucanaccess://" + "I:/Dept/MOE1/Shared/Informacion_general/proyectos  SG/Proyecto OEE/BD/SystemKPI.accdb";
@@ -35,13 +44,15 @@ public class ConexionBD {
     //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/GJA5TL.SG/Desktop/SystemKPI.accdb";
 
     //URL PRUEBA PRR1TL
-    private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/PRR1TL.SG/Desktop/SystemKPI.accdb";
+    //private final String urlDB = "jdbc:ucanaccess://" + "C:/Users/PRR1TL.SG/Desktop/SystemKPI.accdb";
+    
+    //URL SERVIDOR SQLSERVER - SEG
+    private final String urlDB = "jdbc:sqlserver://"+serverName+"\\SQLEXPRESS:"+serverPort+";databaseName="+dbName+";user="+userName+";password="+password+";";
     
     public void conectar() throws Exception {
         try {
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            Class.forName(driverJDBCSQLServer);
             conexion = DriverManager.getConnection(urlDB);
-            Class.forName(driverJDBC);
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
         }

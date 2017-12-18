@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Date;
 import modelo.ConexionBD;
 import modelo.TiempoTurnoDAO;
 
@@ -16,8 +17,8 @@ public class TiempoTurnoDAOImpl extends ConexionBD implements TiempoTurnoDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     
-    private final String REGISTRAR_HORARIO_BITACORA = "INSERT INTO TiempoTurno(Linea, Fecha, Turno, HoraInicio, HoraFin, NoPersonal) VALUES (?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?)";
-    private final String EXISTE_HORARIO_BITACORA = "SELECT COUNT(*) FROM TiempoTurno WHERE Linea like ? AND Fecha = TO_DATE(?, 'DD/MM/YYYY') AND Turno LIKE ? AND HoraInicio <= ? AND HoraFin >= ?";
+    private final String REGISTRAR_HORARIO_BITACORA = "INSERT INTO TiempoTurno(Linea, Fecha, Turno, HoraInicio, HoraFin, NoPersonal) VALUES (?, CAST(? as date), ?, ?, ?, ?)";
+    private final String EXISTE_HORARIO_BITACORA = "SELECT COUNT(*) FROM TiempoTurno WHERE Linea LIKE ? AND Fecha = CONVERT(DATETIME, ?) AND Turno LIKE ? AND HoraInicio <= ? AND HoraFin >= ?";
     private final String BORRAR_TURNO_REGISTRADO = "DELETE FROM TiempoTurno WHERE Linea LIKE ? AND Fecha = TO_DATE(?, 'DD/MM/YYYY') AND Turno LIKE ?";
     
     @Override
@@ -50,12 +51,12 @@ public class TiempoTurnoDAOImpl extends ConexionBD implements TiempoTurnoDAO {
     }
 
     @Override
-    public void registrarHorarioBitacora(String linea, String fecha, String turno, int horaInicio, int horaFin, int noPersonal) throws Exception {
+    public void registrarHorarioBitacora(String linea, Date fecha, String turno, int horaInicio, int horaFin, int noPersonal) throws Exception {
         try {
             this.conectar();
             ps = this.conexion.prepareStatement(REGISTRAR_HORARIO_BITACORA);
             ps.setString(1, linea);
-            ps.setString(2, fecha);
+            ps.setDate(2, fecha);
             ps.setString(3, turno);
             ps.setInt(4, horaInicio);
             ps.setInt(5, horaFin);
