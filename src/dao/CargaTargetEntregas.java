@@ -1,13 +1,8 @@
 package dao;
 
-import static dao.CargaMasivaDAOImpl.linea;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import modelo.ConexionBD;
-import static vista.CargaTargetEntregas.anio;
-import static vista.CargaTargetEntregas.linea;
-import static vista.CargaTargetEntregas.noMes;
 
 /**
  *
