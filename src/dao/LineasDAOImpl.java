@@ -29,7 +29,7 @@ public class LineasDAOImpl extends ConexionBD implements LineasDAO {
     private final String ACTUALIZA_LINEA = "UPDATE Lineas set linea = ?, tipo = ?, nombre = ? WHERE linea LIKE ?";
     private final String ELIMINA_LINEA = "DELETE FROM Lineas WHERE linea LIKE ?";
     private final String BUSCAR_REGISTRO = "SELECT linea, tipo, nombre FROM Lineas WHERE linea like ?";
-    private final String TIPO_ENSAMBLE_LINEA = "SELECT nombre FROM Lineas WHERE linea LIKE ? AND nombre LIKE \"%Ensamble Final%\"";
+    private final String TIPO_ENSAMBLE_LINEA = "SELECT nombre FROM Lineas WHERE linea LIKE ? AND nombre LIKE '%Ensamble Final%'";
     
     @Override
     public DefaultComboBoxModel listaLineas() throws Exception {

@@ -19,22 +19,22 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
     private ResultSet rs;
     
     private final String INSERTA_REGISTRO_HOURLY = "INSERT INTO HourlyCount (Fecha, NombreLinea, Hora, CantProducida, NoParteTC, Scrap, CambioDuracion, TecnicaDuracion, OrganizacionalDuracion, TiempoPDuracion, OperacionX, ProblemaX, OperacionY, ProblemaY) "
-            + "VALUES(TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            + "VALUES(CAST(CONVERT(DATETIME, ?, 103) as DATETIME), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String BORRA_REGISTRO_HOURLY = "DELETE FROM HourlyCount WHERE NombreLinea LIKE ?";
-    private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo) "
-            + "VALUES(?, TO_DATE(?, 'DD/MM/YYYY'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private final String BORRA_REGISTRO_TIEMPO = "DELETE FROM Bitacora WHERE hora BETWEEN ? AND ? AND linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY')";
-    private final String BORRA_REGISTRO_FILA = "DELETE FROM Bitacora WHERE linea LIKE ? AND fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
-    private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea LIKE ?";
-    private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND hora = ? AND tiempoIni = ? AND tiempoFin = ? ORDER BY hora";
-    private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
-            +" FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? ORDER BY hora";
-    private final String LISTAR_REGISTROS_TURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
-            +" FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ? AND hora <= ? ORDER BY hora,tiempoIni ASC";
-    private final String LISTAR_TURNO_NOCTURNO = "SELECT linea, format(fecha, \"dd/mm/yyyy\"), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
-            +" FROM Bitacora WHERE (fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora >= ?) OR (fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND hora < ?) ORDER BY hora,tiempoIni ASC";   
-    private final String EXISTEN_TURNOS_DIA = "SELECT COUNT(turno) FROM TiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
-    private final String LISTAR_REGISTROS_OEE_DIARIO = "SELECT * FROM Bitacora WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?"; 
+    private final String INSERTA_REGISTRO = "INSERT INTO Bitacora (dia, mes, anio, linea, fecha, hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo) "
+            + "VALUES(DATEPART(DAY, CAST(CONVERT(DATETIME, ?, 103) as DATETIME)), DATEPART(MONTH, CAST(CONVERT(DATETIME, ?, 103) as DATETIME)), DATEPART(YEAR, CAST(CONVERT(DATETIME, ?, 103) as DATETIME)), ?, CAST(CONVERT(DATETIME, ?, 103) as DATETIME), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";   
+    private final String BORRA_REGISTRO_TIEMPO = "DELETE FROM Bitacora WHERE hora BETWEEN ? AND ? AND linea LIKE ? AND fecha = CONVERT(DATETIME, ?, 103)";
+    private final String BORRA_REGISTRO_FILA = "DELETE FROM Bitacora WHERE linea LIKE ? AND fecha = CONVERT(DATETIME, ?, 103) AND hora = ? AND tiempoIni = ? AND tiempoFin = ?";
+    private final String BORRA_REGISTRO_FECHA = "DELETE FROM Bitacora WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea LIKE ?";
+    private final String CONSULTA_FECHA = "SELECT hora, tiempoIni, tiempoFin FROM Bitacora WHERE fecha = CONVERT(DATETIME, ?, 103) AND hora = ? AND tiempoIni = ? AND tiempoFin = ? ORDER BY hora";
+    private final String LISTAR_REGISTROS_FECHA = "SELECT linea, format(fecha, 'dd/MM/yyyy'), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
+            +" FROM Bitacora WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea like ? ORDER BY hora";
+    private final String LISTAR_REGISTROS_TURNO = "SELECT linea, format(fecha, 'dd/MM/yyyy'), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
+            +" FROM Bitacora WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea like ? AND hora >= ? AND hora <= ? ORDER BY hora,tiempoIni ASC";
+    private final String LISTAR_TURNO_NOCTURNO = "SELECT linea, format(fecha, 'dd/MM/yyyy'), hora, tiempoIni, tiempoFin, duracion, tema, operacion, area, problema, cliente, noParte, cantPzas, noParteCambio, scrap, detalleMaterial, tiempoCiclo"
+            +" FROM Bitacora WHERE (fecha = CONVERT(DATETIME, ?, 103) AND linea like ? AND hora >= ?) OR (fecha = CONVERT(DATETIME, ?, 103) AND linea like ? AND hora < ?) ORDER BY hora,tiempoIni ASC";   
+    private final String EXISTEN_TURNOS_DIA = "SELECT COUNT(turno) FROM TiempoTurno WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea like ?";
+    private final String LISTAR_REGISTROS_OEE_DIARIO = "SELECT * FROM Bitacora WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea like ?"; 
     
     @Override
     public void insertarRegistroAccess(ArrayList registro) throws Exception {
@@ -45,23 +45,26 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 reg[i] = (Object) registro.get(i);
             }
             ps = this.conexion.prepareStatement(INSERTA_REGISTRO);
-            ps.setString(1, reg[0].toString());
-            ps.setString(2, reg[1].toString());
-            ps.setInt(3, Integer.parseInt(reg[2].toString()));
-            ps.setInt(4, Integer.parseInt(reg[3].toString()));
-            ps.setInt(5, Integer.parseInt(reg[4].toString()));
-            ps.setInt(6, Integer.parseInt(reg[5].toString()));
-            ps.setString(7, reg[6].toString());
-            ps.setString(8, reg[7].toString());
-            ps.setString(9, reg[8].toString());
-            ps.setString(10, reg[9].toString());
-            ps.setString(11, reg[10].toString());
-            ps.setString(12, reg[11].toString());
-            ps.setInt(13, Integer.parseInt(reg[12].toString()));
-            ps.setString(14, reg[13].toString());
-            ps.setString(15, reg[14].toString());
-            ps.setString(16, reg[15].toString());
-            ps.setString(17, reg[16].toString());
+            ps.setString(1, reg[1].toString());//dia
+            ps.setString(2, reg[1].toString());//mes
+            ps.setString(3, reg[1].toString());//anio
+            ps.setString(4, reg[0].toString());
+            ps.setString(5, reg[1].toString());
+            ps.setInt(6, Integer.parseInt(reg[2].toString()));
+            ps.setInt(7, Integer.parseInt(reg[3].toString()));
+            ps.setInt(8, Integer.parseInt(reg[4].toString()));
+            ps.setInt(9, Integer.parseInt(reg[5].toString()));
+            ps.setString(10, reg[6].toString());
+            ps.setString(11, reg[7].toString());
+            ps.setString(12, reg[8].toString());
+            ps.setString(13, reg[9].toString());
+            ps.setString(14, reg[10].toString());
+            ps.setString(15, reg[11].toString());
+            ps.setInt(16, Integer.parseInt(reg[12].toString()));
+            ps.setString(17, reg[13].toString());
+            ps.setString(18, reg[14].toString());
+            ps.setString(19, reg[15].toString());
+            ps.setString(20, reg[16].toString());
             
             ps.executeUpdate();
         } catch (Exception e) {
@@ -225,23 +228,26 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 reg[i] = (Object) registroFila.get(i);
             }
             ps = this.conexion.prepareStatement(INSERTA_REGISTRO);
-            ps.setString(1, reg[0].toString());
-            ps.setString(2, reg[1].toString());
-            ps.setInt(3, Integer.parseInt(reg[2].toString()));
-            ps.setInt(4, Integer.parseInt(reg[3].toString()));
-            ps.setInt(5, Integer.parseInt(reg[4].toString()));
-            ps.setInt(6, Integer.parseInt(reg[5].toString()));
-            ps.setString(7, reg[6].toString());
-            ps.setString(8, reg[7].toString());
-            ps.setString(9, reg[8].toString());
-            ps.setString(10, reg[9].toString());
-            ps.setString(11, reg[10].toString());
-            ps.setString(12, reg[11].toString());
-            ps.setInt(13, Integer.parseInt(reg[12].toString()));
-            ps.setString(14, reg[13].toString());
-            ps.setString(15, reg[14].toString());
-            ps.setString(16, reg[15].toString());
-            ps.setString(17, reg[16].toString());
+            ps.setString(1, reg[1].toString());//dia
+            ps.setString(2, reg[1].toString());//mes
+            ps.setString(3, reg[1].toString());//anio
+            ps.setString(4, reg[0].toString());
+            ps.setString(5, reg[1].toString());
+            ps.setInt(6, Integer.parseInt(reg[2].toString()));
+            ps.setInt(7, Integer.parseInt(reg[3].toString()));
+            ps.setInt(8, Integer.parseInt(reg[4].toString()));
+            ps.setInt(9, Integer.parseInt(reg[5].toString()));
+            ps.setString(10, reg[6].toString());
+            ps.setString(11, reg[7].toString());
+            ps.setString(12, reg[8].toString());
+            ps.setString(13, reg[9].toString());
+            ps.setString(14, reg[10].toString());
+            ps.setString(15, reg[11].toString());
+            ps.setInt(16, Integer.parseInt(reg[12].toString()));
+            ps.setString(17, reg[13].toString());
+            ps.setString(18, reg[14].toString());
+            ps.setString(19, reg[15].toString());
+            ps.setString(20, reg[16].toString());
 
             ps.executeUpdate();
         } catch (Exception e) {

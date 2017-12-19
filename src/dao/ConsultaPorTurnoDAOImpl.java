@@ -22,10 +22,10 @@ public class ConsultaPorTurnoDAOImpl extends ConexionBD implements ConsultaPorTu
     
     private ArrayList<String> turnoArr;
     
-    private final String LISTA_TURNOS = "SELECT Turno FROM tiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ?";
-    private final String CONSULTA_INICIO_TURNO = "SELECT horaInicio FROM tiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea LIKE ? AND turno LIKE ?";
-    private final String CONSULTA_FIN_TURNO = "SELECT horaFin FROM tiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea LIKE ? AND turno LIKE ?";
-    private final String FALTA_HORAS_TURNO = "SELECT COUNT (HoraFin) FROM TiempoTurno WHERE fecha = TO_DATE(?, 'DD/MM/YYYY') AND linea like ? AND HORAFIN = 6";
+    private final String LISTA_TURNOS = "SELECT Turno FROM TiempoTurno WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea like ?";
+    private final String CONSULTA_INICIO_TURNO = "SELECT horaInicio FROM TiempoTurno WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea LIKE ? AND turno LIKE ?";
+    private final String CONSULTA_FIN_TURNO = "SELECT horaFin FROM TiempoTurno WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea LIKE ? AND turno LIKE ?";
+    private final String FALTA_HORAS_TURNO = "SELECT COUNT (HoraFin) FROM TiempoTurno WHERE fecha = CONVERT(DATETIME, ?, 103) AND linea like ? AND HORAFIN = 6";
     
     @Override
     public DefaultComboBoxModel listaTurnos(String fecha, String linea) throws Exception {

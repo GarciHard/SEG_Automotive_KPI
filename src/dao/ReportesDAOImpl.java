@@ -49,39 +49,39 @@ public class ReportesDAOImpl extends ConexionBD implements ReportesDAO {
     
     /*********QUERYS*************/
     //LLENA COMBOS
-    String LISTA_CLIENTES_PRODUCCION = "SELECT cliente FROM Bitacora WHERE linea = ? AND Tema = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY cliente ORDER BY cliente ASC";
-    String LISTA_CLIENTES_PERDIDAS = "SELECT cliente FROM Bitacora WHERE linea = ? AND Tema <> ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY cliente ORDER BY cliente ASC";
-    String LISTA_NOPARTE_PRODUCCION = "SELECT NoParte FROM Bitacora WHERE linea = ? AND Tema = ? AND cliente = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY NoParte ORDER BY NoParte ASC";
-    String LISTA_NOPARTE_PERDIDAS = "SELECT NoParte FROM Bitacora WHERE linea = ? AND Tema <> ? AND cliente = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY NoParte ORDER BY NoParte ASC";
+    String LISTA_CLIENTES_PRODUCCION = "SELECT cliente FROM Bitacora WHERE linea = ? AND Tema = ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY cliente ORDER BY cliente ASC";
+    String LISTA_CLIENTES_PERDIDAS = "SELECT cliente FROM Bitacora WHERE linea = ? AND Tema <> ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY cliente ORDER BY cliente ASC";
+    String LISTA_NOPARTE_PRODUCCION = "SELECT NoParte FROM Bitacora WHERE linea = ? AND Tema = ? AND cliente = ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY NoParte ORDER BY NoParte ASC";
+    String LISTA_NOPARTE_PERDIDAS = "SELECT NoParte FROM Bitacora WHERE linea = ? AND Tema <> ? AND cliente = ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY NoParte ORDER BY NoParte ASC";
     String LISTA_LINEAS_REGISTRADAS = "SELECT Linea FROM Bitacora Group By Linea Order BY Linea ASC";
     
     
     
     //CONSULTAS PRINCIPALES
-    String SCRAP_TOTAL = "SELECT Sum(val(cstr(scrap))) FROM Bitacora WHERE linea = ? AND Tema <> 'Piezas Producidas' AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY')";
-    String PRODUCCION_TOTAL = "SELECT Sum(cantPzas) FROM Bitacora WHERE linea = ? AND Tema = 'Piezas Producidas' AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY')";
+    String SCRAP_TOTAL = "SELECT Sum(val(cstr(scrap))) FROM Bitacora WHERE linea = ? AND Tema <> 'Piezas Producidas' AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103)";
+    String PRODUCCION_TOTAL = "SELECT Sum(cantPzas) FROM Bitacora WHERE linea = ? AND Tema = 'Piezas Producidas' AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103)";
     
     //PRODUCCION    
     String PRODUCCION_CLIENTES_GENERAL = "SELECT cliente, Sum(cantPzas) FROM Bitacora "
-            +"WHERE linea = ? AND tema = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY cliente ORDER BY cliente ASC";
+            +"WHERE linea = ? AND tema = ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY cliente ORDER BY cliente ASC";
     String PRODUCCION_CLIENTE_MODELO_GENERAL = "SELECT cliente, noParte, Sum(cantPzas) FROM Bitacora "
-            +"WHERE linea = ? AND tema = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY cliente, noParte ORDER BY cliente, noParte ASC";
+            +"WHERE linea = ? AND tema = ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY cliente, noParte ORDER BY cliente, noParte ASC";
      String PRODUCCION_CLIENTE_ESPECIFICO = "SELECT cliente,Sum(cantPzas) FROM Bitacora "
-            +"WHERE linea = ? AND tema = ? AND Cliente = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY cliente ORDER BY cliente ASC";
+            +"WHERE linea = ? AND tema = ? AND Cliente = ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY cliente ORDER BY cliente ASC";
     String PRODUCCION_MODELOS_GENERAL = "SELECT noParte, Sum(cantPzas) FROM Bitacora "
-            +"WHERE linea = ? AND tema = ? AND cliente = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY noParte ORDER BY noParte ASC";
+            +"WHERE linea = ? AND tema = ? AND cliente = ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY noParte ORDER BY noParte ASC";
     String PRODUCCION_MODELO_ESPECIFICO = "SELECT noParte, Sum(cantPzas) FROM Bitacora "
-            +"WHERE linea = ? AND tema = ? AND noParte = ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY noParte ORDER BY noParte ASC";
+            +"WHERE linea = ? AND tema = ? AND noParte = ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY noParte ORDER BY noParte ASC";
        
     //PERDIDAS
     String PERDIDAS_TEMA_GENERAL = "SELECT tema, Sum(val(cstr(scrap))) FROM Bitacora "
-            +"WHERE linea = ? AND tema <> ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY tema ORDER BY tema ASC";
+            +"WHERE linea = ? AND tema <> ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY tema ORDER BY tema ASC";
     String PERDIDAS_AREA_GENERAL = "SELECT area, Sum(val(cstr(scrap))) FROM Bitacora "
-            +"WHERE linea = ? AND tema <> ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY area ORDER BY area ASC";
+            +"WHERE linea = ? AND tema <> ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY area ORDER BY area ASC";
     String PERDIDAS_PROBLEMA_GENERAL = "";
     String PERDIDAS_TEMA_AREA_GENERAL = "";
     String PERDIDAS_TEMA_AREA_PROBLEMA_GENERAL = "SELECT tema, area, problema, Sum(val(cstr(scrap))) FROM Bitacora "
-            +"WHERE linea = ? AND tema <> ? AND fecha >= TO_DATE(?, 'DD/MM/YYYY') AND fecha <= TO_DATE(?, 'DD/MM/YYYY') GROUP BY tema,area,problema ORDER BY tema, area, problema ASC";
+            +"WHERE linea = ? AND tema <> ? AND fecha >= CONVERT(DATETIME, ?, 103) AND fecha <= CONVERT(DATETIME, ?, 103) GROUP BY tema,area,problema ORDER BY tema, area, problema ASC";
     String PERDIDAS_TEMA_ESPECIFIFCO = "";
     String PERDIDAS_AREA_ESPECIFICO = "";
     String PERDIDAS_PROBLEMA_ESPECIFICO = "";

@@ -243,7 +243,7 @@ public class TiempoTurno extends javax.swing.JDialog {
 
                     new TiempoTurnoDAOImpl().registrarHorarioBitacora(
                             winPrincipal.getCmbLinea().getSelectedItem().toString(),
-                            Date.valueOf(winPrincipal.getDteFecha().getText()),
+                            winPrincipal.getDteFecha().getText(),
                             String.valueOf(jComboBox1.getSelectedItem()),
                             Integer.parseInt(txtHoraInicial.getText()),
                             Integer.parseInt(txtHoraFinal.getText()),
