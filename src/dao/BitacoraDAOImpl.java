@@ -426,7 +426,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 numTurno = Integer.parseInt(rs.getString(1));
                 System.out.println("NUMERO DE TURNO: " + numTurno);
                 
-                ps2 = this.conexion.prepareStatement("SELECT NumTurnoLinea FROM TurnoLinea WHERE Linea LIKE ? AND Fecha = TO_DATE(?, 'DD/MM/YYYY')");
+                ps2 = this.conexion.prepareStatement("SELECT NumTurnoLinea FROM TurnoLinea WHERE Linea LIKE ? AND Fecha = CONVERT(DATETIME, ?, 103)");
                 ps2.setString(1, linea);
                 ps2.setString(2, fecha);
                 rs = ps2.executeQuery();
@@ -434,14 +434,14 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 
                 if (rs.next()) {
                     
-                    ps3 = this.conexion.prepareStatement("UPDATE TurnoLinea SET NumTurnoLinea = ? WHERE Linea like ? AND Fecha = TO_DATE(?, 'DD/MM/YYYY')");
+                    ps3 = this.conexion.prepareStatement("UPDATE TurnoLinea SET NumTurnoLinea = ? WHERE Linea like ? AND Fecha = CONVERT(DATETIME, ?, 103)");
                     ps3.setInt(1, numTurno);
                     ps3.setString(2, linea);
                     ps3.setString(3, fecha);
                     ps3.executeUpdate();
                     ps3.close();
                 } else {
-                    ps4 = this.conexion.prepareStatement("INSERT INTO TurnoLinea VALUES(?, ?, TO_DATE(?, 'DD/MM/YYYY'))");
+                    ps4 = this.conexion.prepareStatement("INSERT INTO TurnoLinea VALUES(?, ?, CONVERT(DATETIME, ?, 103))");
                     ps4.setInt(1, numTurno);
                     ps4.setString(2, linea);
                     ps4.setString(3, fecha);
