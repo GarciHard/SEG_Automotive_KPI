@@ -20,6 +20,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import utils.PrincipalMetodos;
 import utils.PrincipalValidaciones;
+import vista.CargaTargets;
 import vista.Cargas;
 import vista.Lineas;
 import vista.Operaciones;
@@ -170,6 +171,7 @@ public class PrincipalControl implements ActionListener, CaretListener, ItemList
         winPrincipal.getBtnParoPeriodo().setVisible(false);
         
         winPrincipal.setVisible(true);
+        
     }   
     
     @Override

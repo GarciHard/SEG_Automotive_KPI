@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -190,6 +191,7 @@ public class Principal extends javax.swing.JFrame {
         mnuGraficas = new javax.swing.JMenu();
         mniListarDia = new javax.swing.JMenuItem();
         mniHourlyCount = new javax.swing.JMenuItem();
+        mniTargets = new javax.swing.JMenu();
 
         mniEliminar.setText("Eliminar");
         mniEliminar.setActionCommand("_mniEliminar");
@@ -1221,6 +1223,15 @@ public class Principal extends javax.swing.JFrame {
 
     mnuBarra.add(mnuGraficas);
 
+    mniTargets.setText("Targets y metas");
+    mniTargets.setActionCommand("mniTargets");
+    mniTargets.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            mniTargetsMouseClicked(evt);
+        }
+    });
+    mnuBarra.add(mniTargets);
+
     setJMenuBar(mnuBarra);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1281,6 +1292,11 @@ public class Principal extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void mniTargetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mniTargetsMouseClicked
+        CargaTargets targets = new CargaTargets();
+        targets.setVisible(true);
+    }//GEN-LAST:event_mniTargetsMouseClicked
 
     public JMenuItem getMniHourlyCount() {
         return mniHourlyCount;
@@ -1610,6 +1626,12 @@ public class Principal extends javax.swing.JFrame {
     public JPanel getPnlTiempoFaltante() {
         return pnlTiempoFaltante;
     }
+
+    public JMenu getMniTargets() {
+        return mniTargets;
+    }  
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarBitacora;
     private javax.swing.JButton btnCambiarLinea;
@@ -1721,6 +1743,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniListarBitacoras;
     private javax.swing.JMenuItem mniListarDia;
     private javax.swing.JMenuItem mniOperaciones;
+    private javax.swing.JMenu mniTargets;
     private javax.swing.JMenuItem mniTiemposCiclo;
     private javax.swing.JMenu mnuAdministrar;
     private javax.swing.JMenuBar mnuBarra;

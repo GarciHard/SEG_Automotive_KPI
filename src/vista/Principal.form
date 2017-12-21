@@ -1359,6 +1359,15 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="mniTargets">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Targets y metas"/>
+            <Property name="actionCommand" type="java.lang.String" value="mniTargets"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mniTargetsMouseClicked"/>
+          </Events>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
