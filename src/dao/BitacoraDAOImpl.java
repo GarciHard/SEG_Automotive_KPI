@@ -16,7 +16,7 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
 
     private ArrayList listaRegistros;
     private PreparedStatement ps, ps2, ps3, ps4;
-    private ResultSet rs;
+    private ResultSet rs, rs2, rs3, rs4;
     
     private final String INSERTA_REGISTRO_HOURLY = "INSERT INTO HourlyCount (Fecha, NombreLinea, Hora, CantProducida, NoParteTC, Scrap, CambioDuracion, TecnicaDuracion, OrganizacionalDuracion, TiempoPDuracion, OperacionX, ProblemaX, OperacionY, ProblemaY) "
             + "VALUES(CAST(CONVERT(DATETIME, ?, 103) as DATETIME), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -429,24 +429,30 @@ public class BitacoraDAOImpl extends ConexionBD implements BitacoraDAO {
                 ps2 = this.conexion.prepareStatement("SELECT NumTurnoLinea FROM TurnoLinea WHERE Linea LIKE ? AND Fecha = CONVERT(DATETIME, ?, 103)");
                 ps2.setString(1, linea);
                 ps2.setString(2, fecha);
-                rs = ps2.executeQuery();
-                ps2.close();
+                rs2 = ps2.executeQuery();
+                //ps2.close();
                 
-                if (rs.next()) {
+                if (rs2.next()) {
                     
-                    ps3 = this.conexion.prepareStatement("UPDATE TurnoLinea SET NumTurnoLinea = ? WHERE Linea like ? AND Fecha = CONVERT(DATETIME, ?, 103)");
+                    ps3 = this.conexion.prepareStatement("UPDATE TurnoLinea SET NumTurnoLinea = ? WHERE Linea like ? AND Fecha = CONVERT(DATETIME, ?, 103) AND Dia = DATEPART(DAY, CAST(CONVERT(DATETIME, ?, 103) as DATETIME)) AND Mes = DATEPART(MONTH, CAST(CONVERT(DATETIME, ?, 103) as DATETIME)) AND Anio = DATEPART(YEAR, CAST(CONVERT(DATETIME, ?, 103) as DATETIME))");
                     ps3.setInt(1, numTurno);
                     ps3.setString(2, linea);
                     ps3.setString(3, fecha);
+                    ps3.setString(4, fecha);//MES
+                    ps3.setString(5, fecha);//DIA
+                    ps3.setString(6, fecha);//ANIO
                     ps3.executeUpdate();
-                    ps3.close();
+                    //ps3.close();
                 } else {
-                    ps4 = this.conexion.prepareStatement("INSERT INTO TurnoLinea VALUES(?, ?, CONVERT(DATETIME, ?, 103))");
+                    ps4 = this.conexion.prepareStatement("INSERT INTO TurnoLinea(NumTurnoLinea, Linea, Fecha, Dia, Mes, Anio) VALUES(?, ?, CONVERT(DATETIME, ?, 103), DATEPART(DAY, CAST(CONVERT(DATETIME, ?, 103) as DATETIME)), DATEPART(MONTH, CAST(CONVERT(DATETIME, ?, 103) as DATETIME)), DATEPART(YEAR, CAST(CONVERT(DATETIME, ?, 103) as DATETIME)) )");
                     ps4.setInt(1, numTurno);
                     ps4.setString(2, linea);
                     ps4.setString(3, fecha);
+                    ps4.setString(4, fecha);//dia
+                    ps4.setString(5, fecha);//mes
+                    ps4.setString(6, fecha);//anio
                     ps4.executeUpdate();
-                    ps4.close();
+                    //ps4.close();
                 }
             }
         } catch (Exception e) {
